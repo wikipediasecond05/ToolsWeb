@@ -40,8 +40,9 @@ import {
   Workflow,
   FileSymlink,
   FolderGit2,
-  Pipette,
-  BoxSelect,
+  Pipette, // For Gradient Generator
+  BoxSelect, // For Box Shadow Generator
+  Square, // For Border Radius (visual cue, not specific icon)
   Type,
   TextCursorInput,
   ListRestart,
@@ -105,6 +106,7 @@ export const Icons = {
   FolderGit2,
   Pipette,
   BoxSelect,
+  Square,
   Type,
   TextCursorInput,
   ListRestart,

@@ -377,6 +377,107 @@ export const tools: Tool[] = [
     ],
     keywords: ['color picker', 'hex code', 'rgb converter', 'hsl converter', 'design tool', 'web color', 'css color', 'palette']
   },
+  {
+    id: 'css-gradient-generator',
+    title: 'CSS Gradient Generator',
+    description: 'Visually create linear and radial CSS gradients and copy the generated code.',
+    category: 'design-frontend',
+    icon: Icons.Pipette, // Using Pipette as a placeholder, could be Layers or Palette
+    iconName: 'Pipette',
+    path: '/tools/css-gradient-generator',
+    longDescription: {
+      overview: 'The CSS Gradient Generator provides an interactive way to design beautiful linear and radial gradients for your web projects. Adjust colors, positions, angles, and types to create the perfect gradient, then copy the generated CSS directly.',
+      useCases: [
+        'Designing backgrounds for website sections or elements.',
+        'Creating visually appealing buttons or UI components.',
+        'Generating gradients for text effects (using background-clip).',
+        'Experimenting with color combinations and gradient styles quickly.',
+        'Learning how CSS gradients work and their syntax.'
+      ],
+      howItWorks: 'Choose between linear and radial gradient types. For linear gradients, set an angle. For radial gradients, define the shape and position. Add multiple color stops, specifying the color and its position (0% to 100%). The tool provides a live preview of the gradient as you make changes. Once satisfied, copy the generated CSS code (e.g., `background-image: linear-gradient(...)`).',
+      tips: [
+        'Use at least two color stops for a gradient.',
+        'Experiment with different angles for linear gradients to achieve various effects.',
+        'Radial gradients can be circular or elliptical. Adjust the position (e.g., `circle at center top`) for different looks.',
+        'Smooth transitions are often achieved by having color stops closer together for sharper changes, or further apart for softer blends.',
+        'Modern browsers have excellent support for CSS gradients.'
+      ],
+    },
+    faqs: [
+      { question: 'What types of gradients can I create?', answer: 'You can create linear gradients (progressing in a straight line) and radial gradients (radiating from a central point).' },
+      { question: 'How many color stops can I add?', answer: 'The tool allows adding multiple color stops to create complex gradients.' },
+      { question: 'Is the generated CSS cross-browser compatible?', answer: 'The tool generates standard CSS gradient syntax, which is well-supported by all modern browsers. For very old browsers, fallbacks might be needed, but the tool focuses on current standards.' },
+      { question: 'Can I save my created gradients?', answer: 'Currently, the tool doesn_t have a save feature. You should copy the generated CSS for use in your projects.'}
+    ],
+    keywords: ['css gradient', 'gradient generator', 'linear gradient', 'radial gradient', 'web design', 'css background', 'ui design']
+  },
+  {
+    id: 'css-box-shadow-generator',
+    title: 'CSS Box Shadow Generator',
+    description: 'Interactively create and customize CSS box shadows with a live preview.',
+    category: 'design-frontend',
+    icon: Icons.BoxSelect,
+    iconName: 'BoxSelect',
+    path: '/tools/css-box-shadow-generator',
+    longDescription: {
+      overview: 'The CSS Box Shadow Generator allows you to visually design complex box shadows for your HTML elements. Adjust offsets, blur, spread, color, and choose between outset and inset shadows, all while seeing a live preview. Copy the generated CSS for easy implementation.',
+      useCases: [
+        'Adding depth and dimension to UI elements like cards, buttons, and modals.',
+        'Creating subtle or dramatic shadow effects for visual hierarchy.',
+        'Designing modern interfaces with layered looks.',
+        'Learning the `box-shadow` CSS property and its parameters.',
+        'Quickly prototyping different shadow styles.'
+      ],
+      howItWorks: 'Use sliders and input fields to control: Horizontal Offset (how far the shadow extends to the right), Vertical Offset (how far down), Blur Radius (how much the shadow is blurred), Spread Radius (how much the shadow expands), and Shadow Color (including opacity). A checkbox allows you to toggle the `inset` property, making the shadow appear inside the element. The live preview updates instantly. The generated `box-shadow` CSS rule is displayed for copying.',
+      tips: [
+        'Subtle shadows often look more professional than very dark or large ones.',
+        'Multiple box shadows can be layered by comma-separating them for more complex effects (this tool focuses on generating a single shadow layer).',
+        'The `inset` keyword creates an inner shadow, which can be used for pressed button effects or carved-out looks.',
+        'Adjusting the alpha channel of the shadow color is key to controlling its intensity and how it blends with the background.'
+      ],
+    },
+    faqs: [
+      { question: 'What do the different box-shadow parameters mean?', answer: '`offset-x`: horizontal position. `offset-y`: vertical position. `blur-radius`: higher values mean more blur. `spread-radius`: positive values expand the shadow, negative values shrink it. `color`: the shadow_s color. `inset`: changes the shadow from an outer (outset) shadow to an inner shadow.' },
+      { question: 'Can I create multiple shadow layers with this tool?', answer: 'This tool is designed to help you generate a single, well-configured box-shadow rule. To create multiple layers, you would generate each shadow individually and then combine them in your CSS, separated by commas.' },
+      { question: 'How do I control the shadow_s opacity?', answer: 'Use the color picker for the shadow color, which should allow you to set an alpha (opacity) value (e.g., using RGBA or HSLA).'},
+      { question: 'Does this tool work for `text-shadow` too?', answer: 'No, this tool is specifically for `box-shadow`. The `text-shadow` property has a similar syntax but applies to text characters.'}
+    ],
+    keywords: ['css box shadow', 'shadow generator', 'ui design', 'css effects', 'depth effect', 'web design']
+  },
+  {
+    id: 'css-border-radius-generator',
+    title: 'CSS Border Radius Generator',
+    description: 'Easily generate CSS for rounded corners with individual controls for each corner.',
+    category: 'design-frontend',
+    icon: Icons.Square, // Using Square as a placeholder, preview will be rounded
+    iconName: 'Square',
+    path: '/tools/css-border-radius-generator',
+    longDescription: {
+      overview: 'The CSS Border Radius Generator helps you create elements with rounded corners. You can control the radius of each corner individually (top-left, top-right, bottom-right, bottom-left) and see a live preview of how it affects a sample element. The tool then generates the necessary `border-radius` CSS.',
+      useCases: [
+        'Creating rounded buttons, cards, and other UI elements.',
+        'Designing organic or uniquely shaped containers.',
+        'Achieving specific corner effects like a single rounded corner or pill shapes.',
+        'Learning how the `border-radius` CSS property works with its shorthand and individual corner syntaxes.',
+        'Quickly generating CSS for complex rounded shapes.'
+      ],
+      howItWorks: 'Use the input fields or sliders provided for each of the four corners: Top-Left, Top-Right, Bottom-Right, and Bottom-Left. You can also input a single value to apply to all corners. As you adjust these values, the live preview of a sample box will update to show the effect. The tool will generate the corresponding `border-radius` CSS rule, which you can then copy.',
+      tips: [
+        'You can use different units like `px`, `%`, or `em` for border-radius values.',
+        'To create a circle from a square element, set the border-radius to 50%.',
+        'For pill-shaped buttons, use a large radius value (e.g., `9999px`) on a rectangular element.',
+        'The `border-radius` property can accept one, two, three, or four values to control all corners or specific combinations.',
+        'Complex elliptical corners can be achieved by providing two values per corner (horizontal/vertical radius), though this tool initially focuses on a single radius per corner for simplicity.'
+      ],
+    },
+    faqs: [
+      { question: 'What units can I use for border-radius?', answer: 'You can use pixels (`px`), percentages (`%`), em units (`em`), and other valid CSS length units.' },
+      { question: 'How do I make a perfect circle?', answer: 'For a square element, set its `border-radius` to `50%`.' },
+      { question: 'Can I set different horizontal and vertical radii for a corner (elliptical corners)?', answer: 'The standard `border-radius` property allows this by using a slash (e.g., `border-top-left-radius: 20px / 40px;`). This initial version of the tool focuses on a single radius value per corner for simplicity. Advanced elliptical controls could be a future enhancement.' },
+      { question: 'What is the shorthand for `border-radius`?', answer: '`border-radius: value;` (all corners), `border-radius: top-left-and-bottom-right top-right-and-bottom-left;` (two values), `border-radius: top-left top-right-and-bottom-left bottom-right;` (three values), or `border-radius: top-left top-right bottom-right bottom-left;` (four values).' }
+    ],
+    keywords: ['css border radius', 'rounded corners', 'css shapes', 'ui design', 'web design', 'css generator']
+  },
   // Conversion Tools
   {
     id: 'csv-to-json',
@@ -828,7 +929,7 @@ export const tools: Tool[] = [
         'Generating alt text for large batches of images more quickly.',
         'Ensuring compliance with accessibility standards (WCAG).',
       ],
-      howItWorks: 'Click "Choose Image" to upload an image file (PNG, JPG, GIF, etc.). The image will be previewed. Click "Generate Alt Text". The AI will analyze the image data and suggest descriptive alt text. Review the suggestion for accuracy and context.',
+      howItWorks: 'Click "Choose Image" to upload an image file (PNG, JPG, GIF, etc.). The image will be previewed. Click "Generate Alt Text". The AI will analyze the image data and suggest descriptive alt text. Review the suggestion for accuracy and context. Max file size: 5MB.',
       tips: [
         'Good alt text is concise yet descriptive, conveying the purpose or content of the image.',
         'Avoid starting alt text with "Image of..." or "Picture of..." as it_s usually redundant.',
@@ -851,4 +952,3 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
-

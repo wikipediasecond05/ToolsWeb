@@ -29,6 +29,9 @@ import { AiCommitMessageWriterTool } from '@/components/tools/AiCommitMessageWri
 import { AiBlogPostIdeaGeneratorTool } from '@/components/tools/AiBlogPostIdeaGeneratorTool';
 import { AiTextSummarizerTool } from '@/components/tools/AiTextSummarizerTool';
 import { AiImageAltTextGeneratorTool } from '@/components/tools/AiImageAltTextGeneratorTool';
+import { CSSGradientGeneratorTool } from '@/components/tools/CSSGradientGeneratorTool';
+import { CSSBoxShadowGeneratorTool } from '@/components/tools/CSSBoxShadowGeneratorTool';
+import { CSSBorderRadiusGeneratorTool } from '@/components/tools/CSSBorderRadiusGeneratorTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -102,6 +105,12 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <AiTextSummarizerTool />;
       case 'ai-image-alt-text-generator':
         return <AiImageAltTextGeneratorTool />;
+      case 'css-gradient-generator':
+        return <CSSGradientGeneratorTool />;
+      case 'css-box-shadow-generator':
+        return <CSSBoxShadowGeneratorTool />;
+      case 'css-border-radius-generator':
+        return <CSSBorderRadiusGeneratorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
