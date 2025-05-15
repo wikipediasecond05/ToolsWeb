@@ -43,14 +43,16 @@ export function CSSGradientGeneratorTool() {
       .map(stop => `${stop.color} ${stop.position}%`)
       .join(', ');
 
-    let css = '';
+    let gradientValue = '';
     if (gradientType === 'linear') {
-      css = `background-image: linear-gradient(${angle}deg, ${stopsString});`;
+      gradientValue = `linear-gradient(${angle}deg, ${stopsString})`;
     } else { // radial
-      css = `background-image: radial-gradient(${radialShape} at ${radialPosition}, ${stopsString});`;
+      gradientValue = `radial-gradient(${radialShape} at ${radialPosition}, ${stopsString})`;
     }
-    setGeneratedCSS(css);
-    setPreviewStyle({ backgroundImage: css.replace('background-image: ', '') });
+    const cssRule = `background-image: ${gradientValue};`;
+    
+    setGeneratedCSS(cssRule);
+    setPreviewStyle({ backgroundImage: gradientValue });
   }, [gradientType, angle, radialShape, radialPosition, colorStops]);
 
   useEffect(() => {
@@ -59,7 +61,7 @@ export function CSSGradientGeneratorTool() {
 
   const handleAddColorStop = () => {
     const lastStop = colorStops[colorStops.length - 1];
-    const newPosition = Math.min(100, lastStop.position + 10); // Default new position
+    const newPosition = Math.min(100, (lastStop?.position || 0) + 10); // Default new position
     setColorStops([
       ...colorStops,
       { id: `stop${Date.now()}`, color: '#ffffff', position: newPosition },
@@ -121,7 +123,7 @@ export function CSSGradientGeneratorTool() {
         {/* Controls Column */}
         <div className="space-y-6">
           <div>
-            <Label htmlFor="gradientType" className="mb-2 block">Gradient Type</Label>
+            <Label htmlFor="gradientType" className="mb-2 block text-sm">Gradient Type</Label>
             <Select value={gradientType} onValueChange={(value) => setGradientType(value as GradientType)}>
               <SelectTrigger id="gradientType"><SelectValue /></SelectTrigger>
               <SelectContent>
@@ -133,7 +135,7 @@ export function CSSGradientGeneratorTool() {
 
           {gradientType === 'linear' && (
             <div>
-              <Label htmlFor="angle" className="mb-2 block">Angle ({angle}°)</Label>
+              <Label htmlFor="angle" className="mb-2 block text-sm">Angle ({angle}°)</Label>
               <Slider id="angle" min={0} max={360} step={1} value={[angle]} onValueChange={(val) => setAngle(val[0])} />
             </div>
           )}
@@ -141,7 +143,7 @@ export function CSSGradientGeneratorTool() {
           {gradientType === 'radial' && (
             <>
               <div>
-                <Label htmlFor="radialShape" className="mb-2 block">Radial Shape</Label>
+                <Label htmlFor="radialShape" className="mb-2 block text-sm">Radial Shape</Label>
                 <Select value={radialShape} onValueChange={(value) => setRadialShape(value as RadialShape)}>
                   <SelectTrigger id="radialShape"><SelectValue /></SelectTrigger>
                   <SelectContent>
@@ -151,7 +153,7 @@ export function CSSGradientGeneratorTool() {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="radialPosition" className="mb-2 block">Position</Label>
+                <Label htmlFor="radialPosition" className="mb-2 block text-sm">Position</Label>
                 <Select value={radialPosition} onValueChange={setRadialPosition}>
                   <SelectTrigger id="radialPosition"><SelectValue /></SelectTrigger>
                   <SelectContent>
@@ -163,7 +165,7 @@ export function CSSGradientGeneratorTool() {
           )}
 
           <div className="space-y-3">
-            <Label className="block font-semibold">Color Stops</Label>
+            <Label className="block font-semibold text-sm">Color Stops</Label>
             {colorStops.map((stop, index) => (
               <div key={stop.id} className="flex items-center gap-2 p-2 border rounded-md">
                 <Input
@@ -177,7 +179,7 @@ export function CSSGradientGeneratorTool() {
                   type="text"
                   value={stop.color}
                   onChange={(e) => handleColorStopChange(stop.id, 'color', e.target.value)}
-                  className="flex-1"
+                  className="flex-1 text-sm"
                   placeholder="Hex Color"
                   aria-label={`Hex color for stop ${index + 1}`}
                 />
@@ -186,7 +188,7 @@ export function CSSGradientGeneratorTool() {
                   value={stop.position}
                   onChange={(e) => handleColorStopChange(stop.id, 'position', e.target.value)}
                   min="0" max="100" step="1"
-                  className="w-20 text-center"
+                  className="w-20 text-center text-sm"
                   aria-label={`Position for stop ${index + 1}`}
                 />
                 <span className="text-sm">%</span>
@@ -204,7 +206,7 @@ export function CSSGradientGeneratorTool() {
         {/* Preview and Output Column */}
         <div className="space-y-6">
           <div>
-            <Label className="mb-2 block font-semibold">Live Preview</Label>
+            <Label className="mb-2 block font-semibold text-sm">Live Preview</Label>
             <div
               className="w-full h-60 rounded-md border bg-muted"
               style={previewStyle}
@@ -215,7 +217,7 @@ export function CSSGradientGeneratorTool() {
 
           <div>
             <div className="flex justify-between items-center mb-2">
-              <Label htmlFor="generatedCSS" className="font-semibold">Generated CSS</Label>
+              <Label htmlFor="generatedCSS" className="font-semibold text-sm">Generated CSS</Label>
               <Button variant="ghost" size="sm" onClick={handleCopyToClipboard} disabled={!generatedCSS}>
                 <Copy className="mr-2 h-4 w-4" /> Copy CSS
               </Button>
@@ -225,7 +227,7 @@ export function CSSGradientGeneratorTool() {
               value={generatedCSS}
               readOnly
               rows={5}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary"
+              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
               placeholder="CSS will appear here..."
             />
           </div>
