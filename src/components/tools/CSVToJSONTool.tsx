@@ -3,13 +3,13 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { AlertCircle, Copy, Trash2,Replace } from 'lucide-react';
+import { AlertCircle, Copy, Trash2, Replace } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import DynamicMonacoEditor from './editors/DynamicMonacoEditor';
 
 // Basic CSV parser
 const parseCSV = (csvString: string, delimiter: string): string[][] => {
@@ -23,9 +23,9 @@ const parseCSV = (csvString: string, delimiter: string): string[][] => {
     const nextChar = csvString[i + 1];
 
     if (char === '"') {
-      if (inQuotes && nextChar === '"') { // Handle "" as escaped quote
+      if (inQuotes && nextChar === '"') { 
         currentField += '"';
-        i++; // Skip next quote
+        i++; 
       } else {
         inQuotes = !inQuotes;
       }
@@ -33,10 +33,9 @@ const parseCSV = (csvString: string, delimiter: string): string[][] => {
       currentRow.push(currentField);
       currentField = '';
     } else if ((char === '\n' || char === '\r') && !inQuotes) {
-      if (char === '\r' && nextChar === '\n') { // Handle CRLF
+      if (char === '\r' && nextChar === '\n') { 
         i++;
       }
-      // End of line
       currentRow.push(currentField);
       rows.push(currentRow);
       currentRow = [];
@@ -45,20 +44,17 @@ const parseCSV = (csvString: string, delimiter: string): string[][] => {
       currentField += char;
     }
   }
-  // Add the last field and row if any
   currentRow.push(currentField);
-  if (currentRow.length > 0 || currentField) { // Handle case where CSV doesn't end with newline
+  if (currentRow.length > 0 || currentField) { 
       rows.push(currentRow);
   }
   
-  // Filter out completely empty last row if CSV ends with multiple newlines
   if (rows.length > 0 && rows[rows.length - 1].length === 1 && rows[rows.length - 1][0] === '') {
     const lastRow = rows[rows.length -1];
     if (lastRow.every(field => field.trim() === '')) {
       rows.pop();
     }
   }
-
   return rows;
 };
 
@@ -104,7 +100,6 @@ export function CSVToJSONTool() {
       } else {
         const numCols = parsedData[0]?.length || 0;
         if (numCols === 0 && parsedData.length === 1 && parsedData[0][0].trim() === '') {
-            // Special case: single empty line if no header
             setJsonOutput('[]');
             return;
         }
@@ -117,16 +112,15 @@ export function CSVToJSONTool() {
         return;
       }
 
-
       const jsonArray = dataRows.map(row => {
         const obj: Record<string, any> = {};
         headers.forEach((header, index) => {
-          let value: any = row[index] !== undefined ? row[index] : ''; // Default to empty string if cell is missing
+          let value: any = row[index] !== undefined ? row[index] : ''; 
 
           if (convertTypes) {
             if (value.trim() === '') {
                 value = null;
-            } else if (!isNaN(Number(value)) && value.trim() !== '') { // Check if it's a number string
+            } else if (!isNaN(Number(value)) && value.trim() !== '') { 
               value = Number(value);
             } else if (value.toLowerCase() === 'true') {
               value = true;
@@ -159,7 +153,6 @@ export function CSVToJSONTool() {
     }
     try {
       await navigator.clipboard.writeText(jsonOutput);
-      // Success toast/message can be added here if desired
       setError(null);
     } catch (err) {
       console.error('Failed to copy JSON output:', err);
@@ -184,16 +177,15 @@ export function CSVToJSONTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="csvInput" className="font-semibold mb-2 block">Input CSV</Label>
-          <Textarea
-            id="csvInput"
-            value={csvInput}
-            onChange={(e) => setCsvInput(e.target.value)}
-            placeholder="Paste your CSV data here..."
-            rows={10}
-            className="text-sm font-mono border-border focus-visible:ring-primary"
-            aria-label="Input CSV data"
-          />
+          <Label htmlFor="csvInput-csv-json" className="font-semibold mb-2 block">Input CSV</Label>
+           <div className="border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring focus-within:border-transparent">
+            <DynamicMonacoEditor
+              language="plaintext"
+              value={csvInput}
+              onChange={(value) => setCsvInput(value || '')}
+              aria-label="Input CSV data"
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
@@ -220,7 +212,7 @@ export function CSVToJSONTool() {
               value={delimiter}
               onChange={(e) => setDelimiter(e.target.value)}
               className="w-full md:w-32"
-              maxLength={5} // Allow for multi-char delimiters if needed, though usually single
+              maxLength={5} 
             />
           </div>
         </div>
@@ -237,20 +229,19 @@ export function CSVToJSONTool() {
         {jsonOutput && (
           <div className="grid gap-2 pt-4 border-t border-border">
             <div className="flex justify-between items-center">
-              <Label htmlFor="jsonOutput" className="font-semibold mb-2 block">Output JSON</Label>
+              <Label htmlFor="jsonOutput-csv-json" className="font-semibold mb-2 block">Output JSON</Label>
               <Button variant="ghost" size="sm" onClick={handleCopyOutput}>
                 <Copy className="mr-2 h-4 w-4" /> Copy Output
               </Button>
             </div>
-            <Textarea
-              id="jsonOutput"
-              value={jsonOutput}
-              readOnly
-              placeholder="JSON output will appear here..."
-              rows={12}
-              className="text-sm font-mono bg-muted/30 border-border"
-              aria-label="Output JSON data"
-            />
+            <div className="border rounded-md overflow-hidden">
+              <DynamicMonacoEditor
+                language="json"
+                value={jsonOutput}
+                options={{ readOnly: true }}
+                aria-label="Output JSON data"
+              />
+            </div>
           </div>
         )}
       </CardContent>
