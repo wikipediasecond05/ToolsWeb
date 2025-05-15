@@ -111,6 +111,11 @@ export default function ToolPage({ params }: ToolPageProps) {
           
           {/* <!-- AdSense Placeholder: Below Tool UI --> */}
 
+          {/* Comment Section - Moved Here */}
+          <section className="my-12">
+            <CommentSection toolId={tool.id} />
+          </section>
+
           {tool.longDescription && (
             <section className="my-12 prose dark:prose-invert max-w-none 
                                 prose-headings:font-semibold prose-headings:text-foreground 
@@ -154,7 +159,7 @@ export default function ToolPage({ params }: ToolPageProps) {
               <Accordion type="single" collapsible className="w-full">
                 {tool.faqs.map((faq, index) => (
                   <AccordionItem value={`item-${index}`} key={index}>
-                    <AccordionTrigger>{faq.question}</AccordionTrigger>
+                    <AccordionTrigger className="hover:no-underline">{faq.question}</AccordionTrigger>
                     <AccordionContent>{faq.answer}</AccordionContent>
                   </AccordionItem>
                 ))}
@@ -163,10 +168,6 @@ export default function ToolPage({ params }: ToolPageProps) {
             </section>
           )}
 
-          {/* Comment Section */}
-          <section className="my-12">
-            <CommentSection toolId={tool.id} />
-          </section>
         </div>
 
         {/* Sidebar Area */}

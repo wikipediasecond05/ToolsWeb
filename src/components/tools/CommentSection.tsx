@@ -19,7 +19,7 @@ interface Comment {
   author: string;
   avatarUrl?: string; 
   text: string;
-  timestamp: Date;
+  timestamp: Date; // Store as Date object
 }
 
 export function CommentSection({ toolId }: CommentSectionProps) {
@@ -28,13 +28,16 @@ export function CommentSection({ toolId }: CommentSectionProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   
-  // Effect to load comments from localStorage (client-side only)
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedComments = localStorage.getItem(`comments_${toolId}`);
       if (storedComments) {
         try {
-          const parsedComments: Comment[] = JSON.parse(storedComments).map((c: any) => ({...c, timestamp: new Date(c.timestamp)}));
+          // When parsing, ensure timestamp is converted back to Date object
+          const parsedComments: Comment[] = JSON.parse(storedComments).map((c: any) => ({
+            ...c,
+            timestamp: new Date(c.timestamp) 
+          }));
           setComments(parsedComments);
         } catch (e) {
           console.error("Failed to parse comments from localStorage", e);
@@ -44,9 +47,9 @@ export function CommentSection({ toolId }: CommentSectionProps) {
     }
   }, [toolId]);
 
-  // Effect to save comments to localStorage when comments state changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      // When stringifying, Date objects are automatically converted to ISO strings
       localStorage.setItem(`comments_${toolId}`, JSON.stringify(comments));
     }
   }, [comments, toolId]);
@@ -59,7 +62,6 @@ export function CommentSection({ toolId }: CommentSectionProps) {
     setIsSubmitting(true);
     
     // Simulate API call for real backend
-    // For now, just add locally
     await new Promise(resolve => setTimeout(resolve, 300)); 
 
     const commentToAdd: Comment = {
@@ -68,7 +70,7 @@ export function CommentSection({ toolId }: CommentSectionProps) {
       text: newComment,
       timestamp: new Date(),
     };
-    setComments(prevComments => [commentToAdd, ...prevComments]);
+    setComments(prevComments => [commentToAdd, ...prevComments]); // Prepend new comments
     setNewComment('');
     setIsSubmitting(false);
     toast({
