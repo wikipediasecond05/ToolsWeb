@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { APP_NAME, APP_DOMAIN } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `Privacy Policy`,
+  title: { absolute: `Privacy Policy` },
   description: `Read the Privacy Policy for ${APP_NAME} (${APP_DOMAIN}). Understand how we handle your data, cookies, and third-party services.`,
 };
 
