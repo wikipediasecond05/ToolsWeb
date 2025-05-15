@@ -10,7 +10,7 @@ import { CheckCircle, ShieldCheck, Zap } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Home | ${APP_NAME}`,
+  title: { absolute: APP_TAGLINE },
   description: `Welcome to ${APP_NAME} - ${APP_TAGLINE}`,
 };
 

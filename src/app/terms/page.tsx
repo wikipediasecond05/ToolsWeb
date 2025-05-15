@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { APP_NAME, APP_DOMAIN } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `Terms of Use | ${APP_NAME}`,
+  title: `Terms of Use`,
   description: `Read the Terms of Use for ${APP_NAME} (${APP_DOMAIN}). Understand your responsibilities and our disclaimers.`,
 };
 
