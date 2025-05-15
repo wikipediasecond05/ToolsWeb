@@ -109,27 +109,32 @@ export default function ToolPage({ params }: ToolPageProps) {
         {/* <!-- AdSense Placeholder: Below Tool UI --> */}
 
         {tool.longDescription && (
-          <section className="my-12 space-y-6 prose dark:prose-invert max-w-none">
-            <div>
-              <h2 className="text-2xl font-semibold mb-3">Overview</h2>
+           <section className="my-12 prose dark:prose-invert max-w-none 
+                               prose-headings:font-semibold prose-headings:text-foreground 
+                               prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-8
+                               prose-p:leading-relaxed prose-p:text-muted-foreground
+                               prose-ul:list-disc prose-ul:pl-6 prose-ul:space-y-1
+                               prose-li:text-muted-foreground">
+            <div className="mb-8">
+              <h2 className="border-b pb-2">Overview</h2>
               <p>{tool.longDescription.overview}</p>
             </div>
-            <div>
-              <h2 className="text-2xl font-semibold mb-3">Use Cases</h2>
-              <ul className="list-disc list-inside space-y-1">
+            <div className="mb-8">
+              <h2 className="border-b pb-2">Use Cases</h2>
+              <ul>
                 {tool.longDescription.useCases.map((useCase, index) => (
                   <li key={index}>{useCase}</li>
                 ))}
               </ul>
             </div>
-            <div>
-              <h2 className="text-2xl font-semibold mb-3">How It Works</h2>
+            <div className="mb-8">
+              <h2 className="border-b pb-2">How It Works</h2>
               <p>{tool.longDescription.howItWorks}</p>
             </div>
             {tool.longDescription.tips && tool.longDescription.tips.length > 0 && (
-              <div>
-                <h2 className="text-2xl font-semibold mb-3">Tips for Better Usage</h2>
-                <ul className="list-disc list-inside space-y-1">
+              <div className="mb-8">
+                <h2 className="border-b pb-2">Tips for Better Usage</h2>
+                <ul>
                   {tool.longDescription.tips.map((tip, index) => (
                     <li key={index}>{tip}</li>
                   ))}
