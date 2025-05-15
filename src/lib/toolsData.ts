@@ -296,22 +296,72 @@ export const tools: Tool[] = [
   {
     id: 'password-generator',
     title: 'Password Generator',
-    description: 'Create strong and secure passwords.',
+    description: 'Create strong, secure, and customizable passwords instantly.',
     category: 'security',
     icon: Icons.KeyRound,
     iconName: 'KeyRound',
     path: '/tools/password-generator',
-    keywords: ['password generator', 'security', 'strong password']
+    longDescription: {
+      overview: 'The Password Generator helps you create strong, random passwords tailored to your security needs. You can customize the length and include or exclude uppercase letters, lowercase letters, numbers, and symbols. Strong passwords are crucial for protecting your online accounts and sensitive information.',
+      useCases: [
+        'Generating unique passwords for new online accounts (email, social media, banking, etc.).',
+        'Creating secure passphrases for Wi-Fi networks or encrypted files.',
+        'Updating existing weak passwords to stronger ones.',
+        'Providing users with a tool to generate strong passwords within an application or website.',
+        'Educating users on password strength and complexity.'
+      ],
+      howItWorks: 'Specify the desired length for your password using the slider or input field. Then, select the character sets you want to include: uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and symbols (e.g., !@#$%^&amp;*). Click the "Generate Password" button, and the tool will create a random password based on your criteria. The generated password appears in a read-only field, and you can easily copy it to your clipboard.',
+      tips: [
+        'Aim for a password length of at least 12-16 characters for good security. Longer is generally better.',
+        'Include a mix of character types (uppercase, lowercase, numbers, symbols) to significantly increase password strength.',
+        'Avoid using easily guessable information like names, dates, or common words.',
+        'Use a unique password for each important account. A password manager can help you store and manage them.',
+        'Regularly update critical passwords, especially if you suspect a breach.'
+      ],
+    },
+    faqs: [
+      { question: 'How random are the generated passwords?', answer: 'The passwords are generated using cryptographically secure random number generation available in the browser, ensuring a high degree of randomness.' },
+      { question: 'Is it safe to use an online password generator?', answer: 'This tool generates passwords client-side, meaning the password is created in your browser and not sent over the internet or stored on our servers. This makes it safe to use. However, always ensure you are on the correct website (check the URL) when using any online security tool.' },
+      { question: 'What is the maximum password length I can generate?', answer: 'The tool typically supports lengths up to 128 characters, which is more than sufficient for most purposes.' },
+      { question: 'Which symbols are included?', answer: 'The symbols set generally includes common special characters like !@#$%^&*()_+-=[]{}|;:,.<>/?~`.' },
+      { question: 'Can I save the generated passwords here?', answer: 'No, this tool does not store your generated passwords. You should copy the password and store it securely, preferably in a reputable password manager.' }
+    ],
+    keywords: ['password generator', 'security', 'strong password', 'random password', 'secure password', 'passphrase']
   },
   {
     id: 'hash-generator',
     title: 'Hash Generator',
-    description: 'Generate MD5, SHA1, SHA256 hashes.',
+    description: 'Generate cryptographic hashes (SHA-256, SHA-384, SHA-512) from text input.',
     category: 'security',
     icon: Icons.Hash,
     iconName: 'Hash',
     path: '/tools/hash-generator',
-    keywords: ['hash generator', 'md5', 'sha1', 'sha256', 'security']
+    longDescription: {
+      overview: 'The Hash Generator tool allows you to compute cryptographic hash values for any text input using various secure algorithms like SHA-256, SHA-384, and SHA-512. Hashing is a one-way process that converts input data into a fixed-size string of characters, which is unique to that specific input. It_s widely used for data integrity verification, password storage, and digital signatures.',
+      useCases: [
+        'Verifying the integrity of downloaded files by comparing their computed hash with a known hash value.',
+        'Creating checksums for data to detect accidental modifications.',
+        'Understanding how hashing algorithms work by seeing the output for different inputs.',
+        'Securely storing representations of passwords (though salting and key derivation functions are also crucial for this).',
+        'Generating unique identifiers based on content.'
+      ],
+      howItWorks: 'Enter the text you want to hash into the input area. Select the desired hashing algorithm (SHA-256, SHA-384, or SHA-512) from the options. Click the "Generate Hash" button. The tool uses the Web Crypto API in your browser to compute the hash. The resulting hash value (in hexadecimal format) will be displayed for the selected algorithm. You can then copy this hash value to your clipboard.',
+      tips: [
+        'Even a small change in the input text will result in a completely different hash value.',
+        'Hashing is a one-way function; you cannot reverse a hash to get the original input text.',
+        'SHA-256, SHA-384, and SHA-512 are considered secure hashing algorithms. Older algorithms like MD5 and SHA-1 are no longer recommended for security-critical applications due to known vulnerabilities.',
+        'The output hash is typically represented as a hexadecimal string.',
+        'For password hashing in real applications, always use a strong, slow hashing algorithm combined with salting and preferably a key derivation function (KDF) like Argon2 or scrypt.'
+      ],
+    },
+    faqs: [
+      { question: 'What is a cryptographic hash function?', answer: 'A cryptographic hash function is a mathematical algorithm that maps data of arbitrary size to a bit array of a fixed size (the hash). It is a one-way function, meaning it is infeasible to invert or reverse the computation.' },
+      { question: 'Why are MD5 and SHA-1 not offered?', answer: 'MD5 and SHA-1 are considered cryptographically broken and insecure for most modern applications due to collision vulnerabilities. We offer stronger, currently secure algorithms like SHA-256 and above.' },
+      { question: 'How does the Web Crypto API work for hashing?', answer: 'The browser_s Web Crypto API provides `crypto.subtle.digest()`, which takes an algorithm identifier and input data (as an ArrayBuffer) and returns a Promise that resolves to the hash digest, also as an ArrayBuffer. This is then typically converted to a hex string for display.' },
+      { question: 'Is my input text sent to a server?', answer: 'No, all hashing is performed client-side within your browser using the Web Crypto API. Your input text remains private.' },
+      { question: 'Can I hash files with this tool?', answer: 'Currently, this tool is designed for text input. Hashing files would require file reading capabilities, which could be added as a future enhancement.' }
+    ],
+    keywords: ['hash generator', 'sha256', 'sha384', 'sha512', 'md5', 'sha1', 'security', 'cryptography', 'checksum']
   },
   // Productivity Tools
   {

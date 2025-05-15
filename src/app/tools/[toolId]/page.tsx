@@ -7,7 +7,9 @@ import { LineBreakRemoverTool } from '@/components/tools/LineBreakRemoverTool';
 import { ColorPickerTool } from '@/components/tools/ColorPickerTool';
 import { CSSMinifierTool } from '@/components/tools/CSSMinifierTool';
 import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool';
-import { MarkdownToHTMLTool } from '@/components/tools/MarkdownToHTMLTool'; // Import new tool
+import { MarkdownToHTMLTool } from '@/components/tools/MarkdownToHTMLTool';
+import { PasswordGeneratorTool } from '@/components/tools/PasswordGeneratorTool'; // Import new tool
+import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool'; // Import new tool
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
@@ -75,6 +77,10 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <CSVToJSONTool />;
       case 'markdown-to-html':
         return <MarkdownToHTMLTool />;
+      case 'password-generator':
+        return <PasswordGeneratorTool />;
+      case 'hash-generator':
+        return <HashGeneratorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
