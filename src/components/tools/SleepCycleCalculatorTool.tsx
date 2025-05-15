@@ -12,20 +12,20 @@ import { Badge } from '@/components/ui/badge';
 import { AlertCircle, Bed, Moon, Info, Clock } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
-interface WakeUpResult {
-  time: string;
+interface CalculationResult {
+  time: string; // Wake-up time or Bedtime
   cycles: number;
-  duration: string;
+  duration: string; // Total sleep duration
   isRecommended: boolean;
 }
 
 export function SleepCycleCalculatorTool() {
   const [calculationMode, setCalculationMode] = useState<'sleepAt' | 'wakeUpAt'>('sleepAt');
-  const [bedTime, setBedTime] = useState<string>('22:30');
+  const [bedTimeInput, setBedTimeInput] = useState<string>('22:30');
+  const [wakeUpTimeInput, setWakeUpTimeInput] = useState<string>('07:00');
   const [fallAsleepDuration, setFallAsleepDuration] = useState<number>(15);
-  const [wakeUpTimeInput, setWakeUpTimeInput] = useState<string>('07:00'); // For "I want to wake up at"
   
-  const [results, setResults] = useState<WakeUpResult[]>([]);
+  const [results, setResults] = useState<CalculationResult[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const formatTime = (date: Date): string => {
@@ -38,23 +38,27 @@ export function SleepCycleCalculatorTool() {
     return `${hours} hr ${minutes} min of sleep`;
   };
 
-  const handleCalculateWakeUpTimes = () => {
+  const calculateWakeUpTimes = () => {
     setError(null);
     setResults([]);
 
-    if (!bedTime) {
+    if (!bedTimeInput) {
       setError("Please enter the time you plan to go to bed.");
       return;
     }
 
-    const [hoursStr, minutesStr] = bedTime.split(':');
+    const [hoursStr, minutesStr] = bedTimeInput.split(':');
+    if (!hoursStr || !minutesStr) {
+        setError("Invalid bed time format.");
+        return;
+    }
     const bedTimeDate = new Date();
     bedTimeDate.setHours(parseInt(hoursStr, 10), parseInt(minutesStr, 10), 0, 0);
 
     const sleepOnsetMs = bedTimeDate.getTime() + fallAsleepDuration * 60 * 1000;
     
-    const calculatedWakeTimes: WakeUpResult[] = [];
-    const sleepCyclesToCalculate = [4, 5, 6]; // Number of cycles to calculate for
+    const calculatedWakeTimes: CalculationResult[] = [];
+    const sleepCyclesToCalculate = [4, 5, 6]; 
 
     sleepCyclesToCalculate.forEach(cycles => {
       const totalSleepMinutes = cycles * 90;
@@ -71,20 +75,55 @@ export function SleepCycleCalculatorTool() {
     setResults(calculatedWakeTimes);
   };
   
-  // Placeholder for the other mode
-  const handleCalculateBedTimes = () => {
-    setError("This calculation mode is not yet implemented.");
+  const calculateBedTimes = () => {
+    setError(null);
     setResults([]);
+
+    if (!wakeUpTimeInput) {
+      setError("Please enter your desired wake-up time.");
+      return;
+    }
+
+    const [wakeHoursStr, wakeMinutesStr] = wakeUpTimeInput.split(':');
+     if (!wakeHoursStr || !wakeMinutesStr) {
+        setError("Invalid wake-up time format.");
+        return;
+    }
+    const wakeUpDate = new Date();
+    wakeUpDate.setHours(parseInt(wakeHoursStr, 10), parseInt(wakeMinutesStr, 10), 0, 0);
+    // To handle cases where bedtime is on the previous day
+    if (wakeUpDate.getTime() < new Date().setHours(0,0,0,0) + 6 * 3600 * 1000) { // if wake up time is very early (e.g. before 6 AM)
+        wakeUpDate.setDate(wakeUpDate.getDate() + 1); // Assume it's for the next morning
+    }
+
+
+    const calculatedBedTimes: CalculationResult[] = [];
+    const sleepCyclesToCalculate = [6, 5, 4]; // Calculate for more cycles first
+
+    sleepCyclesToCalculate.forEach(cycles => {
+      const totalSleepMinutes = cycles * 90;
+      const fallAsleepTimeMs = wakeUpDate.getTime() - totalSleepMinutes * 60 * 1000;
+      const bedTimeMs = fallAsleepTimeMs - fallAsleepDuration * 60 * 1000;
+      const bedTime = new Date(bedTimeMs);
+
+      calculatedBedTimes.push({
+        time: formatTime(bedTime),
+        cycles: cycles,
+        duration: formatDuration(totalSleepMinutes),
+        isRecommended: cycles === 5 || cycles === 6,
+      });
+    });
+    setResults(calculatedBedTimes);
   }
 
   useEffect(() => {
-    // Automatically calculate when relevant inputs change for the active mode
-    if (calculationMode === 'sleepAt' && bedTime) {
-      handleCalculateWakeUpTimes();
+    if (calculationMode === 'sleepAt') {
+      if (bedTimeInput) calculateWakeUpTimes();
+    } else if (calculationMode === 'wakeUpAt') {
+      if (wakeUpTimeInput) calculateBedTimes();
     }
-    // Add similar logic for 'wakeUpAt' mode if implemented
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bedTime, fallAsleepDuration, calculationMode]);
+  }, [bedTimeInput, wakeUpTimeInput, fallAsleepDuration, calculationMode]);
 
 
   const SleepCycleStage = ({ label, duration, color, widthClass }: {label: string, duration: string, color: string, widthClass: string}) => (
@@ -95,6 +134,11 @@ export function SleepCycleCalculatorTool() {
     </div>
   );
 
+  const handleTabChange = (value: string) => {
+    setCalculationMode(value as 'sleepAt' | 'wakeUpAt');
+    setError(null); // Clear errors when switching tabs
+    setResults([]); // Clear previous results
+  };
 
   return (
     <Card className="w-full shadow-lg">
@@ -105,34 +149,34 @@ export function SleepCycleCalculatorTool() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <Tabs value={calculationMode} onValueChange={(value) => setCalculationMode(value as 'sleepAt' | 'wakeUpAt')} className="w-full">
+        <Tabs value={calculationMode} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="sleepAt">I plan to sleep at...</TabsTrigger>
-            <TabsTrigger value="wakeUpAt" disabled>I want to wake up at...</TabsTrigger>
+            <TabsTrigger value="wakeUpAt">I want to wake up at...</TabsTrigger>
           </TabsList>
           
           <TabsContent value="sleepAt" className="mt-6 space-y-6">
             <div>
-              <Label htmlFor="bedTime" className="mb-2 block font-semibold">What time do you plan to go to bed?</Label>
+              <Label htmlFor="bedTimeInput" className="mb-2 block font-semibold">What time do you plan to go to bed?</Label>
               <Input
-                id="bedTime"
+                id="bedTimeInput"
                 type="time"
-                value={bedTime}
-                onChange={(e) => setBedTime(e.target.value)}
+                value={bedTimeInput}
+                onChange={(e) => setBedTimeInput(e.target.value)}
                 className="w-full md:w-1/2"
               />
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-2">
-                 <Label htmlFor="fallAsleepDuration" className="font-semibold">Time it takes to fall asleep</Label>
+                 <Label htmlFor="fallAsleepDurationSleepAt" className="font-semibold">Time it takes to fall asleep</Label>
                  <span className="text-sm text-muted-foreground flex items-center">
                     <Info size={14} className="mr-1"/> Average is 10-20 minutes
                  </span>
               </div>
               <div className="flex items-center gap-4">
                 <Slider
-                  id="fallAsleepDuration"
+                  id="fallAsleepDurationSleepAt"
                   min={0}
                   max={60}
                   step={5}
@@ -147,12 +191,13 @@ export function SleepCycleCalculatorTool() {
                   className="w-20 text-center"
                   min="0"
                   max="60"
+                  aria-labelledby="fallAsleepDurationSleepAt"
                 />
                 <span className="text-muted-foreground">min</span>
               </div>
             </div>
 
-            <Button onClick={handleCalculateWakeUpTimes} className="w-full sm:w-auto bg-primary hover:bg-primary/90">
+            <Button onClick={calculateWakeUpTimes} className="w-full sm:w-auto bg-primary hover:bg-primary/90">
               <Clock size={18} className="mr-2" /> Calculate Wake-up Times
             </Button>
 
@@ -160,10 +205,10 @@ export function SleepCycleCalculatorTool() {
 
             {results.length > 0 && (
               <div className="space-y-4 pt-4 border-t">
-                <h3 className="text-lg font-semibold">Recommended Wake-up Times Based on Sleep Cycles</h3>
+                <h3 className="text-lg font-semibold">Recommended Wake-up Times</h3>
                 <p className="text-sm text-muted-foreground">
                   <Info size={14} className="inline mr-1 align-text-bottom"/>
-                  Sorted by number of sleep cycles (fewer to more). Aim for 5-6 cycles for optimal rest.
+                  Aim for 5-6 sleep cycles for optimal rest.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                   {results.map((result, index) => (
@@ -183,11 +228,75 @@ export function SleepCycleCalculatorTool() {
             )}
           </TabsContent>
 
-          <TabsContent value="wakeUpAt" className="mt-6">
-            <Alert>
-              <Bed className="h-4 w-4" />
-              <AlertDescription>This calculation mode ("I want to wake up at...") will be implemented soon!</AlertDescription>
-            </Alert>
+          <TabsContent value="wakeUpAt" className="mt-6 space-y-6">
+             <div>
+              <Label htmlFor="wakeUpTimeInput" className="mb-2 block font-semibold">What time do you want to wake up?</Label>
+              <Input
+                id="wakeUpTimeInput"
+                type="time"
+                value={wakeUpTimeInput}
+                onChange={(e) => setWakeUpTimeInput(e.target.value)}
+                className="w-full md:w-1/2"
+              />
+            </div>
+             <div>
+              <div className="flex items-center justify-between mb-2">
+                 <Label htmlFor="fallAsleepDurationWakeUpAt" className="font-semibold">Time it takes to fall asleep</Label>
+                 <span className="text-sm text-muted-foreground flex items-center">
+                    <Info size={14} className="mr-1"/> Average is 10-20 minutes
+                 </span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Slider
+                  id="fallAsleepDurationWakeUpAt"
+                  min={0}
+                  max={60}
+                  step={5}
+                  value={[fallAsleepDuration]}
+                  onValueChange={(value) => setFallAsleepDuration(value[0])}
+                  className="flex-1"
+                />
+                <Input
+                  type="number"
+                  value={fallAsleepDuration}
+                  onChange={(e) => setFallAsleepDuration(Math.max(0, Math.min(60, parseInt(e.target.value) || 0)))}
+                  className="w-20 text-center"
+                  min="0"
+                  max="60"
+                  aria-labelledby="fallAsleepDurationWakeUpAt"
+                />
+                <span className="text-muted-foreground">min</span>
+              </div>
+            </div>
+            <Button onClick={calculateBedTimes} className="w-full sm:w-auto bg-primary hover:bg-primary/90">
+              <Bed size={18} className="mr-2" /> Calculate Bedtimes
+            </Button>
+            
+            {error && <Alert variant="destructive"><AlertCircle className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert>}
+
+            {results.length > 0 && (
+              <div className="space-y-4 pt-4 border-t">
+                <h3 className="text-lg font-semibold">Recommended Bedtimes</h3>
+                 <p className="text-sm text-muted-foreground">
+                  <Info size={14} className="inline mr-1 align-text-bottom"/>
+                  To wake up at {formatTime(new Date(`1970-01-01T${wakeUpTimeInput}`))} feeling refreshed.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {results.map((result, index) => (
+                    <Card key={index} className={`shadow-md ${result.isRecommended ? 'border-primary ring-1 ring-primary' : ''}`}>
+                      <CardHeader className="p-4">
+                        {result.isRecommended && <Badge variant="secondary" className="absolute top-2 right-2 bg-accent text-accent-foreground text-xs">Recommended</Badge>}
+                        <CardTitle className="text-3xl font-bold text-primary">{result.time}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="p-4 pt-0 text-sm text-muted-foreground">
+                        <p>{result.cycles} sleep cycles</p>
+                        <p>{result.duration}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
           </TabsContent>
         </Tabs>
 
@@ -225,3 +334,4 @@ export function SleepCycleCalculatorTool() {
     </Card>
   );
 }
+
