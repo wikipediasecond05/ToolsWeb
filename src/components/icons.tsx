@@ -1,3 +1,4 @@
+
 import {
   WrapText,
   CaseSensitive,
@@ -49,7 +50,12 @@ import {
   ALargeSmall,
   Text,
   FileLock2,
-  Eraser
+  Eraser,
+  Bed, // Added Bed icon
+  Moon, // Added Moon icon for potential use
+  Info, // Added Info icon
+  Copy as CopyIcon, // Added CopyIcon alias
+  CalendarPlus, // Added CalendarPlus for future use
 } from 'lucide-react';
 
 export const Icons = {
@@ -104,6 +110,11 @@ export const Icons = {
   Text,
   FileLock2,
   Eraser,
+  Bed, // Added Bed icon
+  Moon, // Added Moon icon
+  Info, // Added Info Icon
+  CopyIcon,
+  CalendarPlus,
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

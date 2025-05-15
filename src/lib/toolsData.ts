@@ -643,6 +643,41 @@ export const tools: Tool[] = [
     ],
     keywords: ['audiobook speed', 'listening time', 'playback calculator', 'time saved', 'productivity', 'reading speed', 'audio content']
   },
+   {
+    id: 'sleep-cycle-calculator',
+    title: 'Sleep Cycle Calculator',
+    description: 'Calculate optimal wake-up times based on your planned bedtime and natural sleep cycles.',
+    category: 'productivity', // Or a new 'Health & Wellness' category could be made
+    icon: Icons.Bed,
+    iconName: 'Bed',
+    path: '/tools/sleep-cycle-calculator',
+    longDescription: {
+      overview: 'The Sleep Cycle Calculator helps you determine the best times to wake up to feel refreshed. By aligning your wake-up time with the end of a natural 90-minute sleep cycle, you can avoid waking up groggy from deep sleep. Input when you plan to go to bed and how long it typically takes you to fall asleep, and the calculator will suggest several optimal wake-up times.',
+      useCases: [
+        'Planning your bedtime to wake up feeling more rested for work or school.',
+        'Optimizing sleep schedules for better energy levels throughout the day.',
+        'Understanding how sleep cycles work and their impact on wakefulness.',
+        'Finding the ideal number of sleep cycles for your personal needs (typically 5-6 cycles for adults).',
+        'Adjusting sleep times when traveling or dealing with schedule changes.'
+      ],
+      howItWorks: 'Select "I plan to sleep at..." mode. Enter the time you intend to go to bed. Use the slider to estimate how many minutes it usually takes you to fall asleep (average is 15-20 minutes). Click "Calculate REM Sleep Cycles". The tool then calculates several potential wake-up times based on completing full 90-minute sleep cycles. For example, it might show you times for waking up after 4, 5, or 6 sleep cycles. Times corresponding to 5 or 6 cycles (7.5 to 9 hours of sleep) are often highlighted as recommended for adults.',
+      tips: [
+        'Most adults need 7-9 hours of sleep, which corresponds to 5-6 full sleep cycles.',
+        'The average sleep cycle is 90 minutes, but this can vary slightly from person to person.',
+        'Experiment with the suggested wake-up times to find what works best for your body.',
+        'Consistency in your sleep schedule, even on weekends, can significantly improve sleep quality.',
+        'Factors like caffeine, alcohol, stress, and screen time before bed can affect how quickly you fall asleep and the quality of your sleep cycles.'
+      ],
+    },
+    faqs: [
+      { question: 'What is a sleep cycle?', answer: 'A sleep cycle consists of several stages of sleep, including light sleep, deep sleep, and REM (Rapid Eye Movement) sleep. Each full cycle typically lasts about 90 minutes.' },
+      { question: 'Why is it better to wake up at the end of a sleep cycle?', answer: 'Waking up at the end of a cycle, when you are in a lighter stage of sleep, generally makes you feel more refreshed and less groggy than if you wake up abruptly during deep sleep or REM sleep.' },
+      { question: 'How accurate is the 90-minute cycle assumption?', answer: 'While 90 minutes is a good average, individual sleep cycles can range from 70 to 120 minutes. This calculator uses the 90-minute average as a guideline.' },
+      { question: 'What if I don_t know how long it takes me to fall asleep?', answer: 'The average time is 10-20 minutes. You can start with 15 minutes and adjust based on your experience. If you fall asleep very quickly or take much longer, update the slider accordingly.' },
+      { question: 'Does this calculator consider REM sleep specifically?', answer: 'While it_s called "Calculate REM Sleep Cycles" in some contexts, it more broadly calculates based on full 90-minute sleep cycles, which include REM stages. The goal is to complete full cycles.'}
+    ],
+    keywords: ['sleep calculator', 'sleep cycle', 'wake up time', 'bedtime calculator', 'rem sleep', 'sleep schedule', 'productivity', 'health']
+  },
   // Math & Physics Tools
   {
     id: 'slope-percentage-calculator',

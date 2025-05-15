@@ -24,6 +24,7 @@ import { SentenceCounterTool } from '@/components/tools/SentenceCounterTool';
 import { SlopePercentageCalculatorTool } from '@/components/tools/SlopePercentageCalculatorTool';
 import { PlaybackSpeedCalculatorTool } from '@/components/tools/PlaybackSpeedCalculatorTool';
 import { AudiobookSpeedCalculatorTool } from '@/components/tools/AudiobookSpeedCalculatorTool';
+import { SleepCycleCalculatorTool } from '@/components/tools/SleepCycleCalculatorTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -87,6 +88,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <PlaybackSpeedCalculatorTool />;
       case 'audiobook-speed-calculator':
         return <AudiobookSpeedCalculatorTool />;
+      case 'sleep-cycle-calculator':
+        return <SleepCycleCalculatorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
