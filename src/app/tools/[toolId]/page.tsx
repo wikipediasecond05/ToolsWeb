@@ -23,6 +23,7 @@ import { LoremIpsumGeneratorTool } from '@/components/tools/LoremIpsumGeneratorT
 import { SentenceCounterTool } from '@/components/tools/SentenceCounterTool';
 import { SlopePercentageCalculatorTool } from '@/components/tools/SlopePercentageCalculatorTool';
 import { PlaybackSpeedCalculatorTool } from '@/components/tools/PlaybackSpeedCalculatorTool';
+import { AudiobookSpeedCalculatorTool } from '@/components/tools/AudiobookSpeedCalculatorTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -84,6 +85,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <SlopePercentageCalculatorTool />;
       case 'playback-speed-calculator':
         return <PlaybackSpeedCalculatorTool />;
+      case 'audiobook-speed-calculator':
+        return <AudiobookSpeedCalculatorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
@@ -204,4 +207,3 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
-

@@ -610,6 +610,39 @@ export const tools: Tool[] = [
     ],
     keywords: ['playback speed', 'video duration', 'audio duration', 'time calculator', 'speed watching', 'podcast speed', 'time saver']
   },
+  {
+    id: 'audiobook-speed-calculator',
+    title: 'Audiobook Speed Calculator',
+    description: 'Calculate new audiobook listening time based on playback speed and see time saved.',
+    category: 'productivity',
+    icon: Icons.BookText,
+    iconName: 'BookText',
+    path: '/tools/audiobook-speed-calculator',
+    longDescription: {
+      overview: 'The Audiobook Speed Calculator helps you estimate how long it will take to listen to an audiobook at different playback speeds. It also calculates the total time you can save by listening at a faster pace, or the extra time it might take if you slow it down.',
+      useCases: [
+        'Planning how quickly you can finish an audiobook based on your preferred listening speed.',
+        'Fitting audiobooks into your schedule by understanding the adjusted listening time.',
+        'Comparing listening times for different speeds (e.g., 1.25x vs. 1.5x).',
+        'Motivating yourself by seeing how much time you can save by slightly increasing listening speed.',
+        'Calculating time needed for slower speeds if you are taking notes or learning from the audiobook.'
+      ],
+      howItWorks: 'Input the original length of the audiobook in hours, minutes, and seconds. Then, enter your desired playback speed (e.g., 1.0 for normal speed, 1.5 for 50% faster, 0.75 for 25% slower). The calculator will display the new total listening time and the amount of time saved (or added if speed < 1x). You can use preset speed buttons or enter a custom speed.',
+      tips: [
+        'Many audiobook apps offer playback speeds from 0.5x up to 3x or more.',
+        'Start with small speed increments (e.g., 1.1x or 1.2x) and gradually increase as you get comfortable.',
+        'Complex material or dense narration might be harder to comprehend at very high speeds.',
+        'The "Time Saved" feature is great for seeing the cumulative benefit of listening at faster speeds over multiple audiobooks.'
+      ],
+    },
+    faqs: [
+      { question: 'How accurate is the listening time calculation?', answer: 'The calculation is mathematically precise based on the inputs. The actual comprehension and enjoyment can vary per individual at different speeds.' },
+      { question: 'Can I use decimal speeds like 1.3x?', answer: 'Yes, the custom speed input allows for decimal values.' },
+      { question: 'What does "Time Saved" mean if it_s negative?', answer: 'A negative "Time Saved" indicates that the new listening time is longer than the original, which happens if you choose a playback speed less than 1x (slower than normal).' },
+      { question: 'Does the calculator account for pauses or breaks I take?', answer: 'No, it calculates the continuous listening time based on the audiobook_s original length and the selected speed.' }
+    ],
+    keywords: ['audiobook speed', 'listening time', 'playback calculator', 'time saved', 'productivity', 'reading speed', 'audio content']
+  },
   // Math & Physics Tools
   {
     id: 'slope-percentage-calculator',
@@ -651,4 +684,3 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
-
