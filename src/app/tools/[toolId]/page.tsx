@@ -1,36 +1,36 @@
 
+'use client';
 
+import React from 'react';
 import { notFound } from 'next/navigation';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
 import { ToolPlaceholderUI } from '@/components/tools/ToolPlaceholderUI';
 import { LineBreakRemoverTool } from '@/components/tools/LineBreakRemoverTool';
+import { TextCaseConverterTool } from '@/components/tools/TextCaseConverterTool'; // New
+import { WordCounterTool } from '@/components/tools/WordCounterTool'; // New
 import { ColorPickerTool } from '@/components/tools/ColorPickerTool';
 import { CSSMinifierTool } from '@/components/tools/CSSMinifierTool';
 import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool';
 import { MarkdownToHTMLTool } from '@/components/tools/MarkdownToHTMLTool';
 import { PasswordGeneratorTool } from '@/components/tools/PasswordGeneratorTool'; 
 import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool'; 
-import { JSONFormatterTool } from '@/components/tools/JSONFormatterTool'; // New import
-import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool'; // New import
-import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool'; // New import
+import { JSONFormatterTool } from '@/components/tools/JSONFormatterTool';
+import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool'; 
+import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool'; 
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import type { Metadata } from 'next';
+import type { Metadata } from 'next'; // Keep for potential static metadata in the future
 import { APP_NAME, APP_DOMAIN } from '@/lib/constants';
 import { Icons } from '@/components/icons';
 import type { Tool, RelatedToolData } from '@/types';
-import React from 'react';
 
-type ToolPageProps = {
-  params: { toolId: string };
-};
-
-export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
+// Dynamic metadata generation (runs on server)
+export async function generateMetadata({ params }: { params: { toolId: string } }): Promise<Metadata> {
   const tool = getToolById(params.toolId);
   if (!tool) {
     return {
@@ -45,11 +45,11 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
         title: `${tool.title} | ${APP_NAME}`,
         description: tool.description,
         url: `https://${APP_DOMAIN}/tools/${tool.id}`,
-        // images: [{ url: `https://${APP_DOMAIN}/og-tool-${tool.id}.png` }], // Example for specific OG image
     }
   };
 }
 
+// Static params generation (runs at build time)
 export async function generateStaticParams() {
   const tools = getAllTools();
   return tools.map((tool) => ({
@@ -57,7 +57,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ToolPage({ params }: ToolPageProps) {
+export default function ToolPage({ params }: { params: { toolId: string } }) {
   const tool = getToolById(params.toolId);
   const allToolsData = getAllTools(); 
 
@@ -73,6 +73,10 @@ export default function ToolPage({ params }: ToolPageProps) {
     switch (tool.id) {
       case 'line-break-remover':
         return <LineBreakRemoverTool />;
+      case 'text-case-converter': // New
+        return <TextCaseConverterTool />;
+      case 'word-counter': // New
+        return <WordCounterTool />;
       case 'color-picker':
         return <ColorPickerTool />;
       case 'css-minifier':
@@ -135,7 +139,6 @@ export default function ToolPage({ params }: ToolPageProps) {
           <div className="lg:hidden space-y-8 mt-12">
             <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
             <EmojiRating toolId={tool.id} />
-            {/* <!-- AdSense Placeholder: In Related Tools Section (Mobile) --> */}
           </div>
           
           <section>
@@ -212,4 +215,3 @@ export default function ToolPage({ params }: ToolPageProps) {
     </PageWrapper>
   );
 }
-

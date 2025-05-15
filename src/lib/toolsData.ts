@@ -94,22 +94,66 @@ export const tools: Tool[] = [
   {
     id: 'text-case-converter',
     title: 'Text Case Converter',
-    description: 'Convert text to uppercase, lowercase, title case, etc.',
+    description: 'Easily convert text between various cases like uppercase, lowercase, title case, sentence case, and more.',
     category: 'text-string',
     icon: Icons.CaseSensitive,
     iconName: 'CaseSensitive',
     path: '/tools/text-case-converter',
-    keywords: ['text', 'case converter', 'uppercase', 'lowercase', 'title case']
+    longDescription: {
+      overview: 'The Text Case Converter is a handy utility for quickly changing the capitalization of your text. It supports a variety of common case formats, making it useful for writers, developers, and anyone who needs to standardize or alter text casing for different contexts.',
+      useCases: [
+        'Formatting headlines or titles (Title Case, Sentence case).',
+        'Standardizing data entry (UPPERCASE, lowercase).',
+        'Converting text for programming variable names (camelCase, PascalCase, snake_case, kebab-case).',
+        'Cleaning up text that has inconsistent capitalization.',
+        'Preparing text for specific style guide requirements.'
+      ],
+      howItWorks: 'Paste your text into the input area. Click on the button corresponding to the desired case format (e.g., "UPPERCASE", "lowercase", "Title Case"). The tool will process the input text and display the converted text in the output area. You can then copy the result.',
+      tips: [
+        '"Title Case" typically capitalizes the first letter of each word, except for minor words like "a", "an", "the", "and", "but", "or", "for", "nor", unless they are the first or last word. Our implementation uses a simpler rule: capitalize the first letter of every word.',
+        '"Sentence case" capitalizes only the first letter of the first word in each sentence. The tool uses basic punctuation (., !, ?) to determine sentence breaks.',
+        'Programming cases (Camel, Pascal, Snake, Kebab) often rely on spaces or existing capitalization to determine word boundaries for conversion.'
+      ],
+    },
+    faqs: [
+      { question: 'What is "Title Case"?', answer: 'Title Case capitalizes the first letter of each word. Our implementation capitalizes every word for simplicity.' },
+      { question: 'What is "Sentence case"?', answer: 'Sentence case capitalizes the first letter of each sentence. It identifies sentences based on common punctuation like periods, question marks, and exclamation marks.' },
+      { question: 'How do camelCase, PascalCase, snake_case, and kebab-case work?', answer: 'These are common programming case styles. camelCase starts with a lowercase letter and subsequent words are capitalized (e.g., `myVariableName`). PascalCase capitalizes every word (e.g., `MyClassName`). snake_case separates words with underscores, all lowercase (e.g., `my_variable_name`). kebab-case separates words with hyphens, all lowercase (e.g., `my-css-class`).' },
+      { question: 'Is my text sent to a server?', answer: 'No, all case conversions are performed client-side in your browser.' }
+    ],
+    keywords: ['text case', 'case converter', 'uppercase', 'lowercase', 'title case', 'sentence case', 'camelcase', 'pascalcase', 'snakecase', 'kebabcase', 'capitalization']
   },
   {
     id: 'word-counter',
     title: 'Word Counter',
-    description: 'Count words and characters in your text.',
+    description: 'Count words, characters, sentences, and paragraphs in your text with detailed statistics.',
     category: 'text-string',
     icon: Icons.Calculator,
     iconName: 'Calculator',
     path: '/tools/word-counter',
-    keywords: ['text', 'word count', 'character count']
+    longDescription: {
+      overview: 'The Word Counter tool provides detailed statistics about your text, including the number of words, characters (with and without spaces), sentences, and paragraphs. It_s useful for writers, students, editors, and anyone needing to analyze text length and structure.',
+      useCases: [
+        'Checking if text meets specific length requirements (e.g., for essays, articles, tweets).',
+        'Analyzing readability and complexity based on sentence and paragraph counts.',
+        'Tracking writing progress.',
+        'Optimizing content for SEO by monitoring word and character counts.',
+        'Proofreading and editing by getting a quick overview of text structure.'
+      ],
+      howItWorks: 'Paste or type your text into the input area. As you type, the tool automatically updates the counts for words, characters (with and without spaces), sentences, and paragraphs. Words are typically counted based on spaces and punctuation. Characters are counted including and excluding spaces. Sentences are estimated based on common terminal punctuation (., !, ?). Paragraphs are usually identified by double line breaks.',
+      tips: [
+        'The accuracy of sentence and paragraph counts depends on the heuristics used. For example, abbreviations with periods might be counted as multiple sentences by a simple counter.',
+        'Character counts can be important for platforms with strict limits, like Twitter or SMS messages.',
+        'Use the "Characters (without spaces)" count for a more precise measure of actual textual content.'
+      ],
+    },
+    faqs: [
+      { question: 'How are words counted?', answer: 'Words are generally counted by splitting the text by spaces and common punctuation. Different tools might have slightly different rules.' },
+      { question: 'How are sentences counted?', answer: 'Sentences are typically counted based on the presence of terminal punctuation like periods (.), question marks (?), and exclamation marks (!), often followed by a space or the end of the text.' },
+      { question: 'How are paragraphs counted?', answer: 'Paragraphs are usually identified by one or more blank lines (double line breaks) between blocks of text.' },
+      { question: 'Is my text sent to a server for counting?', answer: 'No, all counting operations are performed client-side within your browser. Your text remains private.' }
+    ],
+    keywords: ['word count', 'character count', 'sentence count', 'paragraph count', 'text analysis', 'statistics', 'writing tool']
   },
   // Developer Tools
   {
@@ -209,7 +253,7 @@ export const tools: Tool[] = [
       { question: 'Does this tool verify the signature of the JWT?', answer: 'No, this tool only decodes the header and payload. It does not perform signature validation. To validate the signature, you need the corresponding secret or public key.' },
       { question: 'What are the three parts of a JWT?', answer: 'A JWT consists of three parts separated by dots (.): the Header, the Payload, and the Signature. The Header and Payload are Base64Url encoded JSON objects. The Signature is used to verify the token_s authenticity.' },
       { question: 'Why is my JWT decoding to strange characters or failing?', answer: 'Ensure you are pasting the complete and unmodified JWT string. JWTs use Base64Url encoding, which is slightly different from standard Base64. The tool handles this, but corrupted or incomplete tokens will fail to decode properly.' },
-      { question: 'Is my JWT data sent to a server?', answer: 'No, all decoding operations are performed client-side within your browser. Your JWT data remains private to your session.' }
+      { question: 'Is my JWT data sent to a server?', answer: 'No, all decoding operations are performed client-side within your browser. Your JWT data remains private.' }
     ],
     keywords: ['jwt', 'decoder', 'json web token', 'authentication', 'token inspector', 'developer tools', 'security']
   },
@@ -424,26 +468,26 @@ export const tools: Tool[] = [
     ],
     keywords: ['hash generator', 'sha256', 'sha384', 'sha512', 'md5', 'sha1', 'security', 'cryptography', 'checksum']
   },
-  // Productivity Tools
+  // Productivity Tools (Placeholders - to be implemented if requested)
   {
     id: 'timestamp-converter',
     title: 'Timestamp Converter',
-    description: 'Convert Unix timestamps to human-readable dates.',
+    description: 'Convert Unix timestamps to human-readable dates and vice-versa.',
     category: 'productivity',
     icon: Icons.Clock,
     iconName: 'Clock',
     path: '/tools/timestamp-converter',
-    keywords: ['timestamp converter', 'unix time', 'date conversion']
+    keywords: ['timestamp converter', 'unix time', 'date conversion', 'epoch time']
   },
   {
     id: 'lorem-ipsum-generator',
     title: 'Lorem Ipsum Generator',
-    description: 'Generate placeholder text for your designs.',
+    description: 'Generate placeholder text (Lorem Ipsum) for your designs and mockups.',
     category: 'productivity',
     icon: Icons.ClipboardType,
     iconName: 'ClipboardType',
     path: '/tools/lorem-ipsum-generator',
-    keywords: ['lorem ipsum', 'placeholder text', 'text generator']
+    keywords: ['lorem ipsum', 'placeholder text', 'dummy text', 'text generator', 'design mockups']
   },
 ];
 
@@ -452,4 +496,3 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
-
