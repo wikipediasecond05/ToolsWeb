@@ -6,7 +6,8 @@ import { ToolPlaceholderUI } from '@/components/tools/ToolPlaceholderUI';
 import { LineBreakRemoverTool } from '@/components/tools/LineBreakRemoverTool';
 import { ColorPickerTool } from '@/components/tools/ColorPickerTool';
 import { CSSMinifierTool } from '@/components/tools/CSSMinifierTool';
-import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool'; // Import new tool
+import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool';
+import { MarkdownToHTMLTool } from '@/components/tools/MarkdownToHTMLTool'; // Import new tool
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
@@ -72,9 +73,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <CSSMinifierTool />;
       case 'csv-to-json':
         return <CSVToJSONTool />;
-      // Add cases for other tools here as they are implemented
-      // case 'another-tool-id':
-      //   return <AnotherToolComponent />;
+      case 'markdown-to-html':
+        return <MarkdownToHTMLTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
@@ -121,8 +121,6 @@ export default function ToolPage({ params }: ToolPageProps) {
             <EmojiRating toolId={tool.id} />
             {/* <!-- AdSense Placeholder: In Related Tools Section (Mobile) --> */}
           </div>
-
-          {/* <!-- AdSense Placeholder: Below Tool UI --> */}
           
           <section>
             <CommentSection toolId={tool.id} />
@@ -181,7 +179,6 @@ export default function ToolPage({ params }: ToolPageProps) {
                   </AccordionItem>
                 ))}
               </Accordion>
-              {/* <!-- AdSense Placeholder: Within FAQs --> */}
             </section>
           )}
         </div>
@@ -190,14 +187,12 @@ export default function ToolPage({ params }: ToolPageProps) {
         <aside className="hidden lg:block lg:w-1/3 lg:sticky lg:top-24 space-y-8 mt-12 lg:mt-0 self-start">
           <section>
             <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
-            {/* <!-- AdSense Placeholder: In Related Tools Section (Desktop) --> */}
           </section>
           <section>
             <EmojiRating toolId={tool.id} />
           </section>
         </aside>
       </div>
-       {/* <!-- AdSense Placeholder: Bottom of Page --> */}
     </PageWrapper>
   );
 }

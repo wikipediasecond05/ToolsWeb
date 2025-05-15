@@ -239,7 +239,7 @@ export const tools: Tool[] = [
         'Simplifying the process of reading and manipulating CSV data in JavaScript environments.',
         'Quickly structuring flat CSV files into a more hierarchical JSON representation.'
       ],
-      howItWorks: 'Paste your CSV data into the input text area. Configure the options: specify if the first row of your CSV contains headers (column names), define the delimiter used in your CSV (e.g., comma, semicolon, tab), and choose whether to attempt automatic conversion of numbers and boolean values. The tool parses each line of the CSV, splitting it into fields based on the delimiter. If headers are used, these become the keys in the resulting JSON objects. Each subsequent row is converted into a JSON object, and these objects are collected into a JSON array. The "Convert numbers and booleans" option will try to interpret values like "123", "true", "false" as their native types rather than strings.',
+      howItWorks: 'Paste your CSV data into the input text area. Configure the options: specify if the first row of your CSV contains headers (column names), define the delimiter used in your CSV (e.g., comma, semicolon, tab), and choose whether to attempt automatic conversion of numbers and boolean values. The tool parses each line of the CSV, splitting it into fields based on the delimiter. If headers are used, these become the keys in the resulting JSON objects. Each subsequent row is converted into a JSON object, and these objects are collected into a JSON array. The "Convert numbers and booleans" option will try to interpret values like "123", "3.14", "true", "false" as their native types rather than strings.',
       tips: [
         'Ensure your CSV data is well-formed. Inconsistent delimiters or unescaped quotes within fields can lead to parsing errors.',
         'If your CSV uses a delimiter other than a comma (e.g., semicolon, tab), make sure to specify it in the "Delimiter" option. For tab, use `\\t`.',
@@ -260,12 +260,37 @@ export const tools: Tool[] = [
   {
     id: 'markdown-to-html',
     title: 'Markdown to HTML Converter',
-    description: 'Convert Markdown text to HTML.',
+    description: 'Convert Markdown text to HTML and see a live preview.',
     category: 'conversion',
     icon: Icons.FileCode,
     iconName: 'FileCode',
     path: '/tools/markdown-to-html',
-    keywords: ['markdown', 'html', 'converter', 'text formatting']
+    longDescription: {
+      overview: 'The Markdown to HTML Converter allows you to write or paste Markdown text and instantly see its HTML equivalent. It also provides a live preview of how the HTML will be rendered in a browser. This tool is perfect for web developers, content creators, and anyone needing to quickly convert Markdown for web use.',
+      useCases: [
+        'Writing blog posts or articles in Markdown and converting them to HTML for web publishing.',
+        'Creating documentation or README files in Markdown and generating HTML versions.',
+        'Quickly prototyping HTML structure using Markdown syntax.',
+        'Learning how Markdown syntax translates to HTML elements.',
+        'Converting user-generated Markdown content into displayable HTML in web applications.'
+      ],
+      howItWorks: 'Enter your Markdown text in the input area on the left. As you type or after you click the "Convert" button, the tool processes the Markdown and generates the corresponding HTML code in the output area on the right. Simultaneously, a live preview below the output area will render this HTML, showing you what the final content will look like. The conversion handles common Markdown elements like headings, paragraphs, bold and italic text, links, images, lists (ordered and unordered), blockquotes, and code blocks (inline and fenced).',
+      tips: [
+        'Use the live preview to check your formatting as you write.',
+        'This converter uses a basic set of regular expressions for conversion. For highly complex Markdown or specific extensions (like GFM tables), a more advanced parser might be needed.',
+        'The generated HTML is unstyled. You will need to apply your own CSS to make it visually appealing on your website.',
+        'Remember that image paths in Markdown will be relative to where the HTML is ultimately displayed unless you use absolute URLs.',
+        'For security, if you are displaying user-generated Markdown that has been converted to HTML, ensure proper sanitization to prevent XSS attacks. This tool is primarily for client-side conversion and preview.'
+      ],
+    },
+    faqs: [
+      { question: 'What is Markdown?', answer: 'Markdown is a lightweight markup language with plain-text-formatting syntax. It is designed so that it can be converted to HTML and many other formats using a tool by the same name.' },
+      { question: 'Which Markdown features are supported?', answer: 'This tool supports common Markdown features: headings (#, ##, ...), bold (**text** or __text__), italic (*text* or _text_), links ([text](url)), images (![alt](url)), unordered lists (*, -, +), ordered lists (1.), blockquotes (>), inline code (`code`), and fenced code blocks (```).' },
+      { question: 'Can I convert HTML back to Markdown with this tool?', answer: 'No, this tool only converts Markdown to HTML. For HTML to Markdown conversion, you would need a different utility.' },
+      { question: 'Is the HTML output perfectly standard?', answer: 'The tool aims to generate standard HTML5. However, due to the simplified nature of the regex-based parser, extremely complex or malformed Markdown might not convert perfectly. Always review the output.' },
+      { question: 'Does this tool send my Markdown to a server?', answer: 'No, all conversion and rendering happen client-side in your browser. Your data remains private.' }
+    ],
+    keywords: ['markdown', 'html', 'converter', 'text formatting', 'live preview', 'markup']
   },
   // Security Tools
   {
