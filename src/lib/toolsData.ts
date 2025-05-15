@@ -89,7 +89,7 @@ export const tools: Tool[] = [
         'Cleaning up user-generated content that might have inconsistent line breaks and spacing.',
         'Standardizing text formatting before further processing or analysis.'
       ],
-      howItWorks: 'The tool processes your input text based on the selected options: First, if "Trim Leading/Trailing Spaces from Each Line" is checked, it removes whitespace from the beginning and end of every line. Next, if "Remove Empty Lines" is chosen, it eliminates any lines that become empty after trimming or were originally empty. Finally, it addresses the line breaks themselves: if you choose "Space" as a separator, all remaining line breaks are replaced with a single space. If "None" is selected, line breaks are completely removed, joining all text into a continuous string. The processed text is then displayed in the output area.',
+      howItWorks: 'Paste your text into the input area. Select your desired options: Check "Remove Empty Lines" to eliminate blank lines. Check "Trim Leading/Trailing Spaces from Each Line" to remove whitespace from the start and end of each line. Choose a "Separator" from the dropdown: "Space" replaces line breaks with a single space, while "None" removes them completely. Click the "Remove" button to process. The cleaned text will appear in the output area.',
       tips: [
         'For prose or paragraphs, using the "Space" separator is generally recommended to maintain readability and word separation.',
         'When dealing with lists or data where each item is on a new line, consider if removing line breaks entirely ("None" separator) is appropriate, or if you need a different separator for subsequent processing.',
@@ -727,7 +727,7 @@ export const tools: Tool[] = [
     title: 'AI Commit Message Writer',
     description: 'Generate conventional commit messages using AI based on your code changes or description.',
     category: 'ai-powered',
-    icon: Icons.GitBranch, // Or GitCommit if available
+    icon: Icons.GitBranch, 
     iconName: 'GitBranch',
     path: '/tools/ai-commit-message-writer',
     longDescription: {
@@ -776,7 +776,7 @@ export const tools: Tool[] = [
       ],
     },
     faqs: [
-      { question: 'How many ideas will it generate?', answer: 'The tool typically generates a list of 5-10 ideas per request, but this can vary.' },
+      { question: 'How many ideas will it generate?', answer: 'The tool typically generates a list of 5-7 ideas per request, but this can vary.' },
       { question: 'Are the ideas unique?', answer: 'AI generates ideas based on patterns and information it has learned. While it aims for creativity, some suggestions might be similar to existing content online. Always add your unique perspective.' },
       { question: 'Is my input topic sent to a server?', answer: 'Yes, your topic and target audience description are sent to the AI model to generate ideas.' },
     ],
@@ -821,28 +821,28 @@ export const tools: Tool[] = [
     iconName: 'Image',
     path: '/tools/ai-image-alt-text-generator',
     longDescription: {
-      overview: 'The AI Image Alt Text Generator helps you create descriptive alternative text (alt text) for your images. Alt text is crucial for web accessibility, allowing screen readers to describe images to visually impaired users, and also helps search engines understand image content for better SEO. For now, you will need to provide the image as a Base64 encoded Data URI.',
+      overview: 'The AI Image Alt Text Generator helps you create descriptive alternative text (alt text) for your images. Alt text is crucial for web accessibility, allowing screen readers to describe images to visually impaired users, and also helps search engines understand image content for better SEO. Upload an image to get started.',
       useCases: [
         'Making website images accessible to users with visual impairments.',
         'Improving SEO by providing search engines with context about images.',
         'Generating alt text for large batches of images more quickly.',
         'Ensuring compliance with accessibility standards (WCAG).',
       ],
-      howItWorks: 'Convert your image to a Base64 encoded Data URI string (many online tools can do this). Paste this Data URI into the input field. Click "Generate Alt Text". The AI will analyze the image data and suggest descriptive alt text. Review the suggestion for accuracy and context.',
+      howItWorks: 'Click "Choose Image" to upload an image file (PNG, JPG, GIF, etc.). The image will be previewed. Click "Generate Alt Text". The AI will analyze the image data and suggest descriptive alt text. Review the suggestion for accuracy and context.',
       tips: [
         'Good alt text is concise yet descriptive, conveying the purpose or content of the image.',
         'Avoid starting alt text with "Image of..." or "Picture of..." as it_s usually redundant.',
         'For complex images like charts or graphs, the AI might provide a general description; you may need to add more specific details manually.',
-        'Future versions may include direct image upload.',
+        'Ensure uploaded images are not excessively large (e.g., under 5MB) for better performance.',
       ],
     },
     faqs: [
-      { question: 'What is a Base64 Data URI?', answer: 'A Data URI allows you to embed small files (like images) inline in HTML or CSS. It starts with `data:image/[TYPE];base64,` followed by the Base64 encoded image data.' },
+      { question: 'What image file types are supported?', answer: 'Common web image formats like PNG, JPEG, GIF, and WEBP are generally supported. The browser_s ability to read the file is the main factor.' },
       { question: 'How accurate is the AI-generated alt text?', answer: 'AI can generate surprisingly good descriptions, but it_s not perfect. Always review and edit the alt text to ensure it accurately represents the image and its context on your page.' },
-      { question: 'Are there limitations on image size or type for Data URIs?', answer: 'Data URIs can become very long for large images, which might impact performance. For this tool, smaller, web-optimized images are recommended. Common types like PNG, JPEG, and GIF are generally supported if correctly encoded in the Data URI.' },
-      { question: 'Is my image data sent to a server?', answer: 'Yes, the image data (as a Data URI) is sent to the AI model for processing to generate the alt text.' },
+      { question: 'Is there a file size limit for uploads?', answer: 'Yes, for performance and to manage data transfer, there is a file size limit, typically around 5MB. The tool will indicate if a file is too large.' },
+      { question: 'Is my image data sent to a server?', answer: 'Yes, the image data (converted to a Data URI after upload) is sent to the AI model for processing to generate the alt text.' },
     ],
-    keywords: ['ai', 'alt text', 'image accessibility', 'seo', 'image description', 'wcag'],
+    keywords: ['ai', 'alt text', 'image accessibility', 'seo', 'image description', 'wcag', 'image upload'],
   },
 ];
 
@@ -851,3 +851,4 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
+
