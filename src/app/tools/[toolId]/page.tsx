@@ -18,18 +18,18 @@ import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool';
 import { JSONFormatterTool } from '@/components/tools/JSONFormatterTool';
 import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool';
 import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool';
+import { TimestampConverterTool } from '@/components/tools/TimestampConverterTool';
+import { LoremIpsumGeneratorTool } from '@/components/tools/LoremIpsumGeneratorTool';
+
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-// import type { Metadata } from 'next'; // Removed as this is a client component
-// import { APP_NAME, APP_DOMAIN } from '@/lib/constants'; // No longer needed here for metadata
 import { Icons } from '@/components/icons';
 import type { Tool, RelatedToolData } from '@/types';
 
-// Removed generateMetadata and generateStaticParams as they cannot be used in a Client Component
 
 export default function ToolPage({ params }: { params: { toolId: string } }) {
   const tool = getToolById(params.toolId);
@@ -69,6 +69,10 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <JWTDecoderTool />;
       case 'uuid-generator':
         return <UUIDGeneratorTool />;
+      case 'timestamp-converter':
+        return <TimestampConverterTool />;
+      case 'lorem-ipsum-generator':
+        return <LoremIpsumGeneratorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
@@ -189,3 +193,4 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
+

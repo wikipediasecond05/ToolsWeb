@@ -468,7 +468,7 @@ export const tools: Tool[] = [
     ],
     keywords: ['hash generator', 'sha256', 'sha384', 'sha512', 'md5', 'sha1', 'security', 'cryptography', 'checksum']
   },
-  // Productivity Tools (Placeholders - to be implemented if requested)
+  // Productivity Tools
   {
     id: 'timestamp-converter',
     title: 'Timestamp Converter',
@@ -477,7 +477,30 @@ export const tools: Tool[] = [
     icon: Icons.Clock,
     iconName: 'Clock',
     path: '/tools/timestamp-converter',
-    keywords: ['timestamp converter', 'unix time', 'date conversion', 'epoch time']
+    longDescription: {
+      overview: 'The Timestamp Converter tool facilitates easy conversion between Unix timestamps (also known as Epoch time) and human-readable date and time formats. It supports both seconds and milliseconds precision for Unix timestamps and allows conversion in both directions.',
+      useCases: [
+        'Developers working with APIs or databases that store time as Unix timestamps.',
+        'Debugging time-related issues by converting timestamps to understandable dates.',
+        'Converting specific dates and times to Unix timestamps for use in scripts or applications.',
+        'Understanding log files or data exports that use epoch time.',
+        'Learning about how Unix time works and its representation.'
+      ],
+      howItWorks: 'To convert a Unix timestamp to a date: Enter the timestamp value in the "Unix Timestamp" field. Select whether it_s in "Seconds" or "Milliseconds". Click "To Date". The tool will calculate the corresponding human-readable date and time (in your local timezone) and display it. To convert a date to a Unix timestamp: Enter the date and time in the "Human-Readable Date" input (or use the date/time picker). Click "To Timestamp". The tool will convert this date to a Unix timestamp (in seconds, by default) and display it.',
+      tips: [
+        'Unix time is the number of seconds (or milliseconds) that have elapsed since January 1, 1970, at 00:00:00 Coordinated Universal Time (UTC).',
+        'Be mindful of whether your timestamp is in seconds or milliseconds, as this is a common source of errors.',
+        'The human-readable date output is typically displayed in your browser_s local timezone.',
+        'When converting from a date to a timestamp, the resulting timestamp is usually UTC-based.'
+      ],
+    },
+    faqs: [
+      { question: 'What is a Unix timestamp?', answer: 'A Unix timestamp is the total number of seconds that have elapsed since 00:00:00 UTC on January 1, 1970, not counting leap seconds. Some systems use milliseconds instead of seconds.' },
+      { question: 'Are timezones handled?', answer: 'When converting from a timestamp to a human-readable date, the output is generally displayed in your local browser timezone. When converting from a date to a timestamp, the JavaScript `Date` object typically works with UTC internally for timestamp generation.' },
+      { question: 'Can I input a date string manually?', answer: 'Yes, you can type a date string into the date input field. The browser will attempt to parse it. For best results, use a common format like YYYY-MM-DDTHH:mm.' },
+      { question: 'Why is my converted date off by a few hours?', answer: 'This is almost always due to timezone differences. Unix timestamps are timezone-agnostic (based on UTC), while human-readable dates are often interpreted in a local timezone.' }
+    ],
+    keywords: ['timestamp converter', 'unix time', 'date conversion', 'epoch time', 'datetime', 'productivity']
   },
   {
     id: 'lorem-ipsum-generator',
@@ -487,7 +510,29 @@ export const tools: Tool[] = [
     icon: Icons.ClipboardType,
     iconName: 'ClipboardType',
     path: '/tools/lorem-ipsum-generator',
-    keywords: ['lorem ipsum', 'placeholder text', 'dummy text', 'text generator', 'design mockups']
+    longDescription: {
+      overview: 'The Lorem Ipsum Generator creates placeholder text, commonly known as "Lorem Ipsum," which is used in design mockups, wireframes, and prototypes. This text simulates real content, allowing designers and developers to focus on layout and visual appearance without being distracted by the actual meaning of the text.',
+      useCases: [
+        'Filling text areas in website or application mockups.',
+        'Creating sample content for print layouts or presentations.',
+        'Testing typography and font choices in a design.',
+        'Providing placeholder content during early stages of development before real content is available.',
+        'Quickly generating blocks of text of varying lengths (paragraphs, sentences, words).'
+      ],
+      howItWorks: 'Select the type of content you want to generate (e.g., paragraphs, sentences, or words). Enter the desired quantity (e.g., 5 paragraphs, 10 sentences). Click the "Generate" button. The tool will then produce the specified amount of Lorem Ipsum text in the output area, ready for you to copy and use.',
+      tips: [
+        'Lorem Ipsum is intentionally non-sensical Latin-like text to avoid distracting from the visual design.',
+        'Generating by paragraphs is good for large text blocks, while sentences or words can be useful for shorter elements like captions or headings.',
+        'Adjust the quantity to fit the space you need to fill in your design.'
+      ],
+    },
+    faqs: [
+      { question: 'What is Lorem Ipsum?', answer: 'Lorem Ipsum is dummy text used in the design and publishing industries. It_s derived from a passage by Cicero, but heavily altered to be nonsensical. Its purpose is to allow focus on the visual elements of a design.' },
+      { question: 'Why use Lorem Ipsum instead of just repeating "text text text"?', answer: 'Lorem Ipsum has a more natural-looking distribution of letters and word lengths compared to simple repetition, making it a better visual placeholder for actual content.' },
+      { question: 'Can I generate Lorem Ipsum in other languages?', answer: 'This specific tool generates standard Lorem Ipsum, which is Latin-like. Generating placeholder text in other languages would require different source texts.' },
+      { question: 'Is the generated text always the same?', answer: 'The tool uses a predefined block of Lorem Ipsum text and selects portions of it based on your request. For a small number of words/sentences, it might appear repetitive, but for paragraphs, it typically shuffles sentences to create variety.' }
+    ],
+    keywords: ['lorem ipsum', 'placeholder text', 'dummy text', 'text generator', 'design mockups', 'prototyping', 'content placeholder']
   },
 ];
 
