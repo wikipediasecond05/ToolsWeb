@@ -1,9 +1,9 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Smile, Meh, Frown, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from "@/hooks/use-toast";
@@ -28,7 +28,7 @@ const ratingOptions: RatingOption[] = [
 
 export function EmojiRating({ toolId }: EmojiRatingProps) {
   const [currentUserRating, setCurrentUserRating] = useState<string | null>(null);
-  const [allRatings, setAllRatings] = useState<string[]>([]);
+  const [allRatings, setAllRatings] = useState<string[]>([]); // Stores array of rating 'value' strings
   const [averageRating, setAverageRating] = useState<number | null>(null);
   const [totalRatings, setTotalRatings] = useState<number>(0);
   const [hasRated, setHasRated] = useState<boolean>(false);
@@ -40,9 +40,14 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
       const storedUserRating = localStorage.getItem(`user_rating_${toolId}`);
       
       if (storedRatings) {
-        const parsedRatings: string[] = JSON.parse(storedRatings);
-        setAllRatings(parsedRatings);
-        calculateAndSetAverage(parsedRatings);
+        try {
+          const parsedRatings: string[] = JSON.parse(storedRatings);
+          setAllRatings(parsedRatings);
+          calculateAndSetAverage(parsedRatings);
+        } catch (e) {
+          console.error("Failed to parse ratings from localStorage", e);
+          localStorage.removeItem(`ratings_${toolId}`); // Clear corrupted data
+        }
       }
       if (storedUserRating) {
         setCurrentUserRating(storedUserRating);
@@ -66,6 +71,10 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
   };
 
   const handleRating = (value: string) => {
+    // If user has already rated and clicks the same rating, do nothing (or allow to change, future enhancement)
+    // For now, once rated, it's final for this session unless localStorage is cleared or user changes rating
+    if (hasRated && currentUserRating === value) return; 
+
     const newAllRatings = [...allRatings, value];
     setAllRatings(newAllRatings);
     setCurrentUserRating(value);
@@ -85,31 +94,37 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
   };
 
   return (
-    <Card className="shadow-md">
-      <CardHeader>
-        <CardTitle className="text-lg">Rate this tool</CardTitle>
+    <Card className="shadow-lg">
+      <CardHeader className="text-center">
+        <CardTitle className="text-xl">Rate This Tool</CardTitle>
+        {averageRating !== null ? (
+          <CardDescription className="text-2xl font-bold flex items-center justify-center mt-2">
+            <Star className="h-7 w-7 text-yellow-400 mr-2" fill="currentColor" />
+            {averageRating} / 5 
+            <span className="text-sm text-muted-foreground ml-2">({totalRatings} rating{totalRatings !== 1 ? 's' : ''})</span>
+          </CardDescription>
+        ) : (
+          <CardDescription>Be the first to rate it!</CardDescription>
+        )}
       </CardHeader>
       <CardContent>
-        {averageRating !== null && (
-          <div className="text-center mb-4">
-            <p className="text-2xl font-bold flex items-center justify-center">
-              <Star className="h-6 w-6 text-yellow-400 mr-1" fill="currentColor" />
-              {averageRating} / 5
-            </p>
-            <p className="text-sm text-muted-foreground">({totalRatings} rating{totalRatings !== 1 ? 's' : ''})</p>
-          </div>
-        )}
         {hasRated && currentUserRating ? (
           <div className="text-center py-4">
             <p className="text-muted-foreground">Thanks for your rating!</p>
             {(() => {
               const RIcon = ratingOptions.find(r => r.value === currentUserRating)?.emoji || Smile;
               const RColor = ratingOptions.find(r => r.value === currentUserRating)?.color || 'text-muted-foreground';
-              return <RIcon className={cn("h-10 w-10 mx-auto mt-2", RColor)} />;
+              const RLabel = ratingOptions.find(r => r.value === currentUserRating)?.label || '';
+              return (
+                <div className="flex flex-col items-center mt-2">
+                  <RIcon className={cn("h-10 w-10", RColor)} />
+                  <span className={cn("text-sm mt-1", RColor)}>{RLabel}</span>
+                </div>
+              );
             })()}
           </div>
         ) : (
-          <div className="flex justify-around items-stretch space-x-2">
+          <div className="flex justify-around items-stretch space-x-2 sm:space-x-4">
             {ratingOptions.map((rating) => {
               const IconComponent = rating.emoji;
               return (
@@ -118,14 +133,14 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
                   variant="outline"
                   onClick={() => handleRating(rating.value)}
                   className={cn(
-                    "flex flex-col items-center p-2 h-auto w-full focus:ring-2 focus:ring-primary/50",
+                    "flex flex-col items-center p-3 sm:p-4 h-auto w-full focus:ring-2 focus:ring-primary/50",
                     "hover:bg-accent/50"
                   )}
-                  aria-label={`Rate as ${rating.label}`}
-                  title={rating.label}
+                  aria-label={`Rate as ${rating.label.replace('_',' ')}`}
+                  title={rating.label.replace('_',' ')}
                 >
-                  <IconComponent className={cn("h-7 w-7 mb-1", rating.color)} />
-                  <span className="text-xs sr-only">{rating.label}</span>
+                  <IconComponent className={cn("h-8 w-8 mb-1.5", rating.color)} />
+                  <span className="text-xs text-center">{rating.label.replace('_',' ')}</span>
                 </Button>
               );
             })}

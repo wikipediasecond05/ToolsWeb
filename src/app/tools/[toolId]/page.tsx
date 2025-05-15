@@ -14,6 +14,7 @@ import type { Metadata } from 'next';
 import { APP_NAME, APP_DOMAIN } from '@/lib/constants';
 import { Icons } from '@/components/icons';
 import type { Tool, RelatedToolData } from '@/types';
+import React from 'react';
 
 type ToolPageProps = {
   params: { toolId: string };
@@ -87,95 +88,95 @@ export default function ToolPage({ params }: ToolPageProps) {
 
   return (
     <PageWrapper>
-      <div className="flex flex-col lg:flex-row lg:gap-6 xl:gap-8">
-        {/* Main Content Area */}
-        <div className="lg:w-4/5 flex-grow">
-          {/* Header */}
-          <header className="mb-8">
-            <div className="flex items-center gap-3 mb-3">
-              <IconComponent className="h-10 w-10 text-primary" />
-              <h1 className="text-4xl font-bold tracking-tight">{tool.title}</h1>
-            </div>
-            <p className="text-lg text-muted-foreground">{tool.description}</p>
-            {category && (
-              <Link href={category.path} className="mt-2 inline-block">
-                <Badge variant="secondary">{category.name}</Badge>
-              </Link>
-            )}
-          </header>
-
-          {/* Tool UI */}
-          <div className="my-8">
-            {renderToolUI()}
+      <div className="max-w-4xl mx-auto"> {/* Centering content and limiting width */}
+        {/* Header */}
+        <header className="mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <IconComponent className="h-10 w-10 text-primary" />
+            <h1 className="text-4xl font-bold tracking-tight">{tool.title}</h1>
           </div>
-          
-          {/* <!-- AdSense Placeholder: Below Tool UI --> */}
+          <p className="text-lg text-muted-foreground">{tool.description}</p>
+          {category && (
+            <Link href={category.path} className="mt-2 inline-block">
+              <Badge variant="secondary">{category.name}</Badge>
+            </Link>
+          )}
+        </header>
 
-          {/* Comment Section - Moved Here */}
-          <section className="my-12">
-            <CommentSection toolId={tool.id} />
-          </section>
+        {/* Tool UI */}
+        <div className="my-8">
+          {renderToolUI()}
+        </div>
+        
+        {/* <!-- AdSense Placeholder: Below Tool UI --> */}
 
-          {tool.longDescription && (
-            <section className="my-12 prose dark:prose-invert max-w-none 
-                                prose-headings:font-semibold prose-headings:text-foreground 
-                                prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-8 prose-h2:border-b prose-h2:pb-2
-                                prose-p:leading-relaxed prose-p:text-muted-foreground
-                                prose-ul:list-disc prose-ul:pl-6 prose-ul:space-y-1
-                                prose-li:text-muted-foreground">
+        {/* Related Tools */}
+        <section className="my-12">
+          <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
+        </section>
+
+        {/* Emoji Rating */}
+        <section className="my-12">
+          <EmojiRating toolId={tool.id} />
+        </section>
+        
+        {/* Comment Section */}
+        <section className="my-12">
+          <CommentSection toolId={tool.id} />
+        </section>
+
+        {tool.longDescription && (
+          <section className="my-12 prose dark:prose-invert max-w-none 
+                              prose-headings:font-semibold prose-headings:text-foreground 
+                              prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-8 prose-h2:border-b prose-h2:pb-2
+                              prose-p:leading-relaxed prose-p:text-muted-foreground
+                              prose-ul:list-disc prose-ul:pl-6 prose-ul:space-y-1
+                              prose-li:text-muted-foreground">
+            <div className="mb-8">
+              <h2 className="!mt-0">Overview</h2> {/* !mt-0 for first heading in prose */}
+              <p>{tool.longDescription.overview}</p>
+            </div>
+            <div className="mb-8">
+              <h2>Use Cases</h2>
+              <ul>
+                {tool.longDescription.useCases.map((useCase, index) => (
+                  <li key={index}>{useCase}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="mb-8">
+              <h2>How It Works</h2>
+              <p>{tool.longDescription.howItWorks}</p>
+            </div>
+            {tool.longDescription.tips && tool.longDescription.tips.length > 0 && (
               <div className="mb-8">
-                <h2 className="!mt-0">Overview</h2> {/* !mt-0 for first heading in prose */}
-                <p>{tool.longDescription.overview}</p>
-              </div>
-              <div className="mb-8">
-                <h2>Use Cases</h2>
+                <h2>Tips for Better Usage</h2>
                 <ul>
-                  {tool.longDescription.useCases.map((useCase, index) => (
-                    <li key={index}>{useCase}</li>
+                  {tool.longDescription.tips.map((tip, index) => (
+                    <li key={index}>{tip}</li>
                   ))}
                 </ul>
               </div>
-              <div className="mb-8">
-                <h2>How It Works</h2>
-                <p>{tool.longDescription.howItWorks}</p>
-              </div>
-              {tool.longDescription.tips && tool.longDescription.tips.length > 0 && (
-                <div className="mb-8">
-                  <h2>Tips for Better Usage</h2>
-                  <ul>
-                    {tool.longDescription.tips.map((tip, index) => (
-                      <li key={index}>{tip}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </section>
-          )}
+            )}
+          </section>
+        )}
 
-          {/* FAQs */}
-          {tool.faqs && tool.faqs.length > 0 && (
-            <section className="my-12">
-              <h2 className="text-2xl font-semibold mb-6 text-center">Frequently Asked Questions</h2>
-              <Accordion type="single" collapsible className="w-full">
-                {tool.faqs.map((faq, index) => (
-                  <AccordionItem value={`item-${index}`} key={index}>
-                    <AccordionTrigger className="hover:no-underline">{faq.question}</AccordionTrigger>
-                    <AccordionContent>{faq.answer}</AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-              {/* <!-- AdSense Placeholder: Within FAQs --> */}
-            </section>
-          )}
-
-        </div>
-
-        {/* Sidebar Area */}
-        <aside className="lg:w-1/5 lg:sticky lg:top-24 h-fit mt-12 lg:mt-0 space-y-8">
-          <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
-          <EmojiRating toolId={tool.id} />
-          {/* <!-- AdSense Placeholder: Bottom of Page / Sidebar area --> */}
-        </aside>
+        {/* FAQs */}
+        {tool.faqs && tool.faqs.length > 0 && (
+          <section className="my-12">
+            <h2 className="text-2xl font-semibold mb-6 text-center">Frequently Asked Questions</h2>
+            <Accordion type="single" collapsible className="w-full">
+              {tool.faqs.map((faq, index) => (
+                <AccordionItem value={`item-${index}`} key={index}>
+                  <AccordionTrigger className="hover:no-underline text-left">{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            {/* <!-- AdSense Placeholder: Within FAQs --> */}
+          </section>
+        )}
+         {/* <!-- AdSense Placeholder: Bottom of Page --> */}
       </div>
     </PageWrapper>
   );
