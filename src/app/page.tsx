@@ -74,8 +74,8 @@ export default function HomePage() {
       {/* <!-- AdSense Placeholder: Between Sections --> */}
 
       {/* Popular Tools */}
-      <section className="py-12 md:py-16 bg-secondary/50 rounded-lg">
-        <div className="container">
+      <section className="py-12 md:py-16 rounded-lg">
+        <div>
           <h2 className="text-3xl font-bold text-center mb-10">Popular Tools</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {popularTools.map((tool) => (
@@ -115,8 +115,8 @@ export default function HomePage() {
       {/* <!-- AdSense Placeholder: Below Content / In FAQs area --> */}
 
       {/* Testimonials Section */}
-      <section className="py-12 md:py-16 bg-muted/30 rounded-lg">
-         <div className="container">
+      <section className="py-12 md:py-16 rounded-lg">
+         <div>
           <h2 className="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
