@@ -17,12 +17,12 @@ export async function generateMetadata(
 
   if (!tool) {
     return {
-      title: `Tool Not Found | ${APP_NAME}`,
+      title: `Tool Not Found | ${APP_NAME}`, // Keep APP_NAME for "Not Found" as it's an app-level message
       description: `The tool you are looking for could not be found on ${APP_NAME}.`,
     };
   }
 
-  const pageTitle = `${tool.title} | ${APP_NAME}`;
+  const pageTitle = tool.title; // Changed: Removed APP_NAME
   const pageDescription = tool.longDescription?.overview || tool.description;
 
   return {
@@ -32,7 +32,7 @@ export async function generateMetadata(
       title: pageTitle,
       description: pageDescription,
       // Add a relevant image URL if available for each tool or a default one
-      // images: [{ url: tool.ogImage || '/default-og-image.png' }], 
+      // images: [{ url: tool.ogImage || '/default-og-image.png' }],
       siteName: APP_NAME,
       type: 'website',
     },

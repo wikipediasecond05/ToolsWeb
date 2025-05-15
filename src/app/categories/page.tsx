@@ -1,3 +1,4 @@
+
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { CategoryCard } from '@/components/categories/CategoryCard';
 import { getAllCategories } from '@/lib/toolsData';
@@ -5,7 +6,7 @@ import type { Metadata } from 'next';
 import { APP_NAME } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `Tool Categories | ${APP_NAME}`,
+  title: 'Tool Categories', // Changed: Removed APP_NAME
   description: `Browse all tool categories available on ${APP_NAME}. Find tools for text manipulation, development, design, and more.`,
 };
 

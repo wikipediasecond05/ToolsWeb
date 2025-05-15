@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getCategoryById, getToolsByCategory, getAllCategories } from '@/lib/toolsData';
@@ -14,11 +15,11 @@ export async function generateMetadata({ params }: CategoryToolsPageProps): Prom
   const category = getCategoryById(params.categoryId);
   if (!category) {
     return {
-      title: `Category Not Found | ${APP_NAME}`,
+      title: `Category Not Found | ${APP_NAME}`, // Keep APP_NAME for "Not Found"
     };
   }
   return {
-    title: `${category.name} | ${APP_NAME}`,
+    title: category.name, // Changed: Removed APP_NAME
     description: `Browse all tools in the ${category.name} category on ${APP_NAME}. ${category.description}`,
   };
 }
@@ -38,7 +39,7 @@ export default function CategoryToolsPage({ params }: CategoryToolsPageProps) {
   }
   
   const toolsIncategory = getToolsByCategory(params.categoryId);
-  const IconComponent = category.icon ? Icons[category.icon as keyof typeof Icons] || Icons.Component : Icons.Component;
+  const IconComponent = category.iconName ? Icons[category.iconName as keyof typeof Icons] || Icons.Component : Icons.Component;
 
   return (
     <PageWrapper>
