@@ -58,22 +58,38 @@ export const tools: Tool[] = [
   {
     id: 'line-break-remover',
     title: 'Line Break Remover',
-    description: 'Remove unwanted line breaks from your text.',
+    description: 'Efficiently remove or replace line breaks and optionally clean up whitespace from your text.',
     category: 'text-string',
     icon: Icons.Eraser,
     iconName: 'Eraser',
     path: '/tools/line-break-remover',
     longDescription: {
-      overview: 'This tool removes all line breaks (newlines) from a given text, merging all lines into a single line or replacing them with spaces.',
-      useCases: ['Cleaning up copied text from PDFs or websites.', 'Preparing text for data processing where newlines are problematic.', 'Formatting text for specific input fields that don_t support multi-line input.'],
-      howItWorks: 'The tool scans the input text for newline characters (\\n, \\r\\n, \\r) and removes them. You can choose to replace newlines with a single space to maintain word separation.',
-      tips: ['Be mindful of text where line breaks are meaningful, like poetry or code.', 'Use the "replace with space" option for prose to avoid merging words.'],
+      overview: 'The Line Break Remover is a versatile tool designed to clean and reformat text by managing line breaks (newlines) and whitespace. Whether you need to consolidate text into a single line, replace line breaks with spaces, or tidy up messy formatting, this tool provides the flexibility to do so. It also offers options to remove empty lines and trim leading/trailing spaces from each line for a thoroughly cleaned output.',
+      useCases: [
+        'Consolidating text copied from PDFs, emails, or websites that often contain unwanted line breaks.',
+        'Preparing text data for import into spreadsheets or databases where specific line formatting is required.',
+        'Formatting code snippets or log files by removing unnecessary newlines.',
+        'Creating single-line strings from multi-line text for use in configuration files or scripts.',
+        'Cleaning up user-generated content that might have inconsistent line breaks and spacing.',
+        'Standardizing text formatting before further processing or analysis.'
+      ],
+      howItWorks: 'The tool processes your input text based on the selected options: First, if "Trim Leading/Trailing Spaces from Each Line" is checked, it removes whitespace from the beginning and end of every line. Next, if "Remove Empty Lines" is chosen, it eliminates any lines that become empty after trimming or were originally empty. Finally, it addresses the line breaks themselves: if you choose "Space" as a separator, all remaining line breaks are replaced with a single space. If "None" is selected, line breaks are completely removed, joining all text into a continuous string. The processed text is then displayed in the output area.',
+      tips: [
+        'For prose or paragraphs, using the "Space" separator is generally recommended to maintain readability and word separation.',
+        'When dealing with lists or data where each item is on a new line, consider if removing line breaks entirely ("None" separator) is appropriate, or if you need a different separator for subsequent processing.',
+        'The "Remove Empty Lines" option is particularly useful for cleaning up text with many blank lines between paragraphs.',
+        'Use "Trim Leading/Trailing Spaces" to ensure consistency, especially if the text comes from various sources with different spacing habits.',
+        'Always preview the output to ensure it meets your expectations, especially with complex text structures.'
+      ],
     },
     faqs: [
-      { question: 'What types of line breaks does it remove?', answer: 'It removes \\n (Unix/Linux), \\r\\n (Windows), and \\r (old Mac) line breaks.' },
-      { question: 'Can I replace line breaks with something else?', answer: 'Currently, it supports removing or replacing with a single space. For more complex replacements, consider a regex tool.' },
+      { question: 'What types of line breaks does the tool handle?', answer: 'It handles standard line break characters including \\n (LF - Unix/Linux/macOS), \\r\\n (CRLF - Windows), and \\r (CR - older Mac systems).' },
+      { question: 'How does "Remove Empty Lines" work with "Trim Spaces"?', answer: 'If both are checked, lines are first trimmed. If a line becomes empty after trimming (i.e., it only contained spaces), it will then be removed by the "Remove Empty Lines" option.' },
+      { question: 'Can I replace line breaks with something other than a single space or nothing?', answer: 'Currently, the tool supports replacing line breaks with a single space or removing them entirely. For custom separators, you might need a more advanced text manipulation tool or a find-and-replace utility with regex capabilities.' },
+      { question: 'Is there a limit to the amount of text I can process?', answer: 'While there_s no hard limit, performance may degrade with extremely large text inputs as all processing happens in your browser. For very large files, consider a dedicated text editor or command-line tools.'},
+      { question: 'Does this tool send my text to a server?', answer: 'No, all processing is done client-side within your browser. Your text is not uploaded or stored anywhere.'}
     ],
-    keywords: ['text', 'line break', 'newline remover', 'remove paragraph']
+    keywords: ['text', 'line break remover', 'newline remover', 'remove paragraph breaks', 'whitespace cleaner', 'text formatting', 'join lines']
   },
   {
     id: 'text-case-converter',
@@ -227,4 +243,3 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
-
