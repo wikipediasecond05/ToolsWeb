@@ -1,7 +1,7 @@
 
 'use client';
 
-import React from 'react';
+import React from 'react'; // React must be imported to use React.use
 import { notFound } from 'next/navigation';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
@@ -34,7 +34,8 @@ import type { Tool, RelatedToolData } from '@/types';
 
 
 export default function ToolPage({ params }: { params: { toolId: string } }) {
-  const tool = getToolById(params.toolId);
+  const actualParams = React.use(params); // Unwrapping the params Promise
+  const tool = getToolById(actualParams.toolId); // Access toolId from the resolved object
   const allToolsData = getAllTools();
 
   if (!tool) {
