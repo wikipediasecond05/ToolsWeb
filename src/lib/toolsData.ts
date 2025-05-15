@@ -1,3 +1,4 @@
+
 import type { Tool, Category } from '@/types';
 import { Icons } from '@/components/icons';
 
@@ -54,6 +55,7 @@ export const tools: Tool[] = [
     description: 'Remove unwanted line breaks from your text.',
     category: 'text-string',
     icon: Icons.Eraser,
+    iconName: 'Eraser',
     path: '/tools/line-break-remover',
     longDescription: {
       overview: 'This tool removes all line breaks (newlines) from a given text, merging all lines into a single line or replacing them with spaces.',
@@ -73,6 +75,7 @@ export const tools: Tool[] = [
     description: 'Convert text to uppercase, lowercase, title case, etc.',
     category: 'text-string',
     icon: Icons.CaseSensitive,
+    iconName: 'CaseSensitive',
     path: '/tools/text-case-converter',
     keywords: ['text', 'case converter', 'uppercase', 'lowercase', 'title case']
   },
@@ -82,6 +85,7 @@ export const tools: Tool[] = [
     description: 'Count words and characters in your text.',
     category: 'text-string',
     icon: Icons.Calculator,
+    iconName: 'Calculator',
     path: '/tools/word-counter',
     keywords: ['text', 'word count', 'character count']
   },
@@ -92,6 +96,7 @@ export const tools: Tool[] = [
     description: 'Format and validate JSON data with ease.',
     category: 'developer',
     icon: Icons.FileJson,
+    iconName: 'FileJson',
     path: '/tools/json-formatter',
      longDescription: {
       overview: 'A tool to beautify and validate JSON (JavaScript Object Notation) data. It helps in making JSON readable and ensures it adheres to the correct syntax.',
@@ -111,6 +116,7 @@ export const tools: Tool[] = [
     description: 'Generate universally unique identifiers (UUIDs).',
     category: 'developer',
     icon: Icons.Fingerprint,
+    iconName: 'Fingerprint',
     path: '/tools/uuid-generator',
     keywords: ['uuid', 'guid', 'generator', 'unique identifier']
   },
@@ -120,6 +126,7 @@ export const tools: Tool[] = [
     description: 'Decode JSON Web Tokens (JWTs).',
     category: 'developer',
     icon: Icons.FileLock2,
+    iconName: 'FileLock2',
     path: '/tools/jwt-decoder',
     keywords: ['jwt', 'decoder', 'json web token', 'authentication']
   },
@@ -130,6 +137,7 @@ export const tools: Tool[] = [
     description: 'Minify CSS code to reduce file size.',
     category: 'design-frontend',
     icon: Icons.Shrink,
+    iconName: 'Shrink',
     path: '/tools/css-minifier',
     keywords: ['css', 'minifier', 'optimizer', 'frontend']
   },
@@ -139,6 +147,7 @@ export const tools: Tool[] = [
     description: 'Pick colors and get their codes (HEX, RGB, HSL).',
     category: 'design-frontend',
     icon: Icons.Palette,
+    iconName: 'Palette',
     path: '/tools/color-picker',
     keywords: ['color picker', 'hex code', 'rgb', 'hsl', 'design']
   },
@@ -149,6 +158,7 @@ export const tools: Tool[] = [
     description: 'Convert CSV data to JSON format.',
     category: 'conversion',
     icon: Icons.Replace,
+    iconName: 'Replace',
     path: '/tools/csv-to-json',
     keywords: ['csv', 'json', 'converter', 'data transformation']
   },
@@ -158,6 +168,7 @@ export const tools: Tool[] = [
     description: 'Convert Markdown text to HTML.',
     category: 'conversion',
     icon: Icons.FileCode,
+    iconName: 'FileCode',
     path: '/tools/markdown-to-html',
     keywords: ['markdown', 'html', 'converter', 'text formatting']
   },
@@ -168,6 +179,7 @@ export const tools: Tool[] = [
     description: 'Create strong and secure passwords.',
     category: 'security',
     icon: Icons.KeyRound,
+    iconName: 'KeyRound',
     path: '/tools/password-generator',
     keywords: ['password generator', 'security', 'strong password']
   },
@@ -177,6 +189,7 @@ export const tools: Tool[] = [
     description: 'Generate MD5, SHA1, SHA256 hashes.',
     category: 'security',
     icon: Icons.Hash,
+    iconName: 'Hash',
     path: '/tools/hash-generator',
     keywords: ['hash generator', 'md5', 'sha1', 'sha256', 'security']
   },
@@ -187,6 +200,7 @@ export const tools: Tool[] = [
     description: 'Convert Unix timestamps to human-readable dates.',
     category: 'productivity',
     icon: Icons.Clock,
+    iconName: 'Clock',
     path: '/tools/timestamp-converter',
     keywords: ['timestamp converter', 'unix time', 'date conversion']
   },
@@ -196,6 +210,7 @@ export const tools: Tool[] = [
     description: 'Generate placeholder text for your designs.',
     category: 'productivity',
     icon: Icons.ClipboardType,
+    iconName: 'ClipboardType',
     path: '/tools/lorem-ipsum-generator',
     keywords: ['lorem ipsum', 'placeholder text', 'text generator']
   },

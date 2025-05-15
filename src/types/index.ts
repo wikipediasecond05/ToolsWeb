@@ -1,4 +1,6 @@
+
 import type { LucideIcon } from "lucide-react";
+import type { IconName } from "@/components/icons"; // Import IconName
 
 export interface FAQ {
   question: string;
@@ -17,6 +19,7 @@ export interface Tool {
   };
   category: string; // Category ID / slug
   icon: LucideIcon | ((props: React.SVGProps<SVGSVGElement>) => JSX.Element); // Allow LucideIcon or custom SVG
+  iconName: IconName; // Added for serialization
   faqs?: FAQ[];
   path: string;
   keywords?: string[];
@@ -28,4 +31,12 @@ export interface Category {
   description: string;
   icon?: LucideIcon | ((props: React.SVGProps<SVGSVGElement>) => JSX.Element);
   path: string;
+}
+
+// New type for passing to Client Components
+export interface RelatedToolData {
+  id: string;
+  title: string;
+  path: string;
+  iconName: IconName;
 }

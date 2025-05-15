@@ -1,4 +1,5 @@
 
+
 import { notFound } from 'next/navigation';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
@@ -11,6 +12,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { APP_NAME, APP_DOMAIN } from '@/lib/constants';
 import { Icons } from '@/components/icons';
+import type { Tool, RelatedToolData } from '@/types';
 
 type ToolPageProps = {
   params: { toolId: string };
@@ -45,14 +47,14 @@ export async function generateStaticParams() {
 
 export default function ToolPage({ params }: ToolPageProps) {
   const tool = getToolById(params.toolId);
-  const allTools = getAllTools(); // For related tools suggestions
+  const allToolsData = getAllTools(); // For related tools suggestions
 
   if (!tool) {
     notFound();
   }
 
   const category = getCategoryById(tool.category);
-  const IconComponent = tool.icon ? Icons[tool.icon as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
+  const IconComponent = tool.iconName ? Icons[tool.iconName as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
 
   const renderToolUI = () => {
     if (!tool) return null;
@@ -66,6 +68,21 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
   };
+
+  // Prepare plain data for RelatedTools client component
+  const currentToolForRelated: RelatedToolData = {
+    id: tool.id,
+    title: tool.title,
+    path: tool.path,
+    iconName: tool.iconName,
+  };
+  const allToolsForRelated: RelatedToolData[] = allToolsData.map(t => ({
+    id: t.id,
+    title: t.title,
+    path: t.path,
+    iconName: t.iconName,
+  }));
+
 
   return (
     <PageWrapper>
@@ -91,7 +108,6 @@ export default function ToolPage({ params }: ToolPageProps) {
         
         {/* <!-- AdSense Placeholder: Below Tool UI --> */}
 
-        {/* Content Section */}
         {tool.longDescription && (
           <section className="my-12 space-y-6 prose dark:prose-invert max-w-none">
             <div>
@@ -140,7 +156,7 @@ export default function ToolPage({ params }: ToolPageProps) {
         )}
 
         {/* Related Tools */}
-        <RelatedTools currentTool={tool} allTools={allTools} />
+        <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
         
         {/* <!-- AdSense Placeholder: Bottom of Page / Sidebar area --> */}
       </div>

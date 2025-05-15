@@ -1,21 +1,22 @@
+
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { suggestRelatedTools } from '@/ai/flows/suggest-related-tools';
-import type { Tool } from '@/types';
+import type { RelatedToolData } from '@/types'; // Use RelatedToolData
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Wand2, Loader2 } from 'lucide-react';
-import { Icons } from '@/components/icons';
+import { Icons, IconName } from '@/components/icons'; // Ensure IconName is imported if needed, or Icons has it
 
 interface RelatedToolsProps {
-  currentTool: Tool;
-  allTools: Tool[];
+  currentTool: RelatedToolData;
+  allTools: RelatedToolData[];
 }
 
 export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
-  const [relatedTools, setRelatedTools] = useState<Tool[]>([]);
+  const [relatedTools, setRelatedTools] = useState<RelatedToolData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,13 +31,12 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
           allTools: toolNames,
         });
         
-        // Filter out the current tool from suggestions and map names back to Tool objects
         const suggestedToolObjects = result.relatedTools
           .filter(name => name !== currentTool.title)
           .map(name => allTools.find(t => t.title === name))
-          .filter(Boolean) as Tool[]; // Filter out undefined results
+          .filter(Boolean) as RelatedToolData[]; 
         
-        setRelatedTools(suggestedToolObjects.slice(0, 3)); // Limit to 3 related tools
+        setRelatedTools(suggestedToolObjects.slice(0, 3));
       } catch (err) {
         console.error('Error fetching related tools:', err);
         setError('Could not load suggestions at this time.');
@@ -45,7 +45,11 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
       }
     }
 
-    fetchRelatedTools();
+    if (currentTool && allTools.length > 0) {
+      fetchRelatedTools();
+    } else {
+      setIsLoading(false); // No data to fetch related tools for
+    }
   }, [currentTool, allTools]);
 
   if (isLoading) {
@@ -82,7 +86,7 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
   }
 
   if (relatedTools.length === 0) {
-    return null; // Don't show the section if no related tools are found or after error
+    return null; 
   }
 
   return (
@@ -96,7 +100,7 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
       <CardContent>
         <ul className="space-y-3">
           {relatedTools.map(tool => {
-            const IconComponent = tool.icon ? Icons[tool.icon as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
+            const IconComponent = tool.iconName ? Icons[tool.iconName as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
             return (
             <li key={tool.id}>
               <Button variant="ghost" asChild className="w-full justify-start h-auto py-2 px-3">
