@@ -2,7 +2,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useActionState, useFormStatus } from 'react'; // Changed from 'react-dom' and useFormState
+import { useActionState } from 'react'; // Corrected: useActionState from 'react'
+import { useFormStatus } from 'react-dom'; // Corrected: useFormStatus from 'react-dom'
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,7 +33,7 @@ function SubmitButton() {
 export default function ContactPage() {
   const { toast } = useToast();
   const initialState: ContactFormState = { message: '', success: false };
-  const [state, formAction] = useActionState(submitContactForm, initialState); // Changed from useFormState
+  const [state, formAction] = useActionState(submitContactForm, initialState);
 
   useEffect(() => {
     if (state.message) {
