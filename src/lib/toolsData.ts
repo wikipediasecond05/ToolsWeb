@@ -58,6 +58,14 @@ export const categories: Category[] = [
     icon: Icons.Sigma,
     iconName: 'Sigma',
     path: '/categories/math-physics',
+  },
+  {
+    id: 'ai-powered',
+    name: 'AI-Powered Tools',
+    description: 'Leverage artificial intelligence for various tasks.',
+    icon: Icons.Sparkles,
+    iconName: 'Sparkles',
+    path: '/categories/ai-powered',
   }
 ];
 
@@ -646,25 +654,26 @@ export const tools: Tool[] = [
    {
     id: 'sleep-cycle-calculator',
     title: 'Sleep Cycle Calculator',
-    description: 'Calculate optimal wake-up times based on your planned bedtime and natural sleep cycles.',
-    category: 'productivity', // Or a new 'Health & Wellness' category could be made
+    description: 'Calculate optimal wake-up or bedtimes based on natural sleep cycles.',
+    category: 'productivity', 
     icon: Icons.Bed,
     iconName: 'Bed',
     path: '/tools/sleep-cycle-calculator',
     longDescription: {
-      overview: 'The Sleep Cycle Calculator helps you determine the best times to wake up to feel refreshed. By aligning your wake-up time with the end of a natural 90-minute sleep cycle, you can avoid waking up groggy from deep sleep. Input when you plan to go to bed and how long it typically takes you to fall asleep, and the calculator will suggest several optimal wake-up times.',
+      overview: 'The Sleep Cycle Calculator helps you determine the best times to wake up or go to bed to feel refreshed. By aligning your sleep with natural 90-minute sleep cycles, you can avoid waking up groggy from deep sleep. Input when you plan to go to bed (or want to wake up) and how long it typically takes you to fall asleep, and the calculator will suggest several optimal times.',
       useCases: [
         'Planning your bedtime to wake up feeling more rested for work or school.',
+        'Determining the best time to go to sleep if you have a fixed wake-up time.',
         'Optimizing sleep schedules for better energy levels throughout the day.',
         'Understanding how sleep cycles work and their impact on wakefulness.',
         'Finding the ideal number of sleep cycles for your personal needs (typically 5-6 cycles for adults).',
         'Adjusting sleep times when traveling or dealing with schedule changes.'
       ],
-      howItWorks: 'Select "I plan to sleep at..." mode. Enter the time you intend to go to bed. Use the slider to estimate how many minutes it usually takes you to fall asleep (average is 15-20 minutes). Click "Calculate REM Sleep Cycles". The tool then calculates several potential wake-up times based on completing full 90-minute sleep cycles. For example, it might show you times for waking up after 4, 5, or 6 sleep cycles. Times corresponding to 5 or 6 cycles (7.5 to 9 hours of sleep) are often highlighted as recommended for adults.',
+      howItWorks: 'Choose your calculation mode: "I plan to sleep at..." or "I want to wake up at...". If sleeping at a certain time, enter your planned bedtime and the estimated time it takes you to fall asleep. The tool will calculate several potential wake-up times based on completing full 90-minute sleep cycles. If waking up at a certain time, enter your desired wake-up time and fall asleep duration. The tool will suggest optimal bedtimes. Results for 5 or 6 sleep cycles (7.5 to 9 hours of sleep) are often highlighted as recommended for adults.',
       tips: [
         'Most adults need 7-9 hours of sleep, which corresponds to 5-6 full sleep cycles.',
         'The average sleep cycle is 90 minutes, but this can vary slightly from person to person.',
-        'Experiment with the suggested wake-up times to find what works best for your body.',
+        'Experiment with the suggested times to find what works best for your body.',
         'Consistency in your sleep schedule, even on weekends, can significantly improve sleep quality.',
         'Factors like caffeine, alcohol, stress, and screen time before bed can affect how quickly you fall asleep and the quality of your sleep cycles.'
       ],
@@ -711,6 +720,129 @@ export const tools: Tool[] = [
       { question: 'Can I calculate a negative slope (decline)?', answer: 'Yes, if the "rise" is negative (representing a drop in elevation), the slope percentage will be negative, indicating a decline.' }
     ],
     keywords: ['slope calculator', 'percentage slope', 'rise over run', 'gradient', 'angle of inclination', 'math', 'engineering', 'construction']
+  },
+  // AI Powered Tools
+  {
+    id: 'ai-commit-message-writer',
+    title: 'AI Commit Message Writer',
+    description: 'Generate conventional commit messages using AI based on your code changes or description.',
+    category: 'ai-powered',
+    icon: Icons.GitBranch, // Or GitCommit if available
+    iconName: 'GitBranch',
+    path: '/tools/ai-commit-message-writer',
+    longDescription: {
+      overview: 'The AI Commit Message Writer helps you craft well-formatted and descriptive commit messages. Provide a description of your changes or a code diff, select a commit type (feat, fix, chore, etc.), and let AI suggest a suitable commit message following conventional standards.',
+      useCases: [
+        'Speeding up the process of writing commit messages.',
+        'Ensuring consistency in commit message formatting across a project.',
+        'Helping new developers learn conventional commit standards.',
+        'Generating starting points for commit messages when unsure how to phrase changes.',
+      ],
+      howItWorks: 'Enter a description of your code changes or a summary of the diff into the text area. Select the type of commit (e.g., "feat" for new feature, "fix" for bug fix). Click "Generate Message". The AI will process your input and suggest a commit message. Review and copy the suggestion.',
+      tips: [
+        'The more detailed your description or diff, the better the AI_s suggestion will be.',
+        'Always review AI-generated messages to ensure accuracy and relevance before committing.',
+        'Use specific commit types to clearly communicate the nature of the changes.',
+      ],
+    },
+    faqs: [
+      { question: 'What are conventional commit messages?', answer: 'Conventional Commits is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. The convention dovetails with SemVer, by describing the features, fixes, and breaking changes made in commit messages.' },
+      { question: 'Is the generated message always perfect?', answer: 'AI suggestions are a starting point. They may not always be perfect and should be reviewed and edited if necessary. The quality depends on the input and the AI model_s understanding.' },
+      { question: 'Is my code diff sent to a server?', answer: 'Yes, the input you provide (description or diff) is sent to the AI model for processing to generate the commit message.' },
+    ],
+    keywords: ['ai', 'commit message', 'git', 'developer tools', 'conventional commits', 'version control'],
+  },
+  {
+    id: 'ai-blog-post-idea-generator',
+    title: 'AI Blog Post Idea Generator',
+    description: 'Get AI-powered suggestions for blog post titles and topics.',
+    category: 'ai-powered',
+    icon: Icons.Lightbulb,
+    iconName: 'Lightbulb',
+    path: '/tools/ai-blog-post-idea-generator',
+    longDescription: {
+      overview: 'Stuck for blog ideas? The AI Blog Post Idea Generator helps you brainstorm engaging titles and topics. Input a general theme or keyword and specify your target audience, and the AI will provide a list of creative suggestions to kickstart your content creation.',
+      useCases: [
+        'Overcoming writer_s block for blog content.',
+        'Exploring new angles for existing topics.',
+        'Tailoring content ideas to specific audience segments.',
+        'Generating a list of potential titles for A/B testing.',
+      ],
+      howItWorks: 'Enter your primary topic or keyword. Optionally, describe your target audience. Click "Generate Ideas". The AI will analyze your input and generate a list of potential blog post titles or ideas.',
+      tips: [
+        'Try different phrasings for your topic to get diverse suggestions.',
+        'Specifying a target audience can lead to more focused and relevant ideas.',
+        'Use the generated ideas as inspiration; you can refine or combine them.',
+      ],
+    },
+    faqs: [
+      { question: 'How many ideas will it generate?', answer: 'The tool typically generates a list of 5-10 ideas per request, but this can vary.' },
+      { question: 'Are the ideas unique?', answer: 'AI generates ideas based on patterns and information it has learned. While it aims for creativity, some suggestions might be similar to existing content online. Always add your unique perspective.' },
+      { question: 'Is my input topic sent to a server?', answer: 'Yes, your topic and target audience description are sent to the AI model to generate ideas.' },
+    ],
+    keywords: ['ai', 'blog ideas', 'content creation', 'writing assistant', 'topic generator', 'title generator'],
+  },
+  {
+    id: 'ai-text-summarizer',
+    title: 'AI Text Summarizer',
+    description: 'Quickly summarize long articles, documents, or text passages using AI.',
+    category: 'ai-powered',
+    icon: Icons.ScanLine, 
+    iconName: 'ScanLine',
+    path: '/tools/ai-text-summarizer',
+    longDescription: {
+      overview: 'The AI Text Summarizer condenses lengthy text into a concise summary. Paste your text, choose a desired summary length (short, medium, or long), and let the AI extract the key points for you. Useful for quickly understanding the gist of an article or document.',
+      useCases: [
+        'Getting the main points of a long news article or research paper.',
+        'Summarizing meeting notes or reports.',
+        'Creating abstracts or executive summaries.',
+        'Quickly reviewing content before deciding to read it in full.',
+      ],
+      howItWorks: 'Paste the text you want to summarize into the input area. Select your preferred summary length (short, medium, or long). Click "Summarize". The AI will process the text and generate a summary based on your length preference.',
+      tips: [
+        'The quality of the summary can depend on the clarity and structure of the original text.',
+        '"Short" summaries provide a very brief overview, while "Long" summaries retain more detail.',
+        'AI summaries are helpful but always cross-reference with the original text for critical information.',
+      ],
+    },
+    faqs: [
+      { question: 'What is the maximum text length it can summarize?', answer: 'While there_s a limit, it_s generally quite generous for typical articles or documents. Very extremely long texts might be truncated or result in less coherent summaries. It_s best to test with your specific content.' },
+      { question: 'Does it work for all languages?', answer: 'The AI model is primarily trained on English, so summaries for English text will be most accurate. Performance may vary for other languages.' },
+      { question: 'Is my text sent to a server?', answer: 'Yes, the input text is sent to the AI model for processing to generate the summary.' },
+    ],
+    keywords: ['ai', 'text summarizer', 'summarization', 'content condensation', 'article summary', 'document summary'],
+  },
+  {
+    id: 'ai-image-alt-text-generator',
+    title: 'AI Image Alt Text Generator',
+    description: 'Generate descriptive alt text for images using AI to improve accessibility and SEO.',
+    category: 'ai-powered',
+    icon: Icons.Image,
+    iconName: 'Image',
+    path: '/tools/ai-image-alt-text-generator',
+    longDescription: {
+      overview: 'The AI Image Alt Text Generator helps you create descriptive alternative text (alt text) for your images. Alt text is crucial for web accessibility, allowing screen readers to describe images to visually impaired users, and also helps search engines understand image content for better SEO. For now, you will need to provide the image as a Base64 encoded Data URI.',
+      useCases: [
+        'Making website images accessible to users with visual impairments.',
+        'Improving SEO by providing search engines with context about images.',
+        'Generating alt text for large batches of images more quickly.',
+        'Ensuring compliance with accessibility standards (WCAG).',
+      ],
+      howItWorks: 'Convert your image to a Base64 encoded Data URI string (many online tools can do this). Paste this Data URI into the input field. Click "Generate Alt Text". The AI will analyze the image data and suggest descriptive alt text. Review the suggestion for accuracy and context.',
+      tips: [
+        'Good alt text is concise yet descriptive, conveying the purpose or content of the image.',
+        'Avoid starting alt text with "Image of..." or "Picture of..." as it_s usually redundant.',
+        'For complex images like charts or graphs, the AI might provide a general description; you may need to add more specific details manually.',
+        'Future versions may include direct image upload.',
+      ],
+    },
+    faqs: [
+      { question: 'What is a Base64 Data URI?', answer: 'A Data URI allows you to embed small files (like images) inline in HTML or CSS. It starts with `data:image/[TYPE];base64,` followed by the Base64 encoded image data.' },
+      { question: 'How accurate is the AI-generated alt text?', answer: 'AI can generate surprisingly good descriptions, but it_s not perfect. Always review and edit the alt text to ensure it accurately represents the image and its context on your page.' },
+      { question: 'Are there limitations on image size or type for Data URIs?', answer: 'Data URIs can become very long for large images, which might impact performance. For this tool, smaller, web-optimized images are recommended. Common types like PNG, JPEG, and GIF are generally supported if correctly encoded in the Data URI.' },
+      { question: 'Is my image data sent to a server?', answer: 'Yes, the image data (as a Data URI) is sent to the AI model for processing to generate the alt text.' },
+    ],
+    keywords: ['ai', 'alt text', 'image accessibility', 'seo', 'image description', 'wcag'],
   },
 ];
 

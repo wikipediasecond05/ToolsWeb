@@ -30,7 +30,7 @@ import {
   FileCode,
   Link,
   Search,
-  GitBranch,
+  GitBranch, // Added for AI Commit Message Writer
   Database,
   FileTerminal,
   Puzzle,
@@ -51,11 +51,15 @@ import {
   Text,
   FileLock2,
   Eraser,
-  Bed, // Added Bed icon
-  Moon, // Added Moon icon for potential use
-  Info, // Added Info icon
-  Copy as CopyIcon, // Added CopyIcon alias
-  CalendarPlus, // Added CalendarPlus for future use
+  Bed, 
+  Moon, 
+  Info, 
+  Copy as CopyIcon, 
+  CalendarPlus,
+  Lightbulb, // Added for AI Blog Post Idea Generator
+  Image, // Added for AI Image Alt Text Generator
+  Newspaper, // Added for potential use (e.g. AI Text Summarizer, but using ScanLine for now)
+  GitCommit, // Alternative for Commit Message Writer
 } from 'lucide-react';
 
 export const Icons = {
@@ -110,11 +114,15 @@ export const Icons = {
   Text,
   FileLock2,
   Eraser,
-  Bed, // Added Bed icon
-  Moon, // Added Moon icon
-  Info, // Added Info Icon
+  Bed,
+  Moon,
+  Info,
   CopyIcon,
   CalendarPlus,
+  Lightbulb,
+  Image,
+  Newspaper,
+  GitCommit,
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

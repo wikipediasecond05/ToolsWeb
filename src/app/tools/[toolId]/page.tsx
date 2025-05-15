@@ -1,7 +1,7 @@
 
 'use client';
 
-import React from 'react'; // React must be imported to use React.use
+import React from 'react'; 
 import { notFound } from 'next/navigation';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
@@ -25,6 +25,10 @@ import { SlopePercentageCalculatorTool } from '@/components/tools/SlopePercentag
 import { PlaybackSpeedCalculatorTool } from '@/components/tools/PlaybackSpeedCalculatorTool';
 import { AudiobookSpeedCalculatorTool } from '@/components/tools/AudiobookSpeedCalculatorTool';
 import { SleepCycleCalculatorTool } from '@/components/tools/SleepCycleCalculatorTool';
+import { AiCommitMessageWriterTool } from '@/components/tools/AiCommitMessageWriterTool';
+import { AiBlogPostIdeaGeneratorTool } from '@/components/tools/AiBlogPostIdeaGeneratorTool';
+import { AiTextSummarizerTool } from '@/components/tools/AiTextSummarizerTool';
+import { AiImageAltTextGeneratorTool } from '@/components/tools/AiImageAltTextGeneratorTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -38,7 +42,7 @@ import type { Tool, RelatedToolData } from '@/types';
 
 
 export default function ToolPage({ params }: { params: { toolId: string } }) {
-  const actualParams = React.use(params); // Unwrapping the params Promise
+  const actualParams = React.use(params); 
   const tool = getToolById(actualParams.toolId); 
   const allToolsData = getAllTools();
 
@@ -90,6 +94,14 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <AudiobookSpeedCalculatorTool />;
       case 'sleep-cycle-calculator':
         return <SleepCycleCalculatorTool />;
+      case 'ai-commit-message-writer':
+        return <AiCommitMessageWriterTool />;
+      case 'ai-blog-post-idea-generator':
+        return <AiBlogPostIdeaGeneratorTool />;
+      case 'ai-text-summarizer':
+        return <AiTextSummarizerTool />;
+      case 'ai-image-alt-text-generator':
+        return <AiImageAltTextGeneratorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
