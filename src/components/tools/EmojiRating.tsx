@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Smile, Meh, Frown, Star } from 'lucide-react';
+import { Smile, Meh, Frown, Star, Angry, Laugh } from 'lucide-react'; // Added Angry, Laugh
 import { cn } from '@/lib/utils';
 import { useToast } from "@/hooks/use-toast";
 
@@ -21,14 +21,16 @@ interface RatingOption {
 }
 
 const ratingOptions: RatingOption[] = [
-  { emoji: Smile, label: 'Love it!', value: 'loved', color: 'text-green-500', score: 5 },
-  { emoji: Meh, label: 'It_s OK', value: 'ok', color: 'text-yellow-500', score: 3 },
-  { emoji: Frown, label: 'Not good', value: 'bad', color: 'text-red-500', score: 1 },
+  { emoji: Angry, label: 'Awful', value: 'awful', color: 'text-red-600', score: 1 },
+  { emoji: Frown, label: 'Bad', value: 'bad', color: 'text-red-500', score: 2 },
+  { emoji: Meh, label: 'Okay', value: 'ok', color: 'text-yellow-500', score: 3 },
+  { emoji: Smile, label: 'Good', value: 'good', color: 'text-lime-500', score: 4 },
+  { emoji: Laugh, label: 'Great!', value: 'great', color: 'text-green-500', score: 5 },
 ];
 
 export function EmojiRating({ toolId }: EmojiRatingProps) {
   const [currentUserRating, setCurrentUserRating] = useState<string | null>(null);
-  const [allRatings, setAllRatings] = useState<string[]>([]); // Stores array of rating 'value' strings
+  const [allRatings, setAllRatings] = useState<string[]>([]);
   const [averageRating, setAverageRating] = useState<number | null>(null);
   const [totalRatings, setTotalRatings] = useState<number>(0);
   const [hasRated, setHasRated] = useState<boolean>(false);
@@ -46,7 +48,7 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
           calculateAndSetAverage(parsedRatings);
         } catch (e) {
           console.error("Failed to parse ratings from localStorage", e);
-          localStorage.removeItem(`ratings_${toolId}`); // Clear corrupted data
+          localStorage.removeItem(`ratings_${toolId}`);
         }
       }
       if (storedUserRating) {
@@ -71,8 +73,6 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
   };
 
   const handleRating = (value: string) => {
-    // If user has already rated and clicks the same rating, do nothing (or allow to change, future enhancement)
-    // For now, once rated, it's final for this session unless localStorage is cleared or user changes rating
     if (hasRated && currentUserRating === value) return; 
 
     const newAllRatings = [...allRatings, value];
@@ -124,7 +124,7 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
             })()}
           </div>
         ) : (
-          <div className="flex justify-around items-stretch space-x-2 sm:space-x-4">
+          <div className="flex flex-wrap justify-around items-stretch gap-2 sm:gap-3">
             {ratingOptions.map((rating) => {
               const IconComponent = rating.emoji;
               return (
@@ -133,14 +133,14 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
                   variant="outline"
                   onClick={() => handleRating(rating.value)}
                   className={cn(
-                    "flex flex-col items-center p-3 sm:p-4 h-auto w-full focus:ring-2 focus:ring-primary/50",
+                    "flex flex-col items-center p-2 sm:p-3 h-auto w-[calc(20%-0.5rem)] min-w-[50px] sm:w-[calc(20%-0.75rem)] focus:ring-2 focus:ring-primary/50", // Adjusted width for 5 items
                     "hover:bg-accent/50"
                   )}
-                  aria-label={`Rate as ${rating.label.replace('_',' ')}`}
-                  title={rating.label.replace('_',' ')}
+                  aria-label={`Rate as ${rating.label}`}
+                  title={rating.label}
                 >
-                  <IconComponent className={cn("h-8 w-8 mb-1.5", rating.color)} />
-                  <span className="text-xs text-center">{rating.label.replace('_',' ')}</span>
+                  <IconComponent className={cn("h-7 w-7 mb-1 sm:h-8 sm:w-8", rating.color)} />
+                  <span className="text-xs text-center leading-tight">{rating.label}</span>
                 </Button>
               );
             })}

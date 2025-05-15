@@ -49,7 +49,7 @@ export async function generateStaticParams() {
 
 export default function ToolPage({ params }: ToolPageProps) {
   const tool = getToolById(params.toolId);
-  const allToolsData = getAllTools(); // For related tools suggestions
+  const allToolsData = getAllTools(); 
 
   if (!tool) {
     notFound();
@@ -71,7 +71,6 @@ export default function ToolPage({ params }: ToolPageProps) {
     }
   };
 
-  // Prepare plain data for RelatedTools client component
   const currentToolForRelated: RelatedToolData = {
     id: tool.id,
     title: tool.title,
@@ -105,9 +104,15 @@ export default function ToolPage({ params }: ToolPageProps) {
       <div className="lg:flex lg:gap-8">
         {/* Main Content Column */}
         <div className="lg:w-2/3 space-y-12">
-          {/* Tool UI */}
           {renderToolUI()}
           
+          {/* Related Tools & Rating - Mobile & Tablet Only (stacks below tool UI) */}
+          <div className="lg:hidden space-y-8 mt-12">
+            <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
+            <EmojiRating toolId={tool.id} />
+            {/* <!-- AdSense Placeholder: In Related Tools Section (Mobile) --> */}
+          </div>
+
           {/* <!-- AdSense Placeholder: Below Tool UI --> */}
 
           {/* Comment Section */}
@@ -169,11 +174,11 @@ export default function ToolPage({ params }: ToolPageProps) {
           )}
         </div>
 
-        {/* Sidebar Column */}
-        <aside className="lg:w-1/3 lg:sticky lg:top-24 space-y-8 mt-12 lg:mt-0 self-start"> {/* self-start for sticky */}
+        {/* Sidebar Column - Desktop Only */}
+        <aside className="hidden lg:block lg:w-1/3 lg:sticky lg:top-24 space-y-8 mt-12 lg:mt-0 self-start">
           <section>
             <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
-            {/* <!-- AdSense Placeholder: In Related Tools Section --> */}
+            {/* <!-- AdSense Placeholder: In Related Tools Section (Desktop) --> */}
           </section>
           <section>
             <EmojiRating toolId={tool.id} />
