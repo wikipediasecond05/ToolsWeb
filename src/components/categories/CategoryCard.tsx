@@ -13,7 +13,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
   
   return (
     <Link href={category.path} className="block group">
-      <Card className="h-full hover:shadow-lg transition-shadow duration-200 ease-in-out hover:border-primary">
+      <Card className="h-full hover:shadow-lg transition-all duration-200 ease-in-out hover:border-primary dark:hover:bg-accent/10 hover:bg-accent/5">
         <CardHeader className="flex flex-row items-center gap-4">
           {IconComponent && <IconComponent className="h-8 w-8 text-primary" />}
           <div>
@@ -25,4 +25,3 @@ export function CategoryCard({ category }: CategoryCardProps) {
     </Link>
   );
 }
-
