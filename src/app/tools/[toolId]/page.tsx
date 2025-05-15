@@ -7,59 +7,33 @@ import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
 import { ToolPlaceholderUI } from '@/components/tools/ToolPlaceholderUI';
 import { LineBreakRemoverTool } from '@/components/tools/LineBreakRemoverTool';
-import { TextCaseConverterTool } from '@/components/tools/TextCaseConverterTool'; // New
-import { WordCounterTool } from '@/components/tools/WordCounterTool'; // New
+import { TextCaseConverterTool } from '@/components/tools/TextCaseConverterTool';
+import { WordCounterTool } from '@/components/tools/WordCounterTool';
 import { ColorPickerTool } from '@/components/tools/ColorPickerTool';
 import { CSSMinifierTool } from '@/components/tools/CSSMinifierTool';
 import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool';
 import { MarkdownToHTMLTool } from '@/components/tools/MarkdownToHTMLTool';
-import { PasswordGeneratorTool } from '@/components/tools/PasswordGeneratorTool'; 
-import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool'; 
+import { PasswordGeneratorTool } from '@/components/tools/PasswordGeneratorTool';
+import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool';
 import { JSONFormatterTool } from '@/components/tools/JSONFormatterTool';
-import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool'; 
-import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool'; 
+import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool';
+import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool';
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import type { Metadata } from 'next'; // Keep for potential static metadata in the future
-import { APP_NAME, APP_DOMAIN } from '@/lib/constants';
+// import type { Metadata } from 'next'; // Removed as this is a client component
+// import { APP_NAME, APP_DOMAIN } from '@/lib/constants'; // No longer needed here for metadata
 import { Icons } from '@/components/icons';
 import type { Tool, RelatedToolData } from '@/types';
 
-// Dynamic metadata generation (runs on server)
-export async function generateMetadata({ params }: { params: { toolId: string } }): Promise<Metadata> {
-  const tool = getToolById(params.toolId);
-  if (!tool) {
-    return {
-      title: `Tool Not Found | ${APP_NAME}`,
-    };
-  }
-  return {
-    title: `${tool.title} | ${APP_NAME}`,
-    description: tool.description,
-    keywords: tool.keywords ? tool.keywords.join(', ') : tool.title,
-    openGraph: {
-        title: `${tool.title} | ${APP_NAME}`,
-        description: tool.description,
-        url: `https://${APP_DOMAIN}/tools/${tool.id}`,
-    }
-  };
-}
-
-// Static params generation (runs at build time)
-export async function generateStaticParams() {
-  const tools = getAllTools();
-  return tools.map((tool) => ({
-    toolId: tool.id,
-  }));
-}
+// Removed generateMetadata and generateStaticParams as they cannot be used in a Client Component
 
 export default function ToolPage({ params }: { params: { toolId: string } }) {
   const tool = getToolById(params.toolId);
-  const allToolsData = getAllTools(); 
+  const allToolsData = getAllTools();
 
   if (!tool) {
     notFound();
@@ -73,9 +47,9 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     switch (tool.id) {
       case 'line-break-remover':
         return <LineBreakRemoverTool />;
-      case 'text-case-converter': // New
+      case 'text-case-converter':
         return <TextCaseConverterTool />;
-      case 'word-counter': // New
+      case 'word-counter':
         return <WordCounterTool />;
       case 'color-picker':
         return <ColorPickerTool />;
