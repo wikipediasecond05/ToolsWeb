@@ -3,17 +3,19 @@
 
 import React, { useEffect, useState } from 'react';
 import { suggestRelatedTools } from '@/ai/flows/suggest-related-tools';
-import type { RelatedToolData } from '@/types'; // Use RelatedToolData
+import type { RelatedToolData } from '@/types'; 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Wand2, Loader2 } from 'lucide-react';
-import { Icons, IconName } from '@/components/icons'; // Ensure IconName is imported if needed, or Icons has it
+import { Icons, type IconName } from '@/components/icons';
 
 interface RelatedToolsProps {
   currentTool: RelatedToolData;
   allTools: RelatedToolData[];
 }
+
+const MAX_RELATED_TOOLS = 5;
 
 export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
   const [relatedTools, setRelatedTools] = useState<RelatedToolData[]>([]);
@@ -32,11 +34,11 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
         });
         
         const suggestedToolObjects = result.relatedTools
-          .filter(name => name !== currentTool.title) // Exclude the current tool itself
+          .filter(name => name !== currentTool.title) 
           .map(name => allTools.find(t => t.title === name))
           .filter(Boolean) as RelatedToolData[]; 
         
-        setRelatedTools(suggestedToolObjects.slice(0, 5)); // Show up to 5 related tools
+        setRelatedTools(suggestedToolObjects.slice(0, MAX_RELATED_TOOLS)); 
       } catch (err) {
         console.error('Error fetching related tools:', err);
         setError('Could not load suggestions at this time.');
@@ -48,7 +50,7 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
     if (currentTool && allTools.length > 0) {
       fetchRelatedTools();
     } else {
-      setIsLoading(false); // No data to fetch related tools for
+      setIsLoading(false); 
     }
   }, [currentTool, allTools]);
 
@@ -124,7 +126,6 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
             </li>
           )})}
         </ul>
-        {/* <!-- AdSense Placeholder: In Related Tools Section --> */}
       </CardContent>
     </Card>
   );
