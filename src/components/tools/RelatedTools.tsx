@@ -32,11 +32,11 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
         });
         
         const suggestedToolObjects = result.relatedTools
-          .filter(name => name !== currentTool.title)
+          .filter(name => name !== currentTool.title) // Exclude the current tool itself
           .map(name => allTools.find(t => t.title === name))
           .filter(Boolean) as RelatedToolData[]; 
         
-        setRelatedTools(suggestedToolObjects.slice(0, 3));
+        setRelatedTools(suggestedToolObjects.slice(0, 5)); // Show up to 5 related tools
       } catch (err) {
         console.error('Error fetching related tools:', err);
         setError('Could not load suggestions at this time.');
@@ -56,14 +56,14 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Wand2 className="h-5 w-5 text-primary" />
             Related Tools
           </CardTitle>
         </CardHeader>
         <CardContent className="text-center">
           <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto" />
-          <p className="mt-2 text-muted-foreground">Finding recommendations...</p>
+          <p className="mt-2 text-sm text-muted-foreground">Finding recommendations...</p>
         </CardContent>
       </Card>
     );
@@ -73,40 +73,52 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
      return (
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Wand2 className="h-5 w-5" />
             Related Tools
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-destructive">{error}</p>
+          <p className="text-destructive text-sm">{error}</p>
         </CardContent>
       </Card>
     );
   }
 
   if (relatedTools.length === 0) {
-    return null; 
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                    <Wand2 className="h-5 w-5 text-primary" />
+                    Related Tools
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-sm text-muted-foreground">No related tools found.</p>
+            </CardContent>
+        </Card>
+    );
   }
 
   return (
-    <Card className="mt-8 shadow-md">
+    <Card className="shadow-md">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-xl">
+        <CardTitle className="flex items-center gap-2 text-lg">
           <Wand2 className="h-5 w-5 text-primary" />
           You Might Also Like
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <ul className="space-y-3">
+        <ul className="space-y-2">
           {relatedTools.map(tool => {
             const IconComponent = tool.iconName ? Icons[tool.iconName as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
             return (
             <li key={tool.id}>
-              <Button variant="ghost" asChild className="w-full justify-start h-auto py-2 px-3">
-                <Link href={tool.path} className="flex items-center gap-3">
-                  <IconComponent className="h-5 w-5 text-muted-foreground" />
-                  <span className="font-medium">{tool.title}</span>
+              <Button variant="ghost" asChild className="w-full justify-start h-auto py-2 px-3 text-sm">
+                <Link href={tool.path} className="flex items-center gap-2">
+                  <IconComponent className="h-4 w-4 text-muted-foreground" />
+                  <span className="font-medium text-left">{tool.title}</span>
                 </Link>
               </Button>
             </li>

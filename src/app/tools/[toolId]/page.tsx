@@ -5,6 +5,8 @@ import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
 import { ToolPlaceholderUI } from '@/components/tools/ToolPlaceholderUI';
 import { LineBreakRemoverTool } from '@/components/tools/LineBreakRemoverTool';
 import { RelatedTools } from '@/components/tools/RelatedTools';
+import { EmojiRating } from '@/components/tools/EmojiRating';
+import { CommentSection } from '@/components/tools/CommentSection';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
@@ -85,9 +87,9 @@ export default function ToolPage({ params }: ToolPageProps) {
 
   return (
     <PageWrapper>
-      <div className="flex flex-col lg:flex-row lg:gap-8 xl:gap-12">
+      <div className="flex flex-col lg:flex-row lg:gap-6 xl:gap-8">
         {/* Main Content Area */}
-        <div className="lg:w-2/3 xl:w-3/4 flex-grow">
+        <div className="lg:w-4/5 flex-grow">
           {/* Header */}
           <header className="mb-8">
             <div className="flex items-center gap-3 mb-3">
@@ -160,11 +162,17 @@ export default function ToolPage({ params }: ToolPageProps) {
               {/* <!-- AdSense Placeholder: Within FAQs --> */}
             </section>
           )}
+
+          {/* Comment Section */}
+          <section className="my-12">
+            <CommentSection toolId={tool.id} />
+          </section>
         </div>
 
-        {/* Sidebar Area / Related Tools */}
-        <aside className="lg:w-1/3 xl:w-1/4 lg:sticky lg:top-24 h-fit mt-12 lg:mt-0"> {/* lg:top-24 to account for navbar and some padding */}
+        {/* Sidebar Area */}
+        <aside className="lg:w-1/5 lg:sticky lg:top-24 h-fit mt-12 lg:mt-0 space-y-8">
           <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
+          <EmojiRating toolId={tool.id} />
           {/* <!-- AdSense Placeholder: Bottom of Page / Sidebar area --> */}
         </aside>
       </div>
