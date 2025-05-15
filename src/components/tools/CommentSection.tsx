@@ -116,7 +116,7 @@ export function CommentSection({ toolId }: CommentSectionProps) {
         <form onSubmit={handleSubmitComment} className="space-y-6 mb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="authorName">Name</Label>
+              <Label htmlFor="authorName" className="mb-2 block">Name</Label>
               <Input
                 id="authorName"
                 value={authorName}
@@ -128,7 +128,7 @@ export function CommentSection({ toolId }: CommentSectionProps) {
               {formErrors.name && <p className="text-xs text-destructive mt-1">{formErrors.name}</p>}
             </div>
             <div>
-              <Label htmlFor="authorEmail">Email</Label>
+              <Label htmlFor="authorEmail" className="mb-2 block">Email</Label>
               <Input
                 id="authorEmail"
                 type="email"
@@ -142,7 +142,7 @@ export function CommentSection({ toolId }: CommentSectionProps) {
             </div>
           </div>
           <div>
-            <Label htmlFor="newCommentText">Your Comment</Label>
+            <Label htmlFor="newCommentText" className="mb-2 block">Your Comment</Label>
             <Textarea
               id="newCommentText"
               value={newCommentText}
@@ -150,7 +150,7 @@ export function CommentSection({ toolId }: CommentSectionProps) {
               placeholder="Write a comment..."
               rows={4}
               disabled={isSubmitting}
-              className={`focus:ring-primary/50 ${formErrors.comment ? 'border-destructive' : ''}`}
+              className={`focus-visible:ring-primary/50 ${formErrors.comment ? 'border-destructive' : ''}`}
             />
             {formErrors.comment && <p className="text-xs text-destructive mt-1">{formErrors.comment}</p>}
           </div>

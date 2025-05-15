@@ -108,14 +108,14 @@ export function LineBreakRemoverTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText" className="font-semibold">Enter Text</Label>
+          <Label htmlFor="inputText" className="font-semibold mb-2">Enter Text</Label>
           <Textarea
             id="inputText"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Paste your text here..."
             rows={10}
-            className="text-sm border-border focus:ring-primary"
+            className="text-sm border-border focus-visible:ring-primary"
             aria-label="Input text for line break removal"
           />
         </div>
@@ -163,7 +163,7 @@ export function LineBreakRemoverTool() {
         {outputText && (
           <div className="grid gap-2 pt-4 border-t border-border">
             <div className="flex justify-between items-center">
-              <Label htmlFor="outputText" className="font-semibold">Output Text</Label>
+              <Label htmlFor="outputText" className="font-semibold mb-2">Output Text</Label>
               <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                 <Copy className="mr-2 h-4 w-4" /> Copy
               </Button>

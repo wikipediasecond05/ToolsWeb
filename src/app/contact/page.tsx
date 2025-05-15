@@ -66,7 +66,7 @@ export default function ContactPage() {
           <CardContent>
             <form action={formAction} className="space-y-6">
               <div>
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="name" className="mb-2 block">Name</Label>
                 <Input id="name" name="name" type="text" placeholder="Your Name" required 
                        defaultValue={state.fields?.name}
                 />
@@ -75,7 +75,7 @@ export default function ContactPage() {
                 )}
               </div>
               <div>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="mb-2 block">Email</Label>
                 <Input id="email" name="email" type="email" placeholder="your@email.com" required 
                        defaultValue={state.fields?.email}
                 />
@@ -84,7 +84,7 @@ export default function ContactPage() {
                 )}
               </div>
               <div>
-                <Label htmlFor="message">Message</Label>
+                <Label htmlFor="message" className="mb-2 block">Message</Label>
                 <Textarea
                   id="message"
                   name="message"
