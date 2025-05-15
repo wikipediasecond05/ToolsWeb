@@ -88,96 +88,99 @@ export default function ToolPage({ params }: ToolPageProps) {
 
   return (
     <PageWrapper>
-      <div className="max-w-4xl mx-auto"> {/* Centering content and limiting width */}
-        {/* Header */}
-        <header className="mb-8">
-          <div className="flex items-center gap-3 mb-3">
-            <IconComponent className="h-10 w-10 text-primary" />
-            <h1 className="text-4xl font-bold tracking-tight">{tool.title}</h1>
-          </div>
-          <p className="text-lg text-muted-foreground">{tool.description}</p>
-          {category && (
-            <Link href={category.path} className="mt-2 inline-block">
-              <Badge variant="secondary">{category.name}</Badge>
-            </Link>
-          )}
-        </header>
-
-        {/* Tool UI */}
-        <div className="my-8">
-          {renderToolUI()}
+      {/* Header */}
+      <header className="mb-8">
+        <div className="flex items-center gap-3 mb-3">
+          <IconComponent className="h-10 w-10 text-primary" />
+          <h1 className="text-4xl font-bold tracking-tight">{tool.title}</h1>
         </div>
-        
-        {/* <!-- AdSense Placeholder: Below Tool UI --> */}
+        <p className="text-lg text-muted-foreground">{tool.description}</p>
+        {category && (
+          <Link href={category.path} className="mt-2 inline-block">
+            <Badge variant="secondary">{category.name}</Badge>
+          </Link>
+        )}
+      </header>
 
-        {/* Related Tools */}
-        <section className="my-12">
-          <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
-        </section>
+      <div className="lg:flex lg:gap-8">
+        {/* Main Content Column */}
+        <div className="lg:w-2/3 space-y-12">
+          {/* Tool UI */}
+          {renderToolUI()}
+          
+          {/* <!-- AdSense Placeholder: Below Tool UI --> */}
 
-        {/* Emoji Rating */}
-        <section className="my-12">
-          <EmojiRating toolId={tool.id} />
-        </section>
-        
-        {/* Comment Section */}
-        <section className="my-12">
-          <CommentSection toolId={tool.id} />
-        </section>
+          {/* Comment Section */}
+          <section>
+            <CommentSection toolId={tool.id} />
+          </section>
 
-        {tool.longDescription && (
-          <section className="my-12 prose dark:prose-invert max-w-none 
-                              prose-headings:font-semibold prose-headings:text-foreground 
-                              prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-8 prose-h2:border-b prose-h2:pb-2
-                              prose-p:leading-relaxed prose-p:text-muted-foreground
-                              prose-ul:list-disc prose-ul:pl-6 prose-ul:space-y-1
-                              prose-li:text-muted-foreground">
-            <div className="mb-8">
-              <h2 className="!mt-0">Overview</h2> {/* !mt-0 for first heading in prose */}
-              <p>{tool.longDescription.overview}</p>
-            </div>
-            <div className="mb-8">
-              <h2>Use Cases</h2>
-              <ul>
-                {tool.longDescription.useCases.map((useCase, index) => (
-                  <li key={index}>{useCase}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="mb-8">
-              <h2>How It Works</h2>
-              <p>{tool.longDescription.howItWorks}</p>
-            </div>
-            {tool.longDescription.tips && tool.longDescription.tips.length > 0 && (
+          {/* Long Description */}
+          {tool.longDescription && (
+            <section className="prose dark:prose-invert max-w-none 
+                                prose-headings:font-semibold prose-headings:text-foreground 
+                                prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-8 prose-h2:border-b prose-h2:pb-2
+                                prose-p:leading-relaxed prose-p:text-muted-foreground
+                                prose-ul:list-disc prose-ul:pl-6 prose-ul:space-y-1
+                                prose-li:text-muted-foreground">
               <div className="mb-8">
-                <h2>Tips for Better Usage</h2>
+                <h2 className="!mt-0">Overview</h2> {/* !mt-0 for first heading in prose */}
+                <p>{tool.longDescription.overview}</p>
+              </div>
+              <div className="mb-8">
+                <h2>Use Cases</h2>
                 <ul>
-                  {tool.longDescription.tips.map((tip, index) => (
-                    <li key={index}>{tip}</li>
+                  {tool.longDescription.useCases.map((useCase, index) => (
+                    <li key={index}>{useCase}</li>
                   ))}
                 </ul>
               </div>
-            )}
-          </section>
-        )}
+              <div className="mb-8">
+                <h2>How It Works</h2>
+                <p>{tool.longDescription.howItWorks}</p>
+              </div>
+              {tool.longDescription.tips && tool.longDescription.tips.length > 0 && (
+                <div className="mb-8">
+                  <h2>Tips for Better Usage</h2>
+                  <ul>
+                    {tool.longDescription.tips.map((tip, index) => (
+                      <li key={index}>{tip}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+          )}
 
-        {/* FAQs */}
-        {tool.faqs && tool.faqs.length > 0 && (
-          <section className="my-12">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Frequently Asked Questions</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {tool.faqs.map((faq, index) => (
-                <AccordionItem value={`item-${index}`} key={index}>
-                  <AccordionTrigger className="hover:no-underline text-left">{faq.question}</AccordionTrigger>
-                  <AccordionContent>{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-            {/* <!-- AdSense Placeholder: Within FAQs --> */}
+          {/* FAQs */}
+          {tool.faqs && tool.faqs.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-semibold mb-6 text-center">Frequently Asked Questions</h2>
+              <Accordion type="single" collapsible className="w-full">
+                {tool.faqs.map((faq, index) => (
+                  <AccordionItem value={`item-${index}`} key={index}>
+                    <AccordionTrigger className="hover:no-underline text-left">{faq.question}</AccordionTrigger>
+                    <AccordionContent>{faq.answer}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+              {/* <!-- AdSense Placeholder: Within FAQs --> */}
+            </section>
+          )}
+        </div>
+
+        {/* Sidebar Column */}
+        <aside className="lg:w-1/3 lg:sticky lg:top-24 space-y-8 mt-12 lg:mt-0 self-start"> {/* self-start for sticky */}
+          <section>
+            <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
+            {/* <!-- AdSense Placeholder: In Related Tools Section --> */}
           </section>
-        )}
-         {/* <!-- AdSense Placeholder: Bottom of Page --> */}
+          <section>
+            <EmojiRating toolId={tool.id} />
+          </section>
+        </aside>
       </div>
+       {/* <!-- AdSense Placeholder: Bottom of Page --> */}
     </PageWrapper>
   );
 }
