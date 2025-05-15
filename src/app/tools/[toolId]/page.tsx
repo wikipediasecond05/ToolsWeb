@@ -4,7 +4,8 @@ import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
 import { ToolPlaceholderUI } from '@/components/tools/ToolPlaceholderUI';
 import { LineBreakRemoverTool } from '@/components/tools/LineBreakRemoverTool';
-import { ColorPickerTool } from '@/components/tools/ColorPickerTool'; // Import new tool
+import { ColorPickerTool } from '@/components/tools/ColorPickerTool';
+import { CSSMinifierTool } from '@/components/tools/CSSMinifierTool'; // Import new tool
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
@@ -66,6 +67,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <LineBreakRemoverTool />;
       case 'color-picker':
         return <ColorPickerTool />;
+      case 'css-minifier':
+        return <CSSMinifierTool />;
       // Add cases for other tools here as they are implemented
       // case 'another-tool-id':
       //   return <AnotherToolComponent />;
@@ -117,8 +120,7 @@ export default function ToolPage({ params }: ToolPageProps) {
           </div>
 
           {/* <!-- AdSense Placeholder: Below Tool UI --> */}
-
-          {/* Comment Section */}
+          
           <section>
             <CommentSection toolId={tool.id} />
           </section>
@@ -135,18 +137,22 @@ export default function ToolPage({ params }: ToolPageProps) {
                 <h2 className="!mt-0">Overview</h2> {/* !mt-0 for first heading in prose */}
                 <p>{tool.longDescription.overview}</p>
               </div>
-              <div className="mb-8">
-                <h2>Use Cases</h2>
-                <ul>
-                  {tool.longDescription.useCases.map((useCase, index) => (
-                    <li key={index}>{useCase}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mb-8">
-                <h2>How It Works</h2>
-                <p>{tool.longDescription.howItWorks}</p>
-              </div>
+              {tool.longDescription.useCases && tool.longDescription.useCases.length > 0 && (
+                <div className="mb-8">
+                  <h2>Use Cases</h2>
+                  <ul>
+                    {tool.longDescription.useCases.map((useCase, index) => (
+                      <li key={index}>{useCase}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {tool.longDescription.howItWorks && (
+                <div className="mb-8">
+                  <h2>How It Works</h2>
+                  <p>{tool.longDescription.howItWorks}</p>
+                </div>
+              )}
               {tool.longDescription.tips && tool.longDescription.tips.length > 0 && (
                 <div className="mb-8">
                   <h2>Tips for Better Usage</h2>

@@ -156,12 +156,36 @@ export const tools: Tool[] = [
   {
     id: 'css-minifier',
     title: 'CSS Minifier',
-    description: 'Minify CSS code to reduce file size.',
+    description: 'Minify CSS code to reduce file size and improve load times.',
     category: 'design-frontend',
     icon: Icons.Shrink,
     iconName: 'Shrink',
     path: '/tools/css-minifier',
-    keywords: ['css', 'minifier', 'optimizer', 'frontend']
+    longDescription: {
+      overview: 'The CSS Minifier tool helps you reduce the file size of your CSS code by removing unnecessary characters without affecting its functionality. This includes comments, whitespace (spaces, tabs, newlines), and other redundant elements. Minified CSS files load faster in browsers, leading to improved website performance and a better user experience.',
+      useCases: [
+        'Optimizing CSS files for production websites to reduce load times.',
+        'Preparing CSS for deployment where smaller file sizes are crucial.',
+        'Cleaning up development CSS that may contain many comments and extra spacing.',
+        'Reducing bandwidth consumption for users accessing your website.',
+        'Improving scores on website performance analysis tools like Google PageSpeed Insights.'
+      ],
+      howItWorks: 'Paste your CSS code into the input area. The tool uses a series of regular expressions to: 1. Remove all CSS comments (/* ... */). 2. Remove unnecessary whitespace, such as multiple spaces, tabs, and line breaks between selectors and properties, or around braces and colons. 3. Condense CSS rules where possible. The resulting minified CSS is then displayed in the output area, ready to be copied and used.',
+      tips: [
+        'Always keep a backup of your original, unminified CSS for easier maintenance and readability.',
+        'Test your website thoroughly after replacing your CSS with the minified version to ensure no visual or functional regressions have occurred.',
+        'While this tool provides good minification, for complex projects or advanced optimization, consider build tools like Webpack or Parcel with plugins like `cssnano` or `csso` which can perform more sophisticated transformations.',
+        'Minification is just one part of CSS optimization. Also consider techniques like code splitting, critical CSS, and using efficient selectors.'
+      ],
+    },
+    faqs: [
+      { question: 'Will minifying CSS break my website?', answer: 'Generally, no. Minification aims to remove only characters that are not needed for the CSS to function. However, poorly written or very complex CSS might occasionally have issues if the minifier is too aggressive or if there are syntax errors in the original CSS. Always test after minifying.' },
+      { question: 'How much can I expect my CSS file size to reduce?', answer: 'This varies greatly depending on the original CSS. Files with many comments and a lot of whitespace will see a more significant reduction. Reductions of 10-50% are common.' },
+      { question: 'Can this tool minify CSS with preprocessor syntax (like SASS or LESS)?', answer: 'No, this tool expects standard CSS. You should compile your SASS/LESS to CSS first, and then minify the resulting CSS file.' },
+      { question: 'Does this tool handle CSS variables (custom properties)?', answer: 'Yes, it should preserve CSS custom properties as they are valid CSS syntax.' },
+      { question: 'Is my CSS code sent to a server?', answer: 'No, all minification is performed client-side within your browser. Your code remains private.' }
+    ],
+    keywords: ['css', 'minifier', 'optimizer', 'frontend', 'stylesheet', 'code compression', 'reduce file size', 'website performance']
   },
   {
     id: 'color-picker',
@@ -267,5 +291,7 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
+
+    
 
     
