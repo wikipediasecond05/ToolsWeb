@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardDescription, CardTitle } from '@/components/ui/card';
 import { Copy, Trash2, Zap } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+// import { useToast } from '@/hooks/use-toast'; // No longer using toast
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 
@@ -15,7 +15,7 @@ export function CSSMinifierTool() {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const { toast } = useToast();
+  // const { toast } = useToast(); // No longer using toast
 
   const minifyCSS = (css: string): string => {
     if (!css.trim()) return '';
@@ -45,20 +45,21 @@ export function CSSMinifierTool() {
     setError(null);
     if (!inputText.trim()) {
       setOutputText('');
-      toast({
-        title: 'Input Required',
-        description: 'Please enter some CSS to minify.',
-        variant: 'default',
-      });
+      // toast({ // Removed toast
+      //   title: 'Input Required',
+      //   description: 'Please enter some CSS to minify.',
+      //   variant: 'default',
+      // });
+      setError('Please enter some CSS to minify.'); // Set an error instead
       return;
     }
     const minified = minifyCSS(inputText);
     setOutputText(minified);
     if (minified && !error) {
-        toast({
-            title: "CSS Minified!",
-            description: "Your CSS has been successfully minified.",
-        });
+        // toast({ // Removed toast
+        //     title: "CSS Minified!",
+        //     description: "Your CSS has been successfully minified.",
+        // });
     }
   };
 
@@ -70,26 +71,29 @@ export function CSSMinifierTool() {
 
   const handleCopyToClipboard = async () => {
     if (!outputText) {
-      toast({
-        title: 'Nothing to Copy',
-        description: 'There is no minified output to copy.',
-        variant: 'default',
-      });
+      // toast({ // Removed toast
+      //   title: 'Nothing to Copy',
+      //   description: 'There is no minified output to copy.',
+      //   variant: 'default',
+      // });
+      setError('There is no minified output to copy.'); // Set an error instead
       return;
     }
     try {
       await navigator.clipboard.writeText(outputText);
-      toast({
-        title: 'Copied!',
-        description: 'Minified CSS copied to clipboard.',
-      });
+      // toast({ // Removed toast
+      //   title: 'Copied!',
+      //   description: 'Minified CSS copied to clipboard.',
+      // });
+      setError(null); // Clear previous errors if copy is successful
     } catch (err) {
       console.error('Failed to copy text: ', err);
-      toast({
-        title: 'Error',
-        description: 'Failed to copy text to clipboard.',
-        variant: 'destructive',
-      });
+      // toast({ // Removed toast
+      //   title: 'Error',
+      //   description: 'Failed to copy text to clipboard.',
+      //   variant: 'destructive',
+      // });
+      setError('Failed to copy text to clipboard.'); // Set an error instead
     }
   };
 
@@ -103,7 +107,7 @@ export function CSSMinifierTool() {
       </CardHeader>
       <CardContent className="space-y-6">
         {error && (
-          <Alert variant="destructive">
+          <Alert variant={error.includes("Failed to copy") || error.includes("An error occurred") ? "destructive" : "default"}>
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>{error}</AlertDescription>
           </Alert>
@@ -116,7 +120,10 @@ export function CSSMinifierTool() {
           <Textarea
             id="inputText"
             value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
+            onChange={(e) => {
+              setInputText(e.target.value);
+              if (error && e.target.value.trim()) setError(null); // Clear "Input Required" error when user types
+            }}
             placeholder="Paste your CSS code here..."
             rows={12}
             className="text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
@@ -158,5 +165,3 @@ export function CSSMinifierTool() {
     </Card>
   );
 }
-
-    
