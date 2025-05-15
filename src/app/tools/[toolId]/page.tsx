@@ -4,6 +4,7 @@ import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
 import { ToolPlaceholderUI } from '@/components/tools/ToolPlaceholderUI';
 import { LineBreakRemoverTool } from '@/components/tools/LineBreakRemoverTool';
+import { ColorPickerTool } from '@/components/tools/ColorPickerTool'; // Import new tool
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
@@ -63,6 +64,8 @@ export default function ToolPage({ params }: ToolPageProps) {
     switch (tool.id) {
       case 'line-break-remover':
         return <LineBreakRemoverTool />;
+      case 'color-picker':
+        return <ColorPickerTool />;
       // Add cases for other tools here as they are implemented
       // case 'another-tool-id':
       //   return <AnotherToolComponent />;
@@ -189,3 +192,5 @@ export default function ToolPage({ params }: ToolPageProps) {
     </PageWrapper>
   );
 }
+
+    

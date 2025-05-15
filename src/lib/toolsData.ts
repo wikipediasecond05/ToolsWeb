@@ -165,13 +165,37 @@ export const tools: Tool[] = [
   },
   {
     id: 'color-picker',
-    title: 'Color Picker',
-    description: 'Pick colors and get their codes (HEX, RGB, HSL).',
+    title: 'Color Picker & Converter',
+    description: 'Pick colors and convert between HEX, RGB, and HSL formats.',
     category: 'design-frontend',
     icon: Icons.Palette,
     iconName: 'Palette',
     path: '/tools/color-picker',
-    keywords: ['color picker', 'hex code', 'rgb', 'hsl', 'design']
+    longDescription: {
+      overview: 'The Color Picker & Converter tool allows designers and developers to easily select colors using a visual interface and instantly get their corresponding HEX, RGB, and HSL values. It also provides the ability to copy these values to the clipboard for use in web projects, design software, or any other application where color codes are needed.',
+      useCases: [
+        'Selecting colors for website design and development.',
+        'Finding HEX, RGB, or HSL equivalents for a chosen color.',
+        'Matching brand colors or creating color palettes.',
+        'Quickly grabbing color codes for CSS, graphic design tools, or presentations.',
+        'Experimenting with different color shades and variations.'
+      ],
+      howItWorks: 'Use the built-in color selector (often provided by your browser) to choose a color. As you select a color, the tool will automatically display its HEX (Hexadecimal), RGB (Red, Green, Blue), and HSL (Hue, Saturation, Lightness) representations. Each format has a "Copy" button next to it, allowing you to easily copy the desired code to your clipboard.',
+      tips: [
+        'HEX codes are commonly used in HTML and CSS for web development.',
+        'RGB values are useful when you need to define colors with specific red, green, and blue intensities.',
+        'HSL values can be more intuitive for adjusting hue, saturation, and lightness of a color.',
+        'The visual color preview helps confirm you have the exact shade you want before copying the codes.'
+      ],
+    },
+    faqs: [
+      { question: 'What color formats does this tool support?', answer: 'It supports HEX (e.g., #RRGGBB), RGB (e.g., rgb(R, G, B)), and HSL (e.g., hsl(H, S%, L%)).' },
+      { question: 'How do I use the color picker?', answer: 'Click on the color input field (it usually looks like a colored square). Your browser_s native color selection dialog will appear, allowing you to pick a color visually or by inputting values directly if supported.' },
+      { question: 'Are the color conversions accurate?', answer: 'Yes, the conversions between HEX, RGB, and HSL are based on standard color model formulas to ensure accuracy.' },
+      { question: 'Can I input a color code to see the color?', answer: 'Currently, this tool focuses on picking a color visually and then displaying its codes. For converting from a code to a visual color, you might need a different tool or adjust the color picker to match the code if your browser_s picker allows it.' },
+      { question: 'Is my chosen color saved anywhere?', answer: 'No, the color selection and conversions happen in your browser. The tool does not store your color choices on any server.' }
+    ],
+    keywords: ['color picker', 'hex code', 'rgb converter', 'hsl converter', 'design tool', 'web color', 'css color', 'palette']
   },
   // Conversion Tools
   {
@@ -243,3 +267,5 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
+
+    
