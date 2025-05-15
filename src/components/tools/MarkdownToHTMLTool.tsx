@@ -7,22 +7,13 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AlertCircle, Copy, Trash2, Eye, Code } from 'lucide-react';
+import { Icons } from '@/components/icons'; // Import Icons object
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
 
 // Basic Markdown to HTML conversion function
 const basicMarkdownToHtml = (md: string): string => {
   let html = md;
-
-  // Escape HTML characters to prevent XSS if the Markdown itself contains HTML
-  // For a preview, this step might be too aggressive if users expect to use HTML in Markdown.
-  // For now, let's assume basic Markdown and handle common cases.
-  // html = html
-  //   .replace(/&/g, '&amp;')
-  //   .replace(/</g, '&lt;')
-  //   .replace(/>/g, '&gt;')
-  //   .replace(/"/g, '&quot;')
-  //   .replace(/'/g, '&#039;');
 
   // Headings (h1-h6)
   html = html.replace(/^###### (.*$)/gim, '<h6>$1</h6>');
@@ -55,7 +46,6 @@ const basicMarkdownToHtml = (md: string): string => {
   // Fenced code blocks (```lang\ncode\n``` or ```\ncode\n```)
   html = html.replace(/```(\w*)\n([\s\S]*?)\n```/gim, (match, lang, code) => {
     const languageClass = lang ? `language-${lang}` : '';
-    // Basic escaping for code content to prevent HTML injection within <pre><code>
     const escapedCode = code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return `<pre><code class="${languageClass}">${escapedCode.trim()}</code></pre>`;
   });
@@ -72,18 +62,13 @@ const basicMarkdownToHtml = (md: string): string => {
   html = html.replace(/<\/ol>\n<ol>/gim, ''); // Merge adjacent lists
 
   // Paragraphs (split by double newlines, then wrap single newlines in <p>)
-  // This is tricky with regex and often needs a more stateful parser.
-  // For a basic version, we'll wrap lines that aren't part of other elements.
-  // This needs to be applied carefully to avoid wrapping list items or pre content.
-  // This regex approach is very basic and might not handle all cases well.
   html = html.split(/\n\s*\n/).map(paragraph => {
-    if (!paragraph.match(/<\/?(h[1-6]|ul|ol|li|blockquote|pre|code|a|img|strong|em|del)/i)) {
+    if (!paragraph.match(/<\/?(h[1-6]|ul|ol|li|blockquote|pre|code|a|img|strong|em|del)/i) && paragraph.trim() !== '') {
       return `<p>${paragraph.replace(/\n/g, '<br>')}</p>`;
     }
     return paragraph;
   }).join('\n');
   
-  // Clean up multiple newlines that might result from regex replacements
   html = html.replace(/\n{2,}/g, '\n');
 
   return html.trim();
@@ -130,7 +115,6 @@ export function MarkdownToHTMLTool() {
     try {
       await navigator.clipboard.writeText(htmlOutput);
       setError(null); 
-      // Consider adding a success toast/message if desired, but user requested fewer toasts.
     } catch (err) {
       console.error('Failed to copy HTML output:', err);
       setError('Failed to copy HTML to clipboard.');
@@ -156,7 +140,7 @@ export function MarkdownToHTMLTool() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <Label htmlFor="markdownInput-md-html" className="font-semibold mb-2 block">
-              <Text className="mr-2 h-5 w-5 inline-block" /> Markdown Input
+              <Icons.Text className="mr-2 h-5 w-5 inline-block align-middle" /> Markdown Input
             </Label>
             <Textarea
               id="markdownInput-md-html"
@@ -170,7 +154,7 @@ export function MarkdownToHTMLTool() {
           </div>
           <div>
             <Label htmlFor="htmlOutput-md-html" className="font-semibold mb-2 block">
-               <Code className="mr-2 h-5 w-5 inline-block" /> HTML Output
+               <Code className="mr-2 h-5 w-5 inline-block align-middle" /> HTML Output
             </Label>
             <Textarea
               id="htmlOutput-md-html"
@@ -185,9 +169,6 @@ export function MarkdownToHTMLTool() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 pt-2 items-center">
-          {/* <Button onClick={handleConvert} className="w-full sm:w-auto">
-             Convert to HTML (Conversion is live)
-          </Button> */}
           <Button variant="outline" onClick={handleCopyHtml} className="w-full sm:w-auto" disabled={!htmlOutput}>
             <Copy className="mr-2 h-4 w-4" /> Copy HTML
           </Button>
@@ -200,7 +181,7 @@ export function MarkdownToHTMLTool() {
 
         <div>
           <h3 className="text-lg font-semibold mb-3 flex items-center">
-            <Eye className="mr-2 h-5 w-5 text-primary" />
+            <Eye className="mr-2 h-5 w-5 text-primary align-middle" />
             Live Preview
           </h3>
           {htmlOutput ? (
