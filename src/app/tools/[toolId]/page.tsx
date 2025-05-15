@@ -32,6 +32,12 @@ import { AiImageAltTextGeneratorTool } from '@/components/tools/AiImageAltTextGe
 import { CSSGradientGeneratorTool } from '@/components/tools/CSSGradientGeneratorTool';
 import { CSSBoxShadowGeneratorTool } from '@/components/tools/CSSBoxShadowGeneratorTool';
 import { CSSBorderRadiusGeneratorTool } from '@/components/tools/CSSBorderRadiusGeneratorTool';
+import { TemperatureConverterTool } from '@/components/tools/TemperatureConverterTool';
+import { LengthConverterTool } from '@/components/tools/LengthConverterTool';
+import { Base64EncoderDecoderTool } from '@/components/tools/Base64EncoderDecoderTool';
+import { UrlEncoderDecoderTool } from '@/components/tools/UrlEncoderDecoderTool';
+import { RgbToHexConverterTool } from '@/components/tools/RgbToHexConverterTool';
+import { HexToRgbConverterTool } from '@/components/tools/HexToRgbConverterTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -111,6 +117,18 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <CSSBoxShadowGeneratorTool />;
       case 'css-border-radius-generator':
         return <CSSBorderRadiusGeneratorTool />;
+      case 'temperature-converter':
+        return <TemperatureConverterTool />;
+      case 'length-converter':
+        return <LengthConverterTool />;
+      case 'base64-encoder-decoder':
+        return <Base64EncoderDecoderTool />;
+      case 'url-encoder-decoder':
+        return <UrlEncoderDecoderTool />;
+      case 'rgb-to-hex-converter':
+        return <RgbToHexConverterTool />;
+      case 'hex-to-rgb-converter':
+        return <HexToRgbConverterTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }

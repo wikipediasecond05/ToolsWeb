@@ -30,7 +30,7 @@ import {
   FileCode,
   Link,
   Search,
-  GitBranch, // Added for AI Commit Message Writer
+  GitBranch, 
   Database,
   FileTerminal,
   Puzzle,
@@ -40,9 +40,9 @@ import {
   Workflow,
   FileSymlink,
   FolderGit2,
-  Pipette, // For Gradient Generator
-  BoxSelect, // For Box Shadow Generator
-  Square, // For Border Radius (visual cue, not specific icon)
+  Pipette, 
+  BoxSelect, 
+  Square, 
   Type,
   TextCursorInput,
   ListRestart,
@@ -57,10 +57,13 @@ import {
   Info, 
   Copy as CopyIcon, 
   CalendarPlus,
-  Lightbulb, // Added for AI Blog Post Idea Generator
-  Image, // Added for AI Image Alt Text Generator
-  Newspaper, // Added for potential use (e.g. AI Text Summarizer, but using ScanLine for now)
-  GitCommit, // Alternative for Commit Message Writer
+  Lightbulb, 
+  Image, 
+  Newspaper, 
+  GitCommit,
+  Thermometer, // Added for Temperature Converter
+  Ruler, // Added for Length Converter
+  Globe, // Alternative for URL Encoder/Decoder if Link is too generic
 } from 'lucide-react';
 
 export const Icons = {
@@ -125,6 +128,9 @@ export const Icons = {
   Image,
   Newspaper,
   GitCommit,
+  Thermometer,
+  Ruler,
+  Globe,
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

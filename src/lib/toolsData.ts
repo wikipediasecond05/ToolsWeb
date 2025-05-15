@@ -60,6 +60,14 @@ export const categories: Category[] = [
     path: '/categories/math-physics',
   },
   {
+    id: 'calculator',
+    name: 'Calculator Tools',
+    description: 'Perform various calculations with ease.',
+    icon: Icons.Calculator, // Using existing Calculator icon for the category
+    iconName: 'Calculator',
+    path: '/categories/calculator',
+  },
+  {
     id: 'ai-powered',
     name: 'AI-Powered Tools',
     description: 'Leverage artificial intelligence for various tasks.',
@@ -382,7 +390,7 @@ export const tools: Tool[] = [
     title: 'CSS Gradient Generator',
     description: 'Visually create linear and radial CSS gradients and copy the generated code.',
     category: 'design-frontend',
-    icon: Icons.Pipette, // Using Pipette as a placeholder, could be Layers or Palette
+    icon: Icons.Pipette, 
     iconName: 'Pipette',
     path: '/tools/css-gradient-generator',
     longDescription: {
@@ -449,7 +457,7 @@ export const tools: Tool[] = [
     title: 'CSS Border Radius Generator',
     description: 'Easily generate CSS for rounded corners with individual controls for each corner.',
     category: 'design-frontend',
-    icon: Icons.Square, // Using Square as a placeholder, preview will be rounded
+    icon: Icons.Square, 
     iconName: 'Square',
     path: '/tools/css-border-radius-generator',
     longDescription: {
@@ -549,6 +557,66 @@ export const tools: Tool[] = [
     ],
     keywords: ['markdown', 'html', 'converter', 'text formatting', 'live preview', 'markup']
   },
+  {
+    id: 'rgb-to-hex-converter',
+    title: 'RGB to HEX Converter',
+    description: 'Convert RGB color values (e.g., rgb(255, 165, 0)) to their HEX code equivalent (e.g., #FFA500).',
+    category: 'conversion',
+    icon: Icons.Palette,
+    iconName: 'Palette',
+    path: '/tools/rgb-to-hex-converter',
+    longDescription: {
+      overview: 'This tool allows you to easily convert color values from the RGB (Red, Green, Blue) format to its corresponding hexadecimal (HEX) code. This is essential for web designers, developers, and anyone working with digital colors who needs to switch between these common color representations.',
+      useCases: [
+        'Translating RGB values from design software to CSS-compatible HEX codes.',
+        'Ensuring color consistency across different platforms or tools that might use varying formats.',
+        'Quickly finding the HEX equivalent of an RGB color for use in HTML, CSS, or graphic design applications.',
+        'Learning how RGB and HEX color codes relate to each other.'
+      ],
+      howItWorks: 'Enter the Red, Green, and Blue values (each from 0 to 255) into their respective input fields. Click the "Convert to HEX" button. The tool will calculate the hexadecimal representation for each color component and combine them into a standard 6-digit HEX code (e.g., #RRGGBB). A preview of the color will also be displayed.',
+      tips: [
+        'Each RGB component (Red, Green, Blue) must be a number between 0 and 255.',
+        'The HEX code consists of a # symbol followed by six hexadecimal digits (0-9 and A-F). The first two digits represent Red, the next two Green, and the last two Blue.',
+        'For example, rgb(255, 0, 0) is pure red, which converts to #FF0000.'
+      ],
+    },
+    faqs: [
+      { question: 'What is RGB?', answer: 'RGB is an additive color model in which red, green, and blue light are added together in various ways to reproduce a broad array of colors. Each component can range from 0 to 255.' },
+      { question: 'What is HEX color code?', answer: 'A HEX color code is a hexadecimal way to represent a color in RGB format by combining three values: the amounts of red, green, and blue. It_s commonly used in HTML and CSS.' },
+      { question: 'Can I input RGB values with alpha (RGBA)?', answer: 'This tool focuses on converting standard RGB to HEX. For RGBA to HEXA (HEX with alpha), you would need a different conversion.' }
+    ],
+    keywords: ['rgb to hex', 'color converter', 'web colors', 'css colors', 'hex code', 'rgb values', 'design tool']
+  },
+  {
+    id: 'hex-to-rgb-converter',
+    title: 'HEX to RGB Converter',
+    description: 'Convert HEX color codes (e.g., #FFA500) to their RGB value equivalent (e.g., rgb(255, 165, 0)).',
+    category: 'conversion',
+    icon: Icons.Palette,
+    iconName: 'Palette',
+    path: '/tools/hex-to-rgb-converter',
+    longDescription: {
+      overview: 'This tool allows you to easily convert hexadecimal (HEX) color codes into their corresponding RGB (Red, Green, Blue) values. This is useful for web designers, developers, and anyone needing to translate colors between these standard formats.',
+      useCases: [
+        'Converting HEX codes from CSS or design mockups to RGB values for use in programming or other design tools.',
+        'Understanding the specific red, green, and blue components of a HEX color.',
+        'Quickly translating colors for different digital media requirements.',
+        'Learning the relationship between HEX and RGB color representations.'
+      ],
+      howItWorks: 'Enter a 3-digit (e.g., #F00) or 6-digit (e.g., #FF0000) hexadecimal color code into the input field (the # symbol is optional). Click the "Convert to RGB" button. The tool parses the HEX code, extracts the red, green, and blue components, and converts them to their decimal (0-255) equivalents. The resulting RGB values (e.g., rgb(255, 0, 0)) are displayed, along with a visual preview of the color.',
+      tips: [
+        'HEX codes can be 3 digits (e.g., #ABC expands to #AABBCC) or 6 digits (e.g., #RRGGBB). Both are accepted.',
+        'The # symbol at the beginning of the HEX code is optional for input.',
+        'Each pair of hexadecimal digits (or single digit in the 3-digit format) corresponds to one of the color components (Red, Green, Blue).'
+      ],
+    },
+    faqs: [
+      { question: 'How does a 3-digit HEX code work?', answer: 'A 3-digit HEX code like #RGB is a shorthand where each digit is duplicated. For example, #F0A becomes #FF00AA.' },
+      { question: 'What if I enter an invalid HEX code?', answer: 'The tool will attempt to parse valid HEX characters (0-9, A-F). If the input is not a valid 3 or 6-digit HEX code, it will likely result in an error or an incorrect color display.' },
+      { question: 'Can this tool handle HEX codes with alpha (HEXA)?', answer: 'This tool focuses on standard 3 or 6-digit HEX codes for opaque colors. For HEX codes with an alpha channel (e.g., #RRGGBBAA), you would need a tool that specifically supports RGBA conversion.' }
+    ],
+    keywords: ['hex to rgb', 'color converter', 'web colors', 'css colors', 'rgb values', 'hex code', 'design tool']
+  },
   // Security Tools
   {
     id: 'password-generator',
@@ -619,6 +687,66 @@ export const tools: Tool[] = [
       { question: 'Can I hash files with this tool?', answer: 'Currently, this tool is designed for text input. Hashing files would require file reading capabilities, which could be added as a future enhancement.' }
     ],
     keywords: ['hash generator', 'sha256', 'sha384', 'sha512', 'md5', 'sha1', 'security', 'cryptography', 'checksum']
+  },
+  {
+    id: 'base64-encoder-decoder',
+    title: 'Base64 Encoder/Decoder',
+    description: 'Encode text strings to Base64 or decode Base64 strings back to their original text.',
+    category: 'security',
+    icon: Icons.Binary,
+    iconName: 'Binary',
+    path: '/tools/base64-encoder-decoder',
+    longDescription: {
+      overview: 'The Base64 Encoder/Decoder tool allows you to convert text to Base64 encoding and decode Base64 strings back to plain text. Base64 is a common encoding scheme used to represent binary data in an ASCII string format, often used in data transmission or storage where binary data is not well-supported.',
+      useCases: [
+        'Encoding data for use in URLs, HTML, or CSS where certain characters might be problematic.',
+        'Decoding Base64 strings found in API responses, configuration files, or email attachments.',
+        'Obfuscating simple text (though Base64 is not encryption and is easily reversible).',
+        'Transmitting binary data (like images) as text in JSON or XML payloads.'
+      ],
+      howItWorks: 'For encoding, enter your plain text into the input area and click "Encode to Base64". The tool uses the browser_s `btoa()` function. For decoding, paste a Base64 string into the input area and click "Decode from Base64". The tool uses `atob()`. The result appears in the output area. Clear and Copy buttons are provided.',
+      tips: [
+        'Base64 is an encoding scheme, not an encryption method. It does not provide security for sensitive data.',
+        'Ensure the input for decoding is a valid Base64 string. Invalid characters will cause decoding errors.',
+        'UTF-8 characters can be handled by `btoa` and `atob` in modern browsers, but for complex scenarios or older browser compatibility with non-ASCII characters, more robust libraries might be needed.'
+      ],
+    },
+    faqs: [
+      { question: 'What is Base64 encoding?', answer: 'Base64 is a group of similar binary-to-text encoding schemes that represent binary data in an ASCII string format by translating it into a radix-64 representation.' },
+      { question: 'Is Base64 secure for passwords?', answer: 'No, Base64 is easily reversible and should never be used for storing or transmitting sensitive information like passwords securely. Use proper hashing and encryption for security.' },
+      { question: 'Why does `atob()` sometimes throw an error?', answer: 'The `atob()` function will throw an error if the input string is not a valid Base64 encoded string (e.g., contains characters not in the Base64 alphabet or has incorrect padding).' }
+    ],
+    keywords: ['base64', 'encoder', 'decoder', 'text encoding', 'ascii', 'binary to text', 'security utilities']
+  },
+  {
+    id: 'url-encoder-decoder',
+    title: 'URL Encoder/Decoder',
+    description: 'Encode text for safe inclusion in URLs (percent-encoding) or decode percent-encoded URLs.',
+    category: 'security',
+    icon: Icons.Link,
+    iconName: 'Link',
+    path: '/tools/url-encoder-decoder',
+    longDescription: {
+      overview: 'The URL Encoder/Decoder tool helps you convert strings into a format suitable for use in URLs (percent-encoding) and decode such URLs back into their original form. This is essential because URLs can only contain a limited set of characters; special characters need to be encoded.',
+      useCases: [
+        'Encoding query parameters for URLs to ensure special characters (like spaces, &, ?, =) are handled correctly.',
+        'Decoding URLs to understand the original parameters or path segments.',
+        'Preparing text to be part of a URL path segment.',
+        'Working with web APIs that require URL-encoded data.'
+      ],
+      howItWorks: 'For encoding, enter your text into the input area and click "Encode URL". The tool uses `encodeURIComponent()`, which encodes all characters except for A-Z a-z 0-9 - _ . ! ~ * \' ( ). For decoding, paste a percent-encoded URL or string segment and click "Decode URL". The tool uses `decodeURIComponent()`. The result appears in the output area.',
+      tips: [
+        '`encodeURIComponent()` is generally preferred for encoding query string parameters as it encodes more characters than `encodeURI()`.',
+        'Percent-encoding replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits corresponding to the character_s ASCII value.',
+        'Spaces are typically encoded as `%20` or sometimes `+` (though `encodeURIComponent` uses `%20`).'
+      ],
+    },
+    faqs: [
+      { question: 'What is URL encoding (percent-encoding)?', answer: 'URL encoding, also known as percent-encoding, is a mechanism for encoding information in a Uniform Resource Identifier (URI) under certain circumstances. It involves replacing reserved or non-ASCII characters with a % symbol followed by two hexadecimal digits that represent the character_s ASCII code.' },
+      { question: 'When should I use `encodeURIComponent()` vs `encodeURI()`?', answer: '`encodeURI()` is intended for encoding a full URI and does not encode characters like :, /, #, ?, &. `encodeURIComponent()` is for encoding URI components (like query parameters or path segments) and encodes more characters, making it generally safer for individual parts of a URL.' },
+      { question: 'What happens if I try to decode a non-URL-encoded string?', answer: '`decodeURIComponent()` will generally return the string as is if there are no %-encoded sequences. If it encounters invalid % sequences, it might throw an error.' }
+    ],
+    keywords: ['url encoder', 'url decoder', 'percent encoding', 'uri component', 'web development', 'query string']
   },
   // Productivity Tools
   {
@@ -822,6 +950,64 @@ export const tools: Tool[] = [
     ],
     keywords: ['slope calculator', 'percentage slope', 'rise over run', 'gradient', 'angle of inclination', 'math', 'engineering', 'construction']
   },
+  {
+    id: 'temperature-converter',
+    title: 'Temperature Converter',
+    description: 'Convert temperatures between Celsius, Fahrenheit, and Kelvin scales.',
+    category: 'calculator',
+    icon: Icons.Thermometer,
+    iconName: 'Thermometer',
+    path: '/tools/temperature-converter',
+    longDescription: {
+      overview: 'The Temperature Converter allows for quick and easy conversion between the three most common temperature scales: Celsius (°C), Fahrenheit (°F), and Kelvin (K). Input a temperature in one scale, and the tool will instantly display its equivalent in the other two scales.',
+      useCases: [
+        'Converting weather forecasts from one unit to another (e.g., Fahrenheit to Celsius).',
+        'Scientific calculations where temperature needs to be in Kelvin.',
+        'Cooking and baking, for converting recipe temperatures.',
+        'Understanding temperature references in international contexts or historical texts.'
+      ],
+      howItWorks: 'Enter a temperature value into any of the input fields (Celsius, Fahrenheit, or Kelvin). As you type, the other fields will automatically update with the converted values based on standard conversion formulas. For example, if you type "0" in Celsius, Fahrenheit will show "32" and Kelvin will show "273.15".',
+      tips: [
+        'Celsius is commonly used in most parts of the world and in science.',
+        'Fahrenheit is primarily used in the United States.',
+        'Kelvin is the base unit of thermodynamic temperature in the International System of Units (SI) and is often used in scientific contexts.'
+      ],
+    },
+    faqs: [
+      { question: 'What are the formulas for conversion?', answer: 'C to F: (C * 9/5) + 32. F to C: (F - 32) * 5/9. C to K: C + 273.15. K to C: K - 273.15. F to K: (F - 32) * 5/9 + 273.15. K to F: (K - 273.15) * 9/5 + 32.' },
+      { question: 'What is absolute zero?', answer: 'Absolute zero is 0 K, which is -273.15 °C or -459.67 °F. It_s the lowest possible temperature where nothing could be colder.' }
+    ],
+    keywords: ['temperature converter', 'celsius to fahrenheit', 'fahrenheit to celsius', 'kelvin converter', 'temp conversion', 'weather', 'science']
+  },
+  {
+    id: 'length-converter',
+    title: 'Length Converter',
+    description: 'Convert lengths and distances between various units like meters, kilometers, feet, miles, and inches.',
+    category: 'calculator',
+    icon: Icons.Ruler,
+    iconName: 'Ruler',
+    path: '/tools/length-converter',
+    longDescription: {
+      overview: 'The Length Converter enables easy conversion of measurements between different units of length, including metric (meters, kilometers) and imperial/US customary units (feet, miles, inches). Input a value in one unit and select the "from" and "to" units to see the conversion.',
+      useCases: [
+        'Converting distances for travel planning (e.g., kilometers to miles).',
+        'DIY projects requiring measurements in different units.',
+        'Understanding specifications or plans that use varying length units.',
+        'Educational purposes for learning about different measurement systems.'
+      ],
+      howItWorks: 'Enter the value you wish to convert in the "Value" input field. Select the unit you are converting "From" using the first dropdown. Select the unit you want to convert "To" using the second dropdown. The converted value will be displayed automatically. The tool uses standard conversion factors to perform the calculations.',
+      tips: [
+        'Common conversions: 1 inch = 2.54 cm, 1 foot = 12 inches, 1 mile = 5280 feet, 1 kilometer = 1000 meters.',
+        'Ensure you select the correct "From" and "To" units for an accurate conversion.',
+        'The tool typically uses a base unit (like meters) internally for all calculations to maintain precision.'
+      ],
+    },
+    faqs: [
+      { question: 'What units can I convert between?', answer: 'The tool typically supports meters (m), kilometers (km), feet (ft), miles (mi), and inches (in). More units could be added.' },
+      { question: 'How accurate are the conversions?', answer: 'Conversions are based on standard, internationally recognized conversion factors, ensuring high accuracy.' }
+    ],
+    keywords: ['length converter', 'distance converter', 'metric to imperial', 'imperial to metric', 'meters to feet', 'miles to kilometers', 'unit conversion']
+  },
   // AI Powered Tools
   {
     id: 'ai-commit-message-writer',
@@ -916,20 +1102,20 @@ export const tools: Tool[] = [
   {
     id: 'ai-image-alt-text-generator',
     title: 'AI Image Alt Text Generator',
-    description: 'Generate descriptive alt text for images using AI to improve accessibility and SEO.',
+    description: 'Upload an image to generate descriptive alt text using AI for better accessibility and SEO.',
     category: 'ai-powered',
     icon: Icons.Image,
     iconName: 'Image',
     path: '/tools/ai-image-alt-text-generator',
     longDescription: {
-      overview: 'The AI Image Alt Text Generator helps you create descriptive alternative text (alt text) for your images. Alt text is crucial for web accessibility, allowing screen readers to describe images to visually impaired users, and also helps search engines understand image content for better SEO. Upload an image to get started.',
+      overview: 'The AI Image Alt Text Generator helps you create descriptive alternative text (alt text) for your images. Alt text is crucial for web accessibility, allowing screen readers to describe images to visually impaired users, and also helps search engines understand image content for better SEO. Upload an image to get an AI-generated suggestion.',
       useCases: [
         'Making website images accessible to users with visual impairments.',
         'Improving SEO by providing search engines with context about images.',
         'Generating alt text for large batches of images more quickly.',
         'Ensuring compliance with accessibility standards (WCAG).',
       ],
-      howItWorks: 'Click "Choose Image" to upload an image file (PNG, JPG, GIF, etc.). The image will be previewed. Click "Generate Alt Text". The AI will analyze the image data and suggest descriptive alt text. Review the suggestion for accuracy and context. Max file size: 5MB.',
+      howItWorks: 'Click "Choose Image" to upload an image file (PNG, JPG, GIF, etc.). The image will be previewed. Click "Generate Alt Text". The AI will analyze the image data (sent as a Data URI) and suggest descriptive alt text. Review the suggestion for accuracy and context. Max file size: 5MB.',
       tips: [
         'Good alt text is concise yet descriptive, conveying the purpose or content of the image.',
         'Avoid starting alt text with "Image of..." or "Picture of..." as it_s usually redundant.',
