@@ -4,11 +4,11 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardDescription, CardTitle } from '@/components/ui/card';
 import { Copy, Trash2, Zap } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
-import DynamicMonacoEditor from './editors/DynamicMonacoEditor';
 
 export function CSSMinifierTool() {
   const [inputText, setInputText] = useState('');
@@ -77,7 +77,7 @@ export function CSSMinifierTool() {
       </CardHeader>
       <CardContent className="space-y-6">
         {error && (
-          <Alert variant={error.includes("Failed to copy") || error.includes("An error occurred") ? "destructive" : "default"}>
+          <Alert variant={error.includes("Failed to copy") || error.includes("An error occurred") || error.includes("Please enter") || error.includes("There is no") ? "destructive" : "default"}>
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>{error}</AlertDescription>
           </Alert>
@@ -87,17 +87,18 @@ export function CSSMinifierTool() {
           <Label htmlFor="inputText-css-min" className="font-semibold mb-2 block">
             Input CSS
           </Label>
-          <div className="border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring focus-within:border-transparent">
-            <DynamicMonacoEditor
-              language="css"
-              value={inputText}
-              onChange={(value) => {
-                setInputText(value || '');
-                if (error && (value || '').trim()) setError(null);
-              }}
-              aria-label="Input CSS for minification"
-            />
-          </div>
+          <Textarea
+            id="inputText-css-min"
+            value={inputText}
+            onChange={(e) => {
+              setInputText(e.target.value);
+              if (error && e.target.value.trim()) setError(null);
+            }}
+            placeholder="Paste your CSS code here..."
+            rows={10}
+            className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            aria-label="Input CSS for minification"
+          />
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -119,14 +120,15 @@ export function CSSMinifierTool() {
                 <Copy className="mr-2 h-4 w-4" /> Copy Output
               </Button>
             </div>
-            <div className="border rounded-md overflow-hidden">
-              <DynamicMonacoEditor
-                language="css"
-                value={outputText}
-                options={{ readOnly: true }}
-                aria-label="Minified CSS output"
-              />
-            </div>
+            <Textarea
+              id="outputText-css-min"
+              value={outputText}
+              readOnly
+              placeholder="Minified CSS will appear here..."
+              rows={10}
+              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              aria-label="Minified CSS output"
+            />
           </div>
         )}
       </CardContent>

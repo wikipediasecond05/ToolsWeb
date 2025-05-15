@@ -6,10 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AlertCircle, Copy, Trash2, Replace } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import DynamicMonacoEditor from './editors/DynamicMonacoEditor';
 
 // Basic CSV parser
 const parseCSV = (csvString: string, delimiter: string): string[][] => {
@@ -178,14 +178,15 @@ export function CSVToJSONTool() {
 
         <div className="grid gap-2">
           <Label htmlFor="csvInput-csv-json" className="font-semibold mb-2 block">Input CSV</Label>
-           <div className="border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring focus-within:border-transparent">
-            <DynamicMonacoEditor
-              language="plaintext"
-              value={csvInput}
-              onChange={(value) => setCsvInput(value || '')}
-              aria-label="Input CSV data"
-            />
-          </div>
+           <Textarea
+            id="csvInput-csv-json"
+            value={csvInput}
+            onChange={(e) => setCsvInput(e.target.value)}
+            placeholder="Paste your CSV data here..."
+            rows={10}
+            className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            aria-label="Input CSV data"
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
@@ -234,14 +235,15 @@ export function CSVToJSONTool() {
                 <Copy className="mr-2 h-4 w-4" /> Copy Output
               </Button>
             </div>
-            <div className="border rounded-md overflow-hidden">
-              <DynamicMonacoEditor
-                language="json"
-                value={jsonOutput}
-                options={{ readOnly: true }}
-                aria-label="Output JSON data"
-              />
-            </div>
+            <Textarea
+              id="jsonOutput-csv-json"
+              value={jsonOutput}
+              readOnly
+              placeholder="JSON output will appear here..."
+              rows={10}
+              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              aria-label="Output JSON data"
+            />
           </div>
         )}
       </CardContent>
