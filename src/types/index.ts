@@ -30,6 +30,7 @@ export interface Category {
   name: string;
   description: string;
   icon?: LucideIcon | ((props: React.SVGProps<SVGSVGElement>) => JSX.Element);
+  iconName?: IconName; // Added for serialization
   path: string;
 }
 
@@ -40,3 +41,4 @@ export interface RelatedToolData {
   path: string;
   iconName: IconName;
 }
+

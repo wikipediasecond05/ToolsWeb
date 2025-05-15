@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import type { Category } from '@/types';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -8,7 +9,7 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category }: CategoryCardProps) {
-  const IconComponent = category.icon ? Icons[category.icon as keyof typeof Icons] || Icons.Component : Icons.Component;
+  const IconComponent = category.iconName ? Icons[category.iconName as keyof typeof Icons] || Icons.Component : Icons.Component;
   
   return (
     <Link href={category.path} className="block group">
@@ -24,3 +25,4 @@ export function CategoryCard({ category }: CategoryCardProps) {
     </Link>
   );
 }
+

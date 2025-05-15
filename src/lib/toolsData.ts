@@ -8,6 +8,7 @@ export const categories: Category[] = [
     name: 'Text & String Tools',
     description: 'Manipulate and analyze text effortlessly.',
     icon: Icons.Type,
+    iconName: 'Type',
     path: '/categories/text-string',
   },
   {
@@ -15,6 +16,7 @@ export const categories: Category[] = [
     name: 'Developer Tools',
     description: 'Essential utilities for coding and development.',
     icon: Icons.Code,
+    iconName: 'Code',
     path: '/categories/developer',
   },
   {
@@ -22,6 +24,7 @@ export const categories: Category[] = [
     name: 'Design & Frontend Tools',
     description: 'Optimize and beautify your frontend assets.',
     icon: Icons.Paintbrush,
+    iconName: 'Paintbrush',
     path: '/categories/design-frontend',
   },
   {
@@ -29,6 +32,7 @@ export const categories: Category[] = [
     name: 'Conversion Tools',
     description: 'Convert data between various formats.',
     icon: Icons.Shuffle,
+    iconName: 'Shuffle',
     path: '/categories/conversion',
   },
   {
@@ -36,6 +40,7 @@ export const categories: Category[] = [
     name: 'Security Tools',
     description: 'Generate passwords, hashes, and more.',
     icon: Icons.Lock,
+    iconName: 'Lock',
     path: '/categories/security',
   },
   {
@@ -43,6 +48,7 @@ export const categories: Category[] = [
     name: 'Productivity Tools',
     description: 'Boost your efficiency with these utilities.',
     icon: Icons.Gauge,
+    iconName: 'Gauge',
     path: '/categories/productivity',
   },
 ];
@@ -221,3 +227,4 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
+

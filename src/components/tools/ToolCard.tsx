@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import type { Tool } from '@/types';
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
@@ -10,7 +11,7 @@ interface ToolCardProps {
 }
 
 export function ToolCard({ tool }: ToolCardProps) {
-  const IconComponent = tool.icon ? Icons[tool.icon as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
+  const IconComponent = tool.iconName ? Icons[tool.iconName as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
   const category = getCategoryById(tool.category);
 
   return (
@@ -30,3 +31,4 @@ export function ToolCard({ tool }: ToolCardProps) {
     </Link>
   );
 }
+
