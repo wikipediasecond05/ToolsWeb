@@ -51,6 +51,14 @@ export const categories: Category[] = [
     iconName: 'Gauge',
     path: '/categories/productivity',
   },
+  {
+    id: 'math-physics',
+    name: 'Math & Physics Tools',
+    description: 'Calculators and utilities for mathematical and physical computations.',
+    icon: Icons.Sigma,
+    iconName: 'Sigma',
+    path: '/categories/math-physics',
+  }
 ];
 
 export const tools: Tool[] = [
@@ -125,7 +133,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'word-counter',
-    title: 'Word Counter',
+    title: 'Word & Character Counter',
     description: 'Count words, characters, sentences, and paragraphs in your text with detailed statistics.',
     category: 'text-string',
     icon: Icons.Calculator,
@@ -463,7 +471,7 @@ export const tools: Tool[] = [
       { question: 'How random are the generated passwords?', answer: 'The passwords are generated using cryptographically secure random number generation available in the browser (window.crypto.getRandomValues), ensuring a high degree of randomness.' },
       { question: 'Is it safe to use an online password generator?', answer: 'This tool generates passwords client-side, meaning the password is created in your browser and not sent over the internet or stored on our servers. This makes it safe to use. However, always ensure you are on the correct website (check the URL) when using any online security tool.' },
       { question: 'What is the maximum password length I can generate?', answer: 'The tool typically supports lengths up to 128 characters, which is more than sufficient for most purposes.' },
-      { question: 'Which symbols are included?', answer: 'The symbols set generally includes common special characters like !@#$%^&*()_+-=[]{}|;:,.<>/?~`.' },
+      { question: 'Which symbols are included?', answer: 'The symbols set generally includes common special characters like !@#$%^&amp;*()_+-=[]{}|;:,.<>/?~`.' },
       { question: 'Can I save the generated passwords here?', answer: 'No, this tool does not store your generated passwords. You should copy the password and store it securely, preferably in a reputable password manager.' }
     ],
     keywords: ['password generator', 'security', 'strong password', 'random password', 'secure password', 'passphrase']
@@ -568,6 +576,40 @@ export const tools: Tool[] = [
       { question: 'Is the generated text always the same?', answer: 'The tool uses a predefined block of Lorem Ipsum text and selects portions of it based on your request. For a small number of words/sentences, it might appear repetitive, but for paragraphs, it typically shuffles sentences to create variety.' }
     ],
     keywords: ['lorem ipsum', 'placeholder text', 'dummy text', 'text generator', 'design mockups', 'prototyping', 'content placeholder']
+  },
+  // Math & Physics Tools
+  {
+    id: 'slope-percentage-calculator',
+    title: 'Slope Percentage Calculator',
+    description: 'Calculate slope percentage from rise and run, or angle of inclination.',
+    category: 'math-physics',
+    icon: Icons.Sigma,
+    iconName: 'Sigma',
+    path: '/tools/slope-percentage-calculator',
+    longDescription: {
+      overview: 'The Slope Percentage Calculator helps you determine the steepness of a slope. You can input the vertical rise and horizontal run, or directly input the angle of inclination. The tool provides the slope as a percentage and visualizes it with a diagram.',
+      useCases: [
+        'Civil engineering and construction for road grades, ramps, and drainage.',
+        'Landscaping and surveying to determine land inclination.',
+        'Accessibility calculations for ramps (e.g., ADA compliance).',
+        'Mathematics and physics education to understand slope concepts.',
+        'DIY projects involving inclines or declines.'
+      ],
+      howItWorks: 'You can calculate the slope percentage in two ways: 1. **Using Rise and Run**: Enter the vertical rise (change in height) and the horizontal run (change in distance). The slope percentage is calculated as (Rise / Run) * 100. The angle of inclination is also derived. 2. **Using Angle of Inclination**: Enter the angle in degrees or radians. The tool converts the angle to radians if necessary, then calculates the slope as tan(angle_in_radians), and the slope percentage as tan(angle_in_radians) * 100. The "Solution" tab shows the primary result (slope percentage) and a diagram. The "Steps" tab shows the formula used.',
+      tips: [
+        'Ensure Rise and Run are in the same units for accurate calculations.',
+        'A 100% slope corresponds to a 45-degree angle (where rise equals run).',
+        'A slope of 0% is a flat, horizontal surface.',
+        'Pay attention to the "deg" (degrees) or "rad" (radians) setting when inputting an angle.'
+      ],
+    },
+    faqs: [
+      { question: 'What is slope percentage?', answer: 'Slope percentage represents the ratio of vertical rise to horizontal run, multiplied by 100. It indicates how steep an incline or decline is.' },
+      { question: 'How do I convert an angle in degrees to slope percentage?', answer: 'First, convert the angle from degrees to radians (angle_in_radians = angle_in_degrees * π / 180). Then, calculate tan(angle_in_radians). Finally, multiply by 100 to get the percentage.' },
+      { question: 'What if my run is zero?', answer: 'If the run is zero and the rise is non-zero, the slope is technically undefined (vertical). The calculator will indicate an error or infinite slope.' },
+      { question: 'Can I calculate a negative slope (decline)?', answer: 'Yes, if the "rise" is negative (representing a drop in elevation), the slope percentage will be negative, indicating a decline.' }
+    ],
+    keywords: ['slope calculator', 'percentage slope', 'rise over run', 'gradient', 'angle of inclination', 'math', 'engineering', 'construction']
   },
 ];
 

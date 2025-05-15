@@ -21,6 +21,7 @@ import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool';
 import { TimestampConverterTool } from '@/components/tools/TimestampConverterTool';
 import { LoremIpsumGeneratorTool } from '@/components/tools/LoremIpsumGeneratorTool';
 import { SentenceCounterTool } from '@/components/tools/SentenceCounterTool';
+import { SlopePercentageCalculatorTool } from '@/components/tools/SlopePercentageCalculatorTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -35,7 +36,7 @@ import type { Tool, RelatedToolData } from '@/types';
 
 export default function ToolPage({ params }: { params: { toolId: string } }) {
   const actualParams = React.use(params); // Unwrapping the params Promise
-  const tool = getToolById(actualParams.toolId); // Access toolId from the resolved object
+  const tool = getToolById(actualParams.toolId); 
   const allToolsData = getAllTools();
 
   if (!tool) {
@@ -78,6 +79,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <TimestampConverterTool />;
       case 'lorem-ipsum-generator':
         return <LoremIpsumGeneratorTool />;
+      case 'slope-percentage-calculator':
+        return <SlopePercentageCalculatorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
