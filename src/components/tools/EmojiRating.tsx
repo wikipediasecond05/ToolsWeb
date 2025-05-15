@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Smile, Meh, Frown, Star, Angry, Laugh } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useToast } from "@/hooks/use-toast";
+// import { useToast } from "@/hooks/use-toast"; // Toast is no longer used
 
 interface EmojiRatingProps {
   toolId: string;
@@ -22,11 +22,13 @@ interface RatingOption {
 
 const ratingOptions: RatingOption[] = [
   { emoji: Angry, label: 'Awful', value: 'awful', color: 'text-red-600 dark:text-red-400', score: 1 },
-  { emoji: Frown, label: 'Bad', value: 'bad', color: 'text-orange-500 dark:text-orange-400', score: 2 }, // Adjusted color for Frown
+  { emoji: Frown, label: 'Bad', value: 'bad', color: 'text-orange-500 dark:text-orange-400', score: 2 },
   { emoji: Meh, label: 'Okay', value: 'ok', color: 'text-yellow-500 dark:text-yellow-400', score: 3 },
   { emoji: Smile, label: 'Good', value: 'good', color: 'text-lime-500 dark:text-lime-400', score: 4 },
   { emoji: Laugh, label: 'Great!', value: 'great', color: 'text-green-500 dark:text-green-400', score: 5 },
 ];
+
+const MAX_RELATED_TOOLS = 5; // This constant seems out of place here, but keeping as per previous context.
 
 export function EmojiRating({ toolId }: EmojiRatingProps) {
   const [allRatings, setAllRatings] = useState<string[]>([]);
@@ -34,7 +36,7 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
   const [averageRating, setAverageRating] = useState<number | null>(null);
   const [totalRatings, setTotalRatings] = useState<number>(0);
   const [sessionSubmitted, setSessionSubmitted] = useState<boolean>(false); // Tracks if rating was submitted in this session
-  const { toast } = useToast();
+  // const { toast } = useToast(); // Toast is no longer used
 
   const calculateAndSetAverage = useCallback((ratings: string[]) => {
     if (ratings.length === 0) {
@@ -96,10 +98,10 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
     
     calculateAndSetAverage(updatedAllRatings);
     
-    toast({
-      title: "Rating Submitted!",
-      description: "Thanks for your feedback.",
-    });
+    // toast({ // Removed toast notification
+    //   title: "Rating Submitted!",
+    //   description: "Thanks for your feedback.",
+    // });
   };
   
   const submittedRatingOption = ratingOptions.find(r => r.value === currentUserRating);
@@ -119,21 +121,12 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
         )}
       </CardHeader>
       <CardContent>
-        {sessionSubmitted && submittedRatingOption ? (
-          <div className="text-center py-4">
-            <p className="text-muted-foreground">Thanks for your rating!</p>
-            {(() => {
-              const RIcon = submittedRatingOption.emoji;
-              const RColor = submittedRatingOption.color;
-              return (
-                <div className="flex flex-col items-center mt-2">
-                  <RIcon className={cn("h-10 w-10", RColor)} />
-                </div>
-              );
-            })()}
-          </div>
-        ) : (
-          <div className="flex flex-wrap justify-around items-stretch gap-2 sm:gap-3">
+        {sessionSubmitted && submittedRatingOption && !averageRating && ( // Show "Thanks" only if session submitted AND no average yet (first rating)
+            <div className="text-center py-4">
+                <p className="text-muted-foreground">Thanks for your rating!</p>
+            </div>
+        )}
+         <div className="flex flex-wrap justify-around items-stretch gap-2 sm:gap-3">
             {ratingOptions.map((rating) => {
               const IconComponent = rating.emoji;
               return (
@@ -142,19 +135,18 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
                   variant="outline"
                   onClick={() => handleRating(rating.value)}
                   className={cn(
-                    "flex flex-col items-center justify-center p-2 sm:p-3 h-auto w-[calc(20%-0.5rem)] min-w-[50px] sm:w-[calc(20%-0.75rem)] focus:ring-2 focus:ring-primary/50",
+                    "flex flex-col items-center justify-center p-2 sm:p-2.5 h-auto w-[calc(20%-0.5rem)] min-w-[45px] sm:w-[calc(20%-0.6rem)] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-transparent",
                     "hover:bg-accent/10 dark:hover:bg-accent/20",
                     currentUserRating === rating.value && "border-primary ring-2 ring-primary"
                   )}
                   aria-label={`Rate as ${rating.label}`}
-                  title={rating.label} // Keep label for accessibility on hover
+                  title={rating.label}
                 >
-                  <IconComponent className={cn("h-8 w-8 sm:h-10 sm:w-10", rating.color)} />
+                  <IconComponent className={cn("h-10 w-10 sm:h-10 sm:w-10", rating.color)} />
                 </Button>
               );
             })}
           </div>
-        )}
       </CardContent>
     </Card>
   );
