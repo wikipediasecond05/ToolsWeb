@@ -155,6 +155,41 @@ export const tools: Tool[] = [
     ],
     keywords: ['word count', 'character count', 'sentence count', 'paragraph count', 'text analysis', 'statistics', 'writing tool']
   },
+  {
+    id: 'sentence-counter',
+    title: 'Sentence Counter & Text Analyzer',
+    description: 'Analyze text for sentences, syllables, words, characters, reading time, and top keywords.',
+    category: 'text-string',
+    icon: Icons.ListCollapse,
+    iconName: 'ListCollapse',
+    path: '/tools/sentence-counter',
+    longDescription: {
+      overview: 'The Sentence Counter & Text Analyzer provides a comprehensive breakdown of your text. It counts not only sentences but also words, characters, syllables, estimates reading time, and identifies the most frequently used keywords. This tool is ideal for writers, editors, students, and SEO specialists looking to gain deeper insights into their content.',
+      useCases: [
+        'Assessing content readability and complexity.',
+        'Optimizing articles for specific reading levels or engagement times.',
+        'Identifying key themes and topics within a text through keyword analysis.',
+        'Ensuring content meets stylistic or length requirements for publications or platforms.',
+        'Analyzing speeches or presentations for pacing and clarity.',
+        'Educational purposes, to understand text structure and composition.'
+      ],
+      howItWorks: 'Paste your text into the provided area. The tool automatically analyzes it to provide: Sentence Count (based on terminal punctuation), Word Count, Character Count (total characters), Syllable Count (using a heuristic for English words), estimated Reading Time (based on an average reading speed), and a list of Top Keywords (excluding common stop words). All calculations are performed client-side.',
+      tips: [
+        'Syllable counts and reading time are estimations and can vary based on individual words and reader speed.',
+        'Keyword analysis can help you understand if your text effectively focuses on the intended topics.',
+        'For more precise SEO keyword analysis, consider specialized SEO tools, as this provides a basic frequency count.',
+        'The definition of a "sentence" relies on common punctuation like periods, question marks, and exclamation marks.'
+      ],
+    },
+    faqs: [
+      { question: 'How is sentence count determined?', answer: 'Sentences are primarily identified by terminal punctuation marks such as periods (.), question marks (?), and exclamation marks (!), followed by a space or new line. Abbreviations or other uses of periods might affect accuracy.' },
+      { question: 'How is syllable count estimated?', answer: 'Syllables are estimated using a common heuristic for English words. This involves counting vowel groups and applying rules for common endings (like silent "e") and letter combinations. It_s an approximation and may not be perfect for all words, especially complex or uncommon ones.' },
+      { question: 'What is the basis for reading time estimation?', answer: 'Reading time is typically estimated based on an average reading speed of around 200-250 words per minute. The tool uses this average to calculate the estimated time in seconds or minutes.' },
+      { question: 'How are "Top Keywords" identified?', answer: 'The text is broken into words, converted to lowercase, and common "stop words" (like "the", "is", "a") are removed. The frequency of the remaining words is then counted, and the most frequent ones are displayed.' },
+      { question: 'Is this tool suitable for very long texts?', answer: 'While it can handle substantial text, extremely large inputs (many megabytes) might cause browser performance to slow down as all analysis is done client-side.'}
+    ],
+    keywords: ['sentence count', 'syllable counter', 'reading time', 'text analysis', 'keyword density', 'writing tool', 'content analysis', 'seo']
+  },
   // Developer Tools
   {
     id: 'json-formatter',

@@ -20,6 +20,8 @@ import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool';
 import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool';
 import { TimestampConverterTool } from '@/components/tools/TimestampConverterTool';
 import { LoremIpsumGeneratorTool } from '@/components/tools/LoremIpsumGeneratorTool';
+import { SentenceCounterTool } from '@/components/tools/SentenceCounterTool';
+
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
@@ -51,6 +53,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <TextCaseConverterTool />;
       case 'word-counter':
         return <WordCounterTool />;
+      case 'sentence-counter':
+        return <SentenceCounterTool />;
       case 'color-picker':
         return <ColorPickerTool />;
       case 'css-minifier':
@@ -193,4 +197,3 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
-
