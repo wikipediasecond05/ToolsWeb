@@ -1,4 +1,5 @@
 
+
 import { notFound } from 'next/navigation';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
@@ -8,8 +9,11 @@ import { ColorPickerTool } from '@/components/tools/ColorPickerTool';
 import { CSSMinifierTool } from '@/components/tools/CSSMinifierTool';
 import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool';
 import { MarkdownToHTMLTool } from '@/components/tools/MarkdownToHTMLTool';
-import { PasswordGeneratorTool } from '@/components/tools/PasswordGeneratorTool'; // Import new tool
-import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool'; // Import new tool
+import { PasswordGeneratorTool } from '@/components/tools/PasswordGeneratorTool'; 
+import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool'; 
+import { JSONFormatterTool } from '@/components/tools/JSONFormatterTool'; // New import
+import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool'; // New import
+import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool'; // New import
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
@@ -81,6 +85,12 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <PasswordGeneratorTool />;
       case 'hash-generator':
         return <HashGeneratorTool />;
+      case 'json-formatter':
+        return <JSONFormatterTool />;
+      case 'jwt-decoder':
+        return <JWTDecoderTool />;
+      case 'uuid-generator':
+        return <UUIDGeneratorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
@@ -202,3 +212,4 @@ export default function ToolPage({ params }: ToolPageProps) {
     </PageWrapper>
   );
 }
+

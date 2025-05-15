@@ -115,42 +115,103 @@ export const tools: Tool[] = [
   {
     id: 'json-formatter',
     title: 'JSON Formatter & Validator',
-    description: 'Format and validate JSON data with ease.',
+    description: 'Format, beautify, and validate your JSON data to ensure it_s readable and error-free.',
     category: 'developer',
     icon: Icons.FileJson,
     iconName: 'FileJson',
     path: '/tools/json-formatter',
-     longDescription: {
-      overview: 'A tool to beautify and validate JSON (JavaScript Object Notation) data. It helps in making JSON readable and ensures it adheres to the correct syntax.',
-      useCases: ['Debugging API responses.', 'Formatting configuration files.', 'Ensuring JSON data is valid before processing.'],
-      howItWorks: 'Paste your JSON data into the input field. The tool will then parse it, format it with consistent indentation and spacing, and highlight any syntax errors if it_s invalid.',
-      tips: ['Use the validation feature to catch errors early.', 'Formatted JSON is easier to read and understand, especially for nested structures.']
+    longDescription: {
+      overview: 'The JSON Formatter & Validator is an essential tool for developers working with JSON (JavaScript Object Notation). It takes raw JSON data and pretty-prints it with consistent indentation, making it easy to read and understand complex structures. Additionally, it validates the JSON against syntax rules, immediately highlighting any errors.',
+      useCases: [
+        'Debugging API responses by making the JSON output human-readable.',
+        'Formatting JSON configuration files for clarity and maintainability.',
+        'Validating user-inputted JSON or JSON received from external sources.',
+        'Learning or teaching JSON structure by visualizing its formatted layout.',
+        'Ensuring JSON data is syntactically correct before sending it to an API or processing it in an application.'
+      ],
+      howItWorks: 'Paste your JSON string into the input text area. Click the "Format & Validate" button. The tool attempts to parse the input using `JSON.parse()`. If the JSON is valid, it_s then re-formatted using `JSON.stringify(parsedData, null, 2)` which adds 2-space indentation. The beautified JSON is displayed in the output area. If the input is not valid JSON, an error message indicating the issue (often with a line or character reference) is shown.',
+      tips: [
+        'Always validate JSON from untrusted sources before processing it in your applications.',
+        'Formatted JSON is significantly easier to navigate, especially for deeply nested objects or long arrays.',
+        'The error messages from the validator can help pinpoint syntax issues like missing commas, incorrect quotes, or mismatched brackets.',
+        'For extremely large JSON files, browser performance might be a consideration as processing is client-side.'
+      ],
     },
     faqs: [
-      { question: 'What does "valid JSON" mean?', answer: 'Valid JSON follows specific syntax rules, like using double quotes for keys and string values, and having correctly matched brackets and braces.'},
-      { question: 'Can it handle large JSON files?', answer: 'Performance depends on the browser, but it should handle moderately sized JSON data efficiently.'}
+      { question: 'What does "valid JSON" mean?', answer: 'Valid JSON strictly adheres to its syntax rules: keys must be double-quoted strings, string values must be double-quoted, objects are enclosed in curly braces `{}`, arrays in square brackets `[]`, and elements are separated by commas. No trailing commas are allowed.' },
+      { question: 'What indentation level is used for formatting?', answer: 'The tool uses a standard 2-space indentation for pretty-printing the JSON.' },
+      { question: 'Is my JSON data sent to any server?', answer: 'No, all formatting and validation operations are performed client-side within your browser. Your data remains private.' },
+      { question: 'Can I format minified JSON?', answer: 'Yes, as long as it_s valid JSON (even if it_s all on one line without spaces), the tool can parse and reformat it.' },
+      { question: 'What happens if my JSON has comments?', answer: 'Standard JSON does not support comments. If your input contains comments (e.g., `//` or `/* */`), the validator will treat it as invalid JSON.' }
     ],
-    keywords: ['json', 'formatter', 'validator', 'developer tools', 'api']
+    keywords: ['json', 'formatter', 'validator', 'beautifier', 'linter', 'pretty print', 'developer tools', 'api', 'data format']
   },
   {
     id: 'uuid-generator',
     title: 'UUID Generator',
-    description: 'Generate universally unique identifiers (UUIDs).',
+    description: 'Generate universally unique identifiers (UUIDs / GUIDs) version 4.',
     category: 'developer',
     icon: Icons.Fingerprint,
     iconName: 'Fingerprint',
     path: '/tools/uuid-generator',
-    keywords: ['uuid', 'guid', 'generator', 'unique identifier']
+    longDescription: {
+      overview: 'The UUID Generator creates Version 4 UUIDs (Universally Unique Identifiers), also known as GUIDs (Globally Unique Identifiers). These are 128-bit numbers used to uniquely identify information in computer systems without requiring a central coordinating authority. Version 4 UUIDs are generated using random or pseudo-random numbers.',
+      useCases: [
+        'Assigning unique primary keys to database records.',
+        'Generating unique transaction IDs or session identifiers.',
+        'Creating unique IDs for objects or resources in distributed systems.',
+        'Labeling assets or entities where uniqueness is critical.',
+        'Any scenario requiring a globally unique identifier with an extremely low probability of collision.'
+      ],
+      howItWorks: 'When you click the "Generate UUID" button, the tool utilizes the `crypto.randomUUID()` method provided by modern web browsers. This method generates a cryptographically strong random Version 4 UUID, conforming to RFC 4122. The generated UUID is then displayed in the output field.',
+      tips: [
+        'Version 4 UUIDs are the most common type and are suitable for most general-purpose unique ID needs.',
+        'The probability of collision for v4 UUIDs is astronomically low, making them practically unique.',
+        'UUIDs are typically represented as a 32-character hexadecimal string, often with hyphens: `xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx`.'
+      ],
+    },
+    faqs: [
+      { question: 'What version of UUID is generated by this tool?', answer: 'This tool generates Version 4 UUIDs, which are based on random numbers.' },
+      { question: 'Are the generated UUIDs truly unique?', answer: 'While not mathematically guaranteed to be unique across every system in the universe for all time, the probability of two independently generated v4 UUIDs colliding is so infinitesimally small that they are considered practically unique for most applications.' },
+      { question: 'How are v4 UUIDs generated?', answer: 'They are generated using random or pseudo-random numbers. The `crypto.randomUUID()` browser API leverages a cryptographically secure random number generator.' },
+      { question: 'Is my generated UUID stored anywhere?', answer: 'No, the UUID is generated client-side in your browser and is not sent to or stored on any server.' },
+      { question: 'Can I generate other versions of UUIDs (e.g., v1, v3, v5)?', answer: 'Currently, this tool focuses on generating v4 UUIDs, which are the most commonly used random UUIDs. Generating other versions typically requires different inputs (like MAC addresses for v1 or names/namespaces for v3/v5) and more complex logic.' }
+    ],
+    keywords: ['uuid', 'guid', 'generator', 'unique identifier', 'id generator', 'developer tools', 'random id']
   },
   {
     id: 'jwt-decoder',
     title: 'JWT Decoder',
-    description: 'Decode JSON Web Tokens (JWTs).',
+    description: 'Decode JSON Web Tokens (JWTs) to inspect their header and payload.',
     category: 'developer',
     icon: Icons.FileLock2,
     iconName: 'FileLock2',
     path: '/tools/jwt-decoder',
-    keywords: ['jwt', 'decoder', 'json web token', 'authentication']
+    longDescription: {
+      overview: 'The JWT Decoder allows you to easily inspect the contents of a JSON Web Token (JWT). JWTs are compact, URL-safe means of representing claims to be transferred between two parties. This tool breaks down a JWT into its three constituent parts: Header, Payload, and Signature. It then Base64Url decodes the Header and Payload sections and pretty-prints the resulting JSON, allowing you to view the claims and metadata within the token. Note: This tool *only decodes* the token; it *does not validate the signature*. ',
+      useCases: [
+        'Debugging authentication and authorization flows in web applications.',
+        'Understanding the claims (e.g., user ID, roles, expiration time) contained within a JWT.',
+        'Verifying the structure and content of JWTs issued by an identity provider or your own auth server.',
+        'Learning about the structure of JSON Web Tokens.',
+        'Quickly inspecting tokens during development or testing phases.'
+      ],
+      howItWorks: 'Paste the full JWT string into the input area. Click the "Decode JWT" button. The tool first splits the JWT string by the period (`.`) character into three segments. The first segment is the Base64Url-encoded Header, and the second is the Base64Url-encoded Payload. These segments are then decoded from Base64Url to their original JSON string representations. Finally, these JSON strings are parsed and pretty-printed for display. The third segment, the Signature, is displayed as is, as it cannot be decoded without the secret or public key.',
+      tips: [
+        '**Security Warning:** Never paste JWTs containing sensitive production credentials or personal information into untrusted online tools. While this tool operates client-side, it_s a good general security practice.',
+        'This tool does not validate the JWT_s signature. Signature validation requires the secret key (for HMAC algorithms) or the public key (for RSA/ECDSA algorithms) used to sign the token, which is not handled by this decoder.',
+        'Common claims in a JWT payload include `iss` (issuer), `sub` (subject), `aud` (audience), `exp` (expiration time), `nbf` (not before time), `iat` (issued at time), and `jti` (JWT ID).',
+        'The header typically contains the token type (`typ`, usually "JWT") and the signing algorithm (`alg`, e.g., "HS256", "RS256").'
+      ],
+    },
+    faqs: [
+      { question: 'What is a JSON Web Token (JWT)?', answer: 'A JWT is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.' },
+      { question: 'Does this tool verify the signature of the JWT?', answer: 'No, this tool only decodes the header and payload. It does not perform signature validation. To validate the signature, you need the corresponding secret or public key.' },
+      { question: 'What are the three parts of a JWT?', answer: 'A JWT consists of three parts separated by dots (.): the Header, the Payload, and the Signature. The Header and Payload are Base64Url encoded JSON objects. The Signature is used to verify the token_s authenticity.' },
+      { question: 'Why is my JWT decoding to strange characters or failing?', answer: 'Ensure you are pasting the complete and unmodified JWT string. JWTs use Base64Url encoding, which is slightly different from standard Base64. The tool handles this, but corrupted or incomplete tokens will fail to decode properly.' },
+      { question: 'Is my JWT data sent to a server?', answer: 'No, all decoding operations are performed client-side within your browser. Your JWT data remains private to your session.' }
+    ],
+    keywords: ['jwt', 'decoder', 'json web token', 'authentication', 'token inspector', 'developer tools', 'security']
   },
   // Design & Frontend Tools
   {
@@ -320,7 +381,7 @@ export const tools: Tool[] = [
       ],
     },
     faqs: [
-      { question: 'How random are the generated passwords?', answer: 'The passwords are generated using cryptographically secure random number generation available in the browser, ensuring a high degree of randomness.' },
+      { question: 'How random are the generated passwords?', answer: 'The passwords are generated using cryptographically secure random number generation available in the browser (window.crypto.getRandomValues), ensuring a high degree of randomness.' },
       { question: 'Is it safe to use an online password generator?', answer: 'This tool generates passwords client-side, meaning the password is created in your browser and not sent over the internet or stored on our servers. This makes it safe to use. However, always ensure you are on the correct website (check the URL) when using any online security tool.' },
       { question: 'What is the maximum password length I can generate?', answer: 'The tool typically supports lengths up to 128 characters, which is more than sufficient for most purposes.' },
       { question: 'Which symbols are included?', answer: 'The symbols set generally includes common special characters like !@#$%^&*()_+-=[]{}|;:,.<>/?~`.' },
@@ -391,3 +452,4 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
+
