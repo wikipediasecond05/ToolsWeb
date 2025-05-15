@@ -22,6 +22,7 @@ import { TimestampConverterTool } from '@/components/tools/TimestampConverterToo
 import { LoremIpsumGeneratorTool } from '@/components/tools/LoremIpsumGeneratorTool';
 import { SentenceCounterTool } from '@/components/tools/SentenceCounterTool';
 import { SlopePercentageCalculatorTool } from '@/components/tools/SlopePercentageCalculatorTool';
+import { PlaybackSpeedCalculatorTool } from '@/components/tools/PlaybackSpeedCalculatorTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -81,6 +82,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <LoremIpsumGeneratorTool />;
       case 'slope-percentage-calculator':
         return <SlopePercentageCalculatorTool />;
+      case 'playback-speed-calculator':
+        return <PlaybackSpeedCalculatorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
@@ -201,3 +204,4 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
+

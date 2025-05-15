@@ -577,6 +577,39 @@ export const tools: Tool[] = [
     ],
     keywords: ['lorem ipsum', 'placeholder text', 'dummy text', 'text generator', 'design mockups', 'prototyping', 'content placeholder']
   },
+  {
+    id: 'playback-speed-calculator',
+    title: 'Playback Speed Calculator',
+    description: 'Calculate new video/audio duration based on playback speed and see time saved.',
+    category: 'productivity',
+    icon: Icons.Timer,
+    iconName: 'Timer',
+    path: '/tools/playback-speed-calculator',
+    longDescription: {
+      overview: 'The Playback Speed Calculator helps you determine the actual time it will take to watch a video or listen to audio content at different playback speeds. It also shows you how much time you will save (or lose) compared to watching at normal (1x) speed.',
+      useCases: [
+        'Estimating how long a lecture or tutorial will take at 1.5x or 2x speed.',
+        'Planning study sessions or content consumption time more effectively.',
+        'Calculating time saved when listening to podcasts or audiobooks at faster speeds.',
+        'Understanding the impact of slower speeds (e.g., 0.5x) for detailed analysis or transcription.',
+        'Comparing time differences between various playback speed options.'
+      ],
+      howItWorks: 'Enter the original duration of the content in hours, minutes, and seconds. Then, input the desired playback speed (e.g., 1.5 for 1.5x, 2 for 2x). You can also use the preset speed buttons. The tool calculates the total original duration in seconds, divides it by the playback speed to get the new duration in seconds, and then converts this new duration back into hours, minutes, and seconds. The time saved is the difference between the original and new durations.',
+      tips: [
+        'Ensure your input for hours, minutes, and seconds are positive numbers. Minutes and seconds should ideally be less than 60 for standard input, but the tool will normalize it.',
+        'Playback speed must be a positive number. A speed of 1 means normal speed, less than 1 is slower, and greater than 1 is faster.',
+        'The "time saved" can be negative if you choose a playback speed less than 1x, indicating it will take longer.',
+        'Use the preset buttons for common speeds, or type a custom speed directly.'
+      ],
+    },
+    faqs: [
+      { question: 'What if I only have minutes and seconds for the original duration?', answer: 'Simply leave the "hours" field as 0 or empty.' },
+      { question: 'Can I input a playback speed like 1.25x?', answer: 'Yes, the custom speed input accepts decimal values.' },
+      { question: 'How is "time saved" calculated?', answer: 'Time saved is the original duration minus the new estimated duration. If the new duration is longer (speed < 1x), the "time saved" will be negative, meaning additional time spent.' },
+      { question: 'Does this work for any video or audio platform?', answer: 'This calculator works for any media as long as you know its original length and the playback speed you intend to use. It_s independent of the platform (YouTube, Netflix, podcasts, etc.).' }
+    ],
+    keywords: ['playback speed', 'video duration', 'audio duration', 'time calculator', 'speed watching', 'podcast speed', 'time saver']
+  },
   // Math & Physics Tools
   {
     id: 'slope-percentage-calculator',
@@ -618,3 +651,4 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
+
