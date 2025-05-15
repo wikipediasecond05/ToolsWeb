@@ -390,7 +390,7 @@ export const tools: Tool[] = [
     title: 'CSS Gradient Generator',
     description: 'Visually create linear and radial CSS gradients and copy the generated code.',
     category: 'design-frontend',
-    icon: Icons.Pipette, 
+    icon: Icons.Pipette,
     iconName: 'Pipette',
     path: '/tools/css-gradient-generator',
     longDescription: {
@@ -457,7 +457,7 @@ export const tools: Tool[] = [
     title: 'CSS Border Radius Generator',
     description: 'Easily generate CSS for rounded corners with individual controls for each corner.',
     category: 'design-frontend',
-    icon: Icons.Square, 
+    icon: Icons.Square,
     iconName: 'Square',
     path: '/tools/css-border-radius-generator',
     longDescription: {
@@ -562,7 +562,7 @@ export const tools: Tool[] = [
     title: 'RGB to HEX Converter',
     description: 'Convert RGB color values (e.g., rgb(255, 165, 0)) to their HEX code equivalent (e.g., #FFA500).',
     category: 'conversion',
-    icon: Icons.Palette,
+    icon: Icons.Palette, // Re-using Palette icon
     iconName: 'Palette',
     path: '/tools/rgb-to-hex-converter',
     longDescription: {
@@ -573,7 +573,7 @@ export const tools: Tool[] = [
         'Quickly finding the HEX equivalent of an RGB color for use in HTML, CSS, or graphic design applications.',
         'Learning how RGB and HEX color codes relate to each other.'
       ],
-      howItWorks: 'Enter the Red, Green, and Blue values (each from 0 to 255) into their respective input fields. Click the "Convert to HEX" button. The tool will calculate the hexadecimal representation for each color component and combine them into a standard 6-digit HEX code (e.g., #RRGGBB). A preview of the color will also be displayed.',
+      howItWorks: 'Enter the Red, Green, and Blue values (each from 0 to 255) into their respective input fields. The tool will automatically calculate and display the hexadecimal representation (e.g., #RRGGBB). A preview of the color will also be displayed.',
       tips: [
         'Each RGB component (Red, Green, Blue) must be a number between 0 and 255.',
         'The HEX code consists of a # symbol followed by six hexadecimal digits (0-9 and A-F). The first two digits represent Red, the next two Green, and the last two Blue.',
@@ -592,7 +592,7 @@ export const tools: Tool[] = [
     title: 'HEX to RGB Converter',
     description: 'Convert HEX color codes (e.g., #FFA500) to their RGB value equivalent (e.g., rgb(255, 165, 0)).',
     category: 'conversion',
-    icon: Icons.Palette,
+    icon: Icons.Palette, // Re-using Palette icon
     iconName: 'Palette',
     path: '/tools/hex-to-rgb-converter',
     longDescription: {
@@ -603,7 +603,7 @@ export const tools: Tool[] = [
         'Quickly translating colors for different digital media requirements.',
         'Learning the relationship between HEX and RGB color representations.'
       ],
-      howItWorks: 'Enter a 3-digit (e.g., #F00) or 6-digit (e.g., #FF0000) hexadecimal color code into the input field (the # symbol is optional). Click the "Convert to RGB" button. The tool parses the HEX code, extracts the red, green, and blue components, and converts them to their decimal (0-255) equivalents. The resulting RGB values (e.g., rgb(255, 0, 0)) are displayed, along with a visual preview of the color.',
+      howItWorks: 'Enter a 3-digit (e.g., #F00) or 6-digit (e.g., #FF0000) hexadecimal color code into the input field (the # symbol is optional). The tool automatically parses the HEX code, extracts the red, green, and blue components, and converts them to their decimal (0-255) equivalents. The resulting RGB values (e.g., rgb(255, 0, 0)) are displayed, along with a visual preview of the color.',
       tips: [
         'HEX codes can be 3 digits (e.g., #ABC expands to #AABBCC) or 6 digits (e.g., #RRGGBB). Both are accepted.',
         'The # symbol at the beginning of the HEX code is optional for input.',
@@ -723,8 +723,8 @@ export const tools: Tool[] = [
     title: 'URL Encoder/Decoder',
     description: 'Encode text for safe inclusion in URLs (percent-encoding) or decode percent-encoded URLs.',
     category: 'security',
-    icon: Icons.Link,
-    iconName: 'Link',
+    icon: Icons.Link, // Using Link, consider Globe if too generic
+    iconName: 'Link', // or 'Globe'
     path: '/tools/url-encoder-decoder',
     longDescription: {
       overview: 'The URL Encoder/Decoder tool helps you convert strings into a format suitable for use in URLs (percent-encoding) and decode such URLs back into their original form. This is essential because URLs can only contain a limited set of characters; special characters need to be encoded.',
@@ -766,7 +766,7 @@ export const tools: Tool[] = [
         'Understanding log files or data exports that use epoch time.',
         'Learning about how Unix time works and its representation.'
       ],
-      howItWorks: 'To convert a Unix timestamp to a date: Enter the timestamp value in the "Unix Timestamp" field. Select whether it_s in "Seconds" or "Milliseconds". Click "To Date". The tool will calculate the corresponding human-readable date and time (in your local timezone) and display it. To convert a date to a Unix timestamp: Enter the date and time in the "Human-Readable Date" input (or use the date/time picker). Click "To Timestamp". The tool will convert this date to a Unix timestamp (in seconds, by default) and display it.',
+      howItWorks: 'To convert a Unix timestamp to a date: Enter the timestamp value in the "Unix Timestamp" field. Select whether it_s in "Seconds" or "Milliseconds". Click "Convert to Date". The tool will calculate the corresponding human-readable date and time (in your local timezone) and display it. To convert a date to a Unix timestamp: Enter the date and time in the "Human-Readable Date" input (or use the date/time picker). Click "Convert to Timestamp". The tool will convert this date to a Unix timestamp (in seconds, by default) and display it.',
       tips: [
         'Unix time is the number of seconds (or milliseconds) that have elapsed since January 1, 1970, at 00:00:00 Coordinated Universal Time (UTC).',
         'Be mindful of whether your timestamp is in seconds or milliseconds, as this is a common source of errors.',
@@ -884,7 +884,7 @@ export const tools: Tool[] = [
     id: 'sleep-cycle-calculator',
     title: 'Sleep Cycle Calculator',
     description: 'Calculate optimal wake-up or bedtimes based on natural sleep cycles.',
-    category: 'productivity', 
+    category: 'productivity',
     icon: Icons.Bed,
     iconName: 'Bed',
     path: '/tools/sleep-cycle-calculator',
@@ -916,12 +916,12 @@ export const tools: Tool[] = [
     ],
     keywords: ['sleep calculator', 'sleep cycle', 'wake up time', 'bedtime calculator', 'rem sleep', 'sleep schedule', 'productivity', 'health']
   },
-  // Math & Physics Tools
+  // Math & Physics Tools (now only Slope)
   {
     id: 'slope-percentage-calculator',
     title: 'Slope Percentage Calculator',
     description: 'Calculate slope percentage from rise and run, or angle of inclination.',
-    category: 'math-physics',
+    category: 'calculator', // Changed category
     icon: Icons.Sigma,
     iconName: 'Sigma',
     path: '/tools/slope-percentage-calculator',
@@ -948,8 +948,9 @@ export const tools: Tool[] = [
       { question: 'What if my run is zero?', answer: 'If the run is zero and the rise is non-zero, the slope is technically undefined (vertical). The calculator will indicate an error or infinite slope.' },
       { question: 'Can I calculate a negative slope (decline)?', answer: 'Yes, if the "rise" is negative (representing a drop in elevation), the slope percentage will be negative, indicating a decline.' }
     ],
-    keywords: ['slope calculator', 'percentage slope', 'rise over run', 'gradient', 'angle of inclination', 'math', 'engineering', 'construction']
+    keywords: ['slope calculator', 'percentage slope', 'rise over run', 'gradient', 'angle of inclination', 'math', 'engineering', 'construction', 'calculator']
   },
+  // Calculator Tools
   {
     id: 'temperature-converter',
     title: 'Temperature Converter',
@@ -977,7 +978,7 @@ export const tools: Tool[] = [
       { question: 'What are the formulas for conversion?', answer: 'C to F: (C * 9/5) + 32. F to C: (F - 32) * 5/9. C to K: C + 273.15. K to C: K - 273.15. F to K: (F - 32) * 5/9 + 273.15. K to F: (K - 273.15) * 9/5 + 32.' },
       { question: 'What is absolute zero?', answer: 'Absolute zero is 0 K, which is -273.15 °C or -459.67 °F. It_s the lowest possible temperature where nothing could be colder.' }
     ],
-    keywords: ['temperature converter', 'celsius to fahrenheit', 'fahrenheit to celsius', 'kelvin converter', 'temp conversion', 'weather', 'science']
+    keywords: ['temperature converter', 'celsius to fahrenheit', 'fahrenheit to celsius', 'kelvin converter', 'temp conversion', 'weather', 'science', 'calculator']
   },
   {
     id: 'length-converter',
@@ -1006,7 +1007,7 @@ export const tools: Tool[] = [
       { question: 'What units can I convert between?', answer: 'The tool typically supports meters (m), kilometers (km), feet (ft), miles (mi), and inches (in). More units could be added.' },
       { question: 'How accurate are the conversions?', answer: 'Conversions are based on standard, internationally recognized conversion factors, ensuring high accuracy.' }
     ],
-    keywords: ['length converter', 'distance converter', 'metric to imperial', 'imperial to metric', 'meters to feet', 'miles to kilometers', 'unit conversion']
+    keywords: ['length converter', 'distance converter', 'metric to imperial', 'imperial to metric', 'meters to feet', 'miles to kilometers', 'unit conversion', 'calculator']
   },
   // AI Powered Tools
   {
@@ -1014,8 +1015,8 @@ export const tools: Tool[] = [
     title: 'AI Commit Message Writer',
     description: 'Generate conventional commit messages using AI based on your code changes or description.',
     category: 'ai-powered',
-    icon: Icons.GitBranch, 
-    iconName: 'GitBranch',
+    icon: Icons.GitCommit,
+    iconName: 'GitCommit',
     path: '/tools/ai-commit-message-writer',
     longDescription: {
       overview: 'The AI Commit Message Writer helps you craft well-formatted and descriptive commit messages. Provide a description of your changes or a code diff, select a commit type (feat, fix, chore, etc.), and let AI suggest a suitable commit message following conventional standards.',
@@ -1074,7 +1075,7 @@ export const tools: Tool[] = [
     title: 'AI Text Summarizer',
     description: 'Quickly summarize long articles, documents, or text passages using AI.',
     category: 'ai-powered',
-    icon: Icons.ScanLine, 
+    icon: Icons.ScanLine,
     iconName: 'ScanLine',
     path: '/tools/ai-text-summarizer',
     longDescription: {
@@ -1138,3 +1139,6 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
+
+
+    
