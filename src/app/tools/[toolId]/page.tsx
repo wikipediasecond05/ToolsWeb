@@ -5,7 +5,8 @@ import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
 import { ToolPlaceholderUI } from '@/components/tools/ToolPlaceholderUI';
 import { LineBreakRemoverTool } from '@/components/tools/LineBreakRemoverTool';
 import { ColorPickerTool } from '@/components/tools/ColorPickerTool';
-import { CSSMinifierTool } from '@/components/tools/CSSMinifierTool'; // Import new tool
+import { CSSMinifierTool } from '@/components/tools/CSSMinifierTool';
+import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool'; // Import new tool
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
@@ -69,6 +70,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <ColorPickerTool />;
       case 'css-minifier':
         return <CSSMinifierTool />;
+      case 'csv-to-json':
+        return <CSVToJSONTool />;
       // Add cases for other tools here as they are implemented
       // case 'another-tool-id':
       //   return <AnotherToolComponent />;
@@ -198,5 +201,3 @@ export default function ToolPage({ params }: ToolPageProps) {
     </PageWrapper>
   );
 }
-
-    

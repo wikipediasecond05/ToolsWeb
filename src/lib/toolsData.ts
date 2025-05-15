@@ -225,12 +225,37 @@ export const tools: Tool[] = [
   {
     id: 'csv-to-json',
     title: 'CSV to JSON Converter',
-    description: 'Convert CSV data to JSON format.',
+    description: 'Convert CSV (Comma Separated Values) data to JSON format easily.',
     category: 'conversion',
     icon: Icons.Replace,
     iconName: 'Replace',
     path: '/tools/csv-to-json',
-    keywords: ['csv', 'json', 'converter', 'data transformation']
+    longDescription: {
+      overview: 'The CSV to JSON Converter transforms your CSV data into a structured JSON format. This is useful for data interchange, API interactions, or when you need to work with CSV data in applications that primarily consume JSON. The tool provides options for handling headers, delimiters, and data type conversions.',
+      useCases: [
+        'Converting spreadsheet exports (saved as CSV) into JSON for web applications.',
+        'Preparing CSV datasets for import into NoSQL databases or systems that use JSON.',
+        'Transforming data for use with APIs that expect JSON input.',
+        'Simplifying the process of reading and manipulating CSV data in JavaScript environments.',
+        'Quickly structuring flat CSV files into a more hierarchical JSON representation.'
+      ],
+      howItWorks: 'Paste your CSV data into the input text area. Configure the options: specify if the first row of your CSV contains headers (column names), define the delimiter used in your CSV (e.g., comma, semicolon, tab), and choose whether to attempt automatic conversion of numbers and boolean values. The tool parses each line of the CSV, splitting it into fields based on the delimiter. If headers are used, these become the keys in the resulting JSON objects. Each subsequent row is converted into a JSON object, and these objects are collected into a JSON array. The "Convert numbers and booleans" option will try to interpret values like "123", "true", "false" as their native types rather than strings.',
+      tips: [
+        'Ensure your CSV data is well-formed. Inconsistent delimiters or unescaped quotes within fields can lead to parsing errors.',
+        'If your CSV uses a delimiter other than a comma (e.g., semicolon, tab), make sure to specify it in the "Delimiter" option. For tab, use `\\t`.',
+        'The "First row is header" option is crucial for meaningful JSON keys. If unchecked, generic keys like "column1", "column2" might be used, or the first row will be treated as data.',
+        'When "Convert numbers and booleans" is enabled, values like "123", "3.14", "true", "false" will be converted. Other values remain strings. Empty fields become `null` if converting types, or empty strings otherwise.',
+        'For very large CSV files, browser performance might be a limitation. Consider server-side tools or specialized libraries for huge datasets.'
+      ],
+    },
+    faqs: [
+      { question: 'What is CSV?', answer: 'CSV stands for Comma Separated Values. It_s a plain text file format used to store tabular data, where each line is a data record and each record consists of one or more fields, separated by commas (or other delimiters).' },
+      { question: 'What is JSON?', answer: 'JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate. It_s commonly used for transmitting data in web applications (e.g., sending some data from the server to the client, so it can be displayed on a web page).' },
+      { question: 'How does the tool handle commas or newlines within CSV fields?', answer: 'The parser is designed to correctly handle fields enclosed in double quotes. If a field value contains a comma, newline, or double quotes, it should be enclosed in double quotes (e.g., "value, with comma"). Double quotes within a quoted field should be escaped by doubling them (e.g., "field with ""quotes""").' },
+      { question: 'What if my CSV has a different number of columns in some rows?', answer: 'The tool will attempt to parse it, but the resulting JSON objects might have missing or extra keys for those inconsistent rows, depending on the header. It_s best to ensure your CSV is consistently structured.' },
+      { question: 'Is my data uploaded to a server?', answer: 'No, all CSV parsing and JSON conversion happen directly in your browser. Your data is not sent to any server, ensuring privacy.' }
+    ],
+    keywords: ['csv to json', 'converter', 'data transformation', 'parser', 'json array', 'csv data', 'spreadsheet to json']
   },
   {
     id: 'markdown-to-html',
@@ -291,7 +316,3 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
-
-    
-
-    
