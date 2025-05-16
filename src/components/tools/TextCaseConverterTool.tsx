@@ -6,10 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Copy, Trash2, CaseSensitive } from 'lucide-react';
+import { Copy, Trash2, CaseSensitive, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { AlertCircle } from 'lucide-react';
 
 type CaseType =
   | 'uppercase'
@@ -34,7 +33,7 @@ export function TextCaseConverterTool() {
   const toSentenceCase = (str: string): string => {
     const sentences = str.toLowerCase().split(/([.?!])\s+/);
     return sentences.map((sentence, index) => {
-      if (index % 2 === 1) return sentence + ' '; // Add back the punctuation and space
+      if (index % 2 === 1) return sentence + ' '; 
       if (sentence.trim().length > 0) {
         return sentence.charAt(0).toUpperCase() + sentence.slice(1);
       }
@@ -139,9 +138,7 @@ export function TextCaseConverterTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Text Case Converter</CardTitle>
-        <CardDescription>
-          Convert your text to various standard case formats.
-        </CardDescription>
+        <CardDescription>Easily convert text between various cases like uppercase, lowercase, title case, sentence case, and more.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         {error && (

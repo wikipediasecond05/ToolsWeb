@@ -1,4 +1,3 @@
-
 import {
   WrapText,
   CaseSensitive,
@@ -97,10 +96,11 @@ import {
   Network,
   Baby,
   FileEdit,
-  ShieldOff, // Added
-  AlertTriangle, // Added
-  Ban, // Added
-  Copyright, // Added
+  ShieldOff,
+  AlertTriangle,
+  Ban,
+  Copyright,
+  ListChecks, // Added for "Use Cases"
 } from 'lucide-react';
 
 export const Icons = {
@@ -201,10 +201,11 @@ export const Icons = {
   Network,
   Baby,
   FileEdit,
-  ShieldOff, // Added
-  AlertTriangle, // Added
-  Ban, // Added
-  Copyright, // Added
+  ShieldOff,
+  AlertTriangle,
+  Ban,
+  Copyright,
+  ListChecks, // Added
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

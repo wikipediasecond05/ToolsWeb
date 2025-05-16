@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -44,7 +43,6 @@ import { HexToRgbConverterTool } from '@/components/tools/HexToRgbConverterTool'
 import { CronjobExpressionGeneratorTool } from '@/components/tools/CronjobExpressionGeneratorTool';
 import { URLSlugGeneratorTool } from '@/components/tools/URLSlugGeneratorTool';
 
-
 import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
@@ -53,7 +51,6 @@ import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Icons } from '@/components/icons';
 import type { RelatedToolData } from '@/types';
-
 
 export default function ToolPage({ params }: { params: { toolId: string } }) {
   const actualParams = React.use(params);
@@ -162,7 +159,6 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     iconName: t.iconName,
   }));
 
-
   return (
     <PageWrapper>
       {/* Header */}
@@ -205,7 +201,7 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
               {tool.longDescription.useCases && tool.longDescription.useCases.length > 0 && (
                 <div>
                   <h2 className="flex items-center gap-2 text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">
-                    <Icons.CheckCircle className="h-6 w-6 text-primary" />
+                    <Icons.ListChecks className="h-6 w-6 text-primary" /> {/* Changed Icon */}
                     Use Cases
                   </h2>
                   <ul className="list-none pl-0 space-y-3 text-lg text-muted-foreground leading-relaxed mb-4">
@@ -280,4 +276,3 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
-

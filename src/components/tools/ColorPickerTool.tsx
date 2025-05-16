@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-// Helper function to convert HEX to RGB object { r, g, b }
 const hexToRgbObj = (hex: string): { r: number; g: number; b: number } | null => {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
@@ -24,7 +23,6 @@ const hexToRgbObj = (hex: string): { r: number; g: number; b: number } | null =>
     : null;
 };
 
-// Helper function to convert RGB object to HSL object { h, s, l }
 const rgbToHslObj = (r: number, g: number, b: number): { h: number; s: number; l: number } => {
   r /= 255;
   g /= 255;
@@ -32,7 +30,7 @@ const rgbToHslObj = (r: number, g: number, b: number): { h: number; s: number; l
 
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
-  let h = 0; // default hue
+  let h = 0; 
   let s = 0;
   const l = (max + min) / 2;
 
@@ -57,7 +55,7 @@ const rgbToHslObj = (r: number, g: number, b: number): { h: number; s: number; l
 
 
 export function ColorPickerTool() {
-  const [hexColor, setHexColor] = useState<string>('#FFA500'); // Default to NymGram orange
+  const [hexColor, setHexColor] = useState<string>('#FFA500'); 
   const [rgbColor, setRgbColor] = useState<string>('');
   const [hslColor, setHslColor] = useState<string>('');
   const { toast } = useToast();
@@ -111,9 +109,7 @@ export function ColorPickerTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Color Picker & Converter</CardTitle>
-        <CardDescription>
-          Select a color using the picker. HEX, RGB, and HSL values will be displayed.
-        </CardDescription>
+        <CardDescription>Pick colors and convert between HEX, RGB, and HSL formats.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -173,5 +169,3 @@ export function ColorPickerTool() {
     </Card>
   );
 }
-
-    

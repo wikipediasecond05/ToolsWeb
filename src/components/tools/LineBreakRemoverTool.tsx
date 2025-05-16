@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AlertCircle, Copy, Eraser, Trash2 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
@@ -25,8 +25,8 @@ export function LineBreakRemoverTool() {
 
   const handleProcessText = () => {
     setError(null);
-    if (!inputText.trim() && !inputText) { // Allow processing if input is only spaces to demonstrate trimming
-      setOutputText(''); // If truly empty, output empty
+    if (!inputText.trim() && !inputText) { 
+      setOutputText(''); 
       return;
     }
 
@@ -44,9 +44,8 @@ export function LineBreakRemoverTool() {
       let result = '';
       if (separator === 'none') {
         result = lines.join('');
-      } else { // 'space'
+      } else { 
         result = lines.join(' ');
-        // Normalize multiple spaces to one if lines were joined with space
         result = result.replace(/\s\s+/g, ' ').trim();
       }
       
@@ -67,11 +66,6 @@ export function LineBreakRemoverTool() {
   const handleCopyToClipboard = async () => {
     if (!outputText) {
       setError('No output text to copy.');
-      toast({
-        title: "Error",
-        description: "No output text to copy.",
-        variant: "destructive",
-      });
       return;
     }
     try {
@@ -84,20 +78,14 @@ export function LineBreakRemoverTool() {
     } catch (err) {
       console.error('Failed to copy text: ', err);
       setError('Failed to copy text to clipboard.');
-      toast({
-        title: "Error",
-        description: "Failed to copy text to clipboard.",
-        variant: "destructive",
-      });
     }
   };
 
   return (
     <Card className="w-full shadow-lg">
       <CardHeader>
-        <CardDescription>
-          Paste your text, select options, and click "Remove" to process.
-        </CardDescription>
+        <CardTitle className="text-2xl">Line Break Remover</CardTitle>
+        <CardDescription>Efficiently remove or replace line breaks and optionally clean up whitespace from your text.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         {error && (
@@ -108,7 +96,7 @@ export function LineBreakRemoverTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText" className="font-semibold mb-2">Enter Text</Label>
+          <Label htmlFor="inputText" className="font-semibold mb-2 block">Enter Text</Label>
           <Textarea
             id="inputText"
             value={inputText}
@@ -163,7 +151,7 @@ export function LineBreakRemoverTool() {
         {outputText && (
           <div className="grid gap-2 pt-4 border-t border-border">
             <div className="flex justify-between items-center">
-              <Label htmlFor="outputText" className="font-semibold mb-2">Output Text</Label>
+              <Label htmlFor="outputText" className="font-semibold mb-2 block">Output Text</Label>
               <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                 <Copy className="mr-2 h-4 w-4" /> Copy
               </Button>
