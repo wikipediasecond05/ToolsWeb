@@ -34,7 +34,7 @@ export function HeroShineEffect({ children, className }: HeroShineEffectProps) {
   return (
     <div
       ref={containerRef}
-      className={cn("relative overflow-hidden", className)}
+      className={cn("relative", className)} // Removed overflow-hidden
       style={
         {
           '--mouse-x': mousePosition.x !== null ? `${mousePosition.x}px` : '50%',
