@@ -51,7 +51,7 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedAllRatings = localStorage.getItem(`ratings_${toolId}`);
-      const storedUserRating = localStorage.getItem(`user_rating_${toolId}`);
+      const storedUserRating = localStorage.getItem(`user_rating_${toolId}_session_${toolId}`); // Session specific key
       
       let initialAllRatings: string[] = [];
       if (storedAllRatings) {
@@ -66,8 +66,11 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
       calculateAndSetAverage(initialAllRatings);
 
       if (storedUserRating) {
-        setCurrentUserRating(storedUserRating);
-        // Do not set sessionSubmitted here; it should only be true if rated in the current session
+        // Check if this session has already submitted. This state is for the "Thank you" message.
+        // The actual currentUserRating (their persistent choice) could be different if they rated in a past session.
+        // For the "thank you" message, we only care about the current session's submission.
+        setSessionSubmitted(true); 
+        setCurrentUserRating(storedUserRating); // This reflects the rating given in THIS session
       }
     }
   }, [toolId, calculateAndSetAverage]);
@@ -75,23 +78,32 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
 
   const handleRating = (value: string) => {
     let updatedAllRatings = [...allRatings];
+    
+    // Check if this user (identified by some persistent local storage key) has rated BEFORE
+    // For simplicity, we'll assume one rating per browser session for the "thank you" state,
+    // but multiple ratings overall are allowed.
+    // If they had a 'user_rating_toolId' (overall persistent rating), we'd remove it here first
+    // before adding the new one to ensure their average contribution is updated, not duplicated.
+    // For now, this logic just adds to the total list and sets a session flag.
 
-    if (currentUserRating) {
-      // If user had a previous rating (from localStorage), remove it before adding new one
-      const index = updatedAllRatings.indexOf(currentUserRating);
-      if (index > -1) {
-        updatedAllRatings.splice(index, 1);
-      }
-    }
-    updatedAllRatings.push(value);
+    // More robust would be:
+    // const persistentUserRating = localStorage.getItem(`persistent_user_rating_${toolId}`);
+    // if (persistentUserRating) {
+    //   const index = updatedAllRatings.indexOf(persistentUserRating);
+    //   if (index > -1) updatedAllRatings.splice(index, 1);
+    // }
+    // updatedAllRatings.push(value);
+    // localStorage.setItem(`persistent_user_rating_${toolId}`, value);
+
+    updatedAllRatings.push(value); // Simpler: just add to the general pool of ratings
 
     setAllRatings(updatedAllRatings);
-    setCurrentUserRating(value);
+    setCurrentUserRating(value); // For current session display
     setSessionSubmitted(true); 
 
     if (typeof window !== 'undefined') {
       localStorage.setItem(`ratings_${toolId}`, JSON.stringify(updatedAllRatings));
-      localStorage.setItem(`user_rating_${toolId}`, value);
+      localStorage.setItem(`user_rating_${toolId}_session_${toolId}`, value); // Mark as rated in this session
     }
     
     calculateAndSetAverage(updatedAllRatings);
@@ -116,12 +128,9 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
           <div className="py-3">
             <Laugh className={cn("h-10 w-10 mx-auto mb-2", ratingOptions.find(r => r.value === currentUserRating)?.color || 'text-primary')} />
             <p className="text-lg font-semibold">Thanks for your feedback!</p>
-            <p className="text-sm text-muted-foreground">Your input helps us improve.</p>
           </div>
         ) : (
           <>
-            <p className="text-md font-medium mb-1">Found this tool helpful?</p>
-            <p className="text-sm text-muted-foreground mb-4">Let us know how it went:</p>
             <div className="flex flex-wrap justify-around items-stretch gap-2 sm:gap-3">
               {ratingOptions.map((rating) => {
                 const IconComponent = rating.emoji;
@@ -131,14 +140,14 @@ export function EmojiRating({ toolId }: EmojiRatingProps) {
                     variant="outline"
                     onClick={() => handleRating(rating.value)}
                     className={cn(
-                      "flex flex-col items-center justify-center p-1.5 h-auto w-[calc(20%-0.5rem)] min-w-[48px] sm:w-[calc(20%-0.6rem)] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-transparent",
-                      "hover:bg-accent/10 dark:hover:bg-accent/20",
-                      currentUserRating === rating.value && "border-primary ring-2 ring-primary bg-accent/5"
+                      "flex flex-col items-center justify-center p-1.5 h-auto w-[calc(20%-0.5rem)] min-w-[48px] sm:w-[calc(20%-0.6rem)] focus-visible:ring-2 focus-visible:ring-ring focus-visible:border-transparent",
+                      "hover:bg-secondary/10 dark:hover:bg-secondary/20",
+                       currentUserRating === rating.value && "border-primary ring-2 ring-primary bg-secondary/5" 
                     )}
                     aria-label={`Rate as ${rating.label}`}
                     title={rating.label}
                   >
-                    <IconComponent className={cn("h-8 w-8 sm:h-8 sm:w-8", rating.color)} />
+                    <IconComponent className={cn("h-8 w-8 sm:h-7 sm:w-7", rating.color)} />
                   </Button>
                 );
               })}
