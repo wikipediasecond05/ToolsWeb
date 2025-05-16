@@ -2,8 +2,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useActionState } from 'react'; // Corrected: useActionState from 'react'
-import { useFormStatus } from 'react-dom'; // Corrected: useFormStatus from 'react-dom'
+import { useActionState } from 'react'; 
+import { useFormStatus } from 'react-dom'; 
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,14 +12,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { submitContactForm, type ContactFormState } from '@/lib/actions';
 import { useToast } from "@/hooks/use-toast";
-// import { APP_NAME } from '@/lib/constants'; // APP_NAME is used in metadata which is commented out
-
-// Static metadata can be defined if this were a server component or in a layout
-// export const metadata: Metadata = {
-//   title: `Contact Us | ${APP_NAME}`,
-//   description: `Get in touch with the ${APP_NAME} team. Send us your feedback, suggestions, or inquiries.`,
-// };
-
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -42,8 +34,6 @@ export default function ContactPage() {
           title: "Message Sent!",
           description: state.message,
         });
-        // Optionally reset form fields here if needed, by managing local state for inputs
-        // or by resetting the form element itself. For this example, we rely on page reload or navigation.
       } else {
         toast({
           title: "Error",
@@ -61,7 +51,7 @@ export default function ContactPage() {
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-bold">Contact Us</CardTitle>
             <CardDescription>
-              Have questions, feedback, or suggestions? We'd love to hear from you!
+              Your questions, feedback, and suggestions are important to us. We look forward to hearing from you!
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -70,6 +60,7 @@ export default function ContactPage() {
                 <Label htmlFor="name" className="mb-2 block">Name</Label>
                 <Input id="name" name="name" type="text" placeholder="Your Name" required 
                        defaultValue={state.fields?.name}
+                       className="focus-visible:border-transparent"
                 />
                 {state.issues && state.issues.find(issue => issue.includes("Name")) && (
                   <p className="text-sm text-destructive mt-1">{state.issues.find(issue => issue.includes("Name"))}</p>
@@ -79,6 +70,7 @@ export default function ContactPage() {
                 <Label htmlFor="email" className="mb-2 block">Email</Label>
                 <Input id="email" name="email" type="email" placeholder="your@email.com" required 
                        defaultValue={state.fields?.email}
+                       className="focus-visible:border-transparent"
                 />
                  {state.issues && state.issues.find(issue => issue.includes("email")) && (
                   <p className="text-sm text-destructive mt-1">{state.issues.find(issue => issue.includes("email"))}</p>
@@ -93,6 +85,7 @@ export default function ContactPage() {
                   rows={5}
                   required
                   defaultValue={state.fields?.message}
+                  className="focus-visible:border-transparent"
                 />
                 {state.issues && state.issues.find(issue => issue.includes("Message")) && (
                   <p className="text-sm text-destructive mt-1">{state.issues.find(issue => issue.includes("Message"))}</p>
@@ -105,7 +98,7 @@ export default function ContactPage() {
         </Card>
 
         <div className="mt-8 text-center text-muted-foreground">
-          <p>You can also reach us via email at: <a href="mailto:support@nymgram.com" className="text-primary hover:underline">support@nymgram.com</a></p>
+          <p>Alternatively, feel free to email us directly at <a href="mailto:support@nymgram.com" className="text-primary hover:underline">support@nymgram.com</a>. We value your communication.</p>
           {/* Add social media links here if desired */}
         </div>
       </div>
