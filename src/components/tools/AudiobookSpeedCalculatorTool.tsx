@@ -194,38 +194,24 @@ export function AudiobookSpeedCalculatorTool() {
           </div>
 
           {/* Right Column: Outputs */}
-          <div className="space-y-6">
-            <Tabs defaultValue="solution" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="solution">Solution</TabsTrigger>
-                <TabsTrigger value="steps">Steps</TabsTrigger>
-              </TabsList>
-              <TabsContent value="solution" className="mt-4 p-4 border rounded-md min-h-[180px] flex flex-col items-center justify-center bg-muted/30">
-                <div className="text-center">
-                  <p className="text-4xl md:text-5xl font-bold text-primary">{listeningTimeFormatted}</p>
-                  <p className="text-sm text-muted-foreground mt-1">Listening Time</p>
-                </div>
-                <div className="text-center mt-4">
-                  {parseFloat(timeSavedFormatted) === 0 && parseFloat(playbackSpeed) === 1 ? (
-                     <p className="text-base text-foreground">Adjust speed to save time.</p>
-                  ) : parseFloat(timeSavedFormatted) >= 0 ? (
+          <div className="rounded-md bg-muted p-1 text-muted-foreground" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="text-center mx-auto">
+                <p className="text-4xl md:text-5xl font-bold text-primary">{listeningTimeFormatted}</p>
+                <p className="text-sm text-muted-foreground mt-1">Listening Time</p>
+              </div>
+              <div className="text-center mt-4">
+                {parseFloat(timeSavedFormatted) === 0 && parseFloat(playbackSpeed) === 1 ? (
+                    <p className="text-base text-foreground">Adjust speed to save time.</p>
+                ) : parseFloat(timeSavedFormatted) >= 0 ? (
+                  <p className="text-base text-foreground">
+                      You will save <span className="font-semibold text-accent">{timeSavedFormatted}</span>
+                  </p>
+                ) : (
                     <p className="text-base text-foreground">
-                        You will save <span className="font-semibold text-accent">{timeSavedFormatted}</span>
-                    </p>
-                  ) : (
-                     <p className="text-base text-foreground">
-                        This will take an extra <span className="font-semibold text-destructive">{formatDuration(Math.abs(parseFloat(timeSavedFormatted)))}</span>
-                    </p>
-                  )}
-                </div>
-              </TabsContent>
-              <TabsContent value="steps" className="mt-4 p-4 border rounded-md min-h-[180px] space-y-3">
-                 <h4 className="font-semibold mb-2">Formula Used:</h4>
-                 <p className="text-sm font-mono bg-muted/50 p-2 rounded whitespace-pre-wrap">{formula}</p>
-                 <h4 className="font-semibold mb-2 mt-3">Calculation:</h4>
-                 <p className="text-sm font-mono bg-muted/50 p-2 rounded whitespace-pre-wrap">{calculationSteps}</p>
-              </TabsContent>
-            </Tabs>
+                      This will take an extra <span className="font-semibold text-destructive">{formatDuration(Math.abs(parseFloat(timeSavedFormatted)))}</span>
+                  </p>
+                )}
+            </div>
           </div>
         </div>
       </CardContent>

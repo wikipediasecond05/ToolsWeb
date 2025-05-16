@@ -51,7 +51,7 @@ export function ToolCard({ tool }: ToolCardProps) {
 
   return (
     <Link href={tool.path} className="block group h-full no-underline">
-      <Card className="h-full flex flex-col justify-between hover:shadow-xl transition-all duration-200 ease-in-out hover:border-primary dark:hover:bg-accent/10 hover:bg-accent/5 border rounded-lg overflow-hidden">
+      <Card className="h-full flex flex-col justify-between hover:shadow-xl transition-all duration-200 ease-in-out hover:border-gray-300 dark:hover:border-gray-600 dark:hover:bg-gray-800/50 hover:bg-white/50 border rounded-lg overflow-hidden">
         <CardHeader className="flex flex-col items-center text-center p-6 pb-4">
           {IconComponent && <IconComponent className="h-10 w-10 text-primary mb-4" />}
           <CardTitle className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">{tool.title}</CardTitle>

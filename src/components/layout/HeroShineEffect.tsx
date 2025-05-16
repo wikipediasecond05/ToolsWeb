@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -17,7 +16,10 @@ export function HeroShineEffect({ children, className }: HeroShineEffectProps) {
     const handleMouseMove = (event: MouseEvent) => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
-        setMousePosition({ x: event.clientX - rect.left, y: event.clientY - rect.top });
+        setMousePosition({
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top,
+        });
       }
     };
 
@@ -29,21 +31,20 @@ export function HeroShineEffect({ children, className }: HeroShineEffectProps) {
     };
   }, []);
 
-  const primaryHsl = "var(--primary)"; // Use the HSL values directly from globals.css
+  const background = `radial-gradient(1000px circle at ${mousePosition.x || 0}px ${mousePosition.y || 0}px,
+        hsla(30, 100%, 50%, 0.2) 0%,
+        hsla(30, 100%, 50%, 0.1) 25%,
+        hsla(30, 100%, 50%, 0.05) 50%,
+        transparent 80%)`;
+
 
   return (
     <div
       ref={containerRef}
-      className={cn("relative", className)} // Removed overflow-hidden
-      style={
-        {
-          '--mouse-x': mousePosition.x !== null ? `${mousePosition.x}px` : '50%',
-          '--mouse-y': mousePosition.y !== null ? `${mousePosition.y}px` : '50%',
-          background: mousePosition.x !== null 
-            ? `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), hsla(${primaryHsl}, 0.15), transparent 40%)`
-            : undefined,
-        } as React.CSSProperties
-      }
+      className={cn("relative transition-colors duration-300", className)}
+      style={{
+        background,
+      }}
     >
       {children}
     </div>

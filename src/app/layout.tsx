@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en"  suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -46,8 +46,10 @@ export default function RootLayout({
                 var theme = localStorage.getItem('nymgram-theme');
                 if (theme) {
                   document.documentElement.setAttribute('data-theme', theme);
+                  document.documentElement.classList.add(theme);
                 } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                   document.documentElement.setAttribute('data-theme', 'dark');
+                  document.documentElement.classList.add('dark');
                 }
               } catch (e) {}
             })();

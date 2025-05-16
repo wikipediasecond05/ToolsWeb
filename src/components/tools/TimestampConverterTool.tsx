@@ -18,6 +18,7 @@ export function TimestampConverterTool() {
   const [humanDateInput, setHumanDateInput] = useState<string>('');
   
   const [convertedDate, setConvertedDate] = useState<string>('');
+  const [convertedDateLocal, setConvertedDateLocal] = useState<string>('');
   const [convertedTimestamp, setConvertedTimestamp] = useState<string>('');
   
   const [timestampUnit, setTimestampUnit] = useState<TimestampUnit>('seconds');
@@ -48,6 +49,8 @@ export function TimestampConverterTool() {
   const handleConvertToDate = (tsInput?: string, unit?: TimestampUnit) => {
     setError(null);
     setConvertedDate('');
+    setConvertedDateLocal('');
+    
     const currentTs = tsInput ?? unixTimestampInput;
     const currentUnit = unit ?? timestampUnit;
 
@@ -67,7 +70,9 @@ export function TimestampConverterTool() {
         setError('Invalid timestamp value, results in an invalid date.');
         return;
       }
-      setConvertedDate(date.toLocaleString() + ` (Local) | ${date.toUTCString()} (UTC)`);
+      
+      setConvertedDate(date.toUTCString());
+      setConvertedDateLocal(date.toLocaleString());
     } catch (e) {
       setError('Error converting timestamp to date.');
       console.error(e);
@@ -159,20 +164,37 @@ export function TimestampConverterTool() {
           </div>
           <Button onClick={() => handleConvertToDate()} className="w-full sm:w-auto">Convert to Date</Button>
           {convertedDate && (
-            <div className="mt-4">
-              <Label htmlFor="convertedDateOutput" className="mb-4 block font-semibold">Converted Date</Label>
-              <div className="flex items-center gap-2">
-                <Input
-                  id="convertedDateOutput"
-                  value={convertedDate}
-                  readOnly
-                  className="bg-muted/30"
-                />
-                <Button variant="outline" size="icon" onClick={() => handleCopyToClipboard(convertedDate, 'Date')}>
-                  <Copy className="h-4 w-4" />
-                </Button>
+            <>
+              <div className="mt-4">
+                <Label htmlFor="convertedDateOutput" className="mb-4 block font-semibold">Converted Date (Local)</Label>
+                <div className="flex items-center gap-2">
+                  <Input
+                    id="convertedDateOutput"
+                    value={convertedDateLocal}
+                    readOnly
+                    className="bg-muted/30"
+                  />
+                  <Button variant="outline" size="icon" onClick={() => handleCopyToClipboard(convertedDate, 'Date')}>
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
-            </div>
+
+              <div className="mt-4">
+                <Label htmlFor="convertedDateOutput" className="mb-4 block font-semibold">Converted Date (UTC)</Label>
+                <div className="flex items-center gap-2">
+                  <Input
+                    id="convertedDateOutput"
+                    value={convertedDate}
+                    readOnly
+                    className="bg-muted/30"
+                  />
+                  <Button variant="outline" size="icon" onClick={() => handleCopyToClipboard(convertedDate, 'Date')}>
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </>
           )}
         </div>
 

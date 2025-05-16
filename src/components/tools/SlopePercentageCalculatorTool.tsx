@@ -198,41 +198,17 @@ export function SlopePercentageCalculatorTool() {
           </div>
 
           {/* Right Column: Outputs */}
-          <div className="space-y-6">
-            <Tabs defaultValue="solution" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="solution">Solution</TabsTrigger>
-                <TabsTrigger value="steps">Steps</TabsTrigger>
-              </TabsList>
-              <TabsContent value="solution" className="mt-4 p-4 border rounded-md min-h-[200px] flex flex-col items-center justify-center bg-muted/30 space-y-4">
-                <div className="text-center">
+          <div className="pt-4 rounded-md bg-muted p-1 text-muted-foreground" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <>
+              <div className="text-center">
                   <p className="text-sm text-muted-foreground mb-1">Slope Percentage</p>
                   <p className="text-5xl font-bold text-primary">
                     {error && slopePercentage === Infinity ? 'Vertical' : slopePercentage !== null ? `${slopePercentage.toFixed(2)}%` : '0.00%'}
                   </p>
                 </div>
                 <TriangleDiagram />
-              </TabsContent>
-              <TabsContent value="steps" className="mt-4 p-4 border rounded-md min-h-[200px] space-y-3">
-                 <h4 className="font-semibold mb-2">Formula Used:</h4>
-                 <p className="text-sm font-mono bg-muted/50 p-2 rounded">{formula}</p>
-                 {error && <p className="text-destructive mt-2 text-sm">{error}</p>}
-                 {activeInputMethod === 'riseRun' && rise && run && parseFloat(run) !== 0 && !isNaN(parseFloat(rise)) && !isNaN(parseFloat(run)) && (
-                    <div className="mt-4 space-y-1 text-sm">
-                        <p>1. Calculate slope: <code className="bg-muted/50 p-1 rounded">{rise} / {run} = {(parseFloat(rise)/parseFloat(run)).toFixed(4)}</code></p>
-                        <p>2. Slope Percentage: <code className="bg-muted/50 p-1 rounded">{(parseFloat(rise)/parseFloat(run)).toFixed(4)} * 100 = {slopePercentage?.toFixed(2)}%</code></p>
-                    </div>
-                 )}
-                 {activeInputMethod === 'angle' && angle && !isNaN(parseFloat(angle)) && (
-                    <div className="mt-4 space-y-1 text-sm">
-                        <p>1. Angle: <code className="bg-muted/50 p-1 rounded">{angle} {angleUnit}</code></p>
-                        {angleUnit === 'deg' && <p>2. Convert to Radians: <code className="bg-muted/50 p-1 rounded">{angle}° * π/180 = {(parseFloat(angle) * Math.PI / 180).toFixed(4)} rad</code></p>}
-                        <p>{angleUnit === 'deg' ? '3.' : '2.'} Slope: <code className="bg-muted/50 p-1 rounded">tan({angleUnit === 'deg' ? (parseFloat(angle) * Math.PI / 180).toFixed(4) : parseFloat(angle).toFixed(4)}) = {Math.tan(angleUnit === 'deg' ? parseFloat(angle) * Math.PI / 180 : parseFloat(angle)).toFixed(4)}</code></p>
-                        <p>{angleUnit === 'deg' ? '4.' : '3.'} Slope Percentage: <code className="bg-muted/50 p-1 rounded">{Math.tan(angleUnit === 'deg' ? parseFloat(angle) * Math.PI / 180 : parseFloat(angle)).toFixed(4)} * 100 = {slopePercentage?.toFixed(2)}%</code></p>
-                    </div>
-                 )}
-              </TabsContent>
-            </Tabs>
+            </>
+            
              {error && activeInputMethod !== 'none' && (
               <Alert variant="destructive" className="mt-4">
                 <AlertCircle className="h-4 w-4" />

@@ -125,11 +125,11 @@ export function SvgWaveGeneratorTool() {
               <CardHeader><CardTitle className="text-lg">Shape</CardTitle></CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="amplitude" className="text-sm">Amplitude (Waviness): {amplitude}</Label>
+                  <Label htmlFor="amplitude" className="text-sm mb-4 inline-block">Amplitude (Waviness): {amplitude}</Label>
                   <Slider id="amplitude" min={5} max={VIEWBOX_HEIGHT / 2} step={1} value={[amplitude]} onValueChange={(val) => setAmplitude(val[0])} />
                 </div>
                 <div>
-                  <Label htmlFor="complexity" className="text-sm">Complexity (Waves): {complexity}</Label>
+                  <Label htmlFor="complexity" className="text-sm mb-4 inline-block">Complexity (Waves): {complexity}</Label>
                   <Slider id="complexity" min={1} max={10} step={0.5} value={[complexity]} onValueChange={(val) => setComplexity(val[0])} />
                 </div>
               </CardContent>
@@ -144,7 +144,7 @@ export function SvgWaveGeneratorTool() {
                   <Input type="text" value={fillColor} onChange={(e) => setFillColor(e.target.value)} className="flex-grow text-sm font-mono" maxLength={7}/>
                 </div>
                 <div>
-                  <Label htmlFor="opacity" className="text-sm">Opacity: {opacity}%</Label>
+                  <Label htmlFor="opacity" className="text-sm inline-block mb-4">Opacity: {opacity}%</Label>
                   <Slider id="opacity" min={0} max={100} step={1} value={[opacity]} onValueChange={(val) => setOpacity(val[0])} />
                 </div>
               </CardContent>
@@ -155,7 +155,7 @@ export function SvgWaveGeneratorTool() {
           <div className="space-y-6">
             <Card>
               <CardHeader><CardTitle className="text-lg">Transform</CardTitle></CardHeader>
-              <CardContent className="flex flex-col sm:flex-row gap-3">
+              <CardContent className="flex flex-col gap-3">
                 <Button variant="outline" onClick={() => setIsFlippedVertical(!isFlippedVertical)} className="w-full">
                   <Icons.FlipVertical2 className="mr-2" /> Vertical Flip {isFlippedVertical ? "(On)" : "(Off)"}
                 </Button>

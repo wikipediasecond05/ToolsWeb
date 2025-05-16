@@ -202,8 +202,8 @@ export function CronjobExpressionGeneratorTool() {
         <Alert variant="default" className="mt-6">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
-                <strong>Cron Syntax:</strong> Minute (0-59), Hour (0-23), Day of Month (1-31), Month (1-12), Day of Week (0-6, Sun-Sat).
-                Use <code>*</code> for any value, <code>,</code> for lists, <code>-</code> for ranges, <code>/</code> for steps.
+                <strong>Cron Syntax:</strong> <br/><br/>Minute (0-59) <br/>Hour (0-23)<br/> Day of Month (1-31)<br/> Month (1-12)<br/> Day of Week (0-6, Sun-Sat).
+                <br/><br/>Use <code>*</code> for any value <br/> <code>,</code> for lists <br/><code>-</code> for ranges<br/> <code>/</code> for steps.
             </AlertDescription>
         </Alert>
 

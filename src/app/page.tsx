@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { APP_NAME, APP_TAGLINE } from '@/lib/constants';
 import { ToolCard } from '@/components/tools/ToolCard';
-import { getAllCategories, getAllTools, getToolsByCategory } from '@/lib/toolsData';
+import { getAllCategories, getAllTools, getPopularSlugs, getToolsByCategory } from '@/lib/toolsData';
 import type { SerializableToolData } from '@/types'; 
 import { HeroShineEffect } from '@/components/layout/HeroShineEffect';
 import { HomepageSearch } from '@/components/search/HomepageSearch';
@@ -19,7 +19,8 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const categories = getAllCategories();
-  const popularToolsFull = getAllTools().slice(0, 8);
+  const popularSlugs = getPopularSlugs();
+  const popularToolsFull = getAllTools().filter(tool => popularSlugs.filter(slug => slug.slug === tool.path).length > 0).reverse();
 
   // Transform popularTools to be serializable
   const popularTools: SerializableToolData[] = popularToolsFull.map(tool => {
@@ -46,9 +47,8 @@ export default function HomePage() {
   ];
 
   return (
-    <>
-      <HeroShineEffect className="border-b"> {/* Removed mb-12 */}
-        <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+    <HeroShineEffect>
+        <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 text-center">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
             Welcome to <span className="text-primary">{APP_NAME}</span>
           </h1>
@@ -67,7 +67,6 @@ export default function HomePage() {
             </Button>
           </div>
         </section>
-      </HeroShineEffect>
 
       <PageWrapper>
         <FavoriteToolsSection />
@@ -168,7 +167,7 @@ export default function HomePage() {
             </div>
         </section>
       </PageWrapper>
-    </>
+    </HeroShineEffect>
   );
 }
 

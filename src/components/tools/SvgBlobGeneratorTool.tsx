@@ -134,13 +134,13 @@ export function SvgBlobGeneratorTool() {
               <Input type="text" value={fillColor} onChange={(e) => setFillColor(e.target.value)} className="flex-grow text-sm font-mono" maxLength={7}/>
             </div>
             <div>
-              <Label htmlFor="complexityBlob" className="text-sm flex items-center gap-2">
+              <Label htmlFor="complexityBlob" className="text-sm flex items-center gap-2 mb-4">
                 <Icons.Shapes className="h-4 w-4" /> Complexity (Lobes): {complexity}
               </Label>
               <Slider id="complexityBlob" min={3} max={15} step={1} value={[complexity]} onValueChange={(val) => setComplexity(val[0])} />
             </div>
             <div>
-              <Label htmlFor="edgesBlob" className="text-sm flex items-center gap-2">
+              <Label htmlFor="edgesBlob" className="text-sm flex items-center gap-2 mb-4">
                 <Icons.GitFork className="h-4 w-4 rotate-90" /> Edges (Irregularity): {edges}%
               </Label>
               <Slider id="edgesBlob" min={0} max={100} step={1} value={[edges]} onValueChange={(val) => setEdges(val[0])} />

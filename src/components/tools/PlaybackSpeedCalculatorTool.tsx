@@ -195,30 +195,16 @@ export function PlaybackSpeedCalculatorTool() {
           </div>
 
           {/* Right Column: Outputs */}
-          <div className="space-y-6">
-            <Tabs defaultValue="solution" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="solution">Solution</TabsTrigger>
-                <TabsTrigger value="steps">Steps</TabsTrigger>
-              </TabsList>
-              <TabsContent value="solution" className="mt-4 p-4 border rounded-md min-h-[180px] flex flex-col items-center justify-center bg-muted/30 space-y-4">
-                <div className="text-center">
-                  <p className="text-4xl md:text-5xl font-bold text-primary">{estimatedTimeFormatted}</p>
-                  <p className="text-sm text-muted-foreground mt-1">Estimated Time</p>
-                </div>
-                <div className="text-center mt-4">
-                    <p className="text-base text-foreground">
-                        You will save <span className="font-semibold text-accent">{timeSavedFormatted}</span>
-                    </p>
-                </div>
-              </TabsContent>
-              <TabsContent value="steps" className="mt-4 p-4 border rounded-md min-h-[180px] space-y-3">
-                 <h4 className="font-semibold mb-2">Formula Used:</h4>
-                 <p className="text-sm font-mono bg-muted/50 p-2 rounded whitespace-pre-wrap">{formula}</p>
-                 <h4 className="font-semibold mb-2 mt-3">Calculation:</h4>
-                 <p className="text-sm font-mono bg-muted/50 p-2 rounded whitespace-pre-wrap">{calculationSteps}</p>
-              </TabsContent>
-            </Tabs>
+          <div className="rounded-md bg-muted p-1 text-muted-foreground" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="text-center">
+              <p className="text-4xl md:text-5xl font-bold text-primary">{estimatedTimeFormatted}</p>
+              <p className="text-sm text-muted-foreground mt-1">Estimated Time</p>
+            </div>
+            <div className="text-center mt-4">
+                <p className="text-base text-foreground">
+                    You will save <span className="font-semibold text-accent">{timeSavedFormatted}</span>
+                </p>
+            </div>            
           </div>
         </div>
       </CardContent>

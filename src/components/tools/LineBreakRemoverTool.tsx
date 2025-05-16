@@ -117,7 +117,7 @@ export function LineBreakRemoverTool() {
             />
             <Label htmlFor="removeEmptyLines" className="font-normal cursor-pointer mb-0">Remove Empty Lines</Label>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="inline-flex items-center space-x-2">
             <Checkbox 
               id="trimSpaces"
               checked={trimSpaces}
@@ -126,7 +126,7 @@ export function LineBreakRemoverTool() {
             <Label htmlFor="trimSpaces" className="font-normal cursor-pointer mb-0">Trim Leading/Trailing Spaces from Each Line</Label>
           </div>
           <div>
-            <Label htmlFor="separator" className="font-semibold block mb-4">Separator for Line Breaks</Label>
+            <Label htmlFor="separator" className="font-semibold mb-4 mt-3 inline-block">Separator for Line Breaks</Label>
             <Select value={separator} onValueChange={(value: string) => setSeparator(value as SeparatorMode)}>
               <SelectTrigger id="separator" className="w-full sm:w-[200px]">
                 <SelectValue placeholder="Select separator" />
