@@ -12,7 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { submitContactForm, type ContactFormState } from '@/lib/actions';
 import { useToast } from "@/hooks/use-toast";
-import { Icons } from '@/components/icons'; // Import Icons
+import { Icons } from '@/components/icons';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -20,7 +20,7 @@ function SubmitButton() {
     <Button 
       type="submit" 
       disabled={pending} 
-      className="w-full transition-transform duration-150 ease-in-out hover:scale-105 active:scale-95"
+      className="w-full transition-transform duration-150 ease-in-out hover:scale-105 active:scale-95 text-base"
     >
       {pending ? (
         <Icons.Loader2 className="animate-spin" />
@@ -61,40 +61,50 @@ export default function ContactPage() {
         <Card className="shadow-lg">
           <CardHeader className="text-left">
             <CardTitle className="text-3xl font-bold">Contact Us</CardTitle>
-            <CardDescription>
+            <CardDescription className="text-lg text-muted-foreground">
               Your questions, feedback, and suggestions are important to us. We look forward to hearing from you!
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form action={formAction} className="space-y-6">
               <div>
-                <Label htmlFor="name" className="mb-3 block">
+                <Label htmlFor="name" className="mb-3 block text-base">
                   <Icons.User className="mr-2 h-4 w-4 inline-block align-middle" />
                   Name
                 </Label>
-                <Input id="name" name="name" type="text" placeholder="Your Name" required 
-                       defaultValue={state.fields?.name}
-                       className="focus-visible:border-transparent"
+                <Input 
+                  id="name" 
+                  name="name" 
+                  type="text" 
+                  placeholder="Your Name" 
+                  required 
+                  defaultValue={state.fields?.name}
+                  className="focus-visible:border-transparent text-base"
                 />
                 {state.issues && state.issues.find(issue => issue.includes("Name")) && (
                   <p className="text-sm text-destructive mt-1">{state.issues.find(issue => issue.includes("Name"))}</p>
                 )}
               </div>
               <div>
-                <Label htmlFor="email" className="mb-3 block">
+                <Label htmlFor="email" className="mb-3 block text-base">
                   <Icons.Mail className="mr-2 h-4 w-4 inline-block align-middle" />
                   Email
                 </Label>
-                <Input id="email" name="email" type="email" placeholder="your@email.com" required 
-                       defaultValue={state.fields?.email}
-                       className="focus-visible:border-transparent"
+                <Input 
+                  id="email" 
+                  name="email" 
+                  type="email" 
+                  placeholder="your@email.com" 
+                  required 
+                  defaultValue={state.fields?.email}
+                  className="focus-visible:border-transparent text-base"
                 />
                  {state.issues && state.issues.find(issue => issue.includes("email")) && (
                   <p className="text-sm text-destructive mt-1">{state.issues.find(issue => issue.includes("email"))}</p>
                 )}
               </div>
               <div>
-                <Label htmlFor="message" className="mb-3 block">
+                <Label htmlFor="message" className="mb-3 block text-base">
                   <Icons.MessageSquare className="mr-2 h-4 w-4 inline-block align-middle" />
                   Message
                 </Label>
@@ -105,7 +115,7 @@ export default function ContactPage() {
                   rows={5}
                   required
                   defaultValue={state.fields?.message}
-                  className="focus-visible:border-transparent"
+                  className="focus-visible:border-transparent text-base"
                 />
                 {state.issues && state.issues.find(issue => issue.includes("Message")) && (
                   <p className="text-sm text-destructive mt-1">{state.issues.find(issue => issue.includes("Message"))}</p>
@@ -118,7 +128,7 @@ export default function ContactPage() {
         </Card>
 
         <div className="mt-8 text-center text-muted-foreground">
-          <p>Alternatively, feel free to email us directly at <a href="mailto:support@nymgram.com" className="text-primary hover:underline">support@nymgram.com</a>. We value your communication.</p>
+          <p className="text-base">Alternatively, feel free to email us directly at <a href="mailto:support@nymgram.com" className="text-primary hover:underline">support@nymgram.com</a>. We value your communication.</p>
           {/* Add social media links here if desired */}
         </div>
       </div>
