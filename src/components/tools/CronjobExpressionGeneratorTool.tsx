@@ -147,7 +147,7 @@ export function CronjobExpressionGeneratorTool() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {cronFields.map(field => (
             <div key={field.name}>
-              <Label htmlFor={field.name} className="mb-2 block font-semibold">{field.label}</Label>
+              <Label htmlFor={field.name} className="mb-4 block font-semibold">{field.label}</Label>
               <Input
                 id={field.name}
                 name={field.name}
@@ -161,7 +161,7 @@ export function CronjobExpressionGeneratorTool() {
         </div>
         
         <div>
-            <Label htmlFor="generatedExpression" className="mb-2 block font-semibold">Generated Cron Expression</Label>
+            <Label htmlFor="generatedExpression" className="mb-4 block font-semibold">Generated Cron Expression</Label>
             <div className="flex items-center gap-2">
                 <Input
                     id="generatedExpression"
@@ -176,8 +176,8 @@ export function CronjobExpressionGeneratorTool() {
         </div>
 
         {humanReadableExplanation && (
-             <div>
-                <Label className="mb-2 block font-semibold">Explanation</Label>
+             <div className="space-y-2">
+                <Label className="mb-4 block font-semibold">Explanation</Label>
                 <Alert variant="default" className="text-sm">
                     <AlertCircle className="h-4 w-4" />
                     <AlertDescription>{humanReadableExplanation}</AlertDescription>
@@ -185,8 +185,8 @@ export function CronjobExpressionGeneratorTool() {
              </div>
         )}
         
-        <div className="space-y-3 pt-4 border-t">
-            <Label className="block font-semibold mb-2">Common Schedules</Label>
+        <div className="space-y-3 pt-6 border-t">
+            <Label className="block font-semibold mb-4">Common Schedules</Label>
             <div className="flex flex-wrap gap-2">
                 {commonSchedules.map(schedule => (
                     <Button key={schedule.label} variant="outline" size="sm" onClick={() => applyPreset(schedule.values)}>
@@ -195,7 +195,7 @@ export function CronjobExpressionGeneratorTool() {
                 ))}
             </div>
         </div>
-         <Button variant="ghost" onClick={handleClear} className="mt-4 text-muted-foreground hover:text-destructive">
+         <Button variant="ghost" onClick={handleClear} className="mt-6 text-muted-foreground hover:text-destructive">
             <Trash2 className="mr-2 h-4 w-4" /> Clear All Fields
         </Button>
 

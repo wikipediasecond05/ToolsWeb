@@ -102,9 +102,9 @@ export function PasswordGeneratorTool() {
           </Alert>
         )}
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div>
-            <Label htmlFor="passwordLength" className="mb-2 block font-semibold">
+            <Label htmlFor="passwordLength" className="mb-4 block font-semibold">
               Password Length: {length}
             </Label>
             <Slider
@@ -143,8 +143,8 @@ export function PasswordGeneratorTool() {
         </Button>
 
         {password && (
-          <div className="pt-4 space-y-2 border-t border-border">
-            <Label htmlFor="generatedPasswordOutput" className="font-semibold mb-2 block">
+          <div className="pt-6 space-y-2 border-t border-border">
+            <Label htmlFor="generatedPasswordOutput" className="font-semibold mb-4 block">
               Generated Password:
             </Label>
             <div className="flex items-center gap-2">

@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertCircle, Sigma } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 type AngleUnit = 'deg' | 'rad';
@@ -130,14 +130,14 @@ export function SlopePercentageCalculatorTool() {
           Calculate slope from Rise/Run or Angle of Inclination.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {/* Left Column: Inputs */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-mono text-lg text-muted-foreground italic">a</span>
-                <Label htmlFor="rise" className="font-semibold mb-2">Rise</Label>
+                <Label htmlFor="rise" className="font-semibold mb-4">Rise</Label>
               </div>
               <Input
                 id="rise"
@@ -151,7 +151,7 @@ export function SlopePercentageCalculatorTool() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-mono text-lg text-muted-foreground italic">b</span>
-                <Label htmlFor="run" className="font-semibold mb-2">Run</Label>
+                <Label htmlFor="run" className="font-semibold mb-4">Run</Label>
               </div>
               <Input
                 id="run"
@@ -166,7 +166,7 @@ export function SlopePercentageCalculatorTool() {
               <span className="text-muted-foreground">Or</span>
             </div>
             <div>
-              <Label htmlFor="angle" className="font-semibold mb-2 block">Angle of Inclination</Label>
+              <Label htmlFor="angle" className="font-semibold mb-4 block">Angle of Inclination</Label>
               <div className="flex gap-2">
                 <Input
                   id="angle"
@@ -198,13 +198,13 @@ export function SlopePercentageCalculatorTool() {
           </div>
 
           {/* Right Column: Outputs */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <Tabs defaultValue="solution" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="solution">Solution</TabsTrigger>
                 <TabsTrigger value="steps">Steps</TabsTrigger>
               </TabsList>
-              <TabsContent value="solution" className="mt-4 p-4 border rounded-md min-h-[200px] flex flex-col items-center justify-center bg-muted/30">
+              <TabsContent value="solution" className="mt-4 p-4 border rounded-md min-h-[200px] flex flex-col items-center justify-center bg-muted/30 space-y-4">
                 <div className="text-center">
                   <p className="text-sm text-muted-foreground mb-1">Slope Percentage</p>
                   <p className="text-5xl font-bold text-primary">
@@ -213,7 +213,7 @@ export function SlopePercentageCalculatorTool() {
                 </div>
                 <TriangleDiagram />
               </TabsContent>
-              <TabsContent value="steps" className="mt-4 p-4 border rounded-md min-h-[200px]">
+              <TabsContent value="steps" className="mt-4 p-4 border rounded-md min-h-[200px] space-y-3">
                  <h4 className="font-semibold mb-2">Formula Used:</h4>
                  <p className="text-sm font-mono bg-muted/50 p-2 rounded">{formula}</p>
                  {error && <p className="text-destructive mt-2 text-sm">{error}</p>}

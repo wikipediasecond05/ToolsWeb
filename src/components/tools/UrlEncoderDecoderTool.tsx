@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Copy, Trash2, Link, AlertCircle } from 'lucide-react';
+import { Copy, Trash2, Link as LinkIcon, AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
 
@@ -85,7 +85,7 @@ export function UrlEncoderDecoderTool() {
           </Alert>
         )}
         <div>
-          <Label htmlFor="inputText-url" className="mb-2 block font-semibold">Input Text / Encoded URL</Label>
+          <Label htmlFor="inputText-url" className="mb-4 block font-semibold">Input Text / Encoded URL</Label>
           <Textarea
             id="inputText-url"
             value={inputText}
@@ -96,11 +96,11 @@ export function UrlEncoderDecoderTool() {
           />
         </div>
         <div className="flex flex-wrap gap-3">
-          <Button onClick={handleEncode}><Link className="mr-2" />Encode URL</Button>
-          <Button onClick={handleDecode}><Link className="mr-2" />Decode URL</Button>
+          <Button onClick={handleEncode}><LinkIcon className="mr-2" />Encode URL</Button>
+          <Button onClick={handleDecode}><LinkIcon className="mr-2" />Decode URL</Button>
         </div>
         <div>
-          <Label htmlFor="outputText-url" className="mb-2 block font-semibold">Output</Label>
+          <Label htmlFor="outputText-url" className="mb-4 block font-semibold">Output</Label>
           <Textarea
             id="outputText-url"
             value={outputText}
@@ -114,8 +114,8 @@ export function UrlEncoderDecoderTool() {
           <Button variant="outline" onClick={handleCopy} disabled={!outputText}><Copy className="mr-2" />Copy Output</Button>
           <Button variant="outline" onClick={handleClear}><Trash2 className="mr-2" />Clear All</Button>
         </div>
-         <Alert variant="default">
-          <Link className="h-4 w-4" />
+         <Alert variant="default" className="mt-6">
+          <LinkIcon className="h-4 w-4" />
           <AlertDescription>
             Uses `encodeURIComponent()` for encoding and `decodeURIComponent()` for decoding.
           </AlertDescription>

@@ -76,7 +76,7 @@ export function AiTextSummarizerTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="textToSummarize" className="font-semibold mb-2 block">
+          <Label htmlFor="textToSummarize" className="font-semibold mb-4 block">
             Text to Summarize
           </Label>
           <Textarea
@@ -90,7 +90,7 @@ export function AiTextSummarizerTool() {
         </div>
 
         <div>
-          <Label htmlFor="summaryLength" className="font-semibold mb-2 block">Desired Summary Length</Label>
+          <Label htmlFor="summaryLength" className="font-semibold mb-4 block">Desired Summary Length</Label>
           <Select value={summaryLength} onValueChange={(value) => setSummaryLength(value as SummaryLength)}>
             <SelectTrigger id="summaryLength" className="w-full sm:w-[200px]">
               <SelectValue placeholder="Select length" />
@@ -114,8 +114,8 @@ export function AiTextSummarizerTool() {
 
         {generatedSummary && (
           <div className="space-y-2 pt-4 border-t border-border">
-            <div className="flex justify-between items-center">
-                <Label htmlFor="generatedSummary" className="font-semibold mb-2 block">Generated Summary</Label>
+            <div className="flex justify-between items-center mb-4">
+                <Label htmlFor="generatedSummary" className="font-semibold block">Generated Summary</Label>
                 <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                     <Copy className="mr-2 h-4 w-4" /> Copy
                 </Button>
@@ -129,7 +129,7 @@ export function AiTextSummarizerTool() {
             />
           </div>
         )}
-        <Alert variant="default" className="mt-4">
+        <Alert variant="default" className="mt-6">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
              AI summaries are best used as a starting point. Always verify critical information.

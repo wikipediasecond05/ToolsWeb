@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertCircle, Timer } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const formatDuration = (totalSeconds: number): string => {
@@ -118,7 +118,7 @@ export function PlaybackSpeedCalculatorTool() {
           Calculate new media duration and time saved based on playback speed.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-6">
         {error && (
             <Alert variant="destructive" className="mb-4">
                 <AlertCircle className="h-4 w-4" />
@@ -127,9 +127,9 @@ export function PlaybackSpeedCalculatorTool() {
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {/* Left Column: Inputs */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div>
-              <Label className="font-semibold mb-2 block">Original Duration</Label>
+              <Label className="font-semibold mb-4 block">Original Duration</Label>
               <div className="flex items-center gap-2">
                 <Input
                   type="number"
@@ -164,7 +164,7 @@ export function PlaybackSpeedCalculatorTool() {
             </div>
             
             <div>
-              <Label htmlFor="playbackSpeed" className="font-semibold mb-2 block">Playback Speed</Label>
+              <Label htmlFor="playbackSpeed" className="font-semibold mb-4 block">Playback Speed</Label>
               <div className="flex items-center gap-2">
                 <Input
                   id="playbackSpeed"
@@ -195,13 +195,13 @@ export function PlaybackSpeedCalculatorTool() {
           </div>
 
           {/* Right Column: Outputs */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <Tabs defaultValue="solution" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="solution">Solution</TabsTrigger>
                 <TabsTrigger value="steps">Steps</TabsTrigger>
               </TabsList>
-              <TabsContent value="solution" className="mt-4 p-4 border rounded-md min-h-[180px] flex flex-col items-center justify-center bg-muted/30">
+              <TabsContent value="solution" className="mt-4 p-4 border rounded-md min-h-[180px] flex flex-col items-center justify-center bg-muted/30 space-y-4">
                 <div className="text-center">
                   <p className="text-4xl md:text-5xl font-bold text-primary">{estimatedTimeFormatted}</p>
                   <p className="text-sm text-muted-foreground mt-1">Estimated Time</p>
@@ -212,7 +212,7 @@ export function PlaybackSpeedCalculatorTool() {
                     </p>
                 </div>
               </TabsContent>
-              <TabsContent value="steps" className="mt-4 p-4 border rounded-md min-h-[180px]">
+              <TabsContent value="steps" className="mt-4 p-4 border rounded-md min-h-[180px] space-y-3">
                  <h4 className="font-semibold mb-2">Formula Used:</h4>
                  <p className="text-sm font-mono bg-muted/50 p-2 rounded whitespace-pre-wrap">{formula}</p>
                  <h4 className="font-semibold mb-2 mt-3">Calculation:</h4>

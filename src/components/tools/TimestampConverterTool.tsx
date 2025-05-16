@@ -131,10 +131,10 @@ export function TimestampConverterTool() {
           </Alert>
         )}
 
-        <div className="space-y-4 p-4 border rounded-md shadow-sm">
+        <div className="space-y-6 p-4 border rounded-md shadow-sm">
           <h3 className="text-lg font-semibold flex items-center"><Clock className="mr-2 h-5 w-5 text-primary"/> Unix Timestamp to Date</h3>
           <div>
-            <Label htmlFor="unixTimestampInput" className="mb-2 block font-semibold">Unix Timestamp</Label>
+            <Label htmlFor="unixTimestampInput" className="mb-4 block font-semibold">Unix Timestamp</Label>
             <Input
               id="unixTimestampInput"
               type="text" 
@@ -145,8 +145,8 @@ export function TimestampConverterTool() {
             />
           </div>
           <div>
-            <Label className="mb-2 block font-semibold">Timestamp Unit</Label>
-            <RadioGroup defaultValue="seconds" value={timestampUnit} onValueChange={(value: string) => setTimestampUnit(value as TimestampUnit)}>
+            <Label className="mb-4 block font-semibold">Timestamp Unit</Label>
+            <RadioGroup defaultValue="seconds" value={timestampUnit} onValueChange={(value: string) => setTimestampUnit(value as TimestampUnit)} className="space-y-2">
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="seconds" id="ts-seconds" />
                 <Label htmlFor="ts-seconds" className="font-normal mb-0">Seconds</Label>
@@ -159,8 +159,8 @@ export function TimestampConverterTool() {
           </div>
           <Button onClick={() => handleConvertToDate()} className="w-full sm:w-auto">Convert to Date</Button>
           {convertedDate && (
-            <div>
-              <Label htmlFor="convertedDateOutput" className="mb-2 block font-semibold">Converted Date</Label>
+            <div className="mt-4">
+              <Label htmlFor="convertedDateOutput" className="mb-4 block font-semibold">Converted Date</Label>
               <div className="flex items-center gap-2">
                 <Input
                   id="convertedDateOutput"
@@ -176,10 +176,10 @@ export function TimestampConverterTool() {
           )}
         </div>
 
-        <div className="space-y-4 p-4 border rounded-md shadow-sm">
+        <div className="space-y-6 p-4 border rounded-md shadow-sm">
           <h3 className="text-lg font-semibold flex items-center"><CalendarDays className="mr-2 h-5 w-5 text-primary"/>Date to Unix Timestamp</h3>
           <div>
-            <Label htmlFor="humanDateInput" className="mb-2 block font-semibold">Human-Readable Date & Time</Label>
+            <Label htmlFor="humanDateInput" className="mb-4 block font-semibold">Human-Readable Date & Time</Label>
             <Input
               id="humanDateInput"
               type="datetime-local"
@@ -189,8 +189,8 @@ export function TimestampConverterTool() {
           </div>
           <Button onClick={() => handleConvertToTimestamp()} className="w-full sm:w-auto">Convert to Timestamp (Seconds)</Button>
           {convertedTimestamp && (
-            <div>
-              <Label htmlFor="convertedTimestampOutput" className="mb-2 block font-semibold">Converted Unix Timestamp (Seconds)</Label>
+            <div className="mt-4">
+              <Label htmlFor="convertedTimestampOutput" className="mb-4 block font-semibold">Converted Unix Timestamp (Seconds)</Label>
                <div className="flex items-center gap-2">
                 <Input
                   id="convertedTimestampOutput"
@@ -205,7 +205,7 @@ export function TimestampConverterTool() {
             </div>
           )}
         </div>
-         <Alert variant="default">
+         <Alert variant="default" className="mt-6">
             <Clock className="h-4 w-4" />
             <AlertDescription>
               Dates are displayed in your local timezone. Unix timestamps are based on UTC.

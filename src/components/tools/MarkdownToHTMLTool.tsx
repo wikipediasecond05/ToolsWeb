@@ -139,7 +139,7 @@ export function MarkdownToHTMLTool() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <Label htmlFor="markdownInput-md-html" className="font-semibold mb-2 block">
+            <Label htmlFor="markdownInput-md-html" className="font-semibold mb-4 block">
               <Icons.Text className="mr-2 h-5 w-5 inline-block align-middle" /> Markdown Input
             </Label>
             <Textarea
@@ -153,8 +153,8 @@ export function MarkdownToHTMLTool() {
             />
           </div>
           <div>
-            <Label htmlFor="htmlOutput-md-html" className="font-semibold mb-2 block">
-               <Code className="mr-2 h-5 w-5 inline-block align-middle" /> HTML Output
+            <Label htmlFor="htmlOutput-md-html" className="font-semibold mb-4 block">
+               <Icons.Code className="mr-2 h-5 w-5 inline-block align-middle" /> HTML Output
             </Label>
             <Textarea
               id="htmlOutput-md-html"
@@ -168,7 +168,7 @@ export function MarkdownToHTMLTool() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 pt-2 items-center">
+        <div className="flex flex-col sm:flex-row gap-3 pt-6 items-center">
           <Button variant="outline" onClick={handleCopyHtml} className="w-full sm:w-auto" disabled={!htmlOutput}>
             <Copy className="mr-2 h-4 w-4" /> Copy HTML
           </Button>
@@ -179,8 +179,8 @@ export function MarkdownToHTMLTool() {
         
         <Separator className="my-6" />
 
-        <div>
-          <h3 className="text-lg font-semibold mb-3 flex items-center">
+        <div className="mt-6">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Eye className="mr-2 h-5 w-5 text-primary align-middle" />
             Live Preview
           </h3>

@@ -140,7 +140,7 @@ export function SentenceCounterTool() {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText-sentencecount" className="font-semibold mb-2 block">
+          <Label htmlFor="inputText-sentencecount" className="font-semibold mb-4 block">
             Paste your text here:
           </Label>
           <Textarea
@@ -155,8 +155,8 @@ export function SentenceCounterTool() {
         </div>
         
         {stats.topKeywords.length > 0 && (
-          <div className="pt-4 border-t border-border">
-            <h3 className="text-lg font-semibold mb-3">Top Keywords</h3>
+          <div className="pt-6 border-t border-border space-y-3">
+            <h3 className="text-lg font-semibold mb-4">Top Keywords</h3>
             <div className="flex flex-wrap gap-2">
               {stats.topKeywords.map(({ keyword, count }) => (
                 <Badge key={keyword} variant="secondary" className="py-1 px-3">
@@ -167,7 +167,7 @@ export function SentenceCounterTool() {
           </div>
         )}
 
-        <div className="flex pt-4 border-t border-border">
+        <div className="flex pt-6 border-t border-border">
           <Button variant="outline" onClick={handleClearText} className="w-full sm:w-auto">
             <Trash2 className="mr-2 h-4 w-4" /> Clear Text
           </Button>

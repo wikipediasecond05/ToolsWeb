@@ -4,11 +4,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
-import { Copy, Trash2, Square as RoundedSquareIcon } from 'lucide-react'; 
+import { Copy, Trash2 } from 'lucide-react'; 
 import { useToast } from '@/hooks/use-toast';
 
 interface BorderRadiusValues {
@@ -76,7 +75,7 @@ export function CSSBorderRadiusGeneratorTool() {
 
   const RadiusControl = ({ label, corner, value }: { label: string, corner: keyof BorderRadiusValues, value: number}) => (
     <div>
-      <Label htmlFor={`radius-${corner}`} className="mb-2 block font-semibold">{label} ({value}{unit})</Label>
+      <Label htmlFor={`radius-${corner}`} className="mb-4 block font-semibold">{label} ({value}{unit})</Label>
       <Slider
         id={`radius-${corner}`}
         min={0}
@@ -96,9 +95,9 @@ export function CSSBorderRadiusGeneratorTool() {
       </CardHeader>
       <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Controls Column */}
-        <div className="space-y-5">
+        <div className="space-y-6">
           <div className="flex items-center space-x-2">
-            <Label className="font-semibold mb-0">Unit:</Label> {/* mb-0 as buttons are inline */}
+            <Label className="font-semibold mb-0 mr-2">Unit:</Label> 
             <Button variant={unit === 'px' ? 'default' : 'outline'} onClick={() => setUnit('px')} size="sm">px</Button>
             <Button variant={unit === '%' ? 'default' : 'outline'} onClick={() => setUnit('%')} size="sm">%</Button>
           </div>
@@ -113,7 +112,7 @@ export function CSSBorderRadiusGeneratorTool() {
         {/* Preview and Output Column */}
         <div className="space-y-6">
           <div>
-            <Label className="mb-2 block font-semibold">Live Preview</Label>
+            <Label className="mb-4 block font-semibold">Live Preview</Label>
             <div className="flex items-center justify-center w-full h-60 bg-muted p-4 rounded-md">
               <div 
                 className="w-4/5 h-4/5 bg-primary flex items-center justify-center text-primary-foreground"
@@ -126,7 +125,7 @@ export function CSSBorderRadiusGeneratorTool() {
           </div>
 
           <div>
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center mb-4">
               <Label htmlFor="generatedCSS-radius" className="font-semibold">Generated CSS</Label>
               <Button variant="ghost" size="sm" onClick={handleCopyToClipboard} disabled={!generatedCSS}>
                 <Copy className="mr-2 h-4 w-4" /> Copy CSS

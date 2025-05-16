@@ -100,9 +100,9 @@ export function LoremIpsumGeneratorTool() {
           </Alert>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-end">
           <div>
-            <Label htmlFor="generationType" className="font-semibold mb-2 block">Type</Label>
+            <Label htmlFor="generationType" className="font-semibold mb-4 block">Type</Label>
             <Select value={generationType} onValueChange={(value) => setGenerationType(value as GenerationType)}>
               <SelectTrigger id="generationType" className="w-full">
                 <SelectValue placeholder="Select type" />
@@ -115,7 +115,7 @@ export function LoremIpsumGeneratorTool() {
             </Select>
           </div>
           <div>
-            <Label htmlFor="quantity" className="font-semibold mb-2 block">Quantity</Label>
+            <Label htmlFor="quantity" className="font-semibold mb-4 block">Quantity</Label>
             <Input
               id="quantity"
               type="number"
@@ -134,8 +134,8 @@ export function LoremIpsumGeneratorTool() {
         </div>
 
         {generatedText && (
-          <div className="space-y-2 pt-4 border-t border-border">
-            <div className="flex justify-between items-center mb-2">
+          <div className="space-y-2 pt-6 border-t border-border">
+            <div className="flex justify-between items-center mb-4">
               <Label htmlFor="outputText-lorem" className="font-semibold block">Generated Text</Label>
                <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={handleCopyToClipboard}>

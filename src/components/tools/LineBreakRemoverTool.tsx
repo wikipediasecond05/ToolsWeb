@@ -96,7 +96,7 @@ export function LineBreakRemoverTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText" className="font-semibold mb-2 block">Enter Text</Label>
+          <Label htmlFor="inputText" className="font-semibold mb-4 block">Enter Text</Label>
           <Textarea
             id="inputText"
             value={inputText}
@@ -126,7 +126,7 @@ export function LineBreakRemoverTool() {
             <Label htmlFor="trimSpaces" className="font-normal cursor-pointer mb-0">Trim Leading/Trailing Spaces from Each Line</Label>
           </div>
           <div>
-            <Label htmlFor="separator" className="font-semibold block mb-2">Separator for Line Breaks</Label>
+            <Label htmlFor="separator" className="font-semibold block mb-4">Separator for Line Breaks</Label>
             <Select value={separator} onValueChange={(value: string) => setSeparator(value as SeparatorMode)}>
               <SelectTrigger id="separator" className="w-full sm:w-[200px]">
                 <SelectValue placeholder="Select separator" />
@@ -149,9 +149,9 @@ export function LineBreakRemoverTool() {
         </div>
 
         {outputText && (
-          <div className="grid gap-2 pt-4 border-t border-border">
+          <div className="grid gap-2 pt-6 border-t border-border">
             <div className="flex justify-between items-center">
-              <Label htmlFor="outputText" className="font-semibold mb-2 block">Output Text</Label>
+              <Label htmlFor="outputText" className="font-semibold mb-4 block">Output Text</Label>
               <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                 <Copy className="mr-2 h-4 w-4" /> Copy
               </Button>

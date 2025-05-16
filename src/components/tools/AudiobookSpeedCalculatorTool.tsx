@@ -117,7 +117,7 @@ export function AudiobookSpeedCalculatorTool() {
           Calculate new listening time and time saved for your audiobooks.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-6">
         {error && (
             <Alert variant="destructive" className="mb-4">
                 <AlertCircle className="h-4 w-4" />
@@ -126,9 +126,9 @@ export function AudiobookSpeedCalculatorTool() {
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {/* Left Column: Inputs */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div>
-              <Label className="font-semibold mb-2 block">Original Audiobook Duration</Label>
+              <Label className="font-semibold mb-4 block">Original Audiobook Duration</Label>
               <div className="flex items-center gap-2">
                 <Input
                   type="number"
@@ -163,7 +163,7 @@ export function AudiobookSpeedCalculatorTool() {
             </div>
             
             <div>
-              <Label htmlFor="playbackSpeed" className="font-semibold mb-2 block">Listening Speed</Label>
+              <Label htmlFor="playbackSpeed" className="font-semibold mb-4 block">Listening Speed</Label>
               <div className="flex items-center gap-2">
                 <Input
                   id="playbackSpeed"
@@ -194,7 +194,7 @@ export function AudiobookSpeedCalculatorTool() {
           </div>
 
           {/* Right Column: Outputs */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <Tabs defaultValue="solution" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="solution">Solution</TabsTrigger>
@@ -219,7 +219,7 @@ export function AudiobookSpeedCalculatorTool() {
                   )}
                 </div>
               </TabsContent>
-              <TabsContent value="steps" className="mt-4 p-4 border rounded-md min-h-[180px]">
+              <TabsContent value="steps" className="mt-4 p-4 border rounded-md min-h-[180px] space-y-3">
                  <h4 className="font-semibold mb-2">Formula Used:</h4>
                  <p className="text-sm font-mono bg-muted/50 p-2 rounded whitespace-pre-wrap">{formula}</p>
                  <h4 className="font-semibold mb-2 mt-3">Calculation:</h4>

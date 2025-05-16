@@ -81,9 +81,9 @@ export function TemperatureConverterTool() {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
           <div>
-            <Label htmlFor="celsius" className="mb-2 block font-semibold">Celsius (°C)</Label>
+            <Label htmlFor="celsius" className="mb-4 block font-semibold">Celsius (°C)</Label>
             <Input
               id="celsius"
               type="number"
@@ -93,7 +93,7 @@ export function TemperatureConverterTool() {
             />
           </div>
           <div>
-            <Label htmlFor="fahrenheit" className="mb-2 block font-semibold">Fahrenheit (°F)</Label>
+            <Label htmlFor="fahrenheit" className="mb-4 block font-semibold">Fahrenheit (°F)</Label>
             <Input
               id="fahrenheit"
               type="number"
@@ -103,7 +103,7 @@ export function TemperatureConverterTool() {
             />
           </div>
           <div>
-            <Label htmlFor="kelvin" className="mb-2 block font-semibold">Kelvin (K)</Label>
+            <Label htmlFor="kelvin" className="mb-4 block font-semibold">Kelvin (K)</Label>
             <Input
               id="kelvin"
               type="number"
@@ -113,7 +113,7 @@ export function TemperatureConverterTool() {
             />
           </div>
         </div>
-        <Alert variant="default">
+        <Alert variant="default" className="mt-6">
           <Thermometer className="h-4 w-4" />
           <AlertDescription>
             Enter a value in any field to see its conversion in the other units. Kelvin cannot be negative.

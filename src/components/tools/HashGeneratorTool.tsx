@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Copy, Trash2, HashIcon, Loader2 } from 'lucide-react'; 
+import { Copy, Trash2, HashIcon as Hash, Loader2 } from 'lucide-react'; 
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
@@ -106,7 +106,7 @@ export function HashGeneratorTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText-hash" className="font-semibold mb-2 block">Input Text</Label>
+          <Label htmlFor="inputText-hash" className="font-semibold mb-4 block">Input Text</Label>
           <Textarea
             id="inputText-hash"
             value={inputText}
@@ -119,7 +119,7 @@ export function HashGeneratorTool() {
         </div>
 
         <div>
-          <Label htmlFor="algorithm-select" className="font-semibold mb-2 block">Select Algorithm</Label>
+          <Label htmlFor="algorithm-select" className="font-semibold mb-4 block">Select Algorithm</Label>
           <Select value={selectedAlgorithm} onValueChange={(value: string) => setSelectedAlgorithm(value as HashAlgorithm)}>
             <SelectTrigger id="algorithm-select" className="w-full sm:w-[200px]">
               <SelectValue placeholder="Select algorithm" />
@@ -137,7 +137,7 @@ export function HashGeneratorTool() {
             {isLoading ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             ) : (
-              <HashIcon className="mr-2 h-4 w-4" />
+              <Hash className="mr-2 h-4 w-4" />
             )}
             Generate Hash
           </Button>
@@ -147,9 +147,9 @@ export function HashGeneratorTool() {
         </div>
 
         {(outputText || isLoading) && (
-          <div className="grid gap-2 pt-4 border-t border-border">
+          <div className="grid gap-2 pt-6 border-t border-border">
             <div className="flex justify-between items-center">
-              <Label htmlFor="outputText-hash" className="font-semibold mb-2 block">
+              <Label htmlFor="outputText-hash" className="font-semibold mb-4 block">
                 {selectedAlgorithm} Hash Output:
               </Label>
               {outputText && !isLoading && (

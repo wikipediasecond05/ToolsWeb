@@ -71,7 +71,7 @@ export function WordCounterTool() {
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="grid gap-2">
-          <Label htmlFor="inputText-wordcount" className="font-semibold mb-2 block">Input Text</Label>
+          <Label htmlFor="inputText-wordcount" className="font-semibold mb-4 block">Input Text</Label>
           <Textarea
             id="inputText-wordcount"
             value={inputText}
@@ -91,7 +91,7 @@ export function WordCounterTool() {
           <StatDisplayCard title="Paragraphs" value={stats.paragraphs} />
         </div>
 
-        <div className="flex pt-4 border-t border-border">
+        <div className="flex pt-6 border-t border-border">
           <Button variant="outline" onClick={handleClearText} className="w-full sm:w-auto">
             <Trash2 className="mr-2 h-4 w-4" /> Clear Text
           </Button>

@@ -68,7 +68,7 @@ export function UUIDGeneratorTool() {
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
-          <Label htmlFor="generatedUUIDOutput" className="font-semibold mb-2 block">Generated UUID</Label>
+          <Label htmlFor="generatedUUIDOutput" className="font-semibold mb-4 block">Generated UUID</Label>
           <div className="flex items-center gap-2">
             <Input
               id="generatedUUIDOutput"

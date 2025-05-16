@@ -177,7 +177,7 @@ export function CSVToJSONTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="csvInput-csv-json" className="font-semibold mb-2 block">Input CSV</Label>
+          <Label htmlFor="csvInput-csv-json" className="font-semibold mb-4 block">Input CSV</Label>
            <Textarea
             id="csvInput-csv-json"
             value={csvInput}
@@ -189,14 +189,14 @@ export function CSVToJSONTool() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-6 items-center">
           <div className="flex items-center space-x-2">
             <Checkbox
               id="hasHeader"
               checked={hasHeader}
               onCheckedChange={(checked) => setHasHeader(checked as boolean)}
             />
-            <Label htmlFor="hasHeader" className="font-normal cursor-pointer">First row is header</Label>
+            <Label htmlFor="hasHeader" className="font-normal cursor-pointer mb-0">First row is header</Label>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox
@@ -204,10 +204,10 @@ export function CSVToJSONTool() {
               checked={convertTypes}
               onCheckedChange={(checked) => setConvertTypes(checked as boolean)}
             />
-            <Label htmlFor="convertTypes" className="font-normal cursor-pointer">Convert numbers & booleans</Label>
+            <Label htmlFor="convertTypes" className="font-normal cursor-pointer mb-0">Convert numbers & booleans</Label>
           </div>
           <div>
-            <Label htmlFor="delimiter" className="font-semibold mb-2 block">Delimiter (use '\t' for tab)</Label>
+            <Label htmlFor="delimiter" className="font-semibold mb-4 block">Delimiter (use '\t' for tab)</Label>
             <Input
               id="delimiter"
               value={delimiter}
@@ -228,9 +228,9 @@ export function CSVToJSONTool() {
         </div>
 
         {jsonOutput && (
-          <div className="grid gap-2 pt-4 border-t border-border">
+          <div className="grid gap-2 pt-6 border-t border-border">
             <div className="flex justify-between items-center">
-              <Label htmlFor="jsonOutput-csv-json" className="font-semibold mb-2 block">Output JSON</Label>
+              <Label htmlFor="jsonOutput-csv-json" className="font-semibold mb-4 block">Output JSON</Label>
               <Button variant="ghost" size="sm" onClick={handleCopyOutput}>
                 <Copy className="mr-2 h-4 w-4" /> Copy Output
               </Button>

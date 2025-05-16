@@ -84,7 +84,7 @@ export function HexToRgbConverterTool() {
           </Alert>
         )}
         <div>
-          <Label htmlFor="hexInput" className="mb-2 block font-semibold">HEX Color Code</Label>
+          <Label htmlFor="hexInput" className="mb-4 block font-semibold">HEX Color Code</Label>
           <Input
             id="hexInput"
             value={hexInput}
@@ -95,9 +95,9 @@ export function HexToRgbConverterTool() {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t">
           <div className="space-y-3">
-             <Label className="block font-semibold mb-2">RGB Output</Label>
+             <Label className="block font-semibold mb-4">RGB Output</Label>
             <div className="flex items-center gap-2">
                 <Input id="rOutput" value={rgbOutput.r} readOnly className="bg-muted/30" placeholder="R" aria-label="Red value" />
                 <Input id="gOutput" value={rgbOutput.g} readOnly className="bg-muted/30" placeholder="G" aria-label="Green value" />
@@ -108,7 +108,7 @@ export function HexToRgbConverterTool() {
             </Button>
           </div>
            <div>
-            <Label className="mb-2 block font-semibold">Color Preview</Label>
+            <Label className="mb-4 block font-semibold">Color Preview</Label>
             <div
               className="w-full h-16 rounded-md border"
               style={{ backgroundColor: colorPreview }}
@@ -116,7 +116,7 @@ export function HexToRgbConverterTool() {
             />
           </div>
         </div>
-        <Alert variant="default">
+        <Alert variant="default" className="mt-6">
           <Palette className="h-4 w-4" />
           <AlertDescription>
             Enter a 3 or 6 digit HEX code (e.g., #F00 or #FF0000). RGB values update automatically.

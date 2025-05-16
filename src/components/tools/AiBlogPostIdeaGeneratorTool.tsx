@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AlertCircle, Lightbulb, Loader2, Copy } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -72,7 +71,7 @@ export function AiBlogPostIdeaGeneratorTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="topic" className="font-semibold mb-2 block">
+          <Label htmlFor="topic" className="font-semibold mb-4 block">
             Main Topic / Keyword
           </Label>
           <Input
@@ -85,7 +84,7 @@ export function AiBlogPostIdeaGeneratorTool() {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="targetAudience" className="font-semibold mb-2 block">
+          <Label htmlFor="targetAudience" className="font-semibold mb-4 block">
             Target Audience (Optional)
           </Label>
           <Input
@@ -108,7 +107,7 @@ export function AiBlogPostIdeaGeneratorTool() {
 
         {generatedIdeas.length > 0 && (
           <div className="space-y-3 pt-4 border-t border-border">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold">Suggested Blog Post Ideas:</h3>
                  <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                     <Copy className="mr-2 h-4 w-4" /> Copy All
@@ -121,7 +120,7 @@ export function AiBlogPostIdeaGeneratorTool() {
             </ul>
           </div>
         )}
-        <Alert variant="default" className="mt-4">
+        <Alert variant="default" className="mt-6">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
               AI suggestions are a starting point. Refine and add your unique perspective!

@@ -152,7 +152,7 @@ export function AiImageAltTextGeneratorTool() {
         )}
 
         <div className="grid gap-3">
-          <Label htmlFor="imageUpload" className="font-semibold mb-2 block">
+          <Label htmlFor="imageUpload" className="font-semibold mb-4 block">
             Upload Image
           </Label>
           <input
@@ -191,8 +191,8 @@ export function AiImageAltTextGeneratorTool() {
 
         {generatedAltText && (
           <div className="space-y-2 pt-4 border-t border-border">
-             <div className="flex justify-between items-center">
-                <Label htmlFor="generatedAltText" className="font-semibold mb-2 block">Generated Alt Text</Label>
+             <div className="flex justify-between items-center mb-4">
+                <Label htmlFor="generatedAltText" className="font-semibold block">Generated Alt Text</Label>
                 <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                     <Copy className="mr-2 h-4 w-4" /> Copy
                 </Button>
@@ -207,7 +207,7 @@ export function AiImageAltTextGeneratorTool() {
             />
           </div>
         )}
-         <Alert variant="default" className="mt-4">
+         <Alert variant="default" className="mt-6">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
               AI-generated alt text is a helpful start. Always review for accuracy and context. Max file size: 5MB.

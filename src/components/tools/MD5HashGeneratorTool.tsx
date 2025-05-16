@@ -250,7 +250,7 @@ export function MD5HashGeneratorTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText-md5" className="font-semibold mb-2 block">Input Text</Label>
+          <Label htmlFor="inputText-md5" className="font-semibold mb-4 block">Input Text</Label>
           <Textarea
             id="inputText-md5"
             value={inputText}
@@ -273,9 +273,9 @@ export function MD5HashGeneratorTool() {
         </div>
 
         {outputText && (
-          <div className="grid gap-2 pt-4 border-t border-border">
+          <div className="grid gap-2 pt-6 border-t border-border">
             <div className="flex justify-between items-center">
-              <Label htmlFor="outputText-md5" className="font-semibold mb-2 block">
+              <Label htmlFor="outputText-md5" className="font-semibold mb-4 block">
                 MD5 Hash Output:
               </Label>
               <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
@@ -292,7 +292,7 @@ export function MD5HashGeneratorTool() {
             />
           </div>
         )}
-         <Alert variant="default" className="mt-4">
+         <Alert variant="default" className="mt-6">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
               MD5 is an older hashing algorithm. For security-sensitive applications like password hashing, it is recommended to use stronger algorithms such as SHA-256 (available in our other Hash Generator tool).

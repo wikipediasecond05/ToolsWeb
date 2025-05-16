@@ -84,7 +84,7 @@ export function CSSMinifierTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText-css-min" className="font-semibold mb-2 block">
+          <Label htmlFor="inputText-css-min" className="font-semibold mb-4 block">
             Input CSS
           </Label>
           <Textarea
@@ -111,8 +111,8 @@ export function CSSMinifierTool() {
         </div>
 
         {outputText && (
-          <div className="grid gap-2 pt-4 border-t border-border">
-            <div className="flex justify-between items-center mb-2">
+          <div className="grid gap-2 pt-6 border-t border-border">
+            <div className="flex justify-between items-center mb-4">
               <Label htmlFor="outputText-css-min" className="font-semibold block">
                 Minified CSS
               </Label>

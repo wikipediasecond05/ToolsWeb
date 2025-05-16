@@ -123,7 +123,7 @@ export function CSSGradientGeneratorTool() {
         {/* Controls Column */}
         <div className="space-y-6">
           <div>
-            <Label htmlFor="gradientType" className="mb-2 block font-semibold">Gradient Type</Label>
+            <Label htmlFor="gradientType" className="mb-4 block font-semibold">Gradient Type</Label>
             <Select value={gradientType} onValueChange={(value) => setGradientType(value as GradientType)}>
               <SelectTrigger id="gradientType"><SelectValue /></SelectTrigger>
               <SelectContent>
@@ -135,7 +135,7 @@ export function CSSGradientGeneratorTool() {
 
           {gradientType === 'linear' && (
             <div>
-              <Label htmlFor="angle" className="mb-2 block font-semibold">Angle ({angle}°)</Label>
+              <Label htmlFor="angle" className="mb-4 block font-semibold">Angle ({angle}°)</Label>
               <Slider id="angle" min={0} max={360} step={1} value={[angle]} onValueChange={(val) => setAngle(val[0])} />
             </div>
           )}
@@ -143,7 +143,7 @@ export function CSSGradientGeneratorTool() {
           {gradientType === 'radial' && (
             <>
               <div>
-                <Label htmlFor="radialShape" className="mb-2 block font-semibold">Radial Shape</Label>
+                <Label htmlFor="radialShape" className="mb-4 block font-semibold">Radial Shape</Label>
                 <Select value={radialShape} onValueChange={(value) => setRadialShape(value as RadialShape)}>
                   <SelectTrigger id="radialShape"><SelectValue /></SelectTrigger>
                   <SelectContent>
@@ -153,7 +153,7 @@ export function CSSGradientGeneratorTool() {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="radialPosition" className="mb-2 block font-semibold">Position</Label>
+                <Label htmlFor="radialPosition" className="mb-4 block font-semibold">Position</Label>
                 <Select value={radialPosition} onValueChange={setRadialPosition}>
                   <SelectTrigger id="radialPosition"><SelectValue /></SelectTrigger>
                   <SelectContent>
@@ -165,7 +165,7 @@ export function CSSGradientGeneratorTool() {
           )}
 
           <div className="space-y-3">
-            <Label className="block font-semibold">Color Stops</Label>
+            <Label className="block font-semibold mb-4">Color Stops</Label>
             {colorStops.map((stop, index) => (
               <div key={stop.id} className="flex items-center gap-2 p-2 border rounded-md">
                 <Input
@@ -206,7 +206,7 @@ export function CSSGradientGeneratorTool() {
         {/* Preview and Output Column */}
         <div className="space-y-6">
           <div>
-            <Label className="mb-2 block font-semibold">Live Preview</Label>
+            <Label className="mb-4 block font-semibold">Live Preview</Label>
             <div
               className="w-full h-60 rounded-md border bg-muted"
               style={previewStyle}
@@ -216,7 +216,7 @@ export function CSSGradientGeneratorTool() {
           </div>
 
           <div>
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center mb-4">
               <Label htmlFor="generatedCSS" className="font-semibold">Generated CSS</Label>
               <Button variant="ghost" size="sm" onClick={handleCopyToClipboard} disabled={!generatedCSS}>
                 <Copy className="mr-2 h-4 w-4" /> Copy CSS

@@ -114,7 +114,7 @@ export function URLSlugGeneratorTool() {
         )}
 
         <div>
-          <Label htmlFor="inputTextSlug" className="mb-2 block font-semibold">
+          <Label htmlFor="inputTextSlug" className="mb-4 block font-semibold">
             Input Text (e.g., Article Title, Blog Post Title etc.)
           </Label>
           <Input
@@ -125,9 +125,9 @@ export function URLSlugGeneratorTool() {
           />
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div>
-            <Label className="mb-2 block font-semibold">Separator</Label>
+            <Label className="mb-4 block font-semibold">Separator</Label>
             <RadioGroup
               value={separator}
               onValueChange={(value) => setSeparator(value as SeparatorType)}
@@ -144,7 +144,7 @@ export function URLSlugGeneratorTool() {
             </RadioGroup>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="isLowercase"
@@ -188,8 +188,8 @@ export function URLSlugGeneratorTool() {
           </div>
         </div>
         
-        <div>
-          <Label htmlFor="generatedSlugOutput" className="mb-2 block font-semibold">
+        <div className="pt-6">
+          <Label htmlFor="generatedSlugOutput" className="mb-4 block font-semibold">
             Generated Slug
           </Label>
           <div className="flex items-center gap-2">
@@ -211,7 +211,7 @@ export function URLSlugGeneratorTool() {
             </Button>
           </div>
         </div>
-        <Alert variant="default">
+        <Alert variant="default" className="mt-6">
             <LinkIcon className="h-4 w-4" />
             <AlertDescription>
                 Slugs are generated in real-time as you type or change options. Dashes (-) are generally preferred for SEO.

@@ -114,7 +114,7 @@ export function ColorPickerTool() {
       <CardContent className="space-y-6">
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <div>
-            <Label htmlFor="color-picker-input" className="mb-2 block text-muted-foreground">
+            <Label htmlFor="color-picker-input" className="mb-4 block text-muted-foreground">
               Choose Color:
             </Label>
             <Input
@@ -133,14 +133,14 @@ export function ColorPickerTool() {
           />
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           {[
             { label: 'HEX', value: hexColor, format: 'HEX' },
             { label: 'RGB', value: rgbColor, format: 'RGB' },
             { label: 'HSL', value: hslColor, format: 'HSL' },
           ].map(({ label, value, format }) => (
             <div key={label}>
-              <Label htmlFor={`${format.toLowerCase()}-value`} className="mb-2 block font-semibold">
+              <Label htmlFor={`${format.toLowerCase()}-value`} className="mb-4 block font-semibold">
                 {label}
               </Label>
               <div className="flex items-center gap-2">

@@ -90,7 +90,7 @@ export function Base64EncoderDecoderTool() {
           </Alert>
         )}
         <div>
-          <Label htmlFor="inputText-base64" className="mb-2 block font-semibold">Input Text / Base64 String</Label>
+          <Label htmlFor="inputText-base64" className="mb-4 block font-semibold">Input Text / Base64 String</Label>
           <Textarea
             id="inputText-base64"
             value={inputText}
@@ -105,7 +105,7 @@ export function Base64EncoderDecoderTool() {
           <Button onClick={handleDecode}><Binary className="mr-2" />Decode from Base64</Button>
         </div>
         <div>
-          <Label htmlFor="outputText-base64" className="mb-2 block font-semibold">Output</Label>
+          <Label htmlFor="outputText-base64" className="mb-4 block font-semibold">Output</Label>
           <Textarea
             id="outputText-base64"
             value={outputText}

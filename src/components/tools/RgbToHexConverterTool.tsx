@@ -77,22 +77,22 @@ export function RgbToHexConverterTool() {
         )}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
           <div>
-            <Label htmlFor="rValue" className="mb-2 block font-semibold">Red (0-255)</Label>
+            <Label htmlFor="rValue" className="mb-4 block font-semibold">Red (0-255)</Label>
             <Input id="rValue" type="number" value={rValue} onChange={(e) => setRValue(e.target.value)} min="0" max="255" placeholder="R" />
           </div>
           <div>
-            <Label htmlFor="gValue" className="mb-2 block font-semibold">Green (0-255)</Label>
+            <Label htmlFor="gValue" className="mb-4 block font-semibold">Green (0-255)</Label>
             <Input id="gValue" type="number" value={gValue} onChange={(e) => setGValue(e.target.value)} min="0" max="255" placeholder="G" />
           </div>
           <div>
-            <Label htmlFor="bValue" className="mb-2 block font-semibold">Blue (0-255)</Label>
+            <Label htmlFor="bValue" className="mb-4 block font-semibold">Blue (0-255)</Label>
             <Input id="bValue" type="number" value={bValue} onChange={(e) => setBValue(e.target.value)} min="0" max="255" placeholder="B" />
           </div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center pt-4 border-t">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center pt-6 border-t">
           <div>
-            <Label htmlFor="hexOutput" className="mb-2 block font-semibold">HEX Output</Label>
+            <Label htmlFor="hexOutput" className="mb-4 block font-semibold">HEX Output</Label>
             <div className="flex items-center gap-2">
               <Input id="hexOutput" value={hexOutput} readOnly className="bg-muted/30 font-mono" />
               <Button variant="outline" size="icon" onClick={handleCopy} disabled={!hexOutput} aria-label="Copy HEX code">
@@ -101,7 +101,7 @@ export function RgbToHexConverterTool() {
             </div>
           </div>
           <div>
-            <Label className="mb-2 block font-semibold">Color Preview</Label>
+            <Label className="mb-4 block font-semibold">Color Preview</Label>
             <div
               className="w-full h-16 rounded-md border"
               style={{ backgroundColor: colorPreview }}
@@ -109,7 +109,7 @@ export function RgbToHexConverterTool() {
             />
           </div>
         </div>
-         <Alert variant="default">
+         <Alert variant="default" className="mt-6">
           <Palette className="h-4 w-4" />
           <AlertDescription>
             Enter RGB values (0-255). HEX code and preview update automatically.

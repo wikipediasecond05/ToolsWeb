@@ -91,7 +91,7 @@ export function JSONFormatterTool() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <Label htmlFor="inputText-json" className="font-semibold mb-2 block">Input JSON</Label>
+            <Label htmlFor="inputText-json" className="font-semibold mb-4 block">Input JSON</Label>
             <Textarea
               id="inputText-json"
               value={inputText}
@@ -106,7 +106,7 @@ export function JSONFormatterTool() {
             />
           </div>
           <div>
-            <Label htmlFor="outputText-json" className="font-semibold mb-2 block">Formatted JSON</Label>
+            <Label htmlFor="outputText-json" className="font-semibold mb-4 block">Formatted JSON</Label>
             <Textarea
               id="outputText-json"
               value={outputText}
@@ -119,7 +119,7 @@ export function JSONFormatterTool() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 pt-2 items-center">
+        <div className="flex flex-col sm:flex-row gap-3 pt-6 items-center">
           <Button onClick={handleFormatValidate} className="w-full sm:w-auto">
             <Sparkles className="mr-2 h-4 w-4" /> Format & Validate
           </Button>

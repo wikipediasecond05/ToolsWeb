@@ -95,7 +95,7 @@ export function LengthConverterTool() {
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
           <div>
-            <Label htmlFor="fromUnit" className="mb-2 block font-semibold">From</Label>
+            <Label htmlFor="fromUnit" className="mb-4 block font-semibold">From</Label>
             <Select value={fromUnit} onValueChange={(value) => setFromUnit(value as LengthUnit)}>
               <SelectTrigger id="fromUnit">
                 <SelectValue placeholder="Select unit" />
@@ -111,7 +111,7 @@ export function LengthConverterTool() {
           </div>
 
           <div>
-            <Label htmlFor="toUnit" className="mb-2 block font-semibold">To</Label>
+            <Label htmlFor="toUnit" className="mb-4 block font-semibold">To</Label>
             <Select value={toUnit} onValueChange={(value) => setToUnit(value as LengthUnit)}>
               <SelectTrigger id="toUnit">
                 <SelectValue placeholder="Select unit" />
@@ -123,9 +123,9 @@ export function LengthConverterTool() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
           <div>
-            <Label htmlFor="inputValue" className="mb-2 block font-semibold">Value to Convert</Label>
+            <Label htmlFor="inputValue" className="mb-4 block font-semibold">Value to Convert</Label>
             <Input
               id="inputValue"
               type="number"
@@ -135,7 +135,7 @@ export function LengthConverterTool() {
             />
           </div>
           <div>
-            <Label htmlFor="outputValue" className="mb-2 block font-semibold">Converted Value</Label>
+            <Label htmlFor="outputValue" className="mb-4 block font-semibold">Converted Value</Label>
             <Input
               id="outputValue"
               type="text"
@@ -146,7 +146,7 @@ export function LengthConverterTool() {
             />
           </div>
         </div>
-         <Alert variant="default">
+         <Alert variant="default" className="mt-6">
           <Ruler className="h-4 w-4" />
           <AlertDescription>
             Enter a value and select units to see the conversion. Click the ruler icon to swap units.

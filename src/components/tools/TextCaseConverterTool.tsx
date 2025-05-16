@@ -150,7 +150,7 @@ export function TextCaseConverterTool() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <Label htmlFor="inputText-case" className="font-semibold mb-2 block">Input Text</Label>
+            <Label htmlFor="inputText-case" className="font-semibold mb-4 block">Input Text</Label>
             <Textarea
               id="inputText-case"
               value={inputText}
@@ -165,7 +165,7 @@ export function TextCaseConverterTool() {
             />
           </div>
           <div>
-            <Label htmlFor="outputText-case" className="font-semibold mb-2 block">Output Text</Label>
+            <Label htmlFor="outputText-case" className="font-semibold mb-4 block">Output Text</Label>
             <Textarea
               id="outputText-case"
               value={outputText}
@@ -179,7 +179,7 @@ export function TextCaseConverterTool() {
         </div>
 
         <div className="space-y-3">
-          <Label className="font-semibold mb-2 block">Choose Conversion Type:</Label>
+          <Label className="font-semibold mb-4 block">Choose Conversion Type:</Label>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {caseButtons.map(({ label, caseType }) => (
               <Button
@@ -196,7 +196,7 @@ export function TextCaseConverterTool() {
         </div>
         
 
-        <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border">
+        <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-border">
           <Button variant="outline" onClick={handleCopyToClipboard} disabled={!outputText} className="w-full sm:w-auto">
             <Copy className="mr-2 h-4 w-4" /> Copy Output
           </Button>

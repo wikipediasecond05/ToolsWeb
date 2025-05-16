@@ -101,7 +101,7 @@ export function JWTDecoderTool() {
         )}
 
         <div>
-          <Label htmlFor="jwtInput-decoder" className="font-semibold mb-2 block">Encoded JWT</Label>
+          <Label htmlFor="jwtInput-decoder" className="font-semibold mb-4 block">Encoded JWT</Label>
           <Textarea
             id="jwtInput-decoder"
             value={jwtInput}
@@ -122,11 +122,11 @@ export function JWTDecoderTool() {
           </Button>
         </div>
 
-        {(decodedHeader || decodedPayload || signature) && <Separator className="my-4" />}
+        {(decodedHeader || decodedPayload || signature) && <Separator className="my-6" />}
 
         {decodedHeader && (
           <div>
-            <Label htmlFor="decodedHeader" className="font-semibold mb-2 block">Decoded Header</Label>
+            <Label htmlFor="decodedHeader" className="font-semibold mb-4 block">Decoded Header</Label>
             <Textarea
               id="decodedHeader"
               value={decodedHeader}
@@ -139,8 +139,8 @@ export function JWTDecoderTool() {
         )}
 
         {decodedPayload && (
-          <div>
-            <Label htmlFor="decodedPayload" className="font-semibold mb-2 block">Decoded Payload</Label>
+          <div className="mt-6">
+            <Label htmlFor="decodedPayload" className="font-semibold mb-4 block">Decoded Payload</Label>
             <Textarea
               id="decodedPayload"
               value={decodedPayload}
@@ -153,8 +153,8 @@ export function JWTDecoderTool() {
         )}
         
         {signature && (
-          <div>
-            <Label htmlFor="signature" className="font-semibold mb-2 block">Signature (Not Validated)</Label>
+          <div className="mt-6">
+            <Label htmlFor="signature" className="font-semibold mb-4 block">Signature (Not Validated)</Label>
             <Textarea
               id="signature"
               value={signature}
@@ -165,7 +165,7 @@ export function JWTDecoderTool() {
             />
           </div>
         )}
-         <Alert variant="default" className="mt-4">
+         <Alert variant="default" className="mt-6">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
               This tool decodes the JWT for inspection but does NOT validate the signature. 

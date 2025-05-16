@@ -157,7 +157,7 @@ export function SleepCycleCalculatorTool() {
           
           <TabsContent value="sleepAt" className="mt-6 space-y-6">
             <div>
-              <Label htmlFor="bedTimeInput" className="mb-2 block font-semibold">What time do you plan to go to bed?</Label>
+              <Label htmlFor="bedTimeInput" className="mb-4 block font-semibold">What time do you plan to go to bed?</Label>
               <Input
                 id="bedTimeInput"
                 type="time"
@@ -168,7 +168,7 @@ export function SleepCycleCalculatorTool() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-4">
                  <Label htmlFor="fallAsleepDurationSleepAt" className="font-semibold">Time it takes to fall asleep</Label>
                  <span className="text-sm text-muted-foreground flex items-center">
                     <Info size={14} className="mr-1"/> Average is 10-20 minutes
@@ -204,8 +204,8 @@ export function SleepCycleCalculatorTool() {
             {error && <Alert variant="destructive"><AlertCircle className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert>}
 
             {results.length > 0 && (
-              <div className="space-y-4 pt-4 border-t">
-                <h3 className="text-lg font-semibold mb-2">Recommended Wake-up Times</h3>
+              <div className="space-y-4 pt-6 border-t">
+                <h3 className="text-lg font-semibold mb-4">Recommended Wake-up Times</h3>
                 <p className="text-sm text-muted-foreground mb-3">
                   <Info size={14} className="inline mr-1 align-text-bottom"/>
                   Aim for 5-6 sleep cycles for optimal rest.
@@ -230,7 +230,7 @@ export function SleepCycleCalculatorTool() {
 
           <TabsContent value="wakeUpAt" className="mt-6 space-y-6">
              <div>
-              <Label htmlFor="wakeUpTimeInput" className="mb-2 block font-semibold">What time do you want to wake up?</Label>
+              <Label htmlFor="wakeUpTimeInput" className="mb-4 block font-semibold">What time do you want to wake up?</Label>
               <Input
                 id="wakeUpTimeInput"
                 type="time"
@@ -240,7 +240,7 @@ export function SleepCycleCalculatorTool() {
               />
             </div>
              <div>
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-4">
                  <Label htmlFor="fallAsleepDurationWakeUpAt" className="font-semibold">Time it takes to fall asleep</Label>
                  <span className="text-sm text-muted-foreground flex items-center">
                     <Info size={14} className="mr-1"/> Average is 10-20 minutes
@@ -275,8 +275,8 @@ export function SleepCycleCalculatorTool() {
             {error && <Alert variant="destructive"><AlertCircle className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert>}
 
             {results.length > 0 && (
-              <div className="space-y-4 pt-4 border-t">
-                <h3 className="text-lg font-semibold mb-2">Recommended Bedtimes</h3>
+              <div className="space-y-4 pt-6 border-t">
+                <h3 className="text-lg font-semibold mb-4">Recommended Bedtimes</h3>
                  <p className="text-sm text-muted-foreground mb-3">
                   <Info size={14} className="inline mr-1 align-text-bottom"/>
                   To wake up at {formatTime(new Date(`1970-01-01T${wakeUpTimeInput}`))} feeling refreshed.
@@ -301,10 +301,10 @@ export function SleepCycleCalculatorTool() {
         </Tabs>
 
         <section className="pt-6 border-t">
-          <h3 className="text-xl font-semibold mb-3 flex items-center">
+          <h3 className="text-xl font-semibold mb-4 flex items-center">
             <Info size={20} className="mr-2 text-primary" /> Understanding Sleep Cycles
           </h3>
-          <div className="space-y-3 text-muted-foreground leading-relaxed">
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p className="text-base">
               Sleep cycles are made up of different stages that repeat several times during the night. Each complete cycle lasts
               around 90 minutes. For adults, it's recommended to get 5 to 6 full sleep cycles per night — that's around 7.5 to 9
@@ -312,7 +312,7 @@ export function SleepCycleCalculatorTool() {
               development.
             </p>
             <div className="my-6">
-                <h4 className="font-semibold text-foreground mb-2 text-center text-base">Typical 90-minute Sleep Cycle Breakdown:</h4>
+                <h4 className="font-semibold text-foreground mb-4 text-center text-base">Typical 90-minute Sleep Cycle Breakdown:</h4>
                 <div className="flex flex-col sm:flex-row gap-1 p-2 rounded-lg bg-muted/30 border">
                     <SleepCycleStage label="Light Sleep" duration="5-10 min" color="bg-blue-200 dark:bg-blue-800/50" widthClass="sm:w-1/6" />
                     <SleepCycleStage label="Light Sleep" duration="10-25 min" color="bg-blue-300 dark:bg-blue-700/50" widthClass="sm:w-1/4" />

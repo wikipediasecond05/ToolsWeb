@@ -77,7 +77,7 @@ export function AiCommitMessageWriterTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="changeDescription" className="font-semibold mb-2 block">
+          <Label htmlFor="changeDescription" className="font-semibold mb-4 block">
             Description of Changes / Code Diff
           </Label>
           <Textarea
@@ -91,7 +91,7 @@ export function AiCommitMessageWriterTool() {
         </div>
 
         <div>
-          <Label htmlFor="commitType" className="font-semibold mb-2 block">Commit Type</Label>
+          <Label htmlFor="commitType" className="font-semibold mb-4 block">Commit Type</Label>
           <Select value={commitType} onValueChange={(value) => setCommitType(value as CommitType)}>
             <SelectTrigger id="commitType" className="w-full sm:w-[180px]">
               <SelectValue placeholder="Select type" />
@@ -115,8 +115,8 @@ export function AiCommitMessageWriterTool() {
 
         {generatedMessage && (
           <div className="space-y-2 pt-4 border-t border-border">
-            <div className="flex justify-between items-center">
-                <Label htmlFor="generatedMessage" className="font-semibold mb-2 block">Suggested Commit Message</Label>
+            <div className="flex justify-between items-center mb-4">
+                <Label htmlFor="generatedMessage" className="font-semibold block">Suggested Commit Message</Label>
                 <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                     <Copy className="mr-2 h-4 w-4" /> Copy
                 </Button>
@@ -130,7 +130,7 @@ export function AiCommitMessageWriterTool() {
             />
           </div>
         )}
-         <Alert variant="default" className="mt-4">
+         <Alert variant="default" className="mt-6">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
               AI-generated content can sometimes be inaccurate or incomplete. Always review suggestions.
