@@ -144,7 +144,7 @@ export const tools: Tool[] = [
     title: 'Word & Character Counter',
     description: 'Count words, characters, sentences, and paragraphs in your text with detailed statistics.',
     category: 'text-string',
-    icon: Icons.Calculator, // Changed from Text to Calculator as per user's reference image of Sentence Counter for stats
+    icon: Icons.Calculator, 
     iconName: 'Calculator',
     path: '/tools/word-counter',
     longDescription: {
@@ -343,6 +343,43 @@ export const tools: Tool[] = [
     ],
     keywords: ['jwt', 'decoder', 'json web token', 'authentication', 'token inspector', 'developer tools', 'security']
   },
+  {
+    id: 'cronjob-expression-generator',
+    title: 'Cronjob Expression Generator',
+    description: 'Easily create and understand cron job expressions for scheduling tasks.',
+    category: 'developer',
+    icon: Icons.CalendarClock,
+    iconName: 'CalendarClock',
+    path: '/tools/cronjob-expression-generator',
+    longDescription: {
+      overview: 'The Cronjob Expression Generator helps you build and interpret cron expressions, which are used to schedule tasks to run periodically at fixed times, dates, or intervals. This tool provides input fields for each component of a cron expression (minute, hour, day of month, month, day of week) and generates both the expression and a human-readable summary of when the job will run. It also includes common presets for quick scheduling.',
+      useCases: [
+        'Scheduling automated backups or maintenance scripts.',
+        'Setting up recurring tasks like sending out email reports or data synchronization.',
+        'Automating system administration tasks.',
+        'Learning the syntax of cron expressions.',
+        'Generating expressions for use in crontab files or task schedulers in various applications and frameworks.'
+      ],
+      howItWorks: 'Input values for Minute (0-59), Hour (0-23), Day of Month (1-31), Month (1-12), and Day of Week (0-6, where 0 or 7 can be Sunday). You can use `*` for "every", numbers for specific values, comma-separated lists (e.g., `1,15,30`), ranges (e.g., `1-5`), or step values (e.g., `*/15` for every 15th unit). The tool combines these into a standard cron expression (e.g., `*/15 * * * *`). A human-readable explanation is generated (e.g., "Every 15 minutes"). You can also click on common presets to populate the fields and see the corresponding expression and explanation.',
+      tips: [
+        'The five fields in a standard cron expression are: Minute, Hour, Day of Month, Month, Day of Week.',
+        '`*` means "any value" or "every".',
+        '`*/n` means "every n-th unit". For example, `*/5` in the minute field means every 5 minutes.',
+        '`1,2,3` means "at units 1, 2, and 3".',
+        '`1-5` means "from unit 1 through unit 5".',
+        'For Day of Week, both 0 and 7 typically represent Sunday. Some systems vary.',
+        'Be careful when specifying both Day of Month and Day of Week, as it usually means the job runs if *either* condition is met, not necessarily both (behavior can vary slightly between cron implementations).'
+      ],
+    },
+    faqs: [
+      { question: 'What does `* * * * *` mean?', answer: 'This is the most common cron expression and means "run every minute of every hour of every day of every month of every day of the week".' },
+      { question: 'How do I schedule a task for 2:30 AM every day?', answer: 'You would use: `30 2 * * *` (At minute 30 past hour 2 on every day-of-month on every month on every day-of-week).' },
+      { question: 'Can I schedule tasks for specific years?', answer: 'Standard cron (5-field format) does not include a year field. Some extended cron versions or specific schedulers might, but this tool focuses on the common 5-field format.' },
+      { question: 'What if I put `*` for Day of Month and `1` (Monday) for Day of Week?', answer: 'This generally means the job will run every Monday, regardless of the day of the month, AND every day of the month (if Day of Week was also `*`). The behavior of combining Day of Month and Day of Week can sometimes be tricky. It_s often best to use `*` in one if you_re specifying the other.' },
+      { question: 'Is my cron expression validated for correctness?', answer: 'The tool provides a basic structure and helps generate the expression. Full logical validation (e.g., "February 30th") is complex and not fully implemented. The human-readable explanation should help you verify if the generated schedule matches your intent.' }
+    ],
+    keywords: ['cron', 'cronjob', 'scheduler', 'task scheduling', 'cron expression', 'crontab', 'developer tools', 'automation']
+  },
   // Design & Frontend Tools
   {
     id: 'css-minifier',
@@ -417,7 +454,7 @@ export const tools: Tool[] = [
     title: 'CSS Gradient Generator',
     description: 'Visually create linear and radial CSS gradients and copy the generated code.',
     category: 'design-frontend',
-    icon: Icons.Palette, // Changed from Pipette as Palette is more general for color tools.
+    icon: Icons.Palette, 
     iconName: 'Palette',
     path: '/tools/css-gradient-generator',
     longDescription: {

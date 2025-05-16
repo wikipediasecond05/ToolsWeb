@@ -15,7 +15,7 @@ import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool';
 import { MarkdownToHTMLTool } from '@/components/tools/MarkdownToHTMLTool';
 import { PasswordGeneratorTool } from '@/components/tools/PasswordGeneratorTool';
 import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool';
-import { MD5HashGeneratorTool } from '@/components/tools/MD5HashGeneratorTool'; // New Import
+import { MD5HashGeneratorTool } from '@/components/tools/MD5HashGeneratorTool'; 
 import { JSONFormatterTool } from '@/components/tools/JSONFormatterTool';
 import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool';
 import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool';
@@ -40,6 +40,7 @@ import { UrlEncoderDecoderTool } from '@/components/tools/UrlEncoderDecoderTool'
 import { RgbToHexConverterTool } from '@/components/tools/RgbToHexConverterTool';
 import { HexToRgbConverterTool } from '@/components/tools/HexToRgbConverterTool';
 import { URLSlugGeneratorTool } from '@/components/tools/URLSlugGeneratorTool';
+import { CronjobExpressionGeneratorTool } from '@/components/tools/CronjobExpressionGeneratorTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -89,7 +90,7 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <PasswordGeneratorTool />;
       case 'hash-generator':
         return <HashGeneratorTool />;
-      case 'md5-hash-generator': // New Case
+      case 'md5-hash-generator': 
         return <MD5HashGeneratorTool />;
       case 'json-formatter':
         return <JSONFormatterTool />;
@@ -135,6 +136,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <RgbToHexConverterTool />;
       case 'hex-to-rgb-converter':
         return <HexToRgbConverterTool />;
+      case 'cronjob-expression-generator':
+        return <CronjobExpressionGeneratorTool />;
       default:
         return <ToolPlaceholderUI toolTitle={tool.title} />;
     }
@@ -255,4 +258,3 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
-

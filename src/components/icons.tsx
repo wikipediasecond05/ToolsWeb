@@ -67,8 +67,8 @@ import {
   ThumbsUp,
   Users,
   Slash,
-  Star, // Added Star
-  Heart, // Added Heart (filled, for favorites)
+  Star,
+  Heart,
   HelpCircle,
   MessageSquare,
   Zap,
@@ -80,6 +80,7 @@ import {
   Laugh,
   Loader2,
   Upload,
+  CalendarClock, // Added
 } from 'lucide-react';
 
 export const Icons = {
@@ -163,6 +164,7 @@ export const Icons = {
   Laugh,
   Loader2, // For loading states
   Upload, // For image upload button
+  CalendarClock, // Added
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
