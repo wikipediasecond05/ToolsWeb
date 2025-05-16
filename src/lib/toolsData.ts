@@ -89,7 +89,7 @@ export const tools: Tool[] = [
         'Cleaning up user-generated content that might have inconsistent line breaks and spacing.',
         'Standardizing text formatting before further processing or analysis.'
       ],
-      howItWorks: 'Paste your text into the input area. Select your desired options: Check "Remove Empty Lines" to eliminate blank lines. Check "Trim Leading/Trailing Spaces from Each Line" to remove whitespace from the start and end of each line. Choose a "Separator" from the dropdown: "Space" replaces line breaks with a single space, while "None" removes them completely. Click the "Remove Line Breaks" button to process. The cleaned text will appear in the output area.',
+      howItWorks: 'Paste your text into the input area. Select your desired options: Check "Remove Empty Lines" to eliminate blank lines. Check "Trim Leading/Trailing Spaces from Each Line" to remove whitespace from the start and end of each line. Choose a "Separator" from the dropdown: "Space" replaces line breaks with a single space, while "None" removes them completely. Click the "Remove" button to process. The cleaned text will appear in the output area.',
       tips: [
         'For prose or paragraphs, using the "Space" separator is generally recommended to maintain readability and word separation.',
         'When dealing with lists or data where each item is on a new line, consider if removing line breaks entirely ("None" separator) is appropriate, or if you need a different separator for subsequent processing.',
@@ -144,7 +144,7 @@ export const tools: Tool[] = [
     title: 'Word & Character Counter',
     description: 'Count words, characters, sentences, and paragraphs in your text with detailed statistics.',
     category: 'text-string',
-    icon: Icons.Calculator,
+    icon: Icons.Calculator, // Changed from Text to Calculator as per user's reference image of Sentence Counter for stats
     iconName: 'Calculator',
     path: '/tools/word-counter',
     longDescription: {
@@ -417,8 +417,8 @@ export const tools: Tool[] = [
     title: 'CSS Gradient Generator',
     description: 'Visually create linear and radial CSS gradients and copy the generated code.',
     category: 'design-frontend',
-    icon: Icons.Pipette,
-    iconName: 'Pipette',
+    icon: Icons.Palette, // Changed from Pipette as Palette is more general for color tools.
+    iconName: 'Palette',
     path: '/tools/css-gradient-generator',
     longDescription: {
       overview: 'The CSS Gradient Generator provides an interactive way to design beautiful linear and radial gradients for your web projects. Adjust colors, positions, angles, and types to create the perfect gradient, then copy the generated CSS directly.',
@@ -440,7 +440,7 @@ export const tools: Tool[] = [
     },
     faqs: [
       { question: 'What types of gradients can I create?', answer: 'You can create linear gradients (progressing in a straight line) and radial gradients (radiating from a central point).' },
-      { question: 'How many color stops can I add?', answer: 'The tool allows adding multiple color stops to create complex gradients.' },
+      { question: 'How many color stops can I add?', answer: 'The tool allows adding multiple color stops to create complex gradients. We recommend at least two.' },
       { question: 'Is the generated CSS cross-browser compatible?', answer: 'The tool generates standard CSS gradient syntax, which is well-supported by all modern browsers. For very old browsers, fallbacks might be needed, but the tool focuses on current standards.' },
       { question: 'Can I save my created gradients?', answer: 'Currently, the tool doesn_t have a save feature. You should copy the generated CSS for use in your projects.'}
     ],
@@ -474,7 +474,7 @@ export const tools: Tool[] = [
     faqs: [
       { question: 'What do the different box-shadow parameters mean?', answer: '`offset-x`: horizontal position. `offset-y`: vertical position. `blur-radius`: higher values mean more blur. `spread-radius`: positive values expand the shadow, negative values shrink it. `color`: the shadow_s color. `inset`: changes the shadow from an outer (outset) shadow to an inner shadow.' },
       { question: 'Can I create multiple shadow layers with this tool?', answer: 'This tool is designed to help you generate a single, well-configured box-shadow rule. To create multiple layers, you would generate each shadow individually and then combine them in your CSS, separated by commas.' },
-      { question: 'How do I control the shadow_s opacity?', answer: 'Use the color picker for the shadow color, which should allow you to set an alpha (opacity) value (e.g., using RGBA or HSLA).'},
+      { question: 'How do I control the shadow_s opacity?', answer: 'Use the color picker for the shadow color, which should allow you to set an alpha (opacity) value (e.g., using RGBA or HSLA). The opacity slider also directly controls this.'},
       { question: 'Does this tool work for `text-shadow` too?', answer: 'No, this tool is specifically for `box-shadow`. The `text-shadow` property has a similar syntax but applies to text characters.'}
     ],
     keywords: ['css box shadow', 'shadow generator', 'ui design', 'css effects', 'depth effect', 'web design']
@@ -488,7 +488,7 @@ export const tools: Tool[] = [
     iconName: 'Square',
     path: '/tools/css-border-radius-generator',
     longDescription: {
-      overview: 'The CSS Border Radius Generator helps you create elements with rounded corners. You can control the radius of each corner individually (top-left, top-right, bottom-right, bottom-left) and see a live preview of how it affects a sample element. The tool then generates the necessary `border-radius` CSS.',
+      overview: 'The CSS Border Radius Generator helps you create elements with rounded corners. You can control the radius of each corner individually (top-left, top-right, bottom-right, bottom-left) or all at once, and see a live preview of how it affects a sample element. The tool then generates the necessary `border-radius` CSS.',
       useCases: [
         'Creating rounded buttons, cards, and other UI elements.',
         'Designing organic or uniquely shaped containers.',
@@ -496,19 +496,18 @@ export const tools: Tool[] = [
         'Learning how the `border-radius` CSS property works with its shorthand and individual corner syntaxes.',
         'Quickly generating CSS for complex rounded shapes.'
       ],
-      howItWorks: 'Use the input fields or sliders provided for each of the four corners: Top-Left, Top-Right, Bottom-Right, and Bottom-Left. You can also input a single value to apply to all corners. As you adjust these values, the live preview of a sample box will update to show the effect. The tool will generate the corresponding `border-radius` CSS rule, which you can then copy.',
+      howItWorks: 'Use the input fields or sliders provided for "All Corners" or for each of the four corners: Top-Left, Top-Right, Bottom-Right, and Bottom-Left. You can also select the unit (px or %). As you adjust these values, the live preview of a sample box will update to show the effect. The tool will generate the corresponding `border-radius` CSS rule, which you can then copy.',
       tips: [
-        'You can use different units like `px`, `%`, or `em` for border-radius values.',
+        'You can use different units like `px`, `%`, or `em` for border-radius values. The tool supports px and %.',
         'To create a circle from a square element, set the border-radius to 50%.',
         'For pill-shaped buttons, use a large radius value (e.g., `9999px`) on a rectangular element.',
         'The `border-radius` property can accept one, two, three, or four values to control all corners or specific combinations.',
-        'Complex elliptical corners can be achieved by providing two values per corner (horizontal/vertical radius), though this tool initially focuses on a single radius per corner for simplicity.'
       ],
     },
     faqs: [
-      { question: 'What units can I use for border-radius?', answer: 'You can use pixels (`px`), percentages (`%`), em units (`em`), and other valid CSS length units.' },
-      { question: 'How do I make a perfect circle?', answer: 'For a square element, set its `border-radius` to `50%`.' },
-      { question: 'Can I set different horizontal and vertical radii for a corner (elliptical corners)?', answer: 'The standard `border-radius` property allows this by using a slash (e.g., `border-top-left-radius: 20px / 40px;`). This initial version of the tool focuses on a single radius value per corner for simplicity. Advanced elliptical controls could be a future enhancement.' },
+      { question: 'What units can I use for border-radius?', answer: 'This tool allows you to use pixels (`px`) and percentages (`%`).' },
+      { question: 'How do I make a perfect circle?', answer: 'For a square element, set its `border-radius` to `50%` using the "%" unit setting.' },
+      { question: 'Can I set different horizontal and vertical radii for a corner (elliptical corners)?', answer: 'The standard `border-radius` property allows this by using a slash (e.g., `border-top-left-radius: 20px / 40px;`). This version of the tool focuses on a single radius value per corner for simplicity.' },
       { question: 'What is the shorthand for `border-radius`?', answer: '`border-radius: value;` (all corners), `border-radius: top-left-and-bottom-right top-right-and-bottom-left;` (two values), `border-radius: top-left top-right-and-bottom-left bottom-right;` (three values), or `border-radius: top-left top-right bottom-right bottom-left;` (four values).' }
     ],
     keywords: ['css border radius', 'rounded corners', 'css shapes', 'ui design', 'web design', 'css generator']
@@ -714,6 +713,37 @@ export const tools: Tool[] = [
       { question: 'Can I hash files with this tool?', answer: 'Currently, this tool is designed for text input. Hashing files would require file reading capabilities, which could be added as a future enhancement.' }
     ],
     keywords: ['hash generator', 'sha256', 'sha384', 'sha512', 'md5', 'sha1', 'security', 'cryptography', 'checksum']
+  },
+  {
+    id: 'md5-hash-generator',
+    title: 'MD5 Hash Generator',
+    description: 'Generate MD5 hashes from text input. Note: MD5 is not secure for cryptographic purposes.',
+    category: 'security',
+    icon: Icons.Hash,
+    iconName: 'Hash',
+    path: '/tools/md5-hash-generator',
+    longDescription: {
+      overview: 'The MD5 Hash Generator computes the MD5 hash for any given text input. MD5 is an older hashing algorithm that produces a 128-bit (16-byte) hash value, typically expressed as a 32-digit hexadecimal number. While widely used in the past, MD5 is no longer considered secure for cryptographic applications like password storage or digital signatures due to known vulnerabilities.',
+      useCases: [
+        'Verifying file integrity (checksums) where strong collision resistance is not critical.',
+        'Use in legacy systems that specifically require MD5.',
+        'Educational purposes to understand how MD5 works.',
+        'Generating unique identifiers for non-security-critical data.',
+      ],
+      howItWorks: 'Enter the text you want to hash into the input area. Click the "Generate MD5 Hash" button. The tool uses a client-side JavaScript implementation of the MD5 algorithm to compute the hash. The resulting MD5 hash value (as a 32-character hexadecimal string) will be displayed. You can then copy this hash value to your clipboard.',
+      tips: [
+        'MD5 is fast but has known collision vulnerabilities, meaning different inputs can produce the same hash.',
+        'For security-sensitive applications, use stronger hashing algorithms like SHA-256 or above.',
+        'Even a minor change in the input text will result in a significantly different MD5 hash.',
+      ],
+    },
+    faqs: [
+      { question: 'Is MD5 secure?', answer: 'No, MD5 is not considered secure for cryptographic purposes such as password hashing or ensuring data authenticity against malicious attacks. It has known collision vulnerabilities. However, it can still be used for non-cryptographic checksums to detect accidental data corruption.' },
+      { question: 'What is an MD5 hash used for today?', answer: 'It_s sometimes used for file integrity checks (checksums) in non-security-critical contexts, in some legacy systems, or for educational purposes to demonstrate hashing concepts. For new security applications, stronger algorithms like SHA-256 are recommended.' },
+      { question: 'Why isn_t MD5 available in the Web Crypto API?', answer: 'Modern browser APIs like Web Crypto focus on providing secure cryptographic primitives. Due to MD5_s known vulnerabilities, it is generally excluded from these standard APIs to discourage its use in new security-sensitive applications.' },
+      { question: 'Is my input text sent to a server?', answer: 'No, all MD5 hashing with this tool is performed client-side within your browser. Your input text remains private.' }
+    ],
+    keywords: ['md5 hash', 'md5 generator', 'hash', 'checksum', 'security', 'cryptography', 'legacy hash']
   },
   {
     id: 'base64-encoder-decoder',

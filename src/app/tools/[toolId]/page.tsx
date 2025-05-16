@@ -15,6 +15,7 @@ import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool';
 import { MarkdownToHTMLTool } from '@/components/tools/MarkdownToHTMLTool';
 import { PasswordGeneratorTool } from '@/components/tools/PasswordGeneratorTool';
 import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool';
+import { MD5HashGeneratorTool } from '@/components/tools/MD5HashGeneratorTool'; // New Import
 import { JSONFormatterTool } from '@/components/tools/JSONFormatterTool';
 import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool';
 import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool';
@@ -88,6 +89,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <PasswordGeneratorTool />;
       case 'hash-generator':
         return <HashGeneratorTool />;
+      case 'md5-hash-generator': // New Case
+        return <MD5HashGeneratorTool />;
       case 'json-formatter':
         return <JSONFormatterTool />;
       case 'jwt-decoder':
