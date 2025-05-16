@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 import { APP_NAME } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Tool Categories', // Changed: Removed APP_NAME
+  title: { absolute: 'Tool Categories' }, // Changed to absolute
   description: `Browse all tool categories available on ${APP_NAME}. Find tools for text manipulation, development, design, and more.`,
 };
 
