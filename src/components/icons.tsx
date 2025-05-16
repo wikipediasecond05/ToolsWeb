@@ -94,9 +94,13 @@ import {
   Dice5,
   Rocket,
   Cookie,
-  Network, // Added Network
+  Network,
   Baby,
   FileEdit,
+  ShieldOff, // Added
+  AlertTriangle, // Added
+  Ban, // Added
+  Copyright, // Added
 } from 'lucide-react';
 
 export const Icons = {
@@ -194,9 +198,13 @@ export const Icons = {
   Dice5,
   Rocket,
   Cookie,
-  Network, // Added Network
+  Network,
   Baby,
   FileEdit,
+  ShieldOff, // Added
+  AlertTriangle, // Added
+  Ban, // Added
+  Copyright, // Added
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
