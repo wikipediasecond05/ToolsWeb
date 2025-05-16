@@ -85,12 +85,13 @@ export function CommentSection({ toolId }: CommentSectionProps) {
 
     setIsSubmitting(true);
 
+    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 300));
 
     const commentToAdd: Comment = {
       id: Date.now().toString(),
       author: authorName,
-      email: authorEmail,
+      email: authorEmail, // Stored but not displayed for privacy
       text: newCommentText,
       timestamp: new Date(),
     };
@@ -116,7 +117,7 @@ export function CommentSection({ toolId }: CommentSectionProps) {
         <form onSubmit={handleSubmitComment} className="space-y-6 mb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="authorName" className="mb-3 block">Name</Label>
+              <Label htmlFor="authorName" className="mb-4 block">Name</Label>
               <Input
                 id="authorName"
                 value={authorName}
@@ -128,7 +129,7 @@ export function CommentSection({ toolId }: CommentSectionProps) {
               {formErrors.name && <p className="text-xs text-destructive mt-1">{formErrors.name}</p>}
             </div>
             <div>
-              <Label htmlFor="authorEmail" className="mb-3 block">Email</Label>
+              <Label htmlFor="authorEmail" className="mb-4 block">Email</Label>
               <Input
                 id="authorEmail"
                 type="email"
@@ -142,7 +143,7 @@ export function CommentSection({ toolId }: CommentSectionProps) {
             </div>
           </div>
           <div>
-            <Label htmlFor="newCommentText" className="mb-3 block">Your Comment</Label>
+            <Label htmlFor="newCommentText" className="mb-4 block">Your Comment</Label>
             <Textarea
               id="newCommentText"
               value={newCommentText}
@@ -175,7 +176,7 @@ export function CommentSection({ toolId }: CommentSectionProps) {
               <div key={comment.id} className="flex items-start space-x-3 sm:space-x-4">
                 <Avatar className="mt-1">
                   <AvatarImage src={comment.avatarUrl} alt={`${comment.author}'s avatar`} />
-                  <AvatarFallback>{comment.author.substring(0, 1).toUpperCase()}</AvatarFallback>
+                  <AvatarFallback>{comment.author.substring(0, 1).toUpperCase() || 'G'}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1 bg-muted/30 p-3 rounded-lg">
                   <div className="flex items-center justify-between mb-1">
