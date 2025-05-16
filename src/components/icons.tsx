@@ -28,9 +28,9 @@ import {
   Gauge,
   BookText,
   FileCode,
-  Link,
+  Link as LinkIcon, // Renamed to avoid conflict with NextLink
   Search,
-  GitBranch, 
+  GitBranch,
   Database,
   FileTerminal,
   Puzzle,
@@ -40,9 +40,9 @@ import {
   Workflow,
   FileSymlink,
   FolderGit2,
-  Pipette, 
-  BoxSelect, 
-  Square, 
+  Pipette,
+  BoxSelect,
+  Square,
   Type,
   TextCursorInput,
   ListRestart,
@@ -52,18 +52,26 @@ import {
   Text,
   FileLock2,
   Eraser,
-  Bed, 
-  Moon, 
-  Info, 
-  Copy as CopyIcon, 
+  Bed,
+  Moon,
+  Info,
+  Copy as CopyIcon,
   CalendarPlus,
-  Lightbulb, 
-  Image, 
-  Newspaper, 
+  Lightbulb,
+  Image,
+  Newspaper,
   GitCommit,
-  Thermometer, // Added for Temperature Converter
-  Ruler, // Added for Length Converter
-  Globe, // Alternative for URL Encoder/Decoder if Link is too generic
+  Thermometer,
+  Ruler,
+  Globe,
+  ThumbsUp,
+  Users,
+  Slash,
+  Star,
+  HelpCircle,
+  MessageSquare,
+  Zap, // Added Zap
+  CheckCircle, // Added CheckCircle
 } from 'lucide-react';
 
 export const Icons = {
@@ -95,7 +103,7 @@ export const Icons = {
   Gauge,
   BookText,
   FileCode,
-  Link,
+  Link: LinkIcon, // Use renamed LinkIcon
   Search,
   GitBranch,
   Database,
@@ -131,6 +139,14 @@ export const Icons = {
   Thermometer,
   Ruler,
   Globe,
+  ThumbsUp,
+  Users,
+  Slash,
+  Star,
+  HelpCircle,
+  MessageSquare,
+  Zap, // Added Zap
+  CheckCircle, // Added CheckCircle
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

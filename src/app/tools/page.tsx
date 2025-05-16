@@ -1,4 +1,5 @@
-'use client'; // For client-side filtering
+
+'use client'; 
 
 import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -8,8 +9,6 @@ import { getAllTools, getAllCategories, getCategoryById } from '@/lib/toolsData'
 import type { Tool, Category } from '@/types';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-// Removed metadata export as this is a client component
 
 export default function ToolsPage() {
   const searchParams = useSearchParams();
@@ -23,8 +22,10 @@ export default function ToolsPage() {
   const categories = useMemo(() => getAllCategories(), []);
 
   useEffect(() => {
+    const searchFromUrl = searchParams.get('search') || '';
+    setSearchTerm(searchFromUrl);
     setCategoryFilter(initialCategoryFilter);
-  }, [initialCategoryFilter]);
+  }, [searchParams, initialCategoryFilter]);
 
   const filteredTools = useMemo(() => {
     let tools = allTools;
@@ -55,10 +56,9 @@ export default function ToolsPage() {
   }, [allTools, searchTerm, categoryFilter, sortBy]);
 
   const toolsByCategory = useMemo(() => {
-    if (categoryFilter !== 'all' || searchTerm) { // If filtering by specific category or searching, show flat list
+    if (categoryFilter !== 'all' || searchTerm) { 
       return { 'Filtered Results': filteredTools };
     }
-    // Group by category for default view
     return filteredTools.reduce((acc, tool) => {
       const categoryName = getCategoryById(tool.category)?.name || 'Uncategorized';
       if (!acc[categoryName]) {
@@ -121,7 +121,7 @@ export default function ToolsPage() {
       {Object.entries(toolsByCategory).map(([categoryName, toolsList]) => (
         toolsList.length > 0 && (
           <section key={categoryName} className="mb-12">
-            {(categoryFilter === 'all' && !searchTerm) && ( // Only show category title if not specifically filtered/searched
+            {(categoryFilter === 'all' && !searchTerm) && ( 
               <h2 className="text-2xl font-semibold mb-6 pb-2 border-b">{categoryName}</h2>
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
