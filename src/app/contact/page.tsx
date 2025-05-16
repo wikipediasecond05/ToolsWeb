@@ -68,7 +68,7 @@ export default function ContactPage() {
           <CardContent>
             <form action={formAction} className="space-y-6">
               <div>
-                <Label htmlFor="name" className="mb-2 block">
+                <Label htmlFor="name" className="mb-3 block">
                   <Icons.User className="mr-2 h-4 w-4 inline-block align-middle" />
                   Name
                 </Label>
@@ -81,7 +81,7 @@ export default function ContactPage() {
                 )}
               </div>
               <div>
-                <Label htmlFor="email" className="mb-2 block">
+                <Label htmlFor="email" className="mb-3 block">
                   <Icons.Mail className="mr-2 h-4 w-4 inline-block align-middle" />
                   Email
                 </Label>
@@ -94,7 +94,7 @@ export default function ContactPage() {
                 )}
               </div>
               <div>
-                <Label htmlFor="message" className="mb-2 block">
+                <Label htmlFor="message" className="mb-3 block">
                   <Icons.MessageSquare className="mr-2 h-4 w-4 inline-block align-middle" />
                   Message
                 </Label>
