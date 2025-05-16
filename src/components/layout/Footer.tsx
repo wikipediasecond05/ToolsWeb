@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { APP_NAME } from '@/lib/constants';
 
@@ -11,7 +12,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t bg-background">
+    <footer className="border-t bg-muted">
       <div className="container mx-auto max-w-7xl py-8 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <p className="text-sm text-muted-foreground mb-4 md:mb-0">
