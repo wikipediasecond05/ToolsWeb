@@ -86,9 +86,10 @@ import {
   RefreshCw,
   FlipVertical2,
   FlipHorizontal2,
-  Shapes, // Added for SVG Blob Generator
-  GitFork, // Added for SVG Blob Generator
-  Dice5, // Added for SVG Blob Generator
+  Shapes,
+  GitFork,
+  Dice5,
+  Rocket, // Added Rocket
 } from 'lucide-react';
 
 export const Icons = {
@@ -178,9 +179,10 @@ export const Icons = {
   RefreshCw,
   FlipVertical2,
   FlipHorizontal2,
-  Shapes, // Ensure Shapes is exported
+  Shapes,
   GitFork,
   Dice5,
+  Rocket, // Added Rocket
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
