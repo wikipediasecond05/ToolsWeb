@@ -585,6 +585,40 @@ export const tools: Tool[] = [
     ],
     keywords: ['svg wave', 'wave generator', 'svg shape', 'css background', 'section separator', 'web design', 'vector graphics']
   },
+  {
+    id: 'svg-blob-generator',
+    title: 'SVG Blob Generator',
+    description: 'Create unique, organic SVG blob shapes for your designs.',
+    category: 'design-frontend',
+    icon: Icons.Shapes,
+    iconName: 'Shapes',
+    path: '/tools/svg-blob-generator',
+    longDescription: {
+      overview: 'The SVG Blob Generator allows you to interactively design smooth, organic, blob-like shapes. Adjust parameters like complexity (number of anchor points) and "edges" (irregularity/organic-ness) to create unique vector graphics. These blobs can be used as decorative backgrounds, abstract design elements, or even as part of illustrations.',
+      useCases: [
+        'Creating abstract backgrounds for websites or presentations.',
+        'Designing unique hero section shapes or section dividers.',
+        'Generating organic elements for logos or icons.',
+        'Adding a playful and modern touch to UI designs.',
+        'Learning about SVG path generation for curved and irregular shapes.'
+      ],
+      howItWorks: 'Use the "Complexity" slider to set the number of anchor points that define the blob_s general form (more points can lead to more "lobes"). The "Edges" slider controls how much each point_s radius can deviate from a perfect circle, making the blob more or less irregular/organic. Pick a "Fill Color". A "Randomize" button will generate new settings for a fresh blob. The live preview updates instantly. You can copy the full SVG code or download the blob as an .svg file.',
+      tips: [
+        'Low complexity (e.g., 3-5 points) with moderate edge variation often yields pleasing, simple blobs.',
+        'Higher complexity can create more intricate, "lumpy" shapes.',
+        'Setting "Edges" to 0 will result in a shape closer to a regular polygon (with smoothed corners). Setting it high will make the blob more unpredictable and "wobbly".',
+        'The "Randomize" button is great for quickly exploring different blob possibilities.',
+        'SVG blobs are vector graphics, so they scale perfectly without losing quality.'
+      ],
+    },
+    faqs: [
+      { question: 'How is the "blob" shape generated?', answer: 'It_s created by first calculating a set of anchor points around a central origin. Each point_s distance from the center (radius) is randomized based on the "Edges" setting. These anchor points are then connected using smooth cubic Bezier curves to create the organic, flowing outline.' },
+      { question: 'Can I control the exact position of each point?', answer: 'This tool focuses on generative creation through parameters. For fine-grained manual control over each point and curve, you would typically use a vector graphics editor like Inkscape or Adobe Illustrator.' },
+      { question: 'Are the blobs always filled shapes?', answer: 'Yes, this generator creates filled SVG paths. You can modify the SVG code later if you need only an outline (stroke) or want to apply other SVG effects.'},
+      { question: 'What does the "seed" do?', answer: 'The seed is an internal random number used in the generation process. Changing the seed (which the "Randomize" button does) results in a different blob shape even if other parameters are the same.'}
+    ],
+    keywords: ['svg blob', 'blob generator', 'organic shape', 'svg graphics', 'web design', 'generative art', 'vector shape']
+  },
   // Conversion Tools
   {
     id: 'csv-to-json',
@@ -785,7 +819,7 @@ export const tools: Tool[] = [
       { question: 'Is my input text sent to a server?', answer: 'No, all hashing is performed client-side within your browser using the Web Crypto API. Your input text remains private.' },
       { question: 'Can I hash files with this tool?', answer: 'Currently, this tool is designed for text input. Hashing files would require file reading capabilities, which could be added as a future enhancement.' }
     ],
-    keywords: ['hash generator', 'sha256', 'sha384', 'sha512', 'md5', 'sha1', 'security', 'cryptography', 'checksum']
+    keywords: ['hash generator', 'sha256', 'sha384', 'sha512', 'security', 'cryptography', 'checksum']
   },
   {
     id: 'md5-hash-generator',
@@ -1281,4 +1315,3 @@ export const getSerializableTools = (toolsList: Tool[]): Omit<Tool, 'icon'>[] =>
     return serializableTool;
   });
 };
-

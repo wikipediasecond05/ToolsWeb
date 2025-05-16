@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 const VIEWBOX_SIZE = 200; // Blobs are often best viewed in a square-ish container
 
 export function SvgBlobGeneratorTool() {
-  const [fillColor, setFillColor] = useState<string>('#3b82f6'); // Default to theme primary (blue)
+  const [fillColor, setFillColor] = useState<string>('#f97316'); // Default to theme primary (orange)
   const [complexity, setComplexity] = useState<number>(6); // 3-15 points
   const [edges, setEdges] = useState<number>(50); // 0-100, irregularity
   const [seed, setSeed] = useState<number>(() => Math.random());
@@ -33,7 +33,7 @@ export function SvgBlobGeneratorTool() {
     for (let i = 0; i < numPoints; i++) {
       const angle = i * angleStep + seed; // Add seed for variation
       // Allow radius to vary from baseRadius - (edges/100 * baseRadius/2) to baseRadius + (edges/100 * baseRadius/2)
-      const randomFactor = (Math.sin(seed * (i + 1) * 5) + 1) / 2; // More controlled randomness based on seed
+      const randomFactor = (Math.sin(seed * (i + 1) * 5 + i*Math.PI/3) + 1) / 2; // More controlled randomness based on seed & index
       const radiusVariation = (baseRadius / 2) * (edges / 100) * (randomFactor - 0.5) * 2;
       const radius = baseRadius + radiusVariation;
       
@@ -53,13 +53,16 @@ export function SvgBlobGeneratorTool() {
     for (let i = 0; i < numPoints; i++) {
       const p0 = points[i];
       const p1 = points[(i + 1) % numPoints];
+      const p2 = points[(i + 2) % numPoints];
+      const p3 = points[(i + 3) % numPoints]; // For Catmull-Rom calculation
       
-      // Calculate control points for a smooth curve
-      // This is a simplified approach; more sophisticated methods exist
-      const cp1x = (p0.x + p1.x) / 2 + (Math.cos(i * angleStep + seed + Math.PI/2) * (edges/100 * 20));
-      const cp1y = (p0.y + p1.y) / 2 + (Math.sin(i * angleStep + seed + Math.PI/2) * (edges/100 * 20));
-      const cp2x = (p0.x + p1.x) / 2 - (Math.cos((i+1) * angleStep + seed + Math.PI/2) * (edges/100 * 20));
-      const cp2y = (p0.y + p1.y) / 2 - (Math.sin((i+1) * angleStep + seed + Math.PI/2) * (edges/100 * 20));
+      // Simplified control points for Bezier, could use Catmull-Rom for better control
+      // Control point 1: towards p1 from p0
+      const cp1x = p0.x + (p1.x - p0.x) / 3 + Math.sin(seed + i) * (edges / 100 * 10);
+      const cp1y = p0.y + (p1.y - p0.y) / 3 - Math.cos(seed + i) * (edges / 100 * 10);
+      // Control point 2: towards p0 from p1
+      const cp2x = p1.x - (p1.x - p0.x) / 3 - Math.sin(seed + i + 1) * (edges / 100 * 10);
+      const cp2y = p1.y - (p1.y - p0.y) / 3 + Math.cos(seed + i + 1) * (edges / 100 * 10);
 
       d += ` C ${cp1x.toFixed(2)},${cp1y.toFixed(2)} ${cp2x.toFixed(2)},${cp2y.toFixed(2)} ${p1.x.toFixed(2)},${p1.y.toFixed(2)}`;
     }

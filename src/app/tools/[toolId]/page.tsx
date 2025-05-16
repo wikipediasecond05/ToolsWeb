@@ -34,7 +34,7 @@ import { CSSGradientGeneratorTool } from '@/components/tools/CSSGradientGenerato
 import { CSSBoxShadowGeneratorTool } from '@/components/tools/CSSBoxShadowGeneratorTool';
 import { CSSBorderRadiusGeneratorTool } from '@/components/tools/CSSBorderRadiusGeneratorTool';
 import { SvgWaveGeneratorTool } from '@/components/tools/SvgWaveGeneratorTool';
-import { SvgBlobGeneratorTool } from '@/components/tools/SvgBlobGeneratorTool'; // Added import
+import { SvgBlobGeneratorTool } from '@/components/tools/SvgBlobGeneratorTool'; 
 import { TemperatureConverterTool } from '@/components/tools/TemperatureConverterTool';
 import { LengthConverterTool } from '@/components/tools/LengthConverterTool';
 import { Base64EncoderDecoderTool } from '@/components/tools/Base64EncoderDecoderTool';
@@ -42,6 +42,7 @@ import { UrlEncoderDecoderTool } from '@/components/tools/UrlEncoderDecoderTool'
 import { RgbToHexConverterTool } from '@/components/tools/RgbToHexConverterTool';
 import { HexToRgbConverterTool } from '@/components/tools/HexToRgbConverterTool';
 import { CronjobExpressionGeneratorTool } from '@/components/tools/CronjobExpressionGeneratorTool';
+import { URLSlugGeneratorTool } from '@/components/tools/URLSlugGeneratorTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -127,7 +128,7 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <CSSBorderRadiusGeneratorTool />;
       case 'svg-wave-generator':
         return <SvgWaveGeneratorTool />;
-      case 'svg-blob-generator': // Added case for blob generator
+      case 'svg-blob-generator':
         return <SvgBlobGeneratorTool />;
       case 'temperature-converter':
         return <TemperatureConverterTool />;
@@ -263,4 +264,3 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
-
