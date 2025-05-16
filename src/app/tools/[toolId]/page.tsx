@@ -190,9 +190,7 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
             <EmojiRating toolId={tool.id} />
           </div>
 
-          <section>
-            <CommentSection toolId={tool.id} />
-          </section>
+          <CommentSection toolId={tool.id} />
 
           {/* Long Description */}
           {tool.longDescription && (
@@ -238,7 +236,7 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
                   <ul className="list-none pl-0 space-y-3 text-lg text-muted-foreground leading-relaxed mb-4">
                     {tool.longDescription.tips.map((tip, index) => (
                       <li key={index} className="flex items-start">
-                        <Icons.Lightbulb className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                        <Icons.CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
                         <div>{tip}</div>
                       </li>
                     ))}
