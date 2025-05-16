@@ -52,7 +52,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Icons } from '@/components/icons';
-import type { Tool, RelatedToolData } from '@/types';
+import type { RelatedToolData } from '@/types';
 
 
 export default function ToolPage({ params }: { params: { toolId: string } }) {
@@ -210,9 +210,12 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
                     <Icons.CheckCircle className="h-6 w-6 text-primary" />
                     Use Cases
                   </h2>
-                  <ul className="list-disc list-inside space-y-1 text-lg text-muted-foreground leading-relaxed mb-4 pl-5">
+                  <ul className="list-none pl-0 space-y-3 text-lg text-muted-foreground leading-relaxed mb-4">
                     {tool.longDescription.useCases.map((useCase, index) => (
-                      <li key={index}>{useCase}</li>
+                       <li key={index} className="flex items-start">
+                        <Icons.CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                        <div>{useCase}</div>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -232,9 +235,12 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
                     <Icons.Lightbulb className="h-6 w-6 text-primary" />
                     Tips for Better Usage
                   </h2>
-                  <ul className="list-disc list-inside space-y-1 text-lg text-muted-foreground leading-relaxed mb-4 pl-5">
+                  <ul className="list-none pl-0 space-y-3 text-lg text-muted-foreground leading-relaxed mb-4">
                     {tool.longDescription.tips.map((tip, index) => (
-                      <li key={index}>{tip}</li>
+                      <li key={index} className="flex items-start">
+                        <Icons.Lightbulb className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                        <div>{tip}</div>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -276,3 +282,4 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
+
