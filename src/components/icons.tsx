@@ -65,10 +65,10 @@ import {
   Ruler,
   Globe,
   ThumbsUp,
-  Users, // Keep Users for other parts of the app
-  User, // Added for contact form
-  Mail, // Added for contact form
-  Send, // Added for contact form
+  Users,
+  User,
+  Mail,
+  Send,
   Slash,
   Star,
   Heart,
@@ -93,6 +93,10 @@ import {
   GitFork,
   Dice5,
   Rocket,
+  Cookie,
+  Network, // Added Network
+  Baby,
+  FileEdit,
 } from 'lucide-react';
 
 export const Icons = {
@@ -162,9 +166,9 @@ export const Icons = {
   Globe,
   ThumbsUp,
   Users,
-  User, // Added
-  Mail, // Added
-  Send, // Added
+  User,
+  Mail,
+  Send,
   Slash,
   Star,
   Heart,
@@ -189,6 +193,10 @@ export const Icons = {
   GitFork,
   Dice5,
   Rocket,
+  Cookie,
+  Network, // Added Network
+  Baby,
+  FileEdit,
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
