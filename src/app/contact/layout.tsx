@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
 import { APP_NAME } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Favorite Tools' },
-  description: `Your collection of favorite tools on ${APP_NAME}. Manage and quickly access your pinned utilities.`,
+  title: { absolute: 'Contact Us' },
+  description: `Get in touch with the ${APP_NAME} team. Send us your feedback, suggestions, or inquiries.`,
 };
 
-export default function FavoritesLayout({
+export default function ContactPageLayout({
   children,
 }: {
   children: React.ReactNode;
