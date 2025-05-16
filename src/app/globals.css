@@ -96,6 +96,13 @@
     --sidebar-border: 217 19% 27%; 
     --sidebar-ring: 24 90% 58%; 
   }
+
+  .prose a {
+    @apply text-primary hover:underline;
+  }
+  .prose-invert a { /* For dark mode, ensure links are still styled with primary */
+    @apply text-primary hover:underline;
+  }
 }
 
 @layer base {
