@@ -2,8 +2,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useActionState } from 'react'; 
-import { useFormStatus } from 'react-dom'; 
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,11 +12,21 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { submitContactForm, type ContactFormState } from '@/lib/actions';
 import { useToast } from "@/hooks/use-toast";
+import { Icons } from '@/components/icons'; // Import Icons
 
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className="w-full">
+    <Button 
+      type="submit" 
+      disabled={pending} 
+      className="w-full transition-transform duration-150 ease-in-out hover:scale-105 active:scale-95"
+    >
+      {pending ? (
+        <Icons.Loader2 className="animate-spin" />
+      ) : (
+        <Icons.Send />
+      )}
       {pending ? 'Sending...' : 'Send Message'}
     </Button>
   );
@@ -34,6 +44,7 @@ export default function ContactPage() {
           title: "Message Sent!",
           description: state.message,
         });
+        // Optionally reset form fields here if needed, but useActionState often handles this by re-rendering.
       } else {
         toast({
           title: "Error",
@@ -48,7 +59,7 @@ export default function ContactPage() {
     <PageWrapper>
       <div className="max-w-xl mx-auto">
         <Card className="shadow-lg">
-          <CardHeader className="text-center">
+          <CardHeader className="text-left">
             <CardTitle className="text-3xl font-bold">Contact Us</CardTitle>
             <CardDescription>
               Your questions, feedback, and suggestions are important to us. We look forward to hearing from you!
@@ -57,7 +68,10 @@ export default function ContactPage() {
           <CardContent>
             <form action={formAction} className="space-y-6">
               <div>
-                <Label htmlFor="name" className="mb-2 block">Name</Label>
+                <Label htmlFor="name" className="mb-2 block">
+                  <Icons.User className="mr-2 h-4 w-4 inline-block align-middle" />
+                  Name
+                </Label>
                 <Input id="name" name="name" type="text" placeholder="Your Name" required 
                        defaultValue={state.fields?.name}
                        className="focus-visible:border-transparent"
@@ -67,7 +81,10 @@ export default function ContactPage() {
                 )}
               </div>
               <div>
-                <Label htmlFor="email" className="mb-2 block">Email</Label>
+                <Label htmlFor="email" className="mb-2 block">
+                  <Icons.Mail className="mr-2 h-4 w-4 inline-block align-middle" />
+                  Email
+                </Label>
                 <Input id="email" name="email" type="email" placeholder="your@email.com" required 
                        defaultValue={state.fields?.email}
                        className="focus-visible:border-transparent"
@@ -77,7 +94,10 @@ export default function ContactPage() {
                 )}
               </div>
               <div>
-                <Label htmlFor="message" className="mb-2 block">Message</Label>
+                <Label htmlFor="message" className="mb-2 block">
+                  <Icons.MessageSquare className="mr-2 h-4 w-4 inline-block align-middle" />
+                  Message
+                </Label>
                 <Textarea
                   id="message"
                   name="message"
