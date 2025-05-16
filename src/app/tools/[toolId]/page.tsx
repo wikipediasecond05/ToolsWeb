@@ -196,20 +196,15 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
 
           {/* Long Description */}
           {tool.longDescription && (
-            <section className="prose dark:prose-invert max-w-none
-                                prose-headings:font-semibold prose-headings:text-foreground
-                                prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-8 prose-h2:border-b prose-h2:pb-2
-                                prose-p:leading-relaxed prose-p:text-muted-foreground
-                                prose-ul:list-disc prose-ul:pl-6 prose-ul:space-y-1
-                                prose-li:text-muted-foreground">
-              <div className="mb-8">
-                <h2 className="!mt-0">Overview</h2> {/* !mt-0 for first heading in prose */}
-                <p>{tool.longDescription.overview}</p>
+            <section className="space-y-6">
+              <div>
+                <h2 className="text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">Overview</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-4">{tool.longDescription.overview}</p>
               </div>
               {tool.longDescription.useCases && tool.longDescription.useCases.length > 0 && (
-                <div className="mb-8">
-                  <h2>Use Cases</h2>
-                  <ul>
+                <div>
+                  <h2 className="text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">Use Cases</h2>
+                  <ul className="list-disc list-inside space-y-1 text-lg text-muted-foreground leading-relaxed mb-4">
                     {tool.longDescription.useCases.map((useCase, index) => (
                       <li key={index}>{useCase}</li>
                     ))}
@@ -217,15 +212,15 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
                 </div>
               )}
               {tool.longDescription.howItWorks && (
-                <div className="mb-8">
-                  <h2>How It Works</h2>
-                  <p>{tool.longDescription.howItWorks}</p>
+                <div>
+                  <h2 className="text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">How It Works</h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-4">{tool.longDescription.howItWorks}</p>
                 </div>
               )}
               {tool.longDescription.tips && tool.longDescription.tips.length > 0 && (
-                <div className="mb-8">
-                  <h2>Tips for Better Usage</h2>
-                  <ul>
+                <div>
+                  <h2 className="text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">Tips for Better Usage</h2>
+                  <ul className="list-disc list-inside space-y-1 text-lg text-muted-foreground leading-relaxed mb-4">
                     {tool.longDescription.tips.map((tip, index) => (
                       <li key={index}>{tip}</li>
                     ))}
@@ -237,13 +232,15 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
 
           {/* FAQs */}
           {tool.faqs && tool.faqs.length > 0 && (
-            <section>
-              <h2 className="text-2xl font-semibold mb-6 text-center">Frequently Asked Questions</h2>
+            <section className="pt-6">
+              <h2 className="text-3xl font-bold mb-8 text-foreground border-b pb-3">Frequently Asked Questions</h2>
               <Accordion type="single" collapsible className="w-full">
                 {tool.faqs.map((faq, index) => (
                   <AccordionItem value={`item-${index}`} key={index}>
-                    <AccordionTrigger className="hover:no-underline text-left">{faq.question}</AccordionTrigger>
-                    <AccordionContent>{faq.answer}</AccordionContent>
+                    <AccordionTrigger className="hover:no-underline text-left text-lg">{faq.question}</AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-base text-muted-foreground leading-relaxed">{faq.answer}</p>
+                    </AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
