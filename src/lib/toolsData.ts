@@ -5,7 +5,7 @@ import { Icons } from '@/components/icons';
 export const categories: Category[] = [
   {
     id: 'text-string',
-    name: 'Text & String Tools',
+    name: 'String Tools',
     description: 'Manipulate and analyze text effortlessly.',
     icon: Icons.Type,
     iconName: 'Type',
@@ -21,7 +21,7 @@ export const categories: Category[] = [
   },
   {
     id: 'design-frontend',
-    name: 'Design & Frontend Tools',
+    name: 'Design Tools',
     description: 'Optimize and beautify your frontend assets.',
     icon: Icons.Paintbrush,
     iconName: 'Paintbrush',
@@ -1116,7 +1116,7 @@ export const tools: Tool[] = [
         'Generating alt text for large batches of images more quickly.',
         'Ensuring compliance with accessibility standards (WCAG).',
       ],
-      howItWorks: 'Click "Choose Image" to upload an image file (PNG, JPG, GIF, etc.). The image will be previewed. Click "Generate Alt Text". The AI will analyze the image data (sent as a Data URI) and suggest descriptive alt text. Review the suggestion for accuracy and context. Max file size: 5MB.',
+      howItWorks: 'Click "Choose Image" to upload an image file (PNG, JPG, GIF, WebP, etc.). The image will be previewed. Click "Generate Alt Text". The AI will analyze the image data (sent as a Data URI) and suggest descriptive alt text. Review the suggestion for accuracy and context. Max file size: 5MB.',
       tips: [
         'Good alt text is concise yet descriptive, conveying the purpose or content of the image.',
         'Avoid starting alt text with "Image of..." or "Picture of..." as it_s usually redundant.',
@@ -1139,6 +1139,3 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
-
-
-    
