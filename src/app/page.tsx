@@ -3,14 +3,14 @@ import { PageWrapper } from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { APP_NAME, APP_TAGLINE } from '@/lib/constants';
-import { CategoryCard } from '@/components/categories/CategoryCard';
 import { ToolCard } from '@/components/tools/ToolCard';
 import { getAllCategories, getAllTools, getToolsByCategory } from '@/lib/toolsData';
-import type { SerializableToolData } from '@/types'; // Ensure this type is available
+import type { SerializableToolData } from '@/types'; 
 import { HeroShineEffect } from '@/components/layout/HeroShineEffect';
 import { HomepageSearch } from '@/components/search/HomepageSearch';
 import { Icons } from '@/components/icons';
 import type { Metadata } from 'next';
+import { FavoriteToolsSection } from '@/components/homepage/FavoriteToolsSection';
 
 export const metadata: Metadata = {
   title: { absolute: APP_TAGLINE },
@@ -70,6 +70,8 @@ export default function HomePage() {
       </HeroShineEffect>
 
       <PageWrapper>
+        <FavoriteToolsSection />
+
         <section className="py-12 md:py-16">
           <div className="flex items-center gap-3 mb-10">
             <Icons.Sparkles className="h-8 w-8 text-primary" />
@@ -102,12 +104,12 @@ export default function HomePage() {
 
             if (toolsInCategory.length === 0) return null; // Skip category if no tools
 
-            const CategoryIcon = category.iconName ? Icons[category.iconName] : Icons.Component;
+            const CategoryIconComponent = category.iconName ? Icons[category.iconName as keyof typeof Icons] || Icons.Component : Icons.Component;
             return (
               <div key={category.id} className="mb-16">
                 <div className="flex justify-between items-center mb-8">
                   <div className="flex items-center gap-3">
-                    {CategoryIcon && <CategoryIcon className="h-8 w-8 text-primary" />}
+                    {CategoryIconComponent && <CategoryIconComponent className="h-8 w-8 text-primary" />}
                     <h2 className="text-3xl font-bold">{category.name}</h2>
                   </div>
                   <Button asChild variant="link" size="sm">
