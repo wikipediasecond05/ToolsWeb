@@ -27,13 +27,12 @@ export function SvgBlobGeneratorTool() {
     const numPoints = Math.max(3, Math.floor(complexity));
     const angleStep = (Math.PI * 2) / numPoints;
     const center = VIEWBOX_SIZE / 2;
-    const baseRadius = center * 0.8; // Base radius for the blob
+    const baseRadius = center * 0.8; 
 
     const points = [];
     for (let i = 0; i < numPoints; i++) {
-      const angle = i * angleStep + seed; // Add seed for variation
-      // Allow radius to vary from baseRadius - (edges/100 * baseRadius/2) to baseRadius + (edges/100 * baseRadius/2)
-      const randomFactor = (Math.sin(seed * (i + 1) * 5 + i*Math.PI/3) + 1) / 2; // More controlled randomness based on seed & index
+      const angle = i * angleStep + seed * Math.PI * 2; // Use seed to offset initial angle phase
+      const randomFactor = (Math.sin(seed * (i + 1) * 5 + i * Math.PI / 3 + seed) + 1) / 2;
       const radiusVariation = (baseRadius / 2) * (edges / 100) * (randomFactor - 0.5) * 2;
       const radius = baseRadius + radiusVariation;
       
@@ -47,26 +46,27 @@ export function SvgBlobGeneratorTool() {
         setFullSvgCode('');
         return;
     }
-
-    // Create a smooth path using Bezier curves
+    
     let d = `M ${points[0].x.toFixed(2)} ${points[0].y.toFixed(2)}`;
-    for (let i = 0; i < numPoints; i++) {
-      const p0 = points[i];
-      const p1 = points[(i + 1) % numPoints];
-      const p2 = points[(i + 2) % numPoints];
-      const p3 = points[(i + 3) % numPoints]; // For Catmull-Rom calculation
-      
-      // Simplified control points for Bezier, could use Catmull-Rom for better control
-      // Control point 1: towards p1 from p0
-      const cp1x = p0.x + (p1.x - p0.x) / 3 + Math.sin(seed + i) * (edges / 100 * 10);
-      const cp1y = p0.y + (p1.y - p0.y) / 3 - Math.cos(seed + i) * (edges / 100 * 10);
-      // Control point 2: towards p0 from p1
-      const cp2x = p1.x - (p1.x - p0.x) / 3 - Math.sin(seed + i + 1) * (edges / 100 * 10);
-      const cp2y = p1.y - (p1.y - p0.y) / 3 + Math.cos(seed + i + 1) * (edges / 100 * 10);
+    const K = 1/6; // Smoothing factor for Catmull-Rom to Bezier control points
 
-      d += ` C ${cp1x.toFixed(2)},${cp1y.toFixed(2)} ${cp2x.toFixed(2)},${cp2y.toFixed(2)} ${p1.x.toFixed(2)},${p1.y.toFixed(2)}`;
+    for (let i = 0; i < numPoints; i++) {
+      const P_prev = points[(i - 1 + numPoints) % numPoints];
+      const P_current = points[i];
+      const P_next = points[(i + 1) % numPoints];
+      const P_afterNext = points[(i + 2) % numPoints];
+
+      // Control point 1 for the segment from P_current to P_next
+      const cp1x = P_current.x + (P_next.x - P_prev.x) * K;
+      const cp1y = P_current.y + (P_next.y - P_prev.y) * K;
+
+      // Control point 2 for the segment from P_current to P_next
+      const cp2x = P_next.x - (P_afterNext.x - P_current.x) * K;
+      const cp2y = P_next.y - (P_afterNext.y - P_current.y) * K;
+      
+      d += ` C ${cp1x.toFixed(2)},${cp1y.toFixed(2)} ${cp2x.toFixed(2)},${cp2y.toFixed(2)} ${P_next.x.toFixed(2)},${P_next.y.toFixed(2)}`;
     }
-    d += " Z"; // Close the path
+    d += " Z"; 
 
     setGeneratedPathD(d);
     const svgOutput = `<svg width="100%" height="100%" viewBox="0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
@@ -84,7 +84,7 @@ export function SvgBlobGeneratorTool() {
     setFillColor('#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0'));
     setComplexity(Math.floor(Math.random() * 13) + 3); // 3-15
     setEdges(Math.floor(Math.random() * 101)); // 0-100
-    setSeed(Math.random()); // This will trigger re-generation
+    setSeed(Math.random()); 
   };
 
   const handleCopyToClipboard = (text: string) => {
