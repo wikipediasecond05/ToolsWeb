@@ -23,12 +23,14 @@ export default function TermsOfUsePage() {
 
       <div className="max-w-3xl mx-auto space-y-10 md:space-y-12 pb-12">
         <section>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Welcome to {APP_NAME} (referred to as "{APP_DOMAIN}", "we", "us", or "our"). These Terms of Use ("Terms") govern your access to and use of our website {APP_DOMAIN}, including any content, functionality, and services offered on or through {APP_DOMAIN} (the "Site").
-          </p>
-          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-            Please read these Terms carefully before you start to use the Site. By using the Site, you accept and agree to be bound and abide by these Terms and our Privacy Policy, found at <a href="/privacy" className="text-primary hover:underline">/privacy</a>, incorporated herein by reference. If you do not want to agree to these Terms or the Privacy Policy, you must not access or use the Site.
-          </p>
+          <div className="prose prose-lg dark:prose-invert max-w-none">
+            <p>
+              Welcome to {APP_NAME} (referred to as "{APP_DOMAIN}", "we", "us", or "our"). These Terms of Use ("Terms") govern your access to and use of our website {APP_DOMAIN}, including any content, functionality, and services offered on or through {APP_DOMAIN} (the "Site").
+            </p>
+            <p>
+              Please read these Terms carefully before you start to use the Site. By using the Site, you accept and agree to be bound and abide by these Terms and our Privacy Policy, found at <a href="/privacy" className="text-primary hover:underline">/privacy</a>, incorporated herein by reference. If you do not want to agree to these Terms or the Privacy Policy, you must not access or use the Site.
+            </p>
+          </div>
         </section>
 
         <section>
