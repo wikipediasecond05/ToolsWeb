@@ -28,7 +28,7 @@ import {
   Gauge,
   BookText,
   FileCode,
-  Link as LinkIcon, 
+  Link as LinkIcon,
   Search,
   GitBranch,
   Database,
@@ -81,11 +81,14 @@ import {
   Loader2,
   Upload,
   CalendarClock,
-  Waves, // Added for SVG Wave Generator
-  Download, // Added for SVG Wave Generator
-  RefreshCw, // Added for SVG Wave Generator (Randomize)
-  FlipVertical2, // Added for SVG Wave Generator
-  FlipHorizontal2, // Added for SVG Wave Generator
+  Waves,
+  Download,
+  RefreshCw,
+  FlipVertical2,
+  FlipHorizontal2,
+  Shapes, // Added for SVG Blob Generator
+  GitFork, // Added for SVG Blob Generator
+  Dice5, // Added for SVG Blob Generator
 } from 'lucide-react';
 
 export const Icons = {
@@ -125,7 +128,7 @@ export const Icons = {
   Puzzle,
   SquareCode,
   Component,
-  Layers3, 
+  Layers3,
   Workflow,
   FileSymlink,
   FolderGit2,
@@ -143,7 +146,7 @@ export const Icons = {
   Eraser,
   Bed,
   Moon,
-  Info, 
+  Info,
   CopyIcon,
   CalendarPlus,
   Lightbulb,
@@ -156,10 +159,10 @@ export const Icons = {
   ThumbsUp,
   Users,
   Slash,
-  Star, 
-  Heart, 
+  Star,
+  Heart,
   HelpCircle,
-  MessageSquare, 
+  MessageSquare,
   Zap,
   CheckCircle,
   Angry,
@@ -167,14 +170,17 @@ export const Icons = {
   Meh,
   Smile,
   Laugh,
-  Loader2, 
-  Upload, 
+  Loader2,
+  Upload,
   CalendarClock,
-  Waves, // Added
-  Download, // Added
-  RefreshCw, // Added
-  FlipVertical2, // Added
-  FlipHorizontal2, // Added
+  Waves,
+  Download,
+  RefreshCw,
+  FlipVertical2,
+  FlipHorizontal2,
+  Shapes, // Ensure Shapes is exported
+  GitFork,
+  Dice5,
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
