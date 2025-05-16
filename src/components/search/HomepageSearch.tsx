@@ -91,7 +91,7 @@ export function HomepageSearch() {
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           placeholder="Search for tools... (e.g., JSON, Color Picker, Password)"
-          className="w-full h-14 pl-12 pr-16 rounded-full text-lg shadow-lg border-border focus-visible:ring-primary/80"
+          className="w-full h-14 pl-12 pr-16 rounded-full text-lg shadow-lg border-border focus-visible:ring-primary/80 focus-visible:border-transparent"
           aria-label="Search for tools"
         />
         <div className="absolute right-4 top-1/2 -translate-y-1/2">
@@ -102,19 +102,21 @@ export function HomepageSearch() {
       </div>
       {isInputFocused && searchResults.length > 0 && searchTerm.trim() !== '' && (
         <div className="absolute mt-2 w-full bg-background border border-border rounded-md shadow-xl z-50 max-h-80 overflow-y-auto p-2">
-          <ul>
+          <ul className="pb-1"> {/* Added padding-bottom to the list itself */}
             {searchResults.map((tool) => {
               const IconComponent = tool.iconName ? Icons[tool.iconName as IconName] || Icons.Settings2 : Icons.Settings2;
               return (
                 <li key={tool.id}>
                   <Link
                     href={tool.path}
-                    className="flex items-center gap-3 p-3 hover:bg-accent/50 rounded-md transition-colors text-sm"
+                    className="flex items-center gap-3 p-3 hover:bg-accent/50 rounded-md transition-colors text-sm text-left" // Ensured text-left
                     onClick={() => setIsInputFocused(false)} // Close preview on click
                   >
-                    <IconComponent className="h-5 w-5 text-primary" />
-                    <span className="text-foreground">{tool.title}</span>
-                    <span className="text-xs text-muted-foreground line-clamp-1 ml-auto hidden sm:inline">{tool.description}</span>
+                    <IconComponent className="h-5 w-5 text-primary flex-shrink-0" />
+                    <div className="flex-grow overflow-hidden">
+                      <span className="text-foreground block truncate">{tool.title}</span>
+                      <span className="text-xs text-muted-foreground line-clamp-1 block truncate">{tool.description}</span>
+                    </div>
                   </Link>
                 </li>
               );

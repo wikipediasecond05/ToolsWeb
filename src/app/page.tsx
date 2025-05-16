@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const categories = getAllCategories().slice(0, 6); 
-  const popularTools = getAllTools().slice(0, 8); // Show 8 popular tools for better grid fill
+  const popularTools = getAllTools().slice(0, 8); 
 
   const testimonials = [
     {
@@ -39,9 +39,9 @@ export default function HomePage() {
   ];
 
   return (
-    <PageWrapper className="!py-0 md:!py-0"> {/* Remove PageWrapper default padding for hero */}
+    <> {/* Use a fragment to allow HeroShineEffect to be full-width before PageWrapper */}
       {/* Hero Section */}
-      <HeroShineEffect className="mb-12 border-b">
+      <HeroShineEffect className="mb-12 border-b"> {/* This border will now be full-width */}
         <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
             Welcome to <span className="text-primary">{APP_NAME}</span>
@@ -63,7 +63,7 @@ export default function HomePage() {
         </section>
       </HeroShineEffect>
 
-      <PageWrapper> {/* Re-introduce PageWrapper for subsequent sections */}
+      <PageWrapper> {/* PageWrapper for subsequent sections */}
         {/* Tool Categories */}
         <section className="py-12 md:py-16">
           <div className="flex items-center gap-3 mb-10">
@@ -146,6 +146,6 @@ export default function HomePage() {
             </div>
         </section>
       </PageWrapper>
-    </PageWrapper>
+    </>
   );
 }
