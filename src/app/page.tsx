@@ -47,7 +47,7 @@ export default function HomePage() {
 
   return (
     <>
-      <HeroShineEffect className="mb-12 border-b">
+      <HeroShineEffect className="border-b"> {/* Removed mb-12 */}
         <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
             Welcome to <span className="text-primary">{APP_NAME}</span>
@@ -171,3 +171,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    
