@@ -88,7 +88,7 @@ export function JWTDecoderTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">JWT Decoder</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Paste a JSON Web Token (JWT) to decode and inspect its header and payload.
         </CardDescription>
       </CardHeader>
@@ -108,7 +108,7 @@ export function JWTDecoderTool() {
             onChange={(e) => setJwtInput(e.target.value)}
             placeholder="Paste your JWT here..."
             rows={6}
-            className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="font-mono border-border focus-visible:ring-primary"
             aria-label="Input JWT string"
           />
         </div>
@@ -132,7 +132,7 @@ export function JWTDecoderTool() {
               value={decodedHeader}
               readOnly
               rows={5}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
               aria-label="Decoded JWT Header"
             />
           </div>
@@ -146,7 +146,7 @@ export function JWTDecoderTool() {
               value={decodedPayload}
               readOnly
               rows={10}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
               aria-label="Decoded JWT Payload"
             />
           </div>
@@ -160,7 +160,7 @@ export function JWTDecoderTool() {
               value={signature}
               readOnly
               rows={3}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
               aria-label="JWT Signature"
             />
           </div>

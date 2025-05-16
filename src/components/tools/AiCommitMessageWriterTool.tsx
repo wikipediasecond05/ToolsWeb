@@ -64,7 +64,7 @@ export function AiCommitMessageWriterTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">AI Commit Message Writer</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Describe your changes or paste a diff, and let AI suggest a conventional commit message.
         </CardDescription>
       </CardHeader>
@@ -86,7 +86,7 @@ export function AiCommitMessageWriterTool() {
             onChange={(e) => setChangeDescription(e.target.value)}
             placeholder="e.g., Added new user authentication feature using JWT..."
             rows={8}
-            className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="font-mono border-border focus-visible:ring-primary"
           />
         </div>
 
@@ -116,7 +116,7 @@ export function AiCommitMessageWriterTool() {
         {generatedMessage && (
           <div className="space-y-2 pt-4 border-t border-border">
             <div className="flex justify-between items-center">
-                <Label htmlFor="generatedMessage" className="font-semibold block">Suggested Commit Message</Label>
+                <Label htmlFor="generatedMessage" className="font-semibold mb-2 block">Suggested Commit Message</Label>
                 <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                     <Copy className="mr-2 h-4 w-4" /> Copy
                 </Button>
@@ -126,7 +126,7 @@ export function AiCommitMessageWriterTool() {
               value={generatedMessage}
               readOnly
               rows={5}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
             />
           </div>
         )}

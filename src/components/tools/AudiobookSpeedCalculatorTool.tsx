@@ -113,7 +113,7 @@ export function AudiobookSpeedCalculatorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Audiobook Speed Calculator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Calculate new listening time and time saved for your audiobooks.
         </CardDescription>
       </CardHeader>
@@ -136,7 +136,7 @@ export function AudiobookSpeedCalculatorTool() {
                   onChange={(e) => setOriginalHours(e.target.value)}
                   placeholder="0"
                   min="0"
-                  className="w-full border-border focus-visible:ring-primary focus-visible:border-transparent"
+                  className="w-full border-border focus-visible:ring-primary"
                   aria-label="Original hours"
                 /> <span className="text-muted-foreground">hrs</span>
                 <Input
@@ -146,7 +146,7 @@ export function AudiobookSpeedCalculatorTool() {
                   placeholder="0"
                   min="0"
                   max="59"
-                  className="w-full border-border focus-visible:ring-primary focus-visible:border-transparent"
+                  className="w-full border-border focus-visible:ring-primary"
                   aria-label="Original minutes"
                 /> <span className="text-muted-foreground">min</span>
                 <Input
@@ -156,7 +156,7 @@ export function AudiobookSpeedCalculatorTool() {
                   placeholder="0"
                   min="0"
                   max="59"
-                  className="w-full border-border focus-visible:ring-primary focus-visible:border-transparent"
+                  className="w-full border-border focus-visible:ring-primary"
                   aria-label="Original seconds"
                 /> <span className="text-muted-foreground">sec</span>
               </div>
@@ -173,7 +173,7 @@ export function AudiobookSpeedCalculatorTool() {
                   placeholder="1.0"
                   step="0.01"
                   min="0.1"
-                  className="w-full border-border focus-visible:ring-primary focus-visible:border-transparent"
+                  className="w-full border-border focus-visible:ring-primary"
                 />
                 <span className="text-muted-foreground">x speed</span>
               </div>

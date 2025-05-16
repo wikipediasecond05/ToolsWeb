@@ -51,7 +51,6 @@ export function LengthConverterTool() {
       const valueInMeters = numValue * conversionFactors[fromUnit];
       const convertedValue = valueInMeters / conversionFactors[toUnit];
       
-      // Smart rounding: more precision for smaller numbers, less for very large ones
       let precision = 4;
       if (Math.abs(convertedValue) > 1000) precision = 2;
       if (Math.abs(convertedValue) < 0.001 && convertedValue !== 0) precision = 6;
@@ -69,8 +68,6 @@ export function LengthConverterTool() {
     const tempFrom = fromUnit;
     setFromUnit(toUnit);
     setToUnit(tempFrom);
-    // Optionally, set inputValue to outputValue if desired for a direct swap
-    // setInputValue(outputValue); 
   };
 
   const unitOptions: { value: LengthUnit; label: string }[] = [
@@ -85,7 +82,7 @@ export function LengthConverterTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Length Converter</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Convert lengths between various units (meters, kilometers, feet, miles, inches).
         </CardDescription>
       </CardHeader>

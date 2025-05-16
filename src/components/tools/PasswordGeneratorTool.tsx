@@ -43,11 +43,11 @@ export function PasswordGeneratorTool() {
     }
 
     let newPassword = '';
-    const cryptoObj = window.crypto || (window as any).msCrypto; // For IE11 compatibility
+    const cryptoObj = window.crypto || (window as any).msCrypto; 
 
     if (!cryptoObj || !cryptoObj.getRandomValues) {
         setError("Your browser does not support secure random number generation. Please use a modern browser.");
-        // Fallback to Math.random (less secure, but better than nothing)
+        // Fallback to Math.random (less secure)
         for (let i = 0; i < length; i++) {
             newPassword += charset.charAt(Math.floor(Math.random() * charset.length));
         }
@@ -90,7 +90,7 @@ export function PasswordGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Password Generator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Create strong, secure, and customizable passwords.
         </CardDescription>
       </CardHeader>
@@ -104,7 +104,7 @@ export function PasswordGeneratorTool() {
 
         <div className="space-y-4">
           <div>
-            <Label htmlFor="passwordLength" className="mb-2 block font-medium">
+            <Label htmlFor="passwordLength" className="mb-2 block font-semibold">
               Password Length: {length}
             </Label>
             <Slider
@@ -121,19 +121,19 @@ export function PasswordGeneratorTool() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex items-center space-x-2">
               <Checkbox id="includeUppercase" checked={includeUppercase} onCheckedChange={(checked) => setIncludeUppercase(checked as boolean)} />
-              <Label htmlFor="includeUppercase" className="font-normal cursor-pointer">Include Uppercase (A-Z)</Label>
+              <Label htmlFor="includeUppercase" className="font-normal cursor-pointer mb-0">Include Uppercase (A-Z)</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="includeLowercase" checked={includeLowercase} onCheckedChange={(checked) => setIncludeLowercase(checked as boolean)} />
-              <Label htmlFor="includeLowercase" className="font-normal cursor-pointer">Include Lowercase (a-z)</Label>
+              <Label htmlFor="includeLowercase" className="font-normal cursor-pointer mb-0">Include Lowercase (a-z)</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="includeNumbers" checked={includeNumbers} onCheckedChange={(checked) => setIncludeNumbers(checked as boolean)} />
-              <Label htmlFor="includeNumbers" className="font-normal cursor-pointer">Include Numbers (0-9)</Label>
+              <Label htmlFor="includeNumbers" className="font-normal cursor-pointer mb-0">Include Numbers (0-9)</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="includeSymbols" checked={includeSymbols} onCheckedChange={(checked) => setIncludeSymbols(checked as boolean)} />
-              <Label htmlFor="includeSymbols" className="font-normal cursor-pointer">Include Symbols (!@#$...)</Label>
+              <Label htmlFor="includeSymbols" className="font-normal cursor-pointer mb-0">Include Symbols (!@#$...)</Label>
             </div>
           </div>
         </div>
@@ -153,7 +153,7 @@ export function PasswordGeneratorTool() {
                 type="text"
                 value={password}
                 readOnly
-                className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+                className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
                 aria-label="Generated password"
               />
               <Button variant="outline" size="icon" onClick={handleCopyToClipboard} aria-label="Copy password">

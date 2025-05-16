@@ -14,7 +14,7 @@ interface TextStats {
   syllables: number;
   words: number;
   characters: number;
-  readingTime: string; // e.g., "11s"
+  readingTime: string; 
   topKeywords: { keyword: string; count: number }[];
 }
 
@@ -29,7 +29,6 @@ const StatDisplayCard = ({ title, value }: { title: string; value: string | numb
   </Card>
 );
 
-// Basic English stop words list
 const stopWords = new Set([
   'a', 'an', 'the', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had',
   'do', 'does', 'did', 'will', 'would', 'should', 'can', 'could', 'may', 'might', 'must',
@@ -43,25 +42,22 @@ const stopWords = new Set([
   'well', 'went', 'were', 'what', 'when', 'which', 'who', 'why', 'will'
 ]);
 
-
-// Heuristic syllable counter
 const countSyllablesInWord = (word: string): number => {
   if (!word) return 0;
   word = word.toLowerCase();
-  if (word.length <= 3) return 1; // Quick win for short words
-  word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, ''); // Remove common suffixes
-  word = word.replace(/^y/, ''); // Remove y at the start
-  const vowelMatches = word.match(/[aeiouy]{1,2}/g); // Match 1 or 2 consecutive vowels
-  if (!vowelMatches) return 1; // If no vowels, assume 1 syllable (e.g. "rhythm")
+  if (word.length <= 3) return 1; 
+  word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, ''); 
+  word = word.replace(/^y/, ''); 
+  const vowelMatches = word.match(/[aeiouy]{1,2}/g); 
+  if (!vowelMatches) return 1; 
 
   let syllableCount = vowelMatches.length;
 
-  // Adjust for "le" endings if not preceded by a vowel
   if (word.endsWith('le') && word.length > 2 && !/[aeiouy]/.test(word.charAt(word.length - 3))) {
     syllableCount++;
   }
   
-  return Math.max(1, syllableCount); // Ensure at least 1 syllable
+  return Math.max(1, syllableCount); 
 };
 
 
@@ -87,14 +83,12 @@ export function SentenceCounterTool() {
       
       const characterCount = text.length;
       
-      // Sentence count: split by ., !, ? followed by space or end of string.
-      // This is a basic heuristic.
       const sentenceArray = text.split(/[.!?]+(?=\s|$)/g).filter(s => s.trim().length > 0);
       const sentenceCount = sentenceArray.length || (text.trim() ? 1 : 0);
 
       const totalSyllables = wordsArray.reduce((acc, word) => acc + countSyllablesInWord(word), 0);
 
-      const wpm = 200; // Average words per minute
+      const wpm = 200; 
       const readingTimeMinutes = wordCount / wpm;
       const readingTimeSeconds = Math.round(readingTimeMinutes * 60);
       const readingTimeStr = `${readingTimeSeconds}s`;
@@ -108,7 +102,7 @@ export function SentenceCounterTool() {
       });
       const sortedKeywords = Object.entries(keywordMap)
         .sort(([, countA], [, countB]) => countB - countA)
-        .slice(0, 20) // Top 20 keywords
+        .slice(0, 20) 
         .map(([keyword, count]) => ({ keyword, count }));
 
       return {
@@ -132,7 +126,7 @@ export function SentenceCounterTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Sentence Counter & Text Analyzer</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Get insights into your text including sentences, syllables, reading time, and top keywords.
         </CardDescription>
       </CardHeader>
@@ -155,7 +149,7 @@ export function SentenceCounterTool() {
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Type or paste your text for analysis..."
             rows={12}
-            className="text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="border-border focus-visible:ring-primary"
             aria-label="Input text for sentence counting and analysis"
           />
         </div>
@@ -165,7 +159,7 @@ export function SentenceCounterTool() {
             <h3 className="text-lg font-semibold mb-3">Top Keywords</h3>
             <div className="flex flex-wrap gap-2">
               {stats.topKeywords.map(({ keyword, count }) => (
-                <Badge key={keyword} variant="secondary" className="py-1 px-3 text-sm">
+                <Badge key={keyword} variant="secondary" className="py-1 px-3">
                   {keyword} <span className="ml-1.5 bg-muted-foreground/20 text-muted-foreground px-1.5 py-0.5 rounded-sm text-xs">{count}</span>
                 </Badge>
               ))}

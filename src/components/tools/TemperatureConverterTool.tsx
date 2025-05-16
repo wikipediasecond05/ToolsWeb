@@ -58,7 +58,7 @@ export function TemperatureConverterTool() {
     else if (unit === 'fahrenheit') setFahrenheit(value);
     else if (unit === 'kelvin') setKelvin(value);
 
-    if (value === '') { // Clear other fields if one is cleared
+    if (value === '') { 
         if (unit !== 'celsius') setCelsius('');
         if (unit !== 'fahrenheit') setFahrenheit('');
         if (unit !== 'kelvin') setKelvin('');
@@ -70,7 +70,7 @@ export function TemperatureConverterTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Temperature Converter</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Convert temperatures between Celsius (°C), Fahrenheit (°F), and Kelvin (K).
         </CardDescription>
       </CardHeader>

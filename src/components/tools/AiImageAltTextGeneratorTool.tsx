@@ -139,7 +139,7 @@ export function AiImageAltTextGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">AI Image Alt Text Generator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Upload an image to generate descriptive alt text for accessibility and SEO.
         </CardDescription>
       </CardHeader>
@@ -152,7 +152,7 @@ export function AiImageAltTextGeneratorTool() {
         )}
 
         <div className="grid gap-3">
-          <Label htmlFor="imageUpload" className="font-semibold mb-1 block">
+          <Label htmlFor="imageUpload" className="font-semibold mb-2 block">
             Upload Image
           </Label>
           <input
@@ -192,7 +192,7 @@ export function AiImageAltTextGeneratorTool() {
         {generatedAltText && (
           <div className="space-y-2 pt-4 border-t border-border">
              <div className="flex justify-between items-center">
-                <Label htmlFor="generatedAltText" className="font-semibold block">Generated Alt Text</Label>
+                <Label htmlFor="generatedAltText" className="font-semibold mb-2 block">Generated Alt Text</Label>
                 <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                     <Copy className="mr-2 h-4 w-4" /> Copy
                 </Button>
@@ -202,7 +202,7 @@ export function AiImageAltTextGeneratorTool() {
               value={generatedAltText}
               readOnly
               rows={3}
-              className="w-full text-sm bg-muted/30 border-border rounded-md p-2 focus-visible:ring-primary focus-visible:border-transparent"
+              className="w-full bg-muted/30 border-border rounded-md p-2 focus-visible:ring-primary"
               aria-label="Generated alt text"
             />
           </div>

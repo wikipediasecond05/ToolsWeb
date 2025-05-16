@@ -78,7 +78,7 @@ export function Base64EncoderDecoderTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Base64 Encoder/Decoder</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Encode text to Base64 or decode Base64 strings back to text.
         </CardDescription>
       </CardHeader>
@@ -97,7 +97,7 @@ export function Base64EncoderDecoderTool() {
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Enter text or Base64 string here..."
             rows={8}
-            className="font-mono text-sm"
+            className="font-mono"
           />
         </div>
         <div className="flex flex-wrap gap-3">
@@ -112,7 +112,7 @@ export function Base64EncoderDecoderTool() {
             readOnly
             placeholder="Result will appear here..."
             rows={8}
-            className="bg-muted/30 font-mono text-sm"
+            className="bg-muted/30 font-mono"
           />
         </div>
         <div className="flex flex-wrap gap-3">

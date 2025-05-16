@@ -54,9 +54,7 @@ export function URLSlugGeneratorTool() {
       }
 
       if (removeSpecialChars) {
-        // Normalize to ASCII, remove accents, etc.
         slug = slug.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        // Keep alphanumeric and spaces (for now, to be replaced by separator)
         slug = slug.replace(/[^a-z0-9\s-]/gi, ''); 
       }
       
@@ -69,15 +67,13 @@ export function URLSlugGeneratorTool() {
         slug = words.filter(word => !stopWords.has(word.toLowerCase())).join(' ');
       }
 
-      // Replace spaces and multiple hyphens/underscores with the chosen separator
       const sepChar = separator === 'dash' ? '-' : '_';
-      slug = slug.replace(/\s+/g, sepChar); // Replace spaces with separator
-      if (removeSpecialChars) { // Further cleanup after special char removal if it introduced separators
+      slug = slug.replace(/\s+/g, sepChar); 
+      if (removeSpecialChars) { 
          slug = slug.replace(new RegExp(`[^a-z0-9${sepChar}]`, 'gi'), '');
       }
-      slug = slug.replace(new RegExp(`${sepChar}+`, 'g'), sepChar); // Replace multiple separators with one
+      slug = slug.replace(new RegExp(`${sepChar}+`, 'g'), sepChar); 
 
-      // Remove leading/trailing separators
       slug = slug.replace(new RegExp(`^${sepChar}+|${sepChar}+$`, 'g'), '');
 
       setGeneratedSlug(slug);
@@ -105,7 +101,7 @@ export function URLSlugGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">URL Slug Generator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Create SEO-friendly URL slugs from text like article titles or blog post names.
         </CardDescription>
       </CardHeader>
@@ -126,7 +122,6 @@ export function URLSlugGeneratorTool() {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Enter text to convert to slug..."
-            className="text-base"
           />
         </div>
 
@@ -140,11 +135,11 @@ export function URLSlugGeneratorTool() {
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="dash" id="sep-dash" />
-                <Label htmlFor="sep-dash" className="font-normal">Dash (-)</Label>
+                <Label htmlFor="sep-dash" className="font-normal mb-0">Dash (-)</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="underscore" id="sep-underscore" />
-                <Label htmlFor="sep-underscore" className="font-normal">Underscore (_)</Label>
+                <Label htmlFor="sep-underscore" className="font-normal mb-0">Underscore (_)</Label>
               </div>
             </RadioGroup>
           </div>
@@ -156,7 +151,7 @@ export function URLSlugGeneratorTool() {
                 checked={isLowercase}
                 onCheckedChange={(checked) => setIsLowercase(checked as boolean)}
               />
-              <Label htmlFor="isLowercase" className="font-normal cursor-pointer">
+              <Label htmlFor="isLowercase" className="font-normal cursor-pointer mb-0">
                 Lowercase
               </Label>
             </div>
@@ -166,7 +161,7 @@ export function URLSlugGeneratorTool() {
                 checked={removeSpecialChars}
                 onCheckedChange={(checked) => setRemoveSpecialChars(checked as boolean)}
               />
-              <Label htmlFor="removeSpecialChars" className="font-normal cursor-pointer">
+              <Label htmlFor="removeSpecialChars" className="font-normal cursor-pointer mb-0">
                 Remove Special Characters
               </Label>
             </div>
@@ -176,7 +171,7 @@ export function URLSlugGeneratorTool() {
                 checked={removeStopWords}
                 onCheckedChange={(checked) => setRemoveStopWords(checked as boolean)}
               />
-              <Label htmlFor="removeStopWords" className="font-normal cursor-pointer">
+              <Label htmlFor="removeStopWords" className="font-normal cursor-pointer mb-0">
                 Remove Stop Words (English Only)
               </Label>
             </div>
@@ -186,7 +181,7 @@ export function URLSlugGeneratorTool() {
                 checked={removeNumbers}
                 onCheckedChange={(checked) => setRemoveNumbers(checked as boolean)}
               />
-              <Label htmlFor="removeNumbers" className="font-normal cursor-pointer">
+              <Label htmlFor="removeNumbers" className="font-normal cursor-pointer mb-0">
                 Remove Numbers
               </Label>
             </div>
@@ -203,7 +198,7 @@ export function URLSlugGeneratorTool() {
               value={generatedSlug}
               readOnly
               placeholder="url-slug-will-appear-here"
-              className="font-mono text-sm bg-muted/30"
+              className="font-mono bg-muted/30"
             />
             <Button
               variant="outline"

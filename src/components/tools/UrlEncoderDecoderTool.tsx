@@ -73,7 +73,7 @@ export function UrlEncoderDecoderTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">URL Encoder/Decoder</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Encode text for safe inclusion in URLs or decode percent-encoded URLs.
         </CardDescription>
       </CardHeader>
@@ -92,7 +92,7 @@ export function UrlEncoderDecoderTool() {
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Enter text or encoded URL here..."
             rows={8}
-            className="font-mono text-sm"
+            className="font-mono"
           />
         </div>
         <div className="flex flex-wrap gap-3">
@@ -107,7 +107,7 @@ export function UrlEncoderDecoderTool() {
             readOnly
             placeholder="Result will appear here..."
             rows={8}
-            className="bg-muted/30 font-mono text-sm"
+            className="bg-muted/30 font-mono"
           />
         </div>
         <div className="flex flex-wrap gap-3">

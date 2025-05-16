@@ -85,7 +85,7 @@ export function LineBreakRemoverTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Line Break Remover</CardTitle>
-        <CardDescription>Efficiently remove or replace line breaks and optionally clean up whitespace from your text.</CardDescription>
+        <CardDescription className="text-lg">Efficiently remove or replace line breaks and optionally clean up whitespace from your text.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         {error && (
@@ -103,7 +103,7 @@ export function LineBreakRemoverTool() {
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Paste your text here..."
             rows={10}
-            className="text-sm border-border focus-visible:ring-primary"
+            className="border-border focus-visible:ring-primary"
             aria-label="Input text for line break removal"
           />
         </div>
@@ -115,7 +115,7 @@ export function LineBreakRemoverTool() {
               checked={removeEmptyLines}
               onCheckedChange={(checked) => setRemoveEmptyLines(checked as boolean)}
             />
-            <Label htmlFor="removeEmptyLines" className="font-normal cursor-pointer">Remove Empty Lines</Label>
+            <Label htmlFor="removeEmptyLines" className="font-normal cursor-pointer mb-0">Remove Empty Lines</Label>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox 
@@ -123,7 +123,7 @@ export function LineBreakRemoverTool() {
               checked={trimSpaces}
               onCheckedChange={(checked) => setTrimSpaces(checked as boolean)}
             />
-            <Label htmlFor="trimSpaces" className="font-normal cursor-pointer">Trim Leading/Trailing Spaces from Each Line</Label>
+            <Label htmlFor="trimSpaces" className="font-normal cursor-pointer mb-0">Trim Leading/Trailing Spaces from Each Line</Label>
           </div>
           <div>
             <Label htmlFor="separator" className="font-semibold block mb-2">Separator for Line Breaks</Label>
@@ -162,7 +162,7 @@ export function LineBreakRemoverTool() {
               readOnly
               placeholder="Processed text will appear here..."
               rows={10}
-              className="text-sm bg-muted/30 border-border"
+              className="bg-muted/30 border-border"
               aria-label="Output text after line break removal"
             />
           </div>

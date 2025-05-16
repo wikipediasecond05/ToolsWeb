@@ -21,7 +21,7 @@ const formatDuration = (totalSeconds: number): string => {
   let parts: string[] = [];
   if (hours > 0) parts.push(`${hours}h`);
   if (minutes > 0) parts.push(`${minutes}m`);
-  if (seconds > 0 || parts.length === 0) parts.push(`${seconds}s`); // Show seconds if it's the only unit or non-zero
+  if (seconds > 0 || parts.length === 0) parts.push(`${seconds}s`); 
   
   return parts.join(' ') || '0s';
 };
@@ -55,16 +55,16 @@ export function PlaybackSpeedCalculatorTool() {
     }
 
     if (isNaN(speed) || speed <= 0) {
-      if (playbackSpeed.trim() !== '' && playbackSpeed !== '0') { // only show error if user typed something invalid
+      if (playbackSpeed.trim() !== '' && playbackSpeed !== '0') { 
          setError('Playback speed must be a positive number.');
       }
-      setEstimatedTimeFormatted(formatDuration(h * 3600 + m * 60 + s)); // Show original time
+      setEstimatedTimeFormatted(formatDuration(h * 3600 + m * 60 + s)); 
       setTimeSavedFormatted('0s');
       return;
     }
     
     const originalTotalSeconds = h * 3600 + m * 60 + s;
-    if (originalTotalSeconds === 0 && (originalHours || originalMinutes || originalSeconds)) { // if any input is set, but total is 0
+    if (originalTotalSeconds === 0 && (originalHours || originalMinutes || originalSeconds)) { 
         setEstimatedTimeFormatted('0s');
         setTimeSavedFormatted('0s');
         return;
@@ -114,7 +114,7 @@ export function PlaybackSpeedCalculatorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Playback Speed Calculator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Calculate new media duration and time saved based on playback speed.
         </CardDescription>
       </CardHeader>

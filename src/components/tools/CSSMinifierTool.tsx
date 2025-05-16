@@ -71,7 +71,7 @@ export function CSSMinifierTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">CSS Minifier</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Paste your CSS code below to compress it for faster loading.
         </CardDescription>
       </CardHeader>
@@ -96,7 +96,7 @@ export function CSSMinifierTool() {
             }}
             placeholder="Paste your CSS code here..."
             rows={10}
-            className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="font-mono border-border focus-visible:ring-primary"
             aria-label="Input CSS for minification"
           />
         </div>
@@ -126,7 +126,7 @@ export function CSSMinifierTool() {
               readOnly
               placeholder="Minified CSS will appear here..."
               rows={10}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
               aria-label="Minified CSS output"
             />
           </div>

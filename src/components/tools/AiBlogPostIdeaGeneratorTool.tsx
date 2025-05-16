@@ -59,7 +59,7 @@ export function AiBlogPostIdeaGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">AI Blog Post Idea Generator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Spark your creativity with AI-powered blog post suggestions.
         </CardDescription>
       </CardHeader>
@@ -80,7 +80,7 @@ export function AiBlogPostIdeaGeneratorTool() {
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             placeholder="e.g., Next.js, AI in Marketing, Sustainable Living"
-            className="border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="border-border focus-visible:ring-primary"
           />
         </div>
 
@@ -93,7 +93,7 @@ export function AiBlogPostIdeaGeneratorTool() {
             value={targetAudience}
             onChange={(e) => setTargetAudience(e.target.value)}
             placeholder="e.g., Beginners, Developers, Small Business Owners"
-            className="border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="border-border focus-visible:ring-primary"
           />
         </div>
 

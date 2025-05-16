@@ -20,7 +20,7 @@ export function SlopePercentageCalculatorTool() {
   const [angleUnit, setAngleUnit] = useState<AngleUnit>('deg');
   
   const [slopePercentage, setSlopePercentage] = useState<number | null>(null);
-  const [calculatedAngleDisplay, setCalculatedAngleDisplay] = useState<string>(''); // For displaying angle calculated from rise/run
+  const [calculatedAngleDisplay, setCalculatedAngleDisplay] = useState<string>(''); 
 
   const [error, setError] = useState<string | null>(null);
   const [activeInputMethod, setActiveInputMethod] = useState<InputMethod>('none');
@@ -40,15 +40,9 @@ export function SlopePercentageCalculatorTool() {
     setActiveInputMethod('angle');
   };
 
-  const toggleAngleUnit = () => {
-    setAngleUnit(prev => (prev === 'deg' ? 'rad' : 'deg'));
-    setActiveInputMethod('angle'); // Re-trigger calculation if angle is primary input
-  };
-
   useEffect(() => {
     setError(null);
     setSlopePercentage(null);
-    // setCalculatedAngleDisplay(''); // Don't reset this here, allow it to persist from rise/run calculation
 
     if (activeInputMethod === 'riseRun') {
       const numRise = parseFloat(rise);
@@ -56,7 +50,6 @@ export function SlopePercentageCalculatorTool() {
 
       if (isNaN(numRise) || isNaN(numRun)) {
         if (rise.trim() !== '' || run.trim() !== '') {
-          // Only show error if user has started typing valid numbers but one is NaN
            if ((rise && isNaN(numRise)) || (run && isNaN(numRun))) setError("Rise and Run must be numbers.");
         }
         return;
@@ -64,7 +57,7 @@ export function SlopePercentageCalculatorTool() {
 
       if (numRun === 0) {
         setError('Run cannot be zero for slope calculation.');
-        setSlopePercentage(Infinity); // Or handle as error display
+        setSlopePercentage(Infinity); 
         setCalculatedAngleDisplay('90° / 1.5708 rad (Vertical)');
         return;
       }
@@ -75,7 +68,7 @@ export function SlopePercentageCalculatorTool() {
       const angleInRadians = Math.atan(slope);
       const angleInDegrees = angleInRadians * (180 / Math.PI);
       setCalculatedAngleDisplay(`${angleInDegrees.toFixed(2)}° / ${angleInRadians.toFixed(4)} rad`);
-      // Update the angle input field if rise/run is the active method
+      
       if (angleUnit === 'deg') {
         setAngle(angleInDegrees.toFixed(2));
       } else {
@@ -94,23 +87,16 @@ export function SlopePercentageCalculatorTool() {
         angleInRadians = numAngle * (Math.PI / 180);
       }
 
-      if (Math.abs(Math.cos(angleInRadians)) < 1e-9) { // Angle is 90 degrees or -90 degrees
+      if (Math.abs(Math.cos(angleInRadians)) < 1e-9) { 
         setError('Slope is vertical (undefined/infinite) at +/-90 degrees.');
         setSlopePercentage(Infinity);
         setCalculatedAngleDisplay(`${numAngle}° / ${angleInRadians.toFixed(4)} rad (Vertical)`);
-        // Clear rise/run if angle leads to vertical slope
-        // setRise(''); 
-        // setRun('');
         return;
       }
       
       const slope = Math.tan(angleInRadians);
       setSlopePercentage(slope * 100);
       
-      // Optionally, update Rise/Run based on angle (e.g. assuming Run=100)
-      // For simplicity, we are not back-calculating and overwriting rise/run here
-      // but we are showing the calculated angle from rise/run above.
-      // If angle is the input, calculatedAngleDisplay can be reset or show the input angle itself.
       setCalculatedAngleDisplay(`${angleUnit === 'deg' ? numAngle.toFixed(2) : (numAngle * 180 / Math.PI).toFixed(2)}° / ${angleUnit === 'rad' ? numAngle.toFixed(4) : (numAngle * Math.PI / 180).toFixed(4)} rad`);
 
     }
@@ -132,7 +118,6 @@ export function SlopePercentageCalculatorTool() {
       <text x="100" y="145" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="10">Run (b)</text>
       <text x="5" y="70" writingMode="vertical-rl" textAnchor="middle" fill="hsl(var(--foreground))" fontSize="10">Rise (a)</text>
       <text x="80" y="60" transform="rotate(-35 100 60)" fill="hsl(var(--foreground))" fontSize="10">Slope</text>
-      {/* Rise line */}
       <line x1="10" y1="10" x2="10" y2="130" stroke="hsl(var(--primary))" strokeWidth="2" />
     </svg>
   );
@@ -141,7 +126,7 @@ export function SlopePercentageCalculatorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Slope Percentage Calculator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Calculate slope from Rise/Run or Angle of Inclination.
         </CardDescription>
       </CardHeader>
@@ -152,7 +137,7 @@ export function SlopePercentageCalculatorTool() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-mono text-lg text-muted-foreground italic">a</span>
-                <Label htmlFor="rise" className="font-semibold">Rise</Label>
+                <Label htmlFor="rise" className="font-semibold mb-2">Rise</Label>
               </div>
               <Input
                 id="rise"
@@ -166,7 +151,7 @@ export function SlopePercentageCalculatorTool() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-mono text-lg text-muted-foreground italic">b</span>
-                <Label htmlFor="run" className="font-semibold">Run</Label>
+                <Label htmlFor="run" className="font-semibold mb-2">Run</Label>
               </div>
               <Input
                 id="run"
@@ -178,10 +163,10 @@ export function SlopePercentageCalculatorTool() {
               />
             </div>
             <div className="text-center my-4">
-              <span className="text-muted-foreground text-sm">Or</span>
+              <span className="text-muted-foreground">Or</span>
             </div>
             <div>
-              <Label htmlFor="angle" className="font-semibold mb-1 block">Angle of Inclination</Label>
+              <Label htmlFor="angle" className="font-semibold mb-2 block">Angle of Inclination</Label>
               <div className="flex gap-2">
                 <Input
                   id="angle"
@@ -232,13 +217,13 @@ export function SlopePercentageCalculatorTool() {
                  <h4 className="font-semibold mb-2">Formula Used:</h4>
                  <p className="text-sm font-mono bg-muted/50 p-2 rounded">{formula}</p>
                  {error && <p className="text-destructive mt-2 text-sm">{error}</p>}
-                 {activeInputMethod === 'riseRun' && rise && run && parseFloat(run) !== 0 && (
+                 {activeInputMethod === 'riseRun' && rise && run && parseFloat(run) !== 0 && !isNaN(parseFloat(rise)) && !isNaN(parseFloat(run)) && (
                     <div className="mt-4 space-y-1 text-sm">
                         <p>1. Calculate slope: <code className="bg-muted/50 p-1 rounded">{rise} / {run} = {(parseFloat(rise)/parseFloat(run)).toFixed(4)}</code></p>
                         <p>2. Slope Percentage: <code className="bg-muted/50 p-1 rounded">{(parseFloat(rise)/parseFloat(run)).toFixed(4)} * 100 = {slopePercentage?.toFixed(2)}%</code></p>
                     </div>
                  )}
-                 {activeInputMethod === 'angle' && angle && (
+                 {activeInputMethod === 'angle' && angle && !isNaN(parseFloat(angle)) && (
                     <div className="mt-4 space-y-1 text-sm">
                         <p>1. Angle: <code className="bg-muted/50 p-1 rounded">{angle} {angleUnit}</code></p>
                         {angleUnit === 'deg' && <p>2. Convert to Radians: <code className="bg-muted/50 p-1 rounded">{angle}° * π/180 = {(parseFloat(angle) * Math.PI / 180).toFixed(4)} rad</code></p>}

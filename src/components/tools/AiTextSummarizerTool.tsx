@@ -63,7 +63,7 @@ export function AiTextSummarizerTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">AI Text Summarizer</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Condense long articles or documents into key points with AI.
         </CardDescription>
       </CardHeader>
@@ -85,14 +85,14 @@ export function AiTextSummarizerTool() {
             onChange={(e) => setTextToSummarize(e.target.value)}
             placeholder="Paste your long text, article, or document here..."
             rows={12}
-            className="text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="border-border focus-visible:ring-primary"
           />
         </div>
 
         <div>
           <Label htmlFor="summaryLength" className="font-semibold mb-2 block">Desired Summary Length</Label>
           <Select value={summaryLength} onValueChange={(value) => setSummaryLength(value as SummaryLength)}>
-            <SelectTrigger id="summaryLength" className="w-full sm:w-[180px]">
+            <SelectTrigger id="summaryLength" className="w-full sm:w-[200px]">
               <SelectValue placeholder="Select length" />
             </SelectTrigger>
             <SelectContent>
@@ -115,7 +115,7 @@ export function AiTextSummarizerTool() {
         {generatedSummary && (
           <div className="space-y-2 pt-4 border-t border-border">
             <div className="flex justify-between items-center">
-                <Label htmlFor="generatedSummary" className="font-semibold block">Generated Summary</Label>
+                <Label htmlFor="generatedSummary" className="font-semibold mb-2 block">Generated Summary</Label>
                 <Button variant="ghost" size="sm" onClick={handleCopyToClipboard}>
                     <Copy className="mr-2 h-4 w-4" /> Copy
                 </Button>
@@ -125,7 +125,7 @@ export function AiTextSummarizerTool() {
               value={generatedSummary}
               readOnly
               rows={8}
-              className="text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="bg-muted/30 border-border focus-visible:ring-primary"
             />
           </div>
         )}

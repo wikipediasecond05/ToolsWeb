@@ -132,7 +132,7 @@ export function CronjobExpressionGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Cronjob Expression Generator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Create and understand cron expressions for scheduling tasks.
         </CardDescription>
       </CardHeader>
@@ -154,7 +154,7 @@ export function CronjobExpressionGeneratorTool() {
                 value={field.value}
                 onChange={(e) => handleInputChange(field.name, e.target.value)}
                 placeholder={field.placeholder}
-                className="font-mono text-sm"
+                className="font-mono"
               />
             </div>
           ))}
@@ -186,7 +186,7 @@ export function CronjobExpressionGeneratorTool() {
         )}
         
         <div className="space-y-3 pt-4 border-t">
-            <Label className="block font-semibold">Common Schedules</Label>
+            <Label className="block font-semibold mb-2">Common Schedules</Label>
             <div className="flex flex-wrap gap-2">
                 {commonSchedules.map(schedule => (
                     <Button key={schedule.label} variant="outline" size="sm" onClick={() => applyPreset(schedule.values)}>

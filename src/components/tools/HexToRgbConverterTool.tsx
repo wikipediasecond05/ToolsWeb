@@ -49,7 +49,6 @@ export function HexToRgbConverterTool() {
     setColorPreview(`#${hex}`);
   };
   
-  // Trigger conversion on input change
   React.useEffect(() => {
     handleConvert();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,7 +74,7 @@ export function HexToRgbConverterTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">HEX to RGB Converter</CardTitle>
-        <CardDescription>Convert hexadecimal color codes to their RGB representation.</CardDescription>
+        <CardDescription className="text-lg">Convert hexadecimal color codes to their RGB representation.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         {error && (
@@ -96,11 +95,9 @@ export function HexToRgbConverterTool() {
           />
         </div>
 
-        {/* <Button onClick={handleConvert} className="w-full sm:w-auto"><Palette className="mr-2 h-4 w-4" /> Convert to RGB</Button> */}
-
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t">
           <div className="space-y-3">
-             <Label className="block font-semibold">RGB Output</Label>
+             <Label className="block font-semibold mb-2">RGB Output</Label>
             <div className="flex items-center gap-2">
                 <Input id="rOutput" value={rgbOutput.r} readOnly className="bg-muted/30" placeholder="R" aria-label="Red value" />
                 <Input id="gOutput" value={rgbOutput.g} readOnly className="bg-muted/30" placeholder="G" aria-label="Green value" />

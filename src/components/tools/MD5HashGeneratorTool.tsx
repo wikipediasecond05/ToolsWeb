@@ -237,7 +237,7 @@ export function MD5HashGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">MD5 Hash Generator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Generate MD5 hashes from your text input.
         </CardDescription>
       </CardHeader>
@@ -257,7 +257,7 @@ export function MD5HashGeneratorTool() {
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Enter text to hash..."
             rows={6}
-            className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="font-mono border-border focus-visible:ring-primary"
             aria-label="Input text for MD5 hashing"
           />
         </div>
@@ -287,7 +287,7 @@ export function MD5HashGeneratorTool() {
               value={outputText}
               readOnly
               placeholder="Generated MD5 hash will appear here..."
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
               aria-label="Generated MD5 hash output"
             />
           </div>

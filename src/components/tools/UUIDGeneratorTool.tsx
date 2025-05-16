@@ -27,7 +27,6 @@ export function UUIDGeneratorTool() {
     }
   };
 
-  // Generate a UUID on initial load
   useEffect(() => {
     handleGenerateUUID();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,7 +62,7 @@ export function UUIDGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">UUID Generator (Version 4)</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Generate universally unique identifiers (UUIDs) with a single click.
         </CardDescription>
       </CardHeader>
@@ -76,7 +75,7 @@ export function UUIDGeneratorTool() {
               type="text"
               value={generatedUUID}
               readOnly
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
               aria-label="Generated UUID"
               placeholder="Click generate to get a UUID"
             />

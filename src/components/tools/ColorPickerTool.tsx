@@ -109,12 +109,12 @@ export function ColorPickerTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Color Picker & Converter</CardTitle>
-        <CardDescription>Pick colors and convert between HEX, RGB, and HSL formats.</CardDescription>
+        <CardDescription className="text-lg">Pick colors and convert between HEX, RGB, and HSL formats.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <div>
-            <Label htmlFor="color-picker-input" className="mb-2 block text-sm font-medium text-muted-foreground">
+            <Label htmlFor="color-picker-input" className="mb-2 block text-muted-foreground">
               Choose Color:
             </Label>
             <Input
@@ -140,7 +140,7 @@ export function ColorPickerTool() {
             { label: 'HSL', value: hslColor, format: 'HSL' },
           ].map(({ label, value, format }) => (
             <div key={label}>
-              <Label htmlFor={`${format.toLowerCase()}-value`} className="mb-2 block font-medium">
+              <Label htmlFor={`${format.toLowerCase()}-value`} className="mb-2 block font-semibold">
                 {label}
               </Label>
               <div className="flex items-center gap-2">
@@ -149,7 +149,7 @@ export function ColorPickerTool() {
                   type="text"
                   value={value}
                   readOnly
-                  className="bg-muted/30 border-border text-sm"
+                  className="bg-muted/30 border-border"
                   aria-label={`${format} color value`}
                 />
                 <Button

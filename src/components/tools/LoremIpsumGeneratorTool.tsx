@@ -88,7 +88,7 @@ export function LoremIpsumGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Lorem Ipsum Generator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Generate placeholder text for your projects.
         </CardDescription>
       </CardHeader>
@@ -151,7 +151,7 @@ export function LoremIpsumGeneratorTool() {
               value={generatedText}
               readOnly
               rows={15}
-              className="text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="bg-muted/30 border-border focus-visible:ring-primary"
               aria-label="Generated Lorem Ipsum text"
             />
           </div>

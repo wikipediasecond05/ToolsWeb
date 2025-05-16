@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AlertCircle, Copy, Trash2, Eye, Code } from 'lucide-react';
-import { Icons } from '@/components/icons'; // Import Icons object
+import { Icons } from '@/components/icons'; 
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
 
@@ -125,7 +125,7 @@ export function MarkdownToHTMLTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Markdown to HTML Converter</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Write Markdown on the left and see the HTML output and live preview.
         </CardDescription>
       </CardHeader>
@@ -148,7 +148,7 @@ export function MarkdownToHTMLTool() {
               onChange={(e) => setMarkdownInput(e.target.value)}
               placeholder="Type or paste your Markdown here..."
               rows={15}
-              className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent h-96"
+              className="font-mono border-border focus-visible:ring-primary h-96"
               aria-label="Markdown input"
             />
           </div>
@@ -162,7 +162,7 @@ export function MarkdownToHTMLTool() {
               readOnly
               placeholder="HTML output will appear here..."
               rows={15}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent h-96"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary h-96"
               aria-label="HTML output"
             />
           </div>

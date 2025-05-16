@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Construction } from 'lucide-react';
 
@@ -10,7 +11,7 @@ export function ToolPlaceholderUI({ toolTitle }: ToolPlaceholderUIProps) {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">{toolTitle}</CardTitle>
-        <CardDescription>This tool is currently under construction.</CardDescription>
+        <CardDescription className="text-lg">This tool is currently under construction.</CardDescription>
       </CardHeader>
       <CardContent className="min-h-[200px] flex flex-col items-center justify-center text-muted-foreground bg-muted/30 rounded-b-lg">
         <Construction className="h-16 w-16 mb-4 text-primary" />

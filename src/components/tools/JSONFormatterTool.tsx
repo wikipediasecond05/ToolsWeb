@@ -77,7 +77,7 @@ export function JSONFormatterTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">JSON Formatter & Validator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Paste your JSON below to format it and check for validity.
         </CardDescription>
       </CardHeader>
@@ -101,7 +101,7 @@ export function JSONFormatterTool() {
               }}
               placeholder="Paste your raw JSON here..."
               rows={15}
-              className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent h-96"
+              className="font-mono border-border focus-visible:ring-primary h-96"
               aria-label="Input JSON"
             />
           </div>
@@ -113,7 +113,7 @@ export function JSONFormatterTool() {
               readOnly
               placeholder="Formatted JSON will appear here..."
               rows={15}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent h-96"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary h-96"
               aria-label="Formatted JSON Output"
             />
           </div>

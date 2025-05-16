@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Copy, Trash2, HashIcon, Loader2 } from 'lucide-react'; // Renamed Hash to HashIcon to avoid conflict
+import { Copy, Trash2, HashIcon, Loader2 } from 'lucide-react'; 
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
@@ -93,7 +93,7 @@ export function HashGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Hash Generator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Generate cryptographic hashes from your text input.
         </CardDescription>
       </CardHeader>
@@ -113,7 +113,7 @@ export function HashGeneratorTool() {
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Enter text to hash..."
             rows={6}
-            className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="font-mono border-border focus-visible:ring-primary"
             aria-label="Input text for hashing"
           />
         </div>
@@ -168,7 +168,7 @@ export function HashGeneratorTool() {
                 value={outputText}
                 readOnly
                 placeholder="Generated hash will appear here..."
-                className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+                className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
                 aria-label="Generated hash output"
                 />
             )}

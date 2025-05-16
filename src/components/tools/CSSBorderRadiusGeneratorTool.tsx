@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
-import { Copy, Trash2, Square as RoundedSquareIcon } from 'lucide-react'; // Re-using Square
+import { Copy, Trash2, Square as RoundedSquareIcon } from 'lucide-react'; 
 import { useToast } from '@/hooks/use-toast';
 
 interface BorderRadiusValues {
@@ -37,10 +37,11 @@ export function CSSBorderRadiusGeneratorTool() {
 
   const generateCSS = useCallback(() => {
     const { topLeft, topRight, bottomRight, bottomLeft } = radii;
-    const css = `border-radius: ${topLeft}${unit} ${topRight}${unit} ${bottomRight}${unit} ${bottomLeft}${unit};`;
-    setGeneratedCSS(css);
+    const cssValue = `${topLeft}${unit} ${topRight}${unit} ${bottomRight}${unit} ${bottomLeft}${unit}`;
+    const cssRule = `border-radius: ${cssValue};`;
+    setGeneratedCSS(cssRule);
     setPreviewStyle({ 
-      borderRadius: `${topLeft}${unit} ${topRight}${unit} ${bottomRight}${unit} ${bottomLeft}${unit}`
+      borderRadius: cssValue
     });
   }, [radii, unit]);
 
@@ -75,11 +76,11 @@ export function CSSBorderRadiusGeneratorTool() {
 
   const RadiusControl = ({ label, corner, value }: { label: string, corner: keyof BorderRadiusValues, value: number}) => (
     <div>
-      <Label htmlFor={`radius-${corner}`} className="mb-2 block text-sm">{label} ({value}{unit})</Label>
+      <Label htmlFor={`radius-${corner}`} className="mb-2 block font-semibold">{label} ({value}{unit})</Label>
       <Slider
         id={`radius-${corner}`}
         min={0}
-        max={unit === 'px' ? 150 : 50} // Max 50% for percentage based radius on a square
+        max={unit === 'px' ? 150 : 50} 
         step={1}
         value={[value]}
         onValueChange={(val) => handleRadiusChange(corner, val[0])}
@@ -91,13 +92,13 @@ export function CSSBorderRadiusGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">CSS Border Radius Generator</CardTitle>
-        <CardDescription>Interactively create rounded corners for your elements.</CardDescription>
+        <CardDescription className="text-lg">Interactively create rounded corners for your elements.</CardDescription>
       </CardHeader>
       <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Controls Column */}
         <div className="space-y-5">
           <div className="flex items-center space-x-2">
-            <Label className="font-semibold">Unit:</Label>
+            <Label className="font-semibold mb-0">Unit:</Label> {/* mb-0 as buttons are inline */}
             <Button variant={unit === 'px' ? 'default' : 'outline'} onClick={() => setUnit('px')} size="sm">px</Button>
             <Button variant={unit === '%' ? 'default' : 'outline'} onClick={() => setUnit('%')} size="sm">%</Button>
           </div>
@@ -136,7 +137,7 @@ export function CSSBorderRadiusGeneratorTool() {
               value={generatedCSS}
               readOnly
               rows={3}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
               placeholder="border-radius: ...;"
             />
           </div>

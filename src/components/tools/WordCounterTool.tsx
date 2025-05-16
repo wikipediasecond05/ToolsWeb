@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Trash2, Calculator } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 
 interface TextStats {
   words: number;
@@ -37,10 +36,8 @@ export function WordCounterTool() {
       const charactersWithSpaces = text.length;
       const charactersWithoutSpaces = text.replace(/\s/g, '').length;
       
-      // Basic sentence count (ends with . ! ?)
       const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length || (text.trim() ? 1 : 0);
       
-      // Basic paragraph count (split by one or more empty lines)
       const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim().length > 0).length || (text.trim() ? 1 : 0);
 
       return { words, charactersWithSpaces, charactersWithoutSpaces, sentences, paragraphs };
@@ -68,7 +65,7 @@ export function WordCounterTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Word & Character Counter</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Analyze your text for word count, character count, sentences, and paragraphs.
         </CardDescription>
       </CardHeader>
@@ -81,7 +78,7 @@ export function WordCounterTool() {
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Paste or type your text here..."
             rows={12}
-            className="text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="border-border focus-visible:ring-primary"
             aria-label="Input text for counting"
           />
         </div>

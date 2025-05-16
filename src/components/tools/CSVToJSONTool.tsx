@@ -164,7 +164,7 @@ export function CSVToJSONTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">CSV to JSON Converter</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Paste your CSV data, configure options, and convert it to JSON format.
         </CardDescription>
       </CardHeader>
@@ -184,7 +184,7 @@ export function CSVToJSONTool() {
             onChange={(e) => setCsvInput(e.target.value)}
             placeholder="Paste your CSV data here..."
             rows={10}
-            className="font-mono text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+            className="font-mono border-border focus-visible:ring-primary"
             aria-label="Input CSV data"
           />
         </div>
@@ -241,7 +241,7 @@ export function CSVToJSONTool() {
               readOnly
               placeholder="JSON output will appear here..."
               rows={10}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
               aria-label="Output JSON data"
             />
           </div>

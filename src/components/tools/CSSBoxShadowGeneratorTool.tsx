@@ -76,7 +76,7 @@ export function CSSBoxShadowGeneratorTool() {
   
   const SliderInput = ({ label, value, onChange, min, max, step = 1, unit = 'px'}: { label: string, value: number, onChange: (val: number) => void, min: number, max: number, step?: number, unit?: string}) => (
     <div>
-      <Label className="mb-2 block text-sm">{label} ({value}{unit})</Label>
+      <Label className="mb-2 block font-semibold">{label} ({value}{unit})</Label>
       <Slider min={min} max={max} step={step} value={[value]} onValueChange={(val) => onChange(val[0])} />
     </div>
   );
@@ -85,7 +85,7 @@ export function CSSBoxShadowGeneratorTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">CSS Box Shadow Generator</CardTitle>
-        <CardDescription>Interactively design box shadows and get the CSS code.</CardDescription>
+        <CardDescription className="text-lg">Interactively design box shadows and get the CSS code.</CardDescription>
       </CardHeader>
       <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Controls Column */}
@@ -96,24 +96,24 @@ export function CSSBoxShadowGeneratorTool() {
           <SliderInput label="Spread Radius" value={spreadRadius} onChange={setSpreadRadius} min={-50} max={50} />
           
           <div>
-            <Label htmlFor="shadowColor" className="mb-2 block text-sm">Shadow Color</Label>
+            <Label htmlFor="shadowColor" className="mb-2 block font-semibold">Shadow Color</Label>
             <Input id="shadowColor" type="color" value={shadowColor} onChange={(e) => setShadowColor(e.target.value)} className="w-full h-10 p-1" />
           </div>
           <SliderInput label="Shadow Opacity" value={shadowOpacity} onChange={setShadowOpacity} min={0} max={1} step={0.01} unit="" />
 
           <div className="flex items-center space-x-2 pt-2">
             <Checkbox id="isInset" checked={isInset} onCheckedChange={(checked) => setIsInset(checked as boolean)} />
-            <Label htmlFor="isInset" className="font-normal cursor-pointer text-sm">Inset Shadow</Label>
+            <Label htmlFor="isInset" className="font-normal cursor-pointer">Inset Shadow</Label>
           </div>
         </div>
 
         {/* Preview and Output Column */}
         <div className="space-y-6">
           <div>
-            <Label className="mb-2 block font-semibold text-sm">Live Preview</Label>
+            <Label className="mb-2 block font-semibold">Live Preview</Label>
             <div className="flex items-center justify-center w-full h-60 bg-muted rounded-md p-4">
               <div 
-                className="w-3/5 h-3/5 bg-background rounded-md flex items-center justify-center text-sm text-muted-foreground"
+                className="w-3/5 h-3/5 bg-background rounded-md flex items-center justify-center text-muted-foreground"
                 style={previewStyle}
                 data-ai-hint="shadow effect"
               >
@@ -124,7 +124,7 @@ export function CSSBoxShadowGeneratorTool() {
 
           <div>
             <div className="flex justify-between items-center mb-2">
-              <Label htmlFor="generatedCSS-shadow" className="font-semibold text-sm">Generated CSS</Label>
+              <Label htmlFor="generatedCSS-shadow" className="font-semibold">Generated CSS</Label>
               <Button variant="ghost" size="sm" onClick={handleCopyToClipboard} disabled={!generatedCSS}>
                 <Copy className="mr-2 h-4 w-4" /> Copy CSS
               </Button>
@@ -134,7 +134,7 @@ export function CSSBoxShadowGeneratorTool() {
               value={generatedCSS}
               readOnly
               rows={3}
-              className="font-mono text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="font-mono bg-muted/30 border-border focus-visible:ring-primary"
               placeholder="box-shadow: ...;"
             />
           </div>

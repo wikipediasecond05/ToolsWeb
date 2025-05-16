@@ -138,7 +138,7 @@ export function TextCaseConverterTool() {
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Text Case Converter</CardTitle>
-        <CardDescription>Easily convert text between various cases like uppercase, lowercase, title case, sentence case, and more.</CardDescription>
+        <CardDescription className="text-lg">Easily convert text between various cases like uppercase, lowercase, title case, sentence case, and more.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         {error && (
@@ -160,7 +160,7 @@ export function TextCaseConverterTool() {
               }}
               placeholder="Paste your text here..."
               rows={10}
-              className="text-sm border-border focus-visible:ring-primary focus-visible:border-transparent"
+              className="border-border focus-visible:ring-primary"
               aria-label="Input text for case conversion"
             />
           </div>
@@ -172,7 +172,7 @@ export function TextCaseConverterTool() {
               readOnly
               placeholder="Converted text will appear here..."
               rows={10}
-              className="text-sm bg-muted/30 border-border focus-visible:ring-primary focus-visible:border-transparent font-mono"
+              className="bg-muted/30 border-border focus-visible:ring-primary font-mono"
               aria-label="Converted text output"
             />
           </div>

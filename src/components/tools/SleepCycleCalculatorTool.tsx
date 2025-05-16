@@ -13,9 +13,9 @@ import { AlertCircle, Bed, Moon, Info, Clock } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface CalculationResult {
-  time: string; // Wake-up time or Bedtime
+  time: string; 
   cycles: number;
-  duration: string; // Total sleep duration
+  duration: string; 
   isRecommended: boolean;
 }
 
@@ -48,7 +48,7 @@ export function SleepCycleCalculatorTool() {
     }
 
     const [hoursStr, minutesStr] = bedTimeInput.split(':');
-    if (!hoursStr || !minutesStr) {
+    if (!hoursStr || !minutesStr || isNaN(parseInt(hoursStr)) || isNaN(parseInt(minutesStr))) {
         setError("Invalid bed time format.");
         return;
     }
@@ -85,20 +85,20 @@ export function SleepCycleCalculatorTool() {
     }
 
     const [wakeHoursStr, wakeMinutesStr] = wakeUpTimeInput.split(':');
-     if (!wakeHoursStr || !wakeMinutesStr) {
+     if (!wakeHoursStr || !wakeMinutesStr || isNaN(parseInt(wakeHoursStr)) || isNaN(parseInt(wakeMinutesStr))) {
         setError("Invalid wake-up time format.");
         return;
     }
     const wakeUpDate = new Date();
     wakeUpDate.setHours(parseInt(wakeHoursStr, 10), parseInt(wakeMinutesStr, 10), 0, 0);
-    // To handle cases where bedtime is on the previous day
-    if (wakeUpDate.getTime() < new Date().setHours(0,0,0,0) + 6 * 3600 * 1000) { // if wake up time is very early (e.g. before 6 AM)
-        wakeUpDate.setDate(wakeUpDate.getDate() + 1); // Assume it's for the next morning
+    
+    if (wakeUpDate.getTime() < new Date().setHours(0,0,0,0) + 6 * 3600 * 1000) { 
+        wakeUpDate.setDate(wakeUpDate.getDate() + 1); 
     }
 
 
     const calculatedBedTimes: CalculationResult[] = [];
-    const sleepCyclesToCalculate = [6, 5, 4]; // Calculate for more cycles first
+    const sleepCyclesToCalculate = [6, 5, 4]; 
 
     sleepCyclesToCalculate.forEach(cycles => {
       const totalSleepMinutes = cycles * 90;
@@ -136,15 +136,15 @@ export function SleepCycleCalculatorTool() {
 
   const handleTabChange = (value: string) => {
     setCalculationMode(value as 'sleepAt' | 'wakeUpAt');
-    setError(null); // Clear errors when switching tabs
-    setResults([]); // Clear previous results
+    setError(null); 
+    setResults([]); 
   };
 
   return (
     <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl">Sleep Cycle Calculator</CardTitle>
-        <CardDescription>
+        <CardDescription className="text-lg">
           Determine optimal wake-up or bedtimes based on natural sleep cycles.
         </CardDescription>
       </CardHeader>
@@ -205,8 +205,8 @@ export function SleepCycleCalculatorTool() {
 
             {results.length > 0 && (
               <div className="space-y-4 pt-4 border-t">
-                <h3 className="text-lg font-semibold">Recommended Wake-up Times</h3>
-                <p className="text-sm text-muted-foreground">
+                <h3 className="text-lg font-semibold mb-2">Recommended Wake-up Times</h3>
+                <p className="text-sm text-muted-foreground mb-3">
                   <Info size={14} className="inline mr-1 align-text-bottom"/>
                   Aim for 5-6 sleep cycles for optimal rest.
                 </p>
@@ -276,8 +276,8 @@ export function SleepCycleCalculatorTool() {
 
             {results.length > 0 && (
               <div className="space-y-4 pt-4 border-t">
-                <h3 className="text-lg font-semibold">Recommended Bedtimes</h3>
-                 <p className="text-sm text-muted-foreground">
+                <h3 className="text-lg font-semibold mb-2">Recommended Bedtimes</h3>
+                 <p className="text-sm text-muted-foreground mb-3">
                   <Info size={14} className="inline mr-1 align-text-bottom"/>
                   To wake up at {formatTime(new Date(`1970-01-01T${wakeUpTimeInput}`))} feeling refreshed.
                 </p>
@@ -304,15 +304,15 @@ export function SleepCycleCalculatorTool() {
           <h3 className="text-xl font-semibold mb-3 flex items-center">
             <Info size={20} className="mr-2 text-primary" /> Understanding Sleep Cycles
           </h3>
-          <div className="prose dark:prose-invert max-w-none text-muted-foreground space-y-3">
-            <p>
+          <div className="space-y-3 text-muted-foreground leading-relaxed">
+            <p className="text-base">
               Sleep cycles are made up of different stages that repeat several times during the night. Each complete cycle lasts
               around 90 minutes. For adults, it's recommended to get 5 to 6 full sleep cycles per night — that's around 7.5 to 9
               hours of sleep. Children and teenagers usually need even more sleep cycles to support their growth and
               development.
             </p>
             <div className="my-6">
-                <h4 className="font-semibold text-foreground mb-2 text-center">Typical 90-minute Sleep Cycle Breakdown:</h4>
+                <h4 className="font-semibold text-foreground mb-2 text-center text-base">Typical 90-minute Sleep Cycle Breakdown:</h4>
                 <div className="flex flex-col sm:flex-row gap-1 p-2 rounded-lg bg-muted/30 border">
                     <SleepCycleStage label="Light Sleep" duration="5-10 min" color="bg-blue-200 dark:bg-blue-800/50" widthClass="sm:w-1/6" />
                     <SleepCycleStage label="Light Sleep" duration="10-25 min" color="bg-blue-300 dark:bg-blue-700/50" widthClass="sm:w-1/4" />
@@ -323,7 +323,7 @@ export function SleepCycleCalculatorTool() {
                     (Times are approximate and can vary)
                 </p>
             </div>
-            <p>
+            <p className="text-base">
               For optimal rest, it's best to wake up at the end of a full sleep cycle—rather than in the middle of deep or REM
               sleep. This calculator helps you time your sleep so you align with your natural cycles and wake up feeling
               refreshed, not groggy.
@@ -334,4 +334,3 @@ export function SleepCycleCalculatorTool() {
     </Card>
   );
 }
-
