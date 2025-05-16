@@ -32,14 +32,14 @@ export function HomepageSearch() {
       tool.title.toLowerCase().includes(lowerCaseTerm) ||
       tool.description.toLowerCase().includes(lowerCaseTerm) ||
       (tool.keywords && tool.keywords.some(kw => kw.toLowerCase().includes(lowerCaseTerm)))
-    ).slice(0, 5); // Limit to 5 results
+    ).slice(0, 5); 
     setSearchResults(filteredTools);
   }, []);
 
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
       performSearch(searchTerm);
-    }, 200); // Debounce search for 200ms
+    }, 200); 
 
     return () => clearTimeout(debounceTimeout);
   }, [searchTerm, performSearch]);
@@ -48,7 +48,7 @@ export function HomepageSearch() {
     e.preventDefault();
     if (searchTerm.trim()) {
       router.push(`/tools?search=${encodeURIComponent(searchTerm.trim())}`);
-      setIsInputFocused(false); // Close preview on submit
+      setIsInputFocused(false); 
     }
   };
   
@@ -57,10 +57,7 @@ export function HomepageSearch() {
   };
 
   const handleInputBlur = () => {
-    // Delay hiding to allow click on preview items
     setTimeout(() => {
-        // Check if the new focused element is inside the search container.
-        // If not, it means user clicked outside.
         if (searchContainerRef.current && !searchContainerRef.current.contains(document.activeElement)) {
             setIsInputFocused(false);
         }
@@ -101,20 +98,20 @@ export function HomepageSearch() {
         </div>
       </div>
       {isInputFocused && searchResults.length > 0 && searchTerm.trim() !== '' && (
-        <div className="absolute mt-2 w-full bg-background border border-border rounded-md shadow-xl z-50 max-h-80 overflow-y-auto p-2">
-          <ul className="pb-1"> {/* Added padding-bottom to the list itself */}
+        <div className="absolute mt-2 w-full bg-background border border-border rounded-md shadow-xl z-50 max-h-[60vh] overflow-y-auto p-2">
+          <ul className="pb-1"> 
             {searchResults.map((tool) => {
               const IconComponent = tool.iconName ? Icons[tool.iconName as IconName] || Icons.Settings2 : Icons.Settings2;
               return (
                 <li key={tool.id}>
                   <Link
                     href={tool.path}
-                    className="flex items-center gap-3 p-3 hover:bg-accent/50 rounded-md transition-colors text-sm text-left" // Ensured text-left
-                    onClick={() => setIsInputFocused(false)} // Close preview on click
+                    className="flex items-center gap-3 p-3 hover:bg-secondary/50 rounded-md transition-colors text-sm text-left" 
+                    onClick={() => setIsInputFocused(false)} 
                   >
                     <IconComponent className="h-5 w-5 text-primary flex-shrink-0" />
                     <div className="flex-grow overflow-hidden">
-                      <span className="text-foreground block truncate">{tool.title}</span>
+                      <span className="text-foreground block truncate font-medium">{tool.title}</span>
                       <span className="text-xs text-muted-foreground line-clamp-1 block truncate">{tool.description}</span>
                     </div>
                   </Link>

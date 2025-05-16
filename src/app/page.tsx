@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { APP_NAME, APP_TAGLINE } from '@/lib/constants';
 import { CategoryCard } from '@/components/categories/CategoryCard';
 import { ToolCard } from '@/components/tools/ToolCard';
-import { getAllCategories, getAllTools } from '@/lib/toolsData';
+import { getAllCategories, getAllTools, getToolsByCategory } from '@/lib/toolsData';
 import { HeroShineEffect } from '@/components/layout/HeroShineEffect';
 import { HomepageSearch } from '@/components/search/HomepageSearch';
 import { Icons } from '@/components/icons';
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const categories = getAllCategories().slice(0, 6); 
+  const categories = getAllCategories(); // Get all categories for the new section
   const popularTools = getAllTools().slice(0, 8); 
 
   const testimonials = [
@@ -39,9 +39,8 @@ export default function HomePage() {
   ];
 
   return (
-    <> {/* Use a fragment to allow HeroShineEffect to be full-width before PageWrapper */}
-      {/* Hero Section */}
-      <HeroShineEffect className="mb-12 border-b"> {/* This border will now be full-width */}
+    <> 
+      <HeroShineEffect className="mb-12 border-b">
         <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
             Welcome to <span className="text-primary">{APP_NAME}</span>
@@ -63,29 +62,8 @@ export default function HomePage() {
         </section>
       </HeroShineEffect>
 
-      <PageWrapper> {/* PageWrapper for subsequent sections */}
-        {/* Tool Categories */}
+      <PageWrapper>
         <section className="py-12 md:py-16">
-          <div className="flex items-center gap-3 mb-10">
-            <Icons.Layers3 className="h-8 w-8 text-primary" />
-            <h2 className="text-3xl font-bold">Tool Categories</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => (
-              <CategoryCard key={category.id} category={category} />
-            ))}
-          </div>
-          <div className="text-left mt-8">
-            <Button asChild variant="link">
-              <Link href="/categories">View All Categories &rarr;</Link>
-            </Button>
-          </div>
-        </section>
-        
-        {/* <!-- AdSense Placeholder: Between Sections --> */}
-
-        {/* Popular Tools */}
-        <section className="py-12 md:py-16 rounded-lg">
           <div className="flex items-center gap-3 mb-10">
             <Icons.Sparkles className="h-8 w-8 text-primary" />
             <h2 className="text-3xl font-bold">Popular Tools</h2>
@@ -101,8 +79,37 @@ export default function HomePage() {
             </Button>
           </div>
         </section>
+        
+        {/* <!-- AdSense Placeholder: Between Sections --> */}
 
-        {/* Why NymGram? Section */}
+        {/* All Categories with their Tools Section */}
+        <section className="py-12 md:py-16">
+          {categories.map((category) => {
+            const toolsInCategory = getToolsByCategory(category.id).slice(0, 4); // Show first 4 tools
+            if (toolsInCategory.length === 0) return null; // Skip category if no tools
+
+            const CategoryIcon = category.iconName ? Icons[category.iconName] : Icons.Component;
+            return (
+              <div key={category.id} className="mb-16">
+                <div className="flex justify-between items-center mb-8">
+                  <div className="flex items-center gap-3">
+                    {CategoryIcon && <CategoryIcon className="h-8 w-8 text-primary" />}
+                    <h2 className="text-3xl font-bold">{category.name}</h2>
+                  </div>
+                  <Button asChild variant="link" size="sm">
+                    <Link href={category.path}>See all &rarr;</Link>
+                  </Button>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {toolsInCategory.map((tool) => (
+                    <ToolCard key={tool.id} tool={tool} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </section>
+
         <section className="py-16 md:py-24">
           <div className="flex items-center gap-3 mb-10">
             <Icons.ThumbsUp className="h-8 w-8 text-primary" />
@@ -129,7 +136,6 @@ export default function HomePage() {
         
         {/* <!-- AdSense Placeholder: Below Content / In FAQs area --> */}
 
-        {/* Testimonials Section */}
         <section className="py-12 md:py-16 rounded-lg">
            <div className="flex items-center gap-3 mb-12">
              <Icons.Users className="h-8 w-8 text-primary" />
