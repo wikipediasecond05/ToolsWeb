@@ -115,7 +115,7 @@ export function HomepageSearch() {
           onChange={(e) => setSearchTerm(e.target.value)}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
-          placeholder="Search for tools... (e.g., JSON, Color Picker, Password)"
+          placeholder="Search for tools..."
           className="w-full h-14 pl-12 pr-16 rounded-full text-lg shadow-lg border-border focus-visible:ring-primary/80 focus-visible:border-transparent"
           aria-label="Search for tools"
         />
