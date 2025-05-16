@@ -65,7 +65,7 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
   }
 
   const category = getCategoryById(tool.category);
-  const IconComponent = tool.iconName ? Icons[tool.iconName as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
+  const ToolIconComponent = tool.iconName ? Icons[tool.iconName as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
 
   const renderToolUI = () => {
     if (!tool) return null;
@@ -168,7 +168,7 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
       {/* Header */}
       <header className="mb-8">
         <div className="flex items-center gap-3 mb-3">
-          <IconComponent className="h-10 w-10 text-primary" />
+          <ToolIconComponent className="h-10 w-10 text-primary" />
           <h1 className="text-4xl font-bold tracking-tight">{tool.title}</h1>
         </div>
         <p className="text-lg text-muted-foreground">{tool.description}</p>
@@ -198,13 +198,19 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
           {tool.longDescription && (
             <section className="space-y-6">
               <div>
-                <h2 className="text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">Overview</h2>
+                <h2 className="flex items-center gap-2 text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">
+                  <Icons.Info className="h-6 w-6 text-primary" />
+                  Overview
+                </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-4">{tool.longDescription.overview}</p>
               </div>
               {tool.longDescription.useCases && tool.longDescription.useCases.length > 0 && (
                 <div>
-                  <h2 className="text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">Use Cases</h2>
-                  <ul className="list-disc list-inside space-y-1 text-lg text-muted-foreground leading-relaxed mb-4">
+                  <h2 className="flex items-center gap-2 text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">
+                    <Icons.CheckCircle className="h-6 w-6 text-primary" />
+                    Use Cases
+                  </h2>
+                  <ul className="list-disc list-inside space-y-1 text-lg text-muted-foreground leading-relaxed mb-4 pl-5">
                     {tool.longDescription.useCases.map((useCase, index) => (
                       <li key={index}>{useCase}</li>
                     ))}
@@ -213,14 +219,20 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
               )}
               {tool.longDescription.howItWorks && (
                 <div>
-                  <h2 className="text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">How It Works</h2>
+                  <h2 className="flex items-center gap-2 text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">
+                    <Icons.Settings2 className="h-6 w-6 text-primary" />
+                    How It Works
+                  </h2>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-4">{tool.longDescription.howItWorks}</p>
                 </div>
               )}
               {tool.longDescription.tips && tool.longDescription.tips.length > 0 && (
                 <div>
-                  <h2 className="text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">Tips for Better Usage</h2>
-                  <ul className="list-disc list-inside space-y-1 text-lg text-muted-foreground leading-relaxed mb-4">
+                  <h2 className="flex items-center gap-2 text-2xl font-semibold text-foreground mb-4 mt-8 border-b pb-2">
+                    <Icons.Lightbulb className="h-6 w-6 text-primary" />
+                    Tips for Better Usage
+                  </h2>
+                  <ul className="list-disc list-inside space-y-1 text-lg text-muted-foreground leading-relaxed mb-4 pl-5">
                     {tool.longDescription.tips.map((tip, index) => (
                       <li key={index}>{tip}</li>
                     ))}
@@ -233,7 +245,10 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
           {/* FAQs */}
           {tool.faqs && tool.faqs.length > 0 && (
             <section className="pt-6">
-              <h2 className="text-3xl font-bold mb-8 text-foreground border-b pb-3">Frequently Asked Questions</h2>
+              <h2 className="flex items-center gap-2 text-3xl font-bold mb-8 text-foreground border-b pb-3">
+                <Icons.HelpCircle className="h-7 w-7 text-primary" />
+                Frequently Asked Questions
+              </h2>
               <Accordion type="single" collapsible className="w-full">
                 {tool.faqs.map((faq, index) => (
                   <AccordionItem value={`item-${index}`} key={index}>
