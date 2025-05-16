@@ -6,6 +6,7 @@ import { ToolCard } from '@/components/tools/ToolCard';
 import type { Metadata } from 'next';
 import { APP_NAME } from '@/lib/constants';
 import { Icons } from '@/components/icons';
+import type { SerializableToolData, Tool } from '@/types';
 
 type CategoryToolsPageProps = {
   params: { categoryId: string };
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: CategoryToolsPageProps): Prom
     };
   }
   return {
-    title: category.name, // Changed: Removed APP_NAME
+    title: category.name,
     description: `Browse all tools in the ${category.name} category on ${APP_NAME}. ${category.description}`,
   };
 }
@@ -38,8 +39,14 @@ export default function CategoryToolsPage({ params }: CategoryToolsPageProps) {
     notFound();
   }
   
-  const toolsIncategory = getToolsByCategory(params.categoryId);
+  const toolsInCategoryFull = getToolsByCategory(params.categoryId);
   const IconComponent = category.iconName ? Icons[category.iconName as keyof typeof Icons] || Icons.Component : Icons.Component;
+
+  // Transform tools to be serializable
+  const toolsIncategory: SerializableToolData[] = toolsInCategoryFull.map(tool => {
+    const { icon, ...serializableTool } = tool as Tool; // Cast to Tool to satisfy Omit
+    return serializableTool;
+  });
 
   return (
     <PageWrapper>
