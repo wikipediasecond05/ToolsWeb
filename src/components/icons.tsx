@@ -67,11 +67,19 @@ import {
   ThumbsUp,
   Users,
   Slash,
-  Star,
+  Star, // Added Star
+  Heart, // Added Heart (filled, for favorites)
   HelpCircle,
   MessageSquare,
-  Zap, // Added Zap
-  CheckCircle, // Added CheckCircle
+  Zap,
+  CheckCircle,
+  Angry,
+  Frown,
+  Meh,
+  Smile,
+  Laugh,
+  Loader2,
+  Upload,
 } from 'lucide-react';
 
 export const Icons = {
@@ -103,7 +111,7 @@ export const Icons = {
   Gauge,
   BookText,
   FileCode,
-  Link: LinkIcon, // Use renamed LinkIcon
+  Link: LinkIcon,
   Search,
   GitBranch,
   Database,
@@ -111,7 +119,7 @@ export const Icons = {
   Puzzle,
   SquareCode,
   Component,
-  Layers3,
+  Layers3, // For categories nav
   Workflow,
   FileSymlink,
   FolderGit2,
@@ -129,7 +137,7 @@ export const Icons = {
   Eraser,
   Bed,
   Moon,
-  Info,
+  Info, // For about nav, sleep cycle info
   CopyIcon,
   CalendarPlus,
   Lightbulb,
@@ -142,11 +150,19 @@ export const Icons = {
   ThumbsUp,
   Users,
   Slash,
-  Star,
+  Star, // For Favorites nav & empty state
+  Heart, // For favorite toggle
   HelpCircle,
-  MessageSquare,
-  Zap, // Added Zap
-  CheckCircle, // Added CheckCircle
+  MessageSquare, // For contact nav
+  Zap,
+  CheckCircle,
+  Angry,
+  Frown,
+  Meh,
+  Smile,
+  Laugh,
+  Loader2, // For loading states
+  Upload, // For image upload button
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

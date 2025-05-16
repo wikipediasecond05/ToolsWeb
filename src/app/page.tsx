@@ -6,6 +6,7 @@ import { APP_NAME, APP_TAGLINE } from '@/lib/constants';
 import { CategoryCard } from '@/components/categories/CategoryCard';
 import { ToolCard } from '@/components/tools/ToolCard';
 import { getAllCategories, getAllTools, getToolsByCategory } from '@/lib/toolsData';
+import type { SerializableToolData } from '@/types'; // Ensure this type is available
 import { HeroShineEffect } from '@/components/layout/HeroShineEffect';
 import { HomepageSearch } from '@/components/search/HomepageSearch';
 import { Icons } from '@/components/icons';
@@ -17,8 +18,14 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const categories = getAllCategories(); // Get all categories for the new section
-  const popularTools = getAllTools().slice(0, 8); 
+  const categories = getAllCategories();
+  const popularToolsFull = getAllTools().slice(0, 8);
+
+  // Transform popularTools to be serializable
+  const popularTools: SerializableToolData[] = popularToolsFull.map(tool => {
+    const { icon, ...serializableTool } = tool;
+    return serializableTool;
+  });
 
   const testimonials = [
     {
@@ -39,7 +46,7 @@ export default function HomePage() {
   ];
 
   return (
-    <> 
+    <>
       <HeroShineEffect className="mb-12 border-b">
         <section className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight">
@@ -79,13 +86,20 @@ export default function HomePage() {
             </Button>
           </div>
         </section>
-        
+
         {/* <!-- AdSense Placeholder: Between Sections --> */}
 
         {/* All Categories with their Tools Section */}
         <section className="py-12 md:py-16">
           {categories.map((category) => {
-            const toolsInCategory = getToolsByCategory(category.id).slice(0, 4); // Show first 4 tools
+            const toolsInCategoryFull = getToolsByCategory(category.id).slice(0, 4); // Show first 4 tools
+            
+            // Transform toolsInCategory to be serializable
+            const toolsInCategory: SerializableToolData[] = toolsInCategoryFull.map(tool => {
+              const { icon, ...serializableTool } = tool;
+              return serializableTool;
+            });
+
             if (toolsInCategory.length === 0) return null; // Skip category if no tools
 
             const CategoryIcon = category.iconName ? Icons[category.iconName] : Icons.Component;

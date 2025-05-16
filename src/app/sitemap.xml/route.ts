@@ -1,3 +1,4 @@
+
 import { getAllTools, getAllCategories } from '@/lib/toolsData';
 import { APP_DOMAIN } from '@/lib/constants';
 
@@ -11,6 +12,7 @@ function generateSitemap() {
     '', // Homepage
     '/tools',
     '/categories',
+    '/favorites', // Added favorites page
     '/about',
     '/contact',
     '/privacy',
