@@ -38,6 +38,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              try {
+                var theme = localStorage.getItem('nymgram-theme');
+                if (theme) {
+                  document.documentElement.setAttribute('data-theme', theme);
+                } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              } catch (e) {}
+            })();
+          `,
+        }} />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <ThemeProvider
           defaultTheme="system"
