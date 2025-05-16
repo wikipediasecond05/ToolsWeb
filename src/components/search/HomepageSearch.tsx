@@ -17,6 +17,7 @@ export function HomepageSearch() {
   const router = useRouter();
   const allTools = useRef<Tool[]>([]);
   const searchContainerRef = useRef<HTMLFormElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null); // Ref for the input element
 
   useEffect(() => {
     allTools.current = getAllTools();
@@ -49,6 +50,7 @@ export function HomepageSearch() {
     if (searchTerm.trim()) {
       router.push(`/tools?search=${encodeURIComponent(searchTerm.trim())}`);
       setIsInputFocused(false); 
+      inputRef.current?.blur(); // Blur input on submit
     }
   };
   
@@ -57,11 +59,12 @@ export function HomepageSearch() {
   };
 
   const handleInputBlur = () => {
+    // Delay blur to allow click on search results
     setTimeout(() => {
         if (searchContainerRef.current && !searchContainerRef.current.contains(document.activeElement)) {
             setIsInputFocused(false);
         }
-    }, 150);
+    }, 150); // A small delay
   };
   
   useEffect(() => {
@@ -76,12 +79,37 @@ export function HomepageSearch() {
     };
   }, []);
 
+  // Keyboard shortcut for '/'
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === '/') {
+        // Prevent focusing if already typing in an input, textarea, or contenteditable
+        const targetElement = event.target as HTMLElement;
+        if (
+          targetElement.tagName === 'INPUT' ||
+          targetElement.tagName === 'TEXTAREA' ||
+          targetElement.isContentEditable
+        ) {
+          return;
+        }
+        event.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
 
   return (
     <form ref={searchContainerRef} onSubmit={handleSearchSubmit} className="relative w-full max-w-2xl mx-auto">
       <div className="relative">
         <Icons.Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
         <Input
+          ref={inputRef} // Assign ref to the input
           type="search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -107,7 +135,10 @@ export function HomepageSearch() {
                   <Link
                     href={tool.path}
                     className="flex items-center gap-3 p-3 hover:bg-secondary/50 rounded-md transition-colors text-sm text-left" 
-                    onClick={() => setIsInputFocused(false)} 
+                    onClick={() => {
+                      setIsInputFocused(false);
+                      setSearchTerm(''); // Optionally clear search term on click
+                    }} 
                   >
                     <IconComponent className="h-5 w-5 text-primary flex-shrink-0" />
                     <div className="flex-grow overflow-hidden">
