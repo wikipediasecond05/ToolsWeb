@@ -52,18 +52,10 @@ export const categories: Category[] = [
     path: '/categories/productivity',
   },
   {
-    id: 'math-physics',
-    name: 'Math & Physics Tools',
-    description: 'Calculators and utilities for mathematical and physical computations.',
-    icon: Icons.Sigma,
-    iconName: 'Sigma',
-    path: '/categories/math-physics',
-  },
-  {
     id: 'calculator',
     name: 'Calculator Tools',
     description: 'Perform various calculations with ease.',
-    icon: Icons.Calculator, // Using existing Calculator icon for the category
+    icon: Icons.Calculator, 
     iconName: 'Calculator',
     path: '/categories/calculator',
   },
@@ -97,7 +89,7 @@ export const tools: Tool[] = [
         'Cleaning up user-generated content that might have inconsistent line breaks and spacing.',
         'Standardizing text formatting before further processing or analysis.'
       ],
-      howItWorks: 'Paste your text into the input area. Select your desired options: Check "Remove Empty Lines" to eliminate blank lines. Check "Trim Leading/Trailing Spaces from Each Line" to remove whitespace from the start and end of each line. Choose a "Separator" from the dropdown: "Space" replaces line breaks with a single space, while "None" removes them completely. Click the "Remove" button to process. The cleaned text will appear in the output area.',
+      howItWorks: 'Paste your text into the input area. Select your desired options: Check "Remove Empty Lines" to eliminate blank lines. Check "Trim Leading/Trailing Spaces from Each Line" to remove whitespace from the start and end of each line. Choose a "Separator" from the dropdown: "Space" replaces line breaks with a single space, while "None" removes them completely. Click the "Remove Line Breaks" button to process. The cleaned text will appear in the output area.',
       tips: [
         'For prose or paragraphs, using the "Space" separator is generally recommended to maintain readability and word separation.',
         'When dealing with lists or data where each item is on a new line, consider if removing line breaks entirely ("None" separator) is appropriate, or if you need a different separator for subsequent processing.',
@@ -213,6 +205,41 @@ export const tools: Tool[] = [
       { question: 'Is this tool suitable for very long texts?', answer: 'While it can handle substantial text, extremely large inputs (many megabytes) might cause browser performance to slow down as all analysis is done client-side.'}
     ],
     keywords: ['sentence count', 'syllable counter', 'reading time', 'text analysis', 'keyword density', 'writing tool', 'content analysis', 'seo']
+  },
+  {
+    id: 'url-slug-generator',
+    title: 'URL Slug Generator',
+    description: 'Create SEO-friendly URL slugs from your titles or any string with various customization options.',
+    category: 'text-string',
+    icon: Icons.Link,
+    iconName: 'Link',
+    path: '/tools/url-slug-generator',
+    longDescription: {
+      overview: 'The URL Slug Generator helps you convert any text, such as an article title or blog post heading, into a clean, URL-friendly, and SEO-friendly slug. Slugs are the part of a URL that identifies a specific page in a human-readable way. This tool provides options to lowercase the text, choose a separator (dash or underscore), and remove special characters, stop words, or numbers.',
+      useCases: [
+        'Generating slugs for blog posts, articles, or product pages.',
+        'Creating user-friendly and descriptive URLs for better SEO.',
+        'Standardizing URL formats across a website.',
+        'Converting titles with special characters or spaces into valid URL components.',
+        'Shortening long titles into concise slugs while retaining keywords.'
+      ],
+      howItWorks: 'Enter your text (e.g., "My Awesome Blog Post Title!") into the input field. Choose your desired separator (dash "-" or underscore "_"). Select options like "Lowercase", "Remove Special Characters", "Remove Stop Words", and "Remove Numbers". The tool processes the text in real-time: it converts to lowercase (if selected), removes unwanted characters and words based on your choices, replaces spaces and multiple separators with your chosen single separator, and removes any leading/trailing separators. The resulting slug is displayed instantly and can be copied.',
+      tips: [
+        'Dashes (-) are generally preferred by search engines over underscores (_) as word separators in URLs.',
+        'Keeping slugs concise while including main keywords can be beneficial for SEO.',
+        'Always remove special characters to ensure URL validity across all browsers and systems.',
+        'Removing stop words (like "a", "the", "is") can make slugs shorter without losing much meaning, but use this option judiciously.',
+        'Test your generated slugs to ensure they are unique and make sense in the context of your website structure.'
+      ],
+    },
+    faqs: [
+      { question: 'What is a URL slug?', answer: 'A URL slug is the part of a URL that identifies a particular page on a website in an easy-to-read form. It’s the part of the URL that comes after the domain name and any directory paths, typically derived from the page title.' },
+      { question: 'Why are dashes preferred over underscores in slugs?', answer: 'Search engines like Google have historically treated hyphens as word separators, while underscores were sometimes treated as joiners (making "word_one" look like "wordone"). Using dashes ensures words are recognized individually.' },
+      { question: 'What are "stop words"?', answer: 'Stop words are common words (like "the", "is", "at", "a") that search engines often ignore. Removing them can make slugs shorter and more focused on important keywords, but it_s not always necessary or desired.' },
+      { question: 'How does "Remove Special Characters" work?', answer: 'This option typically removes any character that is not a letter (a-z, A-Z), a number (0-9), or a space (which is then converted to your chosen separator). It helps create clean, universally accepted URL slugs.' },
+      { question: 'Is my input text sent to a server?', answer: 'No, all slug generation is performed client-side within your browser. Your input remains private.' }
+    ],
+    keywords: ['url slug', 'slug generator', 'seo friendly url', 'permalink generator', 'text to slug', 'slugify', 'url optimization']
   },
   // Developer Tools
   {
@@ -562,7 +589,7 @@ export const tools: Tool[] = [
     title: 'RGB to HEX Converter',
     description: 'Convert RGB color values (e.g., rgb(255, 165, 0)) to their HEX code equivalent (e.g., #FFA500).',
     category: 'conversion',
-    icon: Icons.Palette, // Re-using Palette icon
+    icon: Icons.Palette, 
     iconName: 'Palette',
     path: '/tools/rgb-to-hex-converter',
     longDescription: {
@@ -592,7 +619,7 @@ export const tools: Tool[] = [
     title: 'HEX to RGB Converter',
     description: 'Convert HEX color codes (e.g., #FFA500) to their RGB value equivalent (e.g., rgb(255, 165, 0)).',
     category: 'conversion',
-    icon: Icons.Palette, // Re-using Palette icon
+    icon: Icons.Palette, 
     iconName: 'Palette',
     path: '/tools/hex-to-rgb-converter',
     longDescription: {
@@ -704,17 +731,17 @@ export const tools: Tool[] = [
         'Obfuscating simple text (though Base64 is not encryption and is easily reversible).',
         'Transmitting binary data (like images) as text in JSON or XML payloads.'
       ],
-      howItWorks: 'For encoding, enter your plain text into the input area and click "Encode to Base64". The tool uses the browser_s `btoa()` function. For decoding, paste a Base64 string into the input area and click "Decode from Base64". The tool uses `atob()`. The result appears in the output area. Clear and Copy buttons are provided.',
+      howItWorks: 'For encoding, enter your plain text into the input area and click "Encode to Base64". The tool uses the browser_s `btoa()` function (after UTF-8 encoding the input). For decoding, paste a Base64 string into the input area and click "Decode from Base64". The tool uses `atob()` (and then UTF-8 decodes the result). The result appears in the output area. Clear and Copy buttons are provided.',
       tips: [
         'Base64 is an encoding scheme, not an encryption method. It does not provide security for sensitive data.',
         'Ensure the input for decoding is a valid Base64 string. Invalid characters will cause decoding errors.',
-        'UTF-8 characters can be handled by `btoa` and `atob` in modern browsers, but for complex scenarios or older browser compatibility with non-ASCII characters, more robust libraries might be needed.'
+        'This tool handles UTF-8 characters for encoding and decoding, making it suitable for a wide range of text inputs.'
       ],
     },
     faqs: [
       { question: 'What is Base64 encoding?', answer: 'Base64 is a group of similar binary-to-text encoding schemes that represent binary data in an ASCII string format by translating it into a radix-64 representation.' },
       { question: 'Is Base64 secure for passwords?', answer: 'No, Base64 is easily reversible and should never be used for storing or transmitting sensitive information like passwords securely. Use proper hashing and encryption for security.' },
-      { question: 'Why does `atob()` sometimes throw an error?', answer: 'The `atob()` function will throw an error if the input string is not a valid Base64 encoded string (e.g., contains characters not in the Base64 alphabet or has incorrect padding).' }
+      { question: 'Why does `atob()` sometimes throw an error?', answer: 'The `atob()` function will throw an error if the input string is not a valid Base64 encoded string (e.g., contains characters not in the Base64 alphabet or has incorrect padding). Our tool attempts to handle common UTF-8 scenarios, but malformed Base64 will still fail.' }
     ],
     keywords: ['base64', 'encoder', 'decoder', 'text encoding', 'ascii', 'binary to text', 'security utilities']
   },
@@ -723,8 +750,8 @@ export const tools: Tool[] = [
     title: 'URL Encoder/Decoder',
     description: 'Encode text for safe inclusion in URLs (percent-encoding) or decode percent-encoded URLs.',
     category: 'security',
-    icon: Icons.Link, // Using Link, consider Globe if too generic
-    iconName: 'Link', // or 'Globe'
+    icon: Icons.Link, 
+    iconName: 'Link', 
     path: '/tools/url-encoder-decoder',
     longDescription: {
       overview: 'The URL Encoder/Decoder tool helps you convert strings into a format suitable for use in URLs (percent-encoding) and decode such URLs back into their original form. This is essential because URLs can only contain a limited set of characters; special characters need to be encoded.',
@@ -916,12 +943,12 @@ export const tools: Tool[] = [
     ],
     keywords: ['sleep calculator', 'sleep cycle', 'wake up time', 'bedtime calculator', 'rem sleep', 'sleep schedule', 'productivity', 'health']
   },
-  // Math & Physics Tools (now only Slope)
+  // Calculator Tools
   {
     id: 'slope-percentage-calculator',
     title: 'Slope Percentage Calculator',
     description: 'Calculate slope percentage from rise and run, or angle of inclination.',
-    category: 'calculator', // Changed category
+    category: 'calculator', 
     icon: Icons.Sigma,
     iconName: 'Sigma',
     path: '/tools/slope-percentage-calculator',
@@ -950,7 +977,6 @@ export const tools: Tool[] = [
     ],
     keywords: ['slope calculator', 'percentage slope', 'rise over run', 'gradient', 'angle of inclination', 'math', 'engineering', 'construction', 'calculator']
   },
-  // Calculator Tools
   {
     id: 'temperature-converter',
     title: 'Temperature Converter',
@@ -1139,3 +1165,16 @@ export const getToolsByCategory = (categoryId: string): Tool[] => tools.filter(t
 export const getCategoryById = (id: string): Category | undefined => categories.find(category => category.id === id);
 export const getAllTools = (): Tool[] => tools;
 export const getAllCategories = (): Category[] => categories;
+
+// Function to get serializable tool data (omitting the icon function)
+export const getSerializableTool = (tool: Tool): Omit<Tool, 'icon'> => {
+  const { icon, ...serializableTool } = tool;
+  return serializableTool;
+};
+
+export const getSerializableTools = (toolsList: Tool[]): Omit<Tool, 'icon'>[] => {
+  return toolsList.map(tool => {
+    const { icon, ...serializableTool } = tool;
+    return serializableTool;
+  });
+};

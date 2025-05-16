@@ -38,6 +38,7 @@ import { Base64EncoderDecoderTool } from '@/components/tools/Base64EncoderDecode
 import { UrlEncoderDecoderTool } from '@/components/tools/UrlEncoderDecoderTool';
 import { RgbToHexConverterTool } from '@/components/tools/RgbToHexConverterTool';
 import { HexToRgbConverterTool } from '@/components/tools/HexToRgbConverterTool';
+import { URLSlugGeneratorTool } from '@/components/tools/URLSlugGeneratorTool';
 
 
 import { RelatedTools } from '@/components/tools/RelatedTools';
@@ -73,6 +74,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <WordCounterTool />;
       case 'sentence-counter':
         return <SentenceCounterTool />;
+      case 'url-slug-generator':
+        return <URLSlugGeneratorTool />;
       case 'color-picker':
         return <ColorPickerTool />;
       case 'css-minifier':
@@ -249,3 +252,4 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
+
