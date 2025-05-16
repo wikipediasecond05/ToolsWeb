@@ -1,7 +1,7 @@
 
 'use client';
 
-import React from 'react'; 
+import React from 'react';
 import { notFound } from 'next/navigation';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { getToolById, getAllTools, getCategoryById } from '@/lib/toolsData';
@@ -15,7 +15,7 @@ import { CSVToJSONTool } from '@/components/tools/CSVToJSONTool';
 import { MarkdownToHTMLTool } from '@/components/tools/MarkdownToHTMLTool';
 import { PasswordGeneratorTool } from '@/components/tools/PasswordGeneratorTool';
 import { HashGeneratorTool } from '@/components/tools/HashGeneratorTool';
-import { MD5HashGeneratorTool } from '@/components/tools/MD5HashGeneratorTool'; 
+import { MD5HashGeneratorTool } from '@/components/tools/MD5HashGeneratorTool';
 import { JSONFormatterTool } from '@/components/tools/JSONFormatterTool';
 import { JWTDecoderTool } from '@/components/tools/JWTDecoderTool';
 import { UUIDGeneratorTool } from '@/components/tools/UUIDGeneratorTool';
@@ -34,13 +34,13 @@ import { CSSGradientGeneratorTool } from '@/components/tools/CSSGradientGenerato
 import { CSSBoxShadowGeneratorTool } from '@/components/tools/CSSBoxShadowGeneratorTool';
 import { CSSBorderRadiusGeneratorTool } from '@/components/tools/CSSBorderRadiusGeneratorTool';
 import { SvgWaveGeneratorTool } from '@/components/tools/SvgWaveGeneratorTool';
+import { SvgBlobGeneratorTool } from '@/components/tools/SvgBlobGeneratorTool'; // Added import
 import { TemperatureConverterTool } from '@/components/tools/TemperatureConverterTool';
 import { LengthConverterTool } from '@/components/tools/LengthConverterTool';
 import { Base64EncoderDecoderTool } from '@/components/tools/Base64EncoderDecoderTool';
 import { UrlEncoderDecoderTool } from '@/components/tools/UrlEncoderDecoderTool';
 import { RgbToHexConverterTool } from '@/components/tools/RgbToHexConverterTool';
 import { HexToRgbConverterTool } from '@/components/tools/HexToRgbConverterTool';
-import { URLSlugGeneratorTool } from '@/components/tools/URLSlugGeneratorTool';
 import { CronjobExpressionGeneratorTool } from '@/components/tools/CronjobExpressionGeneratorTool';
 
 
@@ -55,8 +55,8 @@ import type { Tool, RelatedToolData } from '@/types';
 
 
 export default function ToolPage({ params }: { params: { toolId: string } }) {
-  const actualParams = React.use(params); 
-  const tool = getToolById(actualParams.toolId); 
+  const actualParams = React.use(params);
+  const tool = getToolById(actualParams.toolId);
   const allToolsData = getAllTools();
 
   if (!tool) {
@@ -91,7 +91,7 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <PasswordGeneratorTool />;
       case 'hash-generator':
         return <HashGeneratorTool />;
-      case 'md5-hash-generator': 
+      case 'md5-hash-generator':
         return <MD5HashGeneratorTool />;
       case 'json-formatter':
         return <JSONFormatterTool />;
@@ -127,6 +127,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <CSSBorderRadiusGeneratorTool />;
       case 'svg-wave-generator':
         return <SvgWaveGeneratorTool />;
+      case 'svg-blob-generator': // Added case for blob generator
+        return <SvgBlobGeneratorTool />;
       case 'temperature-converter':
         return <TemperatureConverterTool />;
       case 'length-converter':
@@ -180,21 +182,21 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         {/* Main Content Column */}
         <div className="lg:w-2/3 space-y-12">
           {renderToolUI()}
-          
+
           {/* Related Tools & Rating - Mobile & Tablet Only (stacks below tool UI) */}
           <div className="lg:hidden space-y-8 mt-12">
             <RelatedTools currentTool={currentToolForRelated} allTools={allToolsForRelated} />
             <EmojiRating toolId={tool.id} />
           </div>
-          
+
           <section>
             <CommentSection toolId={tool.id} />
           </section>
 
           {/* Long Description */}
           {tool.longDescription && (
-            <section className="prose dark:prose-invert max-w-none 
-                                prose-headings:font-semibold prose-headings:text-foreground 
+            <section className="prose dark:prose-invert max-w-none
+                                prose-headings:font-semibold prose-headings:text-foreground
                                 prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-8 prose-h2:border-b prose-h2:pb-2
                                 prose-p:leading-relaxed prose-p:text-muted-foreground
                                 prose-ul:list-disc prose-ul:pl-6 prose-ul:space-y-1
