@@ -33,6 +33,7 @@ import { AiImageAltTextGeneratorTool } from '@/components/tools/AiImageAltTextGe
 import { CSSGradientGeneratorTool } from '@/components/tools/CSSGradientGeneratorTool';
 import { CSSBoxShadowGeneratorTool } from '@/components/tools/CSSBoxShadowGeneratorTool';
 import { CSSBorderRadiusGeneratorTool } from '@/components/tools/CSSBorderRadiusGeneratorTool';
+import { SvgWaveGeneratorTool } from '@/components/tools/SvgWaveGeneratorTool';
 import { TemperatureConverterTool } from '@/components/tools/TemperatureConverterTool';
 import { LengthConverterTool } from '@/components/tools/LengthConverterTool';
 import { Base64EncoderDecoderTool } from '@/components/tools/Base64EncoderDecoderTool';
@@ -124,6 +125,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
         return <CSSBoxShadowGeneratorTool />;
       case 'css-border-radius-generator':
         return <CSSBorderRadiusGeneratorTool />;
+      case 'svg-wave-generator':
+        return <SvgWaveGeneratorTool />;
       case 'temperature-converter':
         return <TemperatureConverterTool />;
       case 'length-converter':
@@ -258,3 +261,4 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     </PageWrapper>
   );
 }
+

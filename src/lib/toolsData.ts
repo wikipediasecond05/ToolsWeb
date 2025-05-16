@@ -533,7 +533,7 @@ export const tools: Tool[] = [
         'Learning how the `border-radius` CSS property works with its shorthand and individual corner syntaxes.',
         'Quickly generating CSS for complex rounded shapes.'
       ],
-      howItWorks: 'Use the input fields or sliders provided for "All Corners" or for each of the four corners: Top-Left, Top-Right, Bottom-Right, and Bottom-Left. You can also select the unit (px or %). As you adjust these values, the live preview of a sample box will update to show the effect. The tool will generate the corresponding `border-radius` CSS rule, which you can then copy.',
+      howItWorks: 'Use the input fields or sliders provided for "All Corners" or for each of the four corners: Top-Left, Top-Right, and Bottom-Right, Bottom-Left. You can also select the unit (px or %). As you adjust these values, the live preview of a sample box will update to show the effect. The tool will generate the corresponding `border-radius` CSS rule, which you can then copy.',
       tips: [
         'You can use different units like `px`, `%`, or `em` for border-radius values. The tool supports px and %.',
         'To create a circle from a square element, set the border-radius to 50%.',
@@ -548,6 +548,42 @@ export const tools: Tool[] = [
       { question: 'What is the shorthand for `border-radius`?', answer: '`border-radius: value;` (all corners), `border-radius: top-left-and-bottom-right top-right-and-bottom-left;` (two values), `border-radius: top-left top-right-and-bottom-left bottom-right;` (three values), or `border-radius: top-left top-right bottom-right bottom-left;` (four values).' }
     ],
     keywords: ['css border radius', 'rounded corners', 'css shapes', 'ui design', 'web design', 'css generator']
+  },
+  {
+    id: 'svg-wave-generator',
+    title: 'SVG Wave Generator',
+    description: 'Create and customize SVG wave shapes for backgrounds or section separators.',
+    category: 'design-frontend',
+    icon: Icons.Waves,
+    iconName: 'Waves',
+    path: '/tools/svg-wave-generator',
+    longDescription: {
+      overview: 'The SVG Wave Generator allows you to interactively design unique SVG wave patterns. Adjust parameters like amplitude (waviness), complexity (number of crests), color, and opacity to create custom wave shapes. These generated SVGs can be used as backgrounds, section dividers, or decorative elements in your web projects. You can then download the generated SVG file or copy its code.',
+      useCases: [
+        'Creating visually interesting section separators on web pages.',
+        'Designing unique backgrounds for hero sections or footers.',
+        'Adding dynamic and fluid visual elements to websites.',
+        'Generating custom SVG assets for graphic design projects.',
+        'Learning about SVG path generation for wave-like shapes.'
+      ],
+      howItWorks: 'This tool focuses on generating sine-wave based shapes. Use the sliders to control "Amplitude" (height of the wave) and "Complexity" (number of wave cycles across the width). Pick a "Fill Color" and adjust the "Opacity". You can also "Flip" the wave vertically or horizontally. A "Randomize" button generates a new wave configuration. The live preview updates instantly. Click "Download SVG" to save the generated wave as an .svg file or copy the SVG code from the textarea.',
+      tips: [
+        'Start with a lower complexity (e.g., 1-3 waves) and moderate amplitude for smooth, gentle waves.',
+        'Experiment with high complexity and low amplitude for subtle, textured patterns.',
+        'The generated SVG is a filled shape. The wave forms the top edge, and the shape extends to the bottom of its viewbox, making it suitable for placing at the top or bottom of sections.',
+        'Flipping the wave vertically can change whether the crests point up or down from its baseline.',
+        'The generated SVG code can be directly embedded in your HTML or used in CSS via `url()`.',
+        'Ensure the conceptual `viewBox` dimensions in the tool match how you intend to use the SVG for predictable scaling.'
+      ],
+    },
+    faqs: [
+      { question: 'What type of waves can I generate?', answer: 'Currently, this tool specializes in generating sine-wave based shapes. Support for square or triangle waves may be added in the future.' },
+      { question: 'How is the "Complexity" parameter related to frequency?', answer: 'Higher "Complexity" values mean more wave cycles (higher frequency) across the width of the SVG, resulting in more crests and troughs.' },
+      { question: 'Can I create multiple overlapping waves or layers?', answer: 'This tool generates a single wave shape at a time. To create layered effects, you would generate multiple SVGs and position them using CSS or an SVG editor.' },
+      { question: 'Is the downloaded SVG optimized?', answer: 'The generated SVG is fairly clean. For further optimization, you could run it through an SVG minifier tool.'},
+      { question: 'How does the horizontal flip work?', answer: 'The current horizontal flip simply reverses the order of the points used to draw the wave. For a symmetrical sine wave, this might not produce a visually distinct horizontal flip without further transformation logic.'}
+    ],
+    keywords: ['svg wave', 'wave generator', 'svg shape', 'css background', 'section separator', 'web design', 'vector graphics']
   },
   // Conversion Tools
   {
@@ -1202,26 +1238,26 @@ export const tools: Tool[] = [
     iconName: 'Image',
     path: '/tools/ai-image-alt-text-generator',
     longDescription: {
-      overview: 'The AI Image Alt Text Generator helps you create descriptive alternative text (alt text) for your images. Alt text is crucial for web accessibility, allowing screen readers to describe images to visually impaired users, and also helps search engines understand image content for better SEO. Upload an image to get an AI-generated suggestion.',
+      overview: 'The AI Image Alt Text Generator helps you create descriptive alternative text (alt text) for your images. Alt text is crucial for web accessibility, allowing screen readers to describe images to visually impaired users, and also helps search engines understand image content for better SEO. Upload an image file to get an AI-generated suggestion.',
       useCases: [
         'Making website images accessible to users with visual impairments.',
         'Improving SEO by providing search engines with context about images.',
         'Generating alt text for large batches of images more quickly.',
         'Ensuring compliance with accessibility standards (WCAG).',
       ],
-      howItWorks: 'Click "Choose Image" to upload an image file (PNG, JPG, GIF, WebP, etc.). The image will be previewed. Click "Generate Alt Text". The AI will analyze the image data (sent as a Data URI) and suggest descriptive alt text. Review the suggestion for accuracy and context. Max file size: 5MB.',
+      howItWorks: 'Click the "Choose Image" button to select an image file (PNG, JPG, GIF, WebP, etc.) from your computer. Once uploaded, a preview of the image will be displayed. Click "Generate Alt Text". The tool then sends the image data (as a Base64 Data URI) to an AI model, which analyzes the visual content and suggests descriptive alt text. Review the generated alt text for accuracy and context before using it. Max file size: 5MB.',
       tips: [
         'Good alt text is concise yet descriptive, conveying the purpose or content of the image.',
         'Avoid starting alt text with "Image of..." or "Picture of..." as it_s usually redundant.',
         'For complex images like charts or graphs, the AI might provide a general description; you may need to add more specific details manually.',
-        'Ensure uploaded images are not excessively large (e.g., under 5MB) for better performance.',
+        'Ensure uploaded images are not excessively large (e.g., under 5MB) for better performance and to stay within potential API limits.',
       ],
     },
     faqs: [
-      { question: 'What image file types are supported?', answer: 'Common web image formats like PNG, JPEG, GIF, and WEBP are generally supported. The browser_s ability to read the file is the main factor.' },
-      { question: 'How accurate is the AI-generated alt text?', answer: 'AI can generate surprisingly good descriptions, but it_s not perfect. Always review and edit the alt text to ensure it accurately represents the image and its context on your page.' },
-      { question: 'Is there a file size limit for uploads?', answer: 'Yes, for performance and to manage data transfer, there is a file size limit, typically around 5MB. The tool will indicate if a file is too large.' },
-      { question: 'Is my image data sent to a server?', answer: 'Yes, the image data (converted to a Data URI after upload) is sent to the AI model for processing to generate the alt text.' },
+      { question: 'What image file types are supported?', answer: 'Common web image formats like PNG, JPEG, GIF, and WEBP are generally supported, as the browser reads the file and converts it to a Data URI.' },
+      { question: 'How accurate is the AI-generated alt text?', answer: 'AI can generate surprisingly good descriptions, but it_s not perfect. Always review and edit the alt text to ensure it accurately represents the image and its context on your page. Context is key for good alt text.' },
+      { question: 'Is there a file size limit for uploads?', answer: 'Yes, for performance and to manage data transfer to the AI model, there is a file size limit, currently set at around 5MB. The tool will provide an error if the file is too large.' },
+      { question: 'Is my image data sent to a server?', answer: 'Yes, after you upload the image, its data (converted to a Base64 Data URI format) is sent to the AI model for processing to generate the alt text.' },
     ],
     keywords: ['ai', 'alt text', 'image accessibility', 'seo', 'image description', 'wcag', 'image upload'],
   },
@@ -1245,3 +1281,4 @@ export const getSerializableTools = (toolsList: Tool[]): Omit<Tool, 'icon'>[] =>
     return serializableTool;
   });
 };
+
