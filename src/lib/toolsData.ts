@@ -120,7 +120,7 @@ export const tools: Tool[] = [
       {
         question: "Is there a limit to the amount of text I can process?",
         answer:
-          "While there_s no hard limit, performance may degrade with extremely large text inputs as all processing happens in your browser. For very large files, consider a dedicated text editor or command-line tools.",
+          "While there\'s no hard limit, performance may degrade with extremely large text inputs as all processing happens in your browser. For very large files, consider a dedicated text editor or command-line tools.",
       },
       {
         question: "Does this tool send my text to a server?",
@@ -213,7 +213,7 @@ export const tools: Tool[] = [
     path: "/tools/word-counter",
     longDescription: {
       overview:
-        "The Word Counter tool provides detailed statistics about your text, including the number of words, characters (with and without spaces), sentences, and paragraphs. It_s useful for writers, students, editors, and anyone needing to analyze text length and structure.",
+        "The Word Counter tool provides detailed statistics about your text, including the number of words, characters (with and without spaces), sentences, and paragraphs. It\'s useful for writers, students, editors, and anyone needing to analyze text length and structure.",
       useCases: [
         "Checking if text meets specific length requirements (e.g., for essays, articles, tweets).",
         "Analyzing readability and complexity based on sentence and paragraph counts.",
@@ -299,7 +299,7 @@ export const tools: Tool[] = [
       {
         question: "How is syllable count estimated?",
         answer:
-          'Syllables are estimated using a common heuristic for English words. This involves counting vowel groups and applying rules for common endings (like silent "e") and letter combinations. It_s an approximation and may not be perfect for all words, especially complex or uncommon ones.',
+          'Syllables are estimated using a common heuristic for English words. This involves counting vowel groups and applying rules for common endings (like silent "e") and letter combinations. It\'s an approximation and may not be perfect for all words, especially complex or uncommon ones.',
       },
       {
         question: "What is the basis for reading time estimation?",
@@ -371,7 +371,7 @@ export const tools: Tool[] = [
       {
         question: 'What are "stop words"?',
         answer:
-          'Stop words are common words (like "the", "is", "at", "a") that search engines often ignore. Removing them can make slugs shorter and more focused on important keywords, but it_s not always necessary or desired.',
+          'Stop words are common words (like "the", "is", "at", "a") that search engines often ignore. Removing them can make slugs shorter and more focused on important keywords, but it\'s not always necessary or desired.',
       },
       {
         question: 'How does "Remove Special Characters" work?',
@@ -399,7 +399,7 @@ export const tools: Tool[] = [
     id: "json-formatter",
     title: "JSON Formatter & Validator",
     description:
-      "Format, beautify, and validate your JSON data to ensure it_s readable and error-free.",
+      "Format, beautify, and validate your JSON data to ensure it\'s readable and error-free.",
     category: "developer",
     icon: Icons.FileJson,
     iconName: "FileJson",
@@ -415,7 +415,7 @@ export const tools: Tool[] = [
         "Ensuring JSON data is syntactically correct before sending it to an API or processing it in an application.",
       ],
       howItWorks:
-        'Paste your JSON string into the input text area. Click the "Format & Validate" button. The tool attempts to parse the input using `JSON.parse()`. If the JSON is valid, it_s then re-formatted using `JSON.stringify(parsedData, null, 2)` which adds 2-space indentation. The beautified JSON is displayed in the output area. If the input is not valid JSON, an error message indicating the issue (often with a line or character reference) is shown.',
+        'Paste your JSON string into the input text area. Click the "Format & Validate" button. The tool attempts to parse the input using `JSON.parse()`. If the JSON is valid, it\'s then re-formatted using `JSON.stringify(parsedData, null, 2)` which adds 2-space indentation. The beautified JSON is displayed in the output area. If the input is not valid JSON, an error message indicating the issue (often with a line or character reference) is shown.',
       tips: [
         "Always validate JSON from untrusted sources before processing it in your applications.",
         "Formatted JSON is significantly easier to navigate, especially for deeply nested objects or long arrays.",
@@ -442,7 +442,7 @@ export const tools: Tool[] = [
       {
         question: "Can I format minified JSON?",
         answer:
-          "Yes, as long as it_s valid JSON (even if it_s all on one line without spaces), the tool can parse and reformat it.",
+          "Yes, as long as it\'s valid JSON (even if it\'s all on one line without spaces), the tool can parse and reformat it.",
       },
       {
         question: "What happens if my JSON has comments?",
@@ -548,8 +548,8 @@ export const tools: Tool[] = [
       howItWorks:
         'Paste the full JWT string into the input area. Click the "Decode JWT" button. The tool first splits the JWT string by the period (`.`) character into three segments. The first segment is the Base64Url-encoded Header, and the second is the Base64Url-encoded Payload. These segments are then decoded from Base64Url to their original JSON string representations. Finally, these JSON strings are parsed and pretty-printed for display. The third segment, the Signature, is displayed as is, as it cannot be decoded without the secret or public key.',
       tips: [
-        "**Security Warning:** Never paste JWTs containing sensitive production credentials or personal information into untrusted online tools. While this tool operates client-side, it_s a good general security practice.",
-        "This tool does not validate the JWT_s signature. Signature validation requires the secret key (for HMAC algorithms) or the public key (for RSA/ECDSA algorithms) used to sign the token, which is not handled by this decoder.",
+        "**Security Warning:** Never paste JWTs containing sensitive production credentials or personal information into untrusted online tools. While this tool operates client-side, it\'s a good general security practice.",
+        "This tool does not validate the JWT\'s signature. Signature validation requires the secret key (for HMAC algorithms) or the public key (for RSA/ECDSA algorithms) used to sign the token, which is not handled by this decoder.",
         "Common claims in a JWT payload include `iss` (issuer), `sub` (subject), `aud` (audience), `exp` (expiration time), `nbf` (not before time), `iat` (issued at time), and `jti` (JWT ID).",
         'The header typically contains the token type (`typ`, usually "JWT") and the signing algorithm (`alg`, e.g., "HS256", "RS256").',
       ],
@@ -568,7 +568,7 @@ export const tools: Tool[] = [
       {
         question: "What are the three parts of a JWT?",
         answer:
-          "A JWT consists of three parts separated by dots (.): the Header, the Payload, and the Signature. The Header and Payload are Base64Url encoded JSON objects. The Signature is used to verify the token_s authenticity.",
+          "A JWT consists of three parts separated by dots (.): the Header, the Payload, and the Signature. The Header and Payload are Base64Url encoded JSON objects. The Signature is used to verify the token\'s authenticity.",
       },
       {
         question: "Why is my JWT decoding to strange characters or failing?",
@@ -642,7 +642,7 @@ export const tools: Tool[] = [
         question:
           "What if I put `*` for Day of Month and `1` (Monday) for Day of Week?",
         answer:
-          "This generally means the job will run every Monday, regardless of the day of the month, AND every day of the month (if Day of Week was also `*`). The behavior of combining Day of Month and Day of Week can sometimes be tricky. It_s often best to use `*` in one if you_re specifying the other.",
+          "This generally means the job will run every Monday, regardless of the day of the month, AND every day of the month (if Day of Week was also `*`). The behavior of combining Day of Month and Day of Week can sometimes be tricky. It\'s often best to use `*` in one if you_re specifying the other.",
       },
       {
         question: "Is my cron expression validated for correctness?",
@@ -764,7 +764,7 @@ export const tools: Tool[] = [
       {
         question: "How do I use the color picker?",
         answer:
-          "Click on the color input field (it usually looks like a colored square). Your browser_s native color selection dialog will appear, allowing you to pick a color visually or by inputting values directly if supported.",
+          "Click on the color input field (it usually looks like a colored square). Your browser\'s native color selection dialog will appear, allowing you to pick a color visually or by inputting values directly if supported.",
       },
       {
         question: "Are the color conversions accurate?",
@@ -774,7 +774,7 @@ export const tools: Tool[] = [
       {
         question: "Can I input a color code to see the color?",
         answer:
-          "Currently, this tool focuses on picking a color visually and then displaying its codes. For converting from a code to a visual color, you might need a different tool or adjust the color picker to match the code if your browser_s picker allows it.",
+          "Currently, this tool focuses on picking a color visually and then displaying its codes. For converting from a code to a visual color, you might need a different tool or adjust the color picker to match the code if your browser\'s picker allows it.",
       },
       {
         question: "Is my chosen color saved anywhere?",
@@ -886,7 +886,7 @@ export const tools: Tool[] = [
       {
         question: "What do the different box-shadow parameters mean?",
         answer:
-          "`offset-x`: horizontal position. `offset-y`: vertical position. `blur-radius`: higher values mean more blur. `spread-radius`: positive values expand the shadow, negative values shrink it. `color`: the shadow_s color. `inset`: changes the shadow from an outer (outset) shadow to an inner shadow.",
+          "`offset-x`: horizontal position. `offset-y`: vertical position. `blur-radius`: higher values mean more blur. `spread-radius`: positive values expand the shadow, negative values shrink it. `color`: the shadow\'s color. `inset`: changes the shadow from an outer (outset) shadow to an inner shadow.",
       },
       {
         question: "Can I create multiple shadow layers with this tool?",
@@ -894,7 +894,7 @@ export const tools: Tool[] = [
           "This tool is designed to help you generate a single, well-configured box-shadow rule. To create multiple layers, you would generate each shadow individually and then combine them in your CSS, separated by commas.",
       },
       {
-        question: "How do I control the shadow_s opacity?",
+        question: "How do I control the shadow\'s opacity?",
         answer:
           "Use the color picker for the shadow color, which should allow you to set an alpha (opacity) value (e.g., using RGBA or HSLA). The opacity slider also directly controls this.",
       },
@@ -1059,7 +1059,7 @@ export const tools: Tool[] = [
         "Learning about SVG path generation for curved and irregular shapes.",
       ],
       howItWorks:
-        'Use the "Complexity" slider to set the number of anchor points that define the blob_s general form (more points can lead to more "lobes"). The "Edges" slider controls how much each point_s radius can deviate from a perfect circle, making the blob more or less irregular/organic. Pick a "Fill Color". A "Randomize" button will generate new settings for a fresh blob. The live preview updates instantly. You can copy the full SVG code or download the blob as an .svg file.',
+        'Use the "Complexity" slider to set the number of anchor points that define the blob\'s general form (more points can lead to more "lobes"). The "Edges" slider controls how much each point\'s radius can deviate from a perfect circle, making the blob more or less irregular/organic. Pick a "Fill Color". A "Randomize" button will generate new settings for a fresh blob. The live preview updates instantly. You can copy the full SVG code or download the blob as an .svg file.',
       tips: [
         "Low complexity (e.g., 3-5 points) with moderate edge variation often yields pleasing, simple blobs.",
         'Higher complexity can create more intricate, "lumpy" shapes.',
@@ -1072,7 +1072,7 @@ export const tools: Tool[] = [
       {
         question: 'How is the "blob" shape generated?',
         answer:
-          'It_s created by first calculating a set of anchor points around a central origin. Each point_s distance from the center (radius) is randomized based on the "Edges" setting. These anchor points are then connected using smooth cubic Bezier curves to create the organic, flowing outline.',
+          'It\'s created by first calculating a set of anchor points around a central origin. Each point\'s distance from the center (radius) is randomized based on the "Edges" setting. These anchor points are then connected using smooth cubic Bezier curves to create the organic, flowing outline.',
       },
       {
         question: "Can I control the exact position of each point?",
@@ -1134,12 +1134,12 @@ export const tools: Tool[] = [
       {
         question: "What is CSV?",
         answer:
-          "CSV stands for Comma Separated Values. It_s a plain text file format used to store tabular data, where each line is a data record and each record consists of one or more fields, separated by commas (or other delimiters).",
+          "CSV stands for Comma Separated Values. It\'s a plain text file format used to store tabular data, where each line is a data record and each record consists of one or more fields, separated by commas (or other delimiters).",
       },
       {
         question: "What is JSON?",
         answer:
-          "JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate. It_s commonly used for transmitting data in web applications (e.g., sending some data from the server to the client, so it can be displayed on a web page).",
+          "JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate. It\'s commonly used for transmitting data in web applications (e.g., sending some data from the server to the client, so it can be displayed on a web page).",
       },
       {
         question:
@@ -1151,7 +1151,7 @@ export const tools: Tool[] = [
         question:
           "What if my CSV has a different number of columns in some rows?",
         answer:
-          "The tool will attempt to parse it, but the resulting JSON objects might have missing or extra keys for those inconsistent rows, depending on the header. It_s best to ensure your CSV is consistently structured.",
+          "The tool will attempt to parse it, but the resulting JSON objects might have missing or extra keys for those inconsistent rows, depending on the header. It\'s best to ensure your CSV is consistently structured.",
       },
       {
         question: "Is my data uploaded to a server?",
@@ -1268,7 +1268,7 @@ export const tools: Tool[] = [
       {
         question: "What is HEX color code?",
         answer:
-          "A HEX color code is a hexadecimal way to represent a color in RGB format by combining three values: the amounts of red, green, and blue. It_s commonly used in HTML and CSS.",
+          "A HEX color code is a hexadecimal way to represent a color in RGB format by combining three values: the amounts of red, green, and blue. It\'s commonly used in HTML and CSS.",
       },
       {
         question: "Can I input RGB values with alpha (RGBA)?",
@@ -1415,7 +1415,7 @@ export const tools: Tool[] = [
     path: "/tools/hash-generator",
     longDescription: {
       overview:
-        "The Hash Generator tool allows you to compute cryptographic hash values for any text input using various secure algorithms like SHA-256, SHA-384, and SHA-512. Hashing is a one-way process that converts input data into a fixed-size string of characters, which is unique to that specific input. It_s widely used for data integrity verification, password storage, and digital signatures.",
+        "The Hash Generator tool allows you to compute cryptographic hash values for any text input using various secure algorithms like SHA-256, SHA-384, and SHA-512. Hashing is a one-way process that converts input data into a fixed-size string of characters, which is unique to that specific input. It\'s widely used for data integrity verification, password storage, and digital signatures.",
       useCases: [
         "Verifying the integrity of downloaded files by comparing their computed hash with a known hash value.",
         "Creating checksums for data to detect accidental modifications.",
@@ -1447,7 +1447,7 @@ export const tools: Tool[] = [
       {
         question: "How does the Web Crypto API work for hashing?",
         answer:
-          "The browser_s Web Crypto API provides `crypto.subtle.digest()`, which takes an algorithm identifier and input data (as an ArrayBuffer) and returns a Promise that resolves to the hash digest, also as an ArrayBuffer. This is then typically converted to a hex string for display.",
+          "The browser\'s Web Crypto API provides `crypto.subtle.digest()`, which takes an algorithm identifier and input data (as an ArrayBuffer) and returns a Promise that resolves to the hash digest, also as an ArrayBuffer. This is then typically converted to a hex string for display.",
       },
       {
         question: "Is my input text sent to a server?",
@@ -1505,12 +1505,12 @@ export const tools: Tool[] = [
       {
         question: "What is an MD5 hash used for today?",
         answer:
-          "It_s sometimes used for file integrity checks (checksums) in non-security-critical contexts, in some legacy systems, or for educational purposes to demonstrate hashing concepts. For new security applications, stronger algorithms like SHA-256 are recommended.",
+          "It\'s sometimes used for file integrity checks (checksums) in non-security-critical contexts, in some legacy systems, or for educational purposes to demonstrate hashing concepts. For new security applications, stronger algorithms like SHA-256 are recommended.",
       },
       {
         question: "Why isn_t MD5 available in the Web Crypto API?",
         answer:
-          "Modern browser APIs like Web Crypto focus on providing secure cryptographic primitives. Due to MD5_s known vulnerabilities, it is generally excluded from these standard APIs to discourage its use in new security-sensitive applications.",
+          "Modern browser APIs like Web Crypto focus on providing secure cryptographic primitives. Due to MD5\'s known vulnerabilities, it is generally excluded from these standard APIs to discourage its use in new security-sensitive applications.",
       },
       {
         question: "Is my input text sent to a server?",
@@ -1547,7 +1547,7 @@ export const tools: Tool[] = [
         "Transmitting binary data (like images) as text in JSON or XML payloads.",
       ],
       howItWorks:
-        'For encoding, enter your plain text into the input area and click "Encode to Base64". The tool uses the browser_s `btoa()` function (after UTF-8 encoding the input). For decoding, paste a Base64 string into the input area and click "Decode from Base64". The tool uses `atob()` (and then UTF-8 decodes the result). The result appears in the output area. Clear and Copy buttons are provided.',
+        'For encoding, enter your plain text into the input area and click "Encode to Base64". The tool uses the browser\'s `btoa()` function (after UTF-8 encoding the input). For decoding, paste a Base64 string into the input area and click "Decode from Base64". The tool uses `atob()` (and then UTF-8 decodes the result). The result appears in the output area. Clear and Copy buttons are provided.',
       tips: [
         "Base64 is an encoding scheme, not an encryption method. It does not provide security for sensitive data.",
         "Ensure the input for decoding is a valid Base64 string. Invalid characters will cause decoding errors.",
@@ -1603,7 +1603,7 @@ export const tools: Tool[] = [
         'For encoding, enter your text into the input area and click "Encode URL". The tool uses `encodeURIComponent()`, which encodes all characters except for A-Z a-z 0-9 - _ . ! ~ * \' ( ). For decoding, paste a percent-encoded URL or string segment and click "Decode URL". The tool uses `decodeURIComponent()`. The result appears in the output area.',
       tips: [
         "`encodeURIComponent()` is generally preferred for encoding query string parameters as it encodes more characters than `encodeURI()`.",
-        'Percent-encoding replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits corresponding to the character_s ASCII value.',
+        'Percent-encoding replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits corresponding to the character\'s ASCII value.',
         "Spaces are typically encoded as `%20` or sometimes `+` (though `encodeURIComponent` uses `%20`).",
       ],
     },
@@ -1611,7 +1611,7 @@ export const tools: Tool[] = [
       {
         question: "What is URL encoding (percent-encoding)?",
         answer:
-          "URL encoding, also known as percent-encoding, is a mechanism for encoding information in a Uniform Resource Identifier (URI) under certain circumstances. It involves replacing reserved or non-ASCII characters with a % symbol followed by two hexadecimal digits that represent the character_s ASCII code.",
+          "URL encoding, also known as percent-encoding, is a mechanism for encoding information in a Uniform Resource Identifier (URI) under certain circumstances. It involves replacing reserved or non-ASCII characters with a % symbol followed by two hexadecimal digits that represent the character\'s ASCII code.",
       },
       {
         question: "When should I use `encodeURIComponent()` vs `encodeURI()`?",
@@ -1654,11 +1654,11 @@ export const tools: Tool[] = [
         "Learning about how Unix time works and its representation.",
       ],
       howItWorks:
-        'To convert a Unix timestamp to a date: Enter the timestamp value in the "Unix Timestamp" field. Select whether it_s in "Seconds" or "Milliseconds". Click "Convert to Date". The tool will calculate the corresponding human-readable date and time (in your local timezone) and display it. To convert a date to a Unix timestamp: Enter the date and time in the "Human-Readable Date" input (or use the date/time picker). Click "Convert to Timestamp". The tool will convert this date to a Unix timestamp (in seconds, by default) and display it.',
+        'To convert a Unix timestamp to a date: Enter the timestamp value in the "Unix Timestamp" field. Select whether it\'s in "Seconds" or "Milliseconds". Click "Convert to Date". The tool will calculate the corresponding human-readable date and time (in your local timezone) and display it. To convert a date to a Unix timestamp: Enter the date and time in the "Human-Readable Date" input (or use the date/time picker). Click "Convert to Timestamp". The tool will convert this date to a Unix timestamp (in seconds, by default) and display it.',
       tips: [
         "Unix time is the number of seconds (or milliseconds) that have elapsed since January 1, 1970, at 00:00:00 Coordinated Universal Time (UTC).",
         "Be mindful of whether your timestamp is in seconds or milliseconds, as this is a common source of errors.",
-        "The human-readable date output is typically displayed in your browser_s local timezone.",
+        "The human-readable date output is typically displayed in your browser\'s local timezone.",
         "When converting from a date to a timestamp, the resulting timestamp is usually UTC-based.",
       ],
     },
@@ -1724,7 +1724,7 @@ export const tools: Tool[] = [
       {
         question: "What is Lorem Ipsum?",
         answer:
-          "Lorem Ipsum is dummy text used in the design and publishing industries. It_s derived from a passage by Cicero, but heavily altered to be nonsensical. Its purpose is to allow focus on the visual elements of a design.",
+          "Lorem Ipsum is dummy text used in the design and publishing industries. It\'s derived from a passage by Cicero, but heavily altered to be nonsensical. Its purpose is to allow focus on the visual elements of a design.",
       },
       {
         question:
@@ -1799,7 +1799,7 @@ export const tools: Tool[] = [
       {
         question: "Does this work for any video or audio platform?",
         answer:
-          "This calculator works for any media as long as you know its original length and the playback speed you intend to use. It_s independent of the platform (YouTube, Netflix, podcasts, etc.).",
+          "This calculator works for any media as long as you know its original length and the playback speed you intend to use. It\'s independent of the platform (YouTube, Netflix, podcasts, etc.).",
       },
     ],
     keywords: [
@@ -1851,14 +1851,14 @@ export const tools: Tool[] = [
         answer: "Yes, the custom speed input allows for decimal values.",
       },
       {
-        question: 'What does "Time Saved" mean if it_s negative?',
+        question: 'What does "Time Saved" mean if it\'s negative?',
         answer:
           'A negative "Time Saved" indicates that the new listening time is longer than the original, which happens if you choose a playback speed less than 1x (slower than normal).',
       },
       {
         question: "Does the calculator account for pauses or breaks I take?",
         answer:
-          "No, it calculates the continuous listening time based on the audiobook_s original length and the selected speed.",
+          "No, it calculates the continuous listening time based on the audiobook\'s original length and the selected speed.",
       },
     ],
     keywords: [
@@ -1925,7 +1925,7 @@ export const tools: Tool[] = [
       {
         question: "Does this calculator consider REM sleep specifically?",
         answer:
-          'While it_s called "Calculate REM Sleep Cycles" in some contexts, it more broadly calculates based on full 90-minute sleep cycles, which include REM stages. The goal is to complete full cycles.',
+          'While it\'s called "Calculate REM Sleep Cycles" in some contexts, it more broadly calculates based on full 90-minute sleep cycles, which include REM stages. The goal is to complete full cycles.',
       },
     ],
     keywords: [
@@ -2037,7 +2037,7 @@ export const tools: Tool[] = [
       {
         question: "What is absolute zero?",
         answer:
-          "Absolute zero is 0 K, which is -273.15 °C or -459.67 °F. It_s the lowest possible temperature where nothing could be colder.",
+          "Absolute zero is 0 K, which is -273.15 °C or -459.67 °F. It\'s the lowest possible temperature where nothing could be colder.",
       },
     ],
     keywords: [
@@ -2122,7 +2122,7 @@ export const tools: Tool[] = [
       howItWorks:
         'Enter a description of your code changes or a summary of the diff into the text area. Select the type of commit (e.g., "feat" for new feature, "fix" for bug fix). Click "Generate Message". The AI will process your input and suggest a commit message. Review and copy the suggestion.',
       tips: [
-        "The more detailed your description or diff, the better the AI_s suggestion will be.",
+        "The more detailed your description or diff, the better the AI\'s suggestion will be.",
         "Always review AI-generated messages to ensure accuracy and relevance before committing.",
         "Use specific commit types to clearly communicate the nature of the changes.",
       ],
@@ -2136,7 +2136,7 @@ export const tools: Tool[] = [
       {
         question: "Is the generated message always perfect?",
         answer:
-          "AI suggestions are a starting point. They may not always be perfect and should be reviewed and edited if necessary. The quality depends on the input and the AI model_s understanding.",
+          "AI suggestions are a starting point. They may not always be perfect and should be reviewed and edited if necessary. The quality depends on the input and the AI model\'s understanding.",
       },
       {
         question: "Is my code diff sent to a server?",
@@ -2165,7 +2165,7 @@ export const tools: Tool[] = [
       overview:
         "Stuck for blog ideas? The AI Blog Post Idea Generator helps you brainstorm engaging titles and topics. Input a general theme or keyword and specify your target audience, and the AI will provide a list of creative suggestions to kickstart your content creation.",
       useCases: [
-        "Overcoming writer_s block for blog content.",
+        "Overcoming writer\'s block for blog content.",
         "Exploring new angles for existing topics.",
         "Tailoring content ideas to specific audience segments.",
         "Generating a list of potential titles for A/B testing.",
@@ -2234,7 +2234,7 @@ export const tools: Tool[] = [
       {
         question: "What is the maximum text length it can summarize?",
         answer:
-          "While there_s a limit, it_s generally quite generous for typical articles or documents. Very extremely long texts might be truncated or result in less coherent summaries. It_s best to test with your specific content.",
+          "While there\'s a limit, it\'s generally quite generous for typical articles or documents. Very extremely long texts might be truncated or result in less coherent summaries. It\'s best to test with your specific content.",
       },
       {
         question: "Does it work for all languages?",
@@ -2278,7 +2278,7 @@ export const tools: Tool[] = [
         'Click the "Choose Image" button to select an image file (PNG, JPG, GIF, WebP, etc.) from your computer. Once uploaded, a preview of the image will be displayed. Click "Generate Alt Text". The tool then sends the image data (as a Base64 Data URI) to an AI model, which analyzes the visual content and suggests descriptive alt text. Review the generated alt text for accuracy and context before using it. Max file size: 5MB.',
       tips: [
         "Good alt text is concise yet descriptive, conveying the purpose or content of the image.",
-        'Avoid starting alt text with "Image of..." or "Picture of..." as it_s usually redundant.',
+        'Avoid starting alt text with "Image of..." or "Picture of..." as it\'s usually redundant.',
         "For complex images like charts or graphs, the AI might provide a general description; you may need to add more specific details manually.",
         "Ensure uploaded images are not excessively large (e.g., under 5MB) for better performance and to stay within potential API limits.",
       ],
@@ -2292,7 +2292,7 @@ export const tools: Tool[] = [
       {
         question: "How accurate is the AI-generated alt text?",
         answer:
-          "AI can generate surprisingly good descriptions, but it_s not perfect. Always review and edit the alt text to ensure it accurately represents the image and its context on your page. Context is key for good alt text.",
+          "AI can generate surprisingly good descriptions, but it\'s not perfect. Always review and edit the alt text to ensure it accurately represents the image and its context on your page. Context is key for good alt text.",
       },
       {
         question: "Is there a file size limit for uploads?",
