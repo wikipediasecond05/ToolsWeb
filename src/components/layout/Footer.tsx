@@ -8,11 +8,11 @@ export function Footer() {
     { href: '/tools', label: 'All Tools' },
     { href: '/categories', label: 'Categories' },
     { href: '/favorites', label: 'Favorites' },
+    { href: '/contact', label: 'Contact' }, // Moved Contact here
   ];
 
   const legalLinks = [
     { href: '/about', label: 'About Us' },
-    { href: '/contact', label: 'Contact' },
     { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Use' },
   ];
