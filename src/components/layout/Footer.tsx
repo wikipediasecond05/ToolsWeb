@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import { APP_NAME, APP_TAGLINE } from '@/lib/constants';
 import { Logo } from '@/components/Logo';
+import { getAllTools, getPopularSlugs } from '@/lib/toolsData';
+import type { Tool } from '@/types';
 
 export function Footer() {
   const quickLinks = [
@@ -17,6 +19,12 @@ export function Footer() {
     { href: '/terms', label: 'Terms of Use' },
   ];
 
+  const allTools = getAllTools();
+  const popularToolSlugs = getPopularSlugs().slice(0, 4); // Get top 4 popular slugs
+  const popularTools: Tool[] = popularToolSlugs
+    .map(slugObj => allTools.find(tool => tool.path === slugObj.slug))
+    .filter(Boolean) as Tool[];
+
   return (
     <footer className="border-t bg-muted text-muted-foreground">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
@@ -25,15 +33,14 @@ export function Footer() {
           <div className="md:w-2/5 lg:w-1/3 flex flex-col items-center md:items-start">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed">
-              {APP_TAGLINE} NymGram is dedicated to providing high-quality, intuitive utilities to enhance productivity for developers and digital professionals.
+              {APP_TAGLINE} {APP_NAME} is dedicated to providing high-quality, intuitive utilities to enhance productivity for developers and digital professionals.
             </p>
-            {/* Social media icons could go here in future */}
           </div>
 
           {/* Right Section: Links (grouped) */}
-          <div className="flex flex-col sm:flex-row gap-8 sm:gap-20 md:justify-end items-center sm:items-start"> {/* Increased gap for sm screens */}
+          <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 md:justify-end items-center sm:items-start w-full md:w-auto">
             {/* Quick Links Column */}
-            <div className="w-full sm:w-auto"> {/* Ensure columns take appropriate width */}
+            <div className="w-full sm:w-auto">
               <h3 className="text-sm font-semibold text-foreground mb-4">Quick Links</h3>
               <nav aria-label="Quick Links">
                 <ul className="space-y-2">
@@ -50,9 +57,30 @@ export function Footer() {
                 </ul>
               </nav>
             </div>
+            
+            {/* Popular Tools Column */}
+            {popularTools.length > 0 && (
+              <div className="w-full sm:w-auto">
+                <h3 className="text-sm font-semibold text-foreground mb-4">Popular Tools</h3>
+                <nav aria-label="Popular Tools">
+                  <ul className="space-y-2">
+                    {popularTools.map((tool) => (
+                      <li key={tool.id}>
+                        <Link
+                          href={tool.path}
+                          className="text-sm hover:text-primary transition-colors"
+                        >
+                          {tool.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            )}
 
             {/* Legal Links Column */}
-            <div className="w-full sm:w-auto"> {/* Ensure columns take appropriate width */}
+            <div className="w-full sm:w-auto">
               <h3 className="text-sm font-semibold text-foreground mb-4">Legal</h3>
               <nav aria-label="Legal Links">
                 <ul className="space-y-2">
