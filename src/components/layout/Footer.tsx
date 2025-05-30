@@ -13,17 +13,17 @@ export function Footer() {
     { href: '/contact', label: 'Contact' },
   ];
 
+  const popularToolSlugs = getPopularSlugs().slice(0, 4); 
+  const allTools = getAllTools();
+  const popularTools: Tool[] = popularToolSlugs
+    .map(slugObj => allTools.find(tool => tool.path === slugObj.slug))
+    .filter(Boolean) as Tool[];
+
   const legalLinks = [
     { href: '/about', label: 'About Us' },
     { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Use' },
   ];
-
-  const allTools = getAllTools();
-  const popularToolSlugs = getPopularSlugs().slice(0, 4); // Get top 4 popular slugs
-  const popularTools: Tool[] = popularToolSlugs
-    .map(slugObj => allTools.find(tool => tool.path === slugObj.slug))
-    .filter(Boolean) as Tool[];
 
   return (
     <footer className="border-t bg-muted text-muted-foreground">
@@ -38,7 +38,7 @@ export function Footer() {
           </div>
 
           {/* Right Section: Links (grouped) */}
-          <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 lg:justify-end items-center sm:items-start w-full lg:w-auto">
+          <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-end gap-8 sm:gap-16 items-center sm:items-start w-full lg:w-auto">
             {/* Quick Links Column */}
             <div className="w-full sm:w-auto">
               <h3 className="text-sm font-semibold text-foreground mb-4">Quick Links</h3>
