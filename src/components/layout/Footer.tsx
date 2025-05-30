@@ -20,9 +20,9 @@ export function Footer() {
   return (
     <footer className="border-t bg-muted text-muted-foreground">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="flex flex-col md:flex-row md:justify-between gap-x-6 gap-y-10"> {/* Changed gap-x-8 to gap-x-6 */}
+        <div className="flex flex-col md:flex-row md:justify-between gap-x-6 gap-y-10 text-center md:text-left">
           {/* Left Section: Brand Info */}
-          <div className="md:w-2/5 lg:w-1/3">
+          <div className="md:w-2/5 lg:w-1/3 flex flex-col items-center md:items-start">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed">
               {APP_TAGLINE} NymGram is dedicated to providing high-quality, intuitive utilities to enhance productivity for developers and digital professionals.
@@ -31,9 +31,9 @@ export function Footer() {
           </div>
 
           {/* Right Section: Links (grouped) */}
-          <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 md:justify-end">
+          <div className="flex flex-col sm:flex-row gap-8 sm:gap-20 md:justify-end items-center sm:items-start"> {/* Increased gap for sm screens */}
             {/* Quick Links Column */}
-            <div>
+            <div className="w-full sm:w-auto"> {/* Ensure columns take appropriate width */}
               <h3 className="text-sm font-semibold text-foreground mb-4">Quick Links</h3>
               <nav aria-label="Quick Links">
                 <ul className="space-y-2">
@@ -52,7 +52,7 @@ export function Footer() {
             </div>
 
             {/* Legal Links Column */}
-            <div>
+            <div className="w-full sm:w-auto"> {/* Ensure columns take appropriate width */}
               <h3 className="text-sm font-semibold text-foreground mb-4">Legal</h3>
               <nav aria-label="Legal Links">
                 <ul className="space-y-2">
