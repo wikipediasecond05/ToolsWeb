@@ -28,9 +28,9 @@ export function Footer() {
   return (
     <footer className="border-t bg-muted text-muted-foreground">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="flex flex-col md:flex-row md:justify-between gap-x-6 gap-y-10 text-center md:text-left">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-x-6 gap-y-10 text-center lg:text-left">
           {/* Left Section: Brand Info */}
-          <div className="md:w-2/5 lg:w-1/3 flex flex-col items-center md:items-start">
+          <div className="lg:w-1/3 flex flex-col items-center lg:items-start">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed">
               {APP_TAGLINE} {APP_NAME} is dedicated to providing high-quality, intuitive utilities to enhance productivity for developers and digital professionals.
@@ -38,7 +38,7 @@ export function Footer() {
           </div>
 
           {/* Right Section: Links (grouped) */}
-          <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 md:justify-end items-center sm:items-start w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 lg:justify-end items-center sm:items-start w-full lg:w-auto">
             {/* Quick Links Column */}
             <div className="w-full sm:w-auto">
               <h3 className="text-sm font-semibold text-foreground mb-4">Quick Links</h3>
