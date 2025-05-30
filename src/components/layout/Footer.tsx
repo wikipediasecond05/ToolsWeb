@@ -5,14 +5,14 @@ import { Logo } from '@/components/Logo';
 
 export function Footer() {
   const quickLinks = [
-    { href: '/about', label: 'About Us' },
-    { href: '/contact', label: 'Contact' },
     { href: '/tools', label: 'All Tools' },
     { href: '/categories', label: 'Categories' },
     { href: '/favorites', label: 'Favorites' },
   ];
 
   const legalLinks = [
+    { href: '/about', label: 'About Us' },
+    { href: '/contact', label: 'Contact' },
     { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Use' },
   ];
@@ -36,7 +36,7 @@ export function Footer() {
             <div>
               <h3 className="text-sm font-semibold text-foreground mb-4">Quick Links</h3>
               <nav aria-label="Quick Links">
-                <ul className="space-y-4">
+                <ul className="space-y-2">
                   {quickLinks.map((link) => (
                     <li key={link.href}>
                       <Link
@@ -55,7 +55,7 @@ export function Footer() {
             <div>
               <h3 className="text-sm font-semibold text-foreground mb-4">Legal</h3>
               <nav aria-label="Legal Links">
-                <ul className="space-y-4">
+                <ul className="space-y-2">
                   {legalLinks.map((link) => (
                     <li key={link.href}>
                       <Link
