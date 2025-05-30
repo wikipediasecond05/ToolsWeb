@@ -1,36 +1,81 @@
 
 import Link from 'next/link';
-import { APP_NAME } from '@/lib/constants';
+import { APP_NAME, APP_TAGLINE } from '@/lib/constants';
+import { Logo } from '@/components/Logo';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const footerLinks = [
+  
+  const quickLinks = [
     { href: '/about', label: 'About Us' },
     { href: '/contact', label: 'Contact' },
+    { href: '/tools', label: 'All Tools' },
+    { href: '/categories', label: 'Categories' },
+    { href: '/favorites', label: 'Favorites' },
+  ];
+
+  const legalLinks = [
     { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Use' },
   ];
 
   return (
-    <footer className="border-t bg-muted">
-      <div className="container mx-auto max-w-7xl py-8 px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <p className="text-sm text-muted-foreground mb-4 md:mb-0">
+    <footer className="border-t bg-muted text-muted-foreground">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4 mb-10">
+          {/* Column 1: Brand */}
+          <div className="lg:col-span-2"> {/* Make first column wider on larger screens */}
+            <Logo />
+            <p className="mt-4 text-sm">
+              {APP_TAGLINE} NymGram is dedicated to providing high-quality, intuitive utilities to enhance productivity for developers and digital professionals.
+            </p>
+            {/* Social media icons could go here in future */}
+          </div>
+
+          {/* Column 2: Quick Links */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground mb-4">Quick Links</h3>
+            <nav aria-label="Quick Links">
+              <ul className="space-y-2">
+                {quickLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Column 3: Legal */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground mb-4">Legal</h3>
+            <nav aria-label="Legal Links">
+              <ul className="space-y-2">
+                {legalLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div className="border-t pt-8 mt-8 text-center md:text-left">
+          <p className="text-xs">
             &copy; {currentYear} {APP_NAME}. All rights reserved.
           </p>
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-end" aria-label="Footer">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
         </div>
-        {/* <!-- AdSense Placeholder: Footer Link Unit (if applicable) --> */}
       </div>
     </footer>
   );

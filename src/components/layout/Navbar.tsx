@@ -26,24 +26,26 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto max-w-7xl flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Logo />
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "transition-colors hover:text-primary",
-                  isActive ? "text-primary font-semibold" : "text-muted-foreground"
-                )}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="flex items-center gap-x-6"> {/* Group Logo and Nav Links */}
+          <Logo />
+          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "transition-colors hover:text-primary",
+                    isActive ? "text-primary font-semibold" : "text-muted-foreground"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
         <div className="flex items-center gap-2">
           <DarkModeToggle />
           <Sheet>
@@ -59,7 +61,7 @@ export function Navbar() {
                 <nav className="flex flex-col space-y-1">
                   {navLinks.map((link) => {
                     const IconComponent = link.icon;
-                    const isActive = pathname === link.href;
+                    const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
                     return (
                       <Button key={link.href} variant="ghost" asChild className="justify-start group">
                         <Link
