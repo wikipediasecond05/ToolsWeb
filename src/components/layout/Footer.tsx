@@ -8,7 +8,7 @@ export function Footer() {
     { href: '/tools', label: 'All Tools' },
     { href: '/categories', label: 'Categories' },
     { href: '/favorites', label: 'Favorites' },
-    { href: '/contact', label: 'Contact' }, // Moved Contact here
+    { href: '/contact', label: 'Contact' },
   ];
 
   const legalLinks = [
@@ -20,7 +20,7 @@ export function Footer() {
   return (
     <footer className="border-t bg-muted text-muted-foreground">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="flex flex-col md:flex-row md:justify-between gap-x-8 gap-y-10">
+        <div className="flex flex-col md:flex-row md:justify-between gap-x-6 gap-y-10"> {/* Changed gap-x-8 to gap-x-6 */}
           {/* Left Section: Brand Info */}
           <div className="md:w-2/5 lg:w-1/3">
             <Logo />
