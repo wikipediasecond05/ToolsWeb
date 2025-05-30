@@ -1,11 +1,15 @@
 
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/Logo';
 import { DarkModeToggle } from '@/components/theme/DarkModeToggle';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { Icons } from '@/components/icons';
+import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Home', icon: Icons.NymLogo },
@@ -17,20 +21,28 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto max-w-7xl flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="transition-colors hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "transition-colors hover:text-primary",
+                  isActive ? "text-primary font-semibold" : "text-muted-foreground"
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
         <div className="flex items-center gap-2">
           <DarkModeToggle />
@@ -47,13 +59,20 @@ export function Navbar() {
                 <nav className="flex flex-col space-y-1">
                   {navLinks.map((link) => {
                     const IconComponent = link.icon;
+                    const isActive = pathname === link.href;
                     return (
-                      <Button key={link.href} variant="ghost" asChild className="justify-start">
+                      <Button key={link.href} variant="ghost" asChild className="justify-start group">
                         <Link
                           href={link.href}
-                          className="flex items-center gap-3 text-lg transition-colors hover:text-primary"
+                          className={cn(
+                            "flex items-center gap-3 text-lg transition-colors hover:text-primary",
+                            isActive ? "text-primary font-semibold" : "text-foreground"
+                          )}
                         >
-                          <IconComponent className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
+                          <IconComponent className={cn(
+                            "h-5 w-5 group-hover:text-primary",
+                            isActive ? "text-primary" : "text-muted-foreground"
+                           )} />
                           {link.label}
                         </Link>
                       </Button>
