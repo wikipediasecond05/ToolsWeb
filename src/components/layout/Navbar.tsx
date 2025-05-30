@@ -26,8 +26,9 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto max-w-7xl flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-x-6"> {/* Group Logo and Nav Links */}
-          <Logo />
+        <Logo /> {/* Logo on the far left */}
+        
+        <div className="flex items-center gap-x-4 md:gap-x-6"> {/* Group for links and controls on the right */}
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
@@ -45,45 +46,46 @@ export function Navbar() {
               );
             })}
           </nav>
-        </div>
-        <div className="flex items-center gap-2">
-          <DarkModeToggle />
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <div className="flex flex-col space-y-4 p-4">
-                <Logo />
-                <nav className="flex flex-col space-y-1">
-                  {navLinks.map((link) => {
-                    const IconComponent = link.icon;
-                    const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
-                    return (
-                      <Button key={link.href} variant="ghost" asChild className="justify-start group">
-                        <Link
-                          href={link.href}
-                          className={cn(
-                            "flex items-center gap-3 text-lg transition-colors hover:text-primary",
-                            isActive ? "text-primary font-semibold" : "text-foreground"
-                          )}
-                        >
-                          <IconComponent className={cn(
-                            "h-5 w-5 group-hover:text-primary",
-                            isActive ? "text-primary" : "text-muted-foreground"
-                           )} />
-                          {link.label}
-                        </Link>
-                      </Button>
-                    );
-                  })}
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
+          
+          <div className="flex items-center gap-2"> {/* Sub-group for theme toggle and mobile menu */}
+            <DarkModeToggle />
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle navigation menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <div className="flex flex-col space-y-4 p-4">
+                  <Logo />
+                  <nav className="flex flex-col space-y-1">
+                    {navLinks.map((link) => {
+                      const IconComponent = link.icon;
+                      const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+                      return (
+                        <Button key={link.href} variant="ghost" asChild className="justify-start group">
+                          <Link
+                            href={link.href}
+                            className={cn(
+                              "flex items-center gap-3 text-lg transition-colors hover:text-primary",
+                              isActive ? "text-primary font-semibold" : "text-foreground"
+                            )}
+                          >
+                            <IconComponent className={cn(
+                              "h-5 w-5 group-hover:text-primary",
+                              isActive ? "text-primary" : "text-muted-foreground"
+                             )} />
+                            {link.label}
+                          </Link>
+                        </Button>
+                      );
+                    })}
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
       {/* <!-- AdSense Placeholder: Header Banner (Non-intrusive) --> */}
