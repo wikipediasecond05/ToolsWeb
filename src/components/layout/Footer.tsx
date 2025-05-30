@@ -26,7 +26,7 @@ export function Footer() {
           {/* Column 1: Brand */}
           <div className="lg:col-span-2"> {/* Make first column wider on larger screens */}
             <Logo />
-            <p className="mt-4 text-sm">
+            <p className="mt-4 text-sm leading-relaxed"> {/* Added leading-relaxed */}
               {APP_TAGLINE} NymGram is dedicated to providing high-quality, intuitive utilities to enhance productivity for developers and digital professionals.
             </p>
             {/* Social media icons could go here in future */}
@@ -36,7 +36,7 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-foreground mb-4">Quick Links</h3>
             <nav aria-label="Quick Links">
-              <ul className="space-y-2">
+              <ul className="space-y-3"> {/* Changed from space-y-2 to space-y-3 */}
                 {quickLinks.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -55,7 +55,7 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-foreground mb-4">Legal</h3>
             <nav aria-label="Legal Links">
-              <ul className="space-y-2">
+              <ul className="space-y-3"> {/* Changed from space-y-2 to space-y-3 */}
                 {legalLinks.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -71,7 +71,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t pt-8 mt-8 text-center md:text-left">
+        <div className="border-t pt-8 mt-8 text-center"> {/* Changed md:text-left to text-center */}
           <p className="text-xs">
             &copy; {currentYear} {APP_NAME}. All rights reserved.
           </p>
