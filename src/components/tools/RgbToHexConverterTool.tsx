@@ -63,12 +63,8 @@ export function RgbToHexConverterTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">RGB to HEX Converter</CardTitle>
-        <CardDescription className="text-lg">Convert RGB color values to their hexadecimal representation.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
+      <div className="space-y-6">
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -115,7 +111,7 @@ export function RgbToHexConverterTool() {
             Enter RGB values (0-255). HEX code and preview update automatically.
           </AlertDescription>
         </Alert>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

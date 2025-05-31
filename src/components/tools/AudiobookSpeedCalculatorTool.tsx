@@ -110,14 +110,7 @@ export function AudiobookSpeedCalculatorTool() {
 
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Audiobook Speed Calculator</CardTitle>
-        <CardDescription className="text-lg">
-          Calculate new listening time and time saved for your audiobooks.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
             <Alert variant="destructive" className="mb-4">
                 <AlertCircle className="h-4 w-4" />
@@ -214,7 +207,6 @@ export function AudiobookSpeedCalculatorTool() {
             </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+    </>
   );
 }

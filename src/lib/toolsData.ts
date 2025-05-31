@@ -6,6 +6,7 @@ export const categories: Category[] = [
     id: "text-string",
     name: "String Tools",
     description: "Manipulate and analyze text effortlessly.",
+    serp_description: "Easily manipulate, format, and analyze strings using online text tools. Great for developers and content editors.",
     icon: Icons.Type,
     iconName: "Type",
     path: "/categories/text-string",
@@ -14,6 +15,7 @@ export const categories: Category[] = [
     id: "developer",
     name: "Developer Tools",
     description: "Essential utilities for coding and development.",
+    serp_description: "Explore essential developer tools for formatting, encoding, and debugging code with ease.",
     icon: Icons.Code,
     iconName: "Code",
     path: "/categories/developer",
@@ -22,6 +24,7 @@ export const categories: Category[] = [
     id: "design-frontend",
     name: "Design Tools",
     description: "Optimize and beautify your frontend assets.",
+    serp_description: "Use design and frontend tools to polish UI elements, work with colors, and enhance your project’s visuals.",
     icon: Icons.Paintbrush,
     iconName: "Paintbrush",
     path: "/categories/design-frontend",
@@ -30,6 +33,7 @@ export const categories: Category[] = [
     id: "conversion",
     name: "Conversion Tools",
     description: "Convert data between various formats.",
+    serp_description: "Convert between JSON, Base64, CSV, and other formats with fast, reliable online converters.",
     icon: Icons.Shuffle,
     iconName: "Shuffle",
     path: "/categories/conversion",
@@ -38,6 +42,7 @@ export const categories: Category[] = [
     id: "security",
     name: "Security Tools",
     description: "Generate passwords, hashes, and more.",
+    serp_description: "Generate secure passwords, create hashes, and access other handy online security tools.",
     icon: Icons.Lock,
     iconName: "Lock",
     path: "/categories/security",
@@ -46,6 +51,7 @@ export const categories: Category[] = [
     id: "productivity",
     name: "Productivity Tools",
     description: "Boost your efficiency with these utilities.",
+    serp_description: "Boost focus and efficiency with productivity tools for task automation, organization, and planning.",
     icon: Icons.Gauge,
     iconName: "Gauge",
     path: "/categories/productivity",
@@ -54,6 +60,7 @@ export const categories: Category[] = [
     id: "calculator",
     name: "Calculator Tools",
     description: "Perform various calculations with ease.",
+    serp_description: "Use calculators for math, date, finance, and more — accurate and easy-to-use tools for everyday use.",
     icon: Icons.Calculator,
     iconName: "Calculator",
     path: "/categories/calculator",
@@ -62,11 +69,13 @@ export const categories: Category[] = [
     id: "ai-powered",
     name: "AI-Powered Tools",
     description: "Leverage artificial intelligence for various tasks.",
+    serp_description: "Discover AI tools that help you generate content, write code, and automate creative or technical tasks.",
     icon: Icons.Sparkles,
     iconName: "Sparkles",
     path: "/categories/ai-powered",
   },
 ];
+
 
 export const tools: Tool[] = [
   // Text & String Tools
@@ -142,7 +151,7 @@ export const tools: Tool[] = [
     id: "text-case-converter",
     title: "Text Case Converter",
     description:
-      "Easily convert text between various cases like uppercase, lowercase, title case, sentence case, and more.",
+      "Easily convert text between various cases like uppercase, lowercase, and more.",
     category: "text-string",
     icon: Icons.CaseSensitive,
     iconName: "CaseSensitive",

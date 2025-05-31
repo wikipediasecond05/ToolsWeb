@@ -85,14 +85,7 @@ export function LoremIpsumGeneratorTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Lorem Ipsum Generator</CardTitle>
-        <CardDescription className="text-lg">
-          Generate placeholder text for your projects.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -156,7 +149,6 @@ export function LoremIpsumGeneratorTool() {
             />
           </div>
         )}
-      </CardContent>
-    </Card>
+    </>
   );
 }

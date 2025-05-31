@@ -62,16 +62,8 @@ export function WordCounterTool() {
   );
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Word & Character Counter</CardTitle>
-        <CardDescription className="text-lg">
-          Analyze your text for word count, character count, sentences, and paragraphs.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         <div className="grid gap-2">
-          <Label htmlFor="inputText-wordcount" className="font-semibold mb-4 block">Input Text</Label>
           <Textarea
             id="inputText-wordcount"
             value={inputText}
@@ -96,7 +88,6 @@ export function WordCounterTool() {
             <Trash2 className="mr-2 h-4 w-4" /> Clear Text
           </Button>
         </div>
-      </CardContent>
-    </Card>
+    </>
   );
 }

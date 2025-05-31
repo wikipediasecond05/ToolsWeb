@@ -15,21 +15,20 @@ const navLinks = [
   { href: '/', label: 'Home', icon: Icons.NymLogo },
   { href: '/tools', label: 'Tools', icon: Icons.Settings2 },
   { href: '/categories', label: 'Categories', icon: Icons.Layers3 },
-  { href: '/favorites', label: 'Favorites', icon: Icons.Star },
   { href: '/about', label: 'About', icon: Icons.Info },
-  { href: '/contact', label: 'Contact', icon: Icons.MessageSquare },
 ];
+
 
 export function Navbar() {
   const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto max-w-7xl flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-7xl flex h-[70px] items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo /> {/* Logo on the far left */}
         
         <div className="flex items-center gap-x-4 md:gap-x-6"> {/* Group for links and controls on the right */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <nav className="hidden md:flex items-center space-x-10 text-sm font-medium">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
@@ -37,7 +36,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "transition-colors hover:text-primary",
+                    "transition-colors hover:text-primary text-[16px]",
                     isActive ? "text-primary font-semibold" : "text-muted-foreground"
                   )}
                 >

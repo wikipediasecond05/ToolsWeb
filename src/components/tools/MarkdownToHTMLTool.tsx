@@ -122,14 +122,7 @@ export function MarkdownToHTMLTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Markdown to HTML Converter</CardTitle>
-        <CardDescription className="text-lg">
-          Write Markdown on the left and see the HTML output and live preview.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -195,7 +188,6 @@ export function MarkdownToHTMLTool() {
             </div>
           )}
         </div>
-      </CardContent>
-    </Card>
+    </>
   );
 }

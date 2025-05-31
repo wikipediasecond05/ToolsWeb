@@ -123,56 +123,48 @@ export function SentenceCounterTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Sentence Counter & Text Analyzer</CardTitle>
-        <CardDescription className="text-lg">
-          Get insights into your text including sentences, syllables, reading time, and top keywords.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="flex flex-wrap gap-3 mb-6">
-          <StatDisplayCard title="Sentences" value={stats.sentences} />
-          <StatDisplayCard title="Syllables" value={stats.syllables} />
-          <StatDisplayCard title="Words" value={stats.words} />
-          <StatDisplayCard title="Characters" value={stats.characters} />
-          <StatDisplayCard title="Reading Time" value={stats.readingTime} />
-        </div>
+    <>
+      <div className="flex flex-wrap gap-3 mb-6">
+        <StatDisplayCard title="Sentences" value={stats.sentences} />
+        <StatDisplayCard title="Syllables" value={stats.syllables} />
+        <StatDisplayCard title="Words" value={stats.words} />
+        <StatDisplayCard title="Characters" value={stats.characters} />
+        <StatDisplayCard title="Reading Time" value={stats.readingTime} />
+      </div>
 
-        <div className="grid gap-2">
-          <Label htmlFor="inputText-sentencecount" className="font-semibold mb-4 block">
-            Paste your text here:
-          </Label>
-          <Textarea
-            id="inputText-sentencecount"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            placeholder="Type or paste your text for analysis..."
-            rows={12}
-            className="border-border focus-visible:ring-primary"
-            aria-label="Input text for sentence counting and analysis"
-          />
-        </div>
-        
-        {stats.topKeywords.length > 0 && (
-          <div className="pt-6 border-t border-border space-y-3">
-            <h3 className="text-lg font-semibold mb-4">Top Keywords</h3>
-            <div className="flex flex-wrap gap-2">
-              {stats.topKeywords.map(({ keyword, count }) => (
-                <Badge key={keyword} variant="secondary" className="py-1 px-3">
-                  {keyword} <span className="ml-1.5 bg-muted-foreground/20 text-muted-foreground px-1.5 py-0.5 rounded-sm text-xs">{count}</span>
-                </Badge>
-              ))}
-            </div>
+      <div className="grid gap-2">
+        <Label htmlFor="inputText-sentencecount" className="font-semibold mb-4 block">
+          Paste your text here:
+        </Label>
+        <Textarea
+          id="inputText-sentencecount"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          placeholder="Type or paste your text for analysis..."
+          rows={12}
+          className="border-border focus-visible:ring-primary"
+          aria-label="Input text for sentence counting and analysis"
+        />
+      </div>
+      
+      {stats.topKeywords.length > 0 && (
+        <div className="pt-6 border-t border-border space-y-3">
+          <h3 className="text-lg font-semibold mb-4">Top Keywords</h3>
+          <div className="flex flex-wrap gap-2">
+            {stats.topKeywords.map(({ keyword, count }) => (
+              <Badge key={keyword} variant="secondary" className="py-1 px-3">
+                {keyword} <span className="ml-1.5 bg-muted-foreground/20 text-muted-foreground px-1.5 py-0.5 rounded-sm text-xs">{count}</span>
+              </Badge>
+            ))}
           </div>
-        )}
-
-        <div className="flex pt-6 border-t border-border">
-          <Button variant="outline" onClick={handleClearText} className="w-full sm:w-auto">
-            <Trash2 className="mr-2 h-4 w-4" /> Clear Text
-          </Button>
         </div>
-      </CardContent>
-    </Card>
+      )}
+
+      <div className="flex pt-6 border-t border-border">
+        <Button variant="outline" onClick={handleClearText} className="w-full sm:w-auto">
+          <Trash2 className="mr-2 h-4 w-4" /> Clear Text
+        </Button>
+      </div>
+    </>
   );
 }

@@ -67,16 +67,10 @@ export function TemperatureConverterTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Temperature Converter</CardTitle>
-        <CardDescription className="text-lg">
-          Convert temperatures between Celsius (°C), Fahrenheit (°F), and Kelvin (K).
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
+      <div>
         {error && (
-          <Alert variant="destructive">
+          <Alert variant="destructive" className='mb-8'>
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>{error}</AlertDescription>
           </Alert>
@@ -119,7 +113,7 @@ export function TemperatureConverterTool() {
             Enter a value in any field to see its conversion in the other units. Kelvin cannot be negative.
           </AlertDescription>
         </Alert>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

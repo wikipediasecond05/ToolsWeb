@@ -111,14 +111,7 @@ export function PlaybackSpeedCalculatorTool() {
 
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Playback Speed Calculator</CardTitle>
-        <CardDescription className="text-lg">
-          Calculate new media duration and time saved based on playback speed.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
             <Alert variant="destructive" className="mb-4">
                 <AlertCircle className="h-4 w-4" />
@@ -207,7 +200,6 @@ export function PlaybackSpeedCalculatorTool() {
             </div>            
           </div>
         </div>
-      </CardContent>
-    </Card>
+    </>
   );
 }

@@ -114,12 +114,8 @@ export function SvgBlobGeneratorTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">SVG Blob Generator</CardTitle>
-        <CardDescription>Create unique, organic SVG blob shapes for your designs.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
+      <div>
         <div className="w-full h-64 md:h-80 border rounded-md shadow-inner bg-muted flex items-center justify-center p-4" data-ai-hint="abstract blob shape">
           <svg width="100%" height="100%" viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
             <path d={generatedPathD} fill={fillColor} />
@@ -158,7 +154,7 @@ export function SvgBlobGeneratorTool() {
             </Button>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

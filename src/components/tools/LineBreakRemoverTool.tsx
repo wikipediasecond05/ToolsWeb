@@ -82,12 +82,7 @@ export function LineBreakRemoverTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Line Break Remover</CardTitle>
-        <CardDescription className="text-lg">Efficiently remove or replace line breaks and optionally clean up whitespace from your text.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -96,7 +91,6 @@ export function LineBreakRemoverTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText" className="font-semibold mb-4 block">Enter Text</Label>
           <Textarea
             id="inputText"
             value={inputText}
@@ -167,7 +161,6 @@ export function LineBreakRemoverTool() {
             />
           </div>
         )}
-      </CardContent>
-    </Card>
+    </>
   );
 }

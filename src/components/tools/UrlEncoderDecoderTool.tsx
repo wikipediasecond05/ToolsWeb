@@ -70,14 +70,8 @@ export function UrlEncoderDecoderTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">URL Encoder/Decoder</CardTitle>
-        <CardDescription className="text-lg">
-          Encode text for safe inclusion in URLs or decode percent-encoded URLs.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
+      <div className="space-y-6">
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -120,7 +114,7 @@ export function UrlEncoderDecoderTool() {
             Uses `encodeURIComponent()` for encoding and `decodeURIComponent()` for decoding.
           </AlertDescription>
         </Alert>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

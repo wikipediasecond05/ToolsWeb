@@ -12,7 +12,7 @@ export async function generateMetadata(
   { params }: ToolPageLayoutProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const toolId = params.toolId;
+  const toolId = (await params).toolId;
   const tool = getToolById(toolId);
 
   if (!tool) {

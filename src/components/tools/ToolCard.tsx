@@ -45,22 +45,22 @@ export function ToolCard({ tool }: ToolCardProps) {
   };
 
   const HeartIcon = isFavorite ? Icons.Heart : () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4' viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
   );
 
 
   return (
     <Link href={tool.path} className="block group h-full no-underline">
       <Card className="h-full flex flex-col justify-between hover:shadow-xl transition-all duration-200 ease-in-out hover:border-gray-300 dark:hover:border-gray-600 dark:hover:bg-gray-800/50 hover:bg-white/50 border rounded-lg overflow-hidden">
-        <CardHeader className="flex flex-col items-center text-center p-6 pb-4">
+        <CardHeader className="flex flex-col p-6 pb-4">
           {IconComponent && <IconComponent className="h-10 w-10 text-primary mb-4" />}
-          <CardTitle className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">{tool.title}</CardTitle>
-          <CardDescription className="text-sm text-muted-foreground line-clamp-2 h-[40px]">
+          <CardTitle className="text-[19px] font-semibold mb-3 group-hover:text-primary transition-colors">{tool.title}</CardTitle>
+          <CardDescription className="text-[16px] text-muted-foreground line-clamp-2 leading-relaxed h-[50px]">
             {tool.description}
           </CardDescription>
         </CardHeader>
         <div className="flex-grow" /> {/* Pushes footer to bottom */}
-        <CardFooter className="flex justify-between items-center p-4 border-t">
+        <CardFooter className="flex justify-between items-center p-4">
           <span className="text-primary flex items-center gap-1 text-sm font-medium no-underline">
             Open <span className="text-sm transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
           </span>
@@ -73,7 +73,7 @@ export function ToolCard({ tool }: ToolCardProps) {
             )}
           >
             <HeartIcon
-              className={cn("h-5 w-5", isFavorite && "fill-current")}
+              className={cn("h-4 w-4", isFavorite && "fill-current")}
             />
           </button>
         </CardFooter>

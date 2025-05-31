@@ -71,12 +71,8 @@ export function HexToRgbConverterTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">HEX to RGB Converter</CardTitle>
-        <CardDescription className="text-lg">Convert hexadecimal color codes to their RGB representation.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
+      <div className="space-y-6">
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -122,7 +118,7 @@ export function HexToRgbConverterTool() {
             Enter a 3 or 6 digit HEX code (e.g., #F00 or #FF0000). RGB values update automatically.
           </AlertDescription>
         </Alert>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

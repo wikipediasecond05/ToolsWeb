@@ -82,12 +82,8 @@ export function CSSBoxShadowGeneratorTool() {
   );
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">CSS Box Shadow Generator</CardTitle>
-        <CardDescription className="text-lg">Interactively design box shadows and get the CSS code.</CardDescription>
-      </CardHeader>
-      <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Controls Column */}
         <div className="space-y-6">
           <SliderInput label="Horizontal Offset" value={hOffset} onChange={setHOffset} min={-50} max={50} />
@@ -142,7 +138,7 @@ export function CSSBoxShadowGeneratorTool() {
             <Trash2 className="mr-2 h-4 w-4" /> Reset Controls
           </Button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

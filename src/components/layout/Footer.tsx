@@ -26,29 +26,29 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t bg-muted text-muted-foreground">
+    <footer className="border-t bg-white dark:bg-muted text-muted-foreground">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="flex flex-col lg:flex-row lg:justify-between gap-x-6 gap-y-10 text-center lg:text-left">
           {/* Left Section: Brand Info */}
-          <div className="lg:w-1/3 flex flex-col items-center lg:items-start">
+          <div className="lg:w-1/3 max-w-[400px] w-full lg:mx-0 mx-auto flex flex-col items-center lg:items-start">
             <Logo />
-            <p className="mt-4 text-sm leading-relaxed">
+            <p className="mt-4 text-[15px] leading-relaxed">
               {APP_TAGLINE} {APP_NAME} is dedicated to providing high-quality, intuitive utilities to enhance productivity for developers and digital professionals.
             </p>
           </div>
 
           {/* Right Section: Links (grouped) */}
-          <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-end gap-8 sm:gap-16 items-center sm:items-start w-full lg:w-auto">
+          <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-end gap-8 sm:gap-[100px] items-center sm:items-start w-full lg:w-auto">
             {/* Quick Links Column */}
             <div className="w-full sm:w-auto">
-              <h3 className="text-sm font-semibold text-foreground mb-4">Quick Links</h3>
+              <h3 className="text-[15px] font-semibold text-foreground mb-4">Quick Links</h3>
               <nav aria-label="Quick Links">
                 <ul className="space-y-2">
                   {quickLinks.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-sm hover:text-primary transition-colors"
+                        className="text-[15px] hover:text-primary transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -61,14 +61,14 @@ export function Footer() {
             {/* Popular Tools Column */}
             {popularTools.length > 0 && (
               <div className="w-full sm:w-auto">
-                <h3 className="text-sm font-semibold text-foreground mb-4">Popular Tools</h3>
+                <h3 className="text-[15px] font-semibold text-foreground mb-4">Popular Tools</h3>
                 <nav aria-label="Popular Tools">
                   <ul className="space-y-2">
                     {popularTools.map((tool) => (
                       <li key={tool.id}>
                         <Link
                           href={tool.path}
-                          className="text-sm hover:text-primary transition-colors"
+                          className="text-[15px] hover:text-primary transition-colors"
                         >
                           {tool.title}
                         </Link>
@@ -81,14 +81,14 @@ export function Footer() {
 
             {/* Legal Links Column */}
             <div className="w-full sm:w-auto">
-              <h3 className="text-sm font-semibold text-foreground mb-4">Legal</h3>
+              <h3 className="text-[15px] font-semibold text-foreground mb-4">Legal</h3>
               <nav aria-label="Legal Links">
                 <ul className="space-y-2">
                   {legalLinks.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-sm hover:text-primary transition-colors"
+                        className="text-[15px] hover:text-primary transition-colors"
                       >
                         {link.label}
                       </Link>

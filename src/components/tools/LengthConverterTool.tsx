@@ -79,14 +79,8 @@ export function LengthConverterTool() {
   ];
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Length Converter</CardTitle>
-        <CardDescription className="text-lg">
-          Convert lengths between various units (meters, kilometers, feet, miles, inches).
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
+      <div className="space-y-6">
         {error && (
           <Alert variant="destructive" className="mb-4">
             <AlertCircle className="h-4 w-4" />
@@ -152,7 +146,7 @@ export function LengthConverterTool() {
             Enter a value and select units to see the conversion. Click the ruler icon to swap units.
           </AlertDescription>
         </Alert>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

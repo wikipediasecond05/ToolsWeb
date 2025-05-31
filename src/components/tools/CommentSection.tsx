@@ -108,9 +108,9 @@ export function CommentSection({ toolId }: CommentSectionProps) {
   };
 
   return (
-    <Card className="shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Comments ({comments.length})</CardTitle>
+    <Card>
+      <CardHeader className='mb-3'>
+        <CardTitle className="text-2xl">Comments {comments.length > 0 && `(${comments.length})`}</CardTitle>
         <CardDescription>Share your thoughts or ask questions about this tool.</CardDescription>
       </CardHeader>
       <CardContent>

@@ -161,14 +161,7 @@ export function CSVToJSONTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">CSV to JSON Converter</CardTitle>
-        <CardDescription className="text-lg">
-          Paste your CSV data, configure options, and convert it to JSON format.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -177,7 +170,6 @@ export function CSVToJSONTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="csvInput-csv-json" className="font-semibold mb-4 block">Input CSV</Label>
            <Textarea
             id="csvInput-csv-json"
             value={csvInput}
@@ -246,7 +238,6 @@ export function CSVToJSONTool() {
             />
           </div>
         )}
-      </CardContent>
-    </Card>
+    </>
   );
 }

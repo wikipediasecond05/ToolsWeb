@@ -114,12 +114,8 @@ export function CSSGradientGeneratorTool() {
 
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">CSS Gradient Generator</CardTitle>
-        <CardDescription className="text-lg">Visually create and customize CSS gradients. Adjust colors, type, and direction, then copy the code.</CardDescription>
-      </CardHeader>
-      <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Controls Column */}
         <div className="space-y-6">
           <div>
@@ -235,7 +231,7 @@ export function CSSGradientGeneratorTool() {
              <Trash2 className="mr-2 h-4 w-4" /> Clear All
            </Button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

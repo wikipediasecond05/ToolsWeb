@@ -73,7 +73,7 @@ export default function ToolsPage() {
     <PageWrapper>
       <div className="mb-12 text-center">
         <h1 className="text-4xl font-bold tracking-tight">All Tools</h1>
-        <p className="mt-2 text-lg text-muted-foreground">
+        <p className="mt-4 text-lg text-muted-foreground">
           Discover our comprehensive suite of tools designed for developers and digital professionals.
         </p>
       </div>
@@ -121,9 +121,9 @@ export default function ToolsPage() {
         toolsList.length > 0 && (
           <section key={categoryName} className="mb-12">
             {(categoryFilter === 'all' && !searchTerm) && ( 
-              <h2 className="text-2xl font-semibold mb-6 pb-2 border-b">{categoryName}</h2>
+              <h2 className="text-[22px] font-semibold mb-6 pb-2"><span className='text-primary font-bold'>#</span> {categoryName}</h2>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
               {toolsList.map((tool) => (
                 <ToolCard key={tool.id} tool={tool} />
               ))}

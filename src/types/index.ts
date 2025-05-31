@@ -29,6 +29,7 @@ export interface Category {
   id: string;
   name: string;
   description: string;
+  serp_description: string;
   icon?: LucideIcon | ((props: React.SVGProps<SVGSVGElement>) => JSX.Element);
   iconName?: IconName; // Added for serialization
   path: string;

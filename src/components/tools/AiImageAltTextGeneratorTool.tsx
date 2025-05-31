@@ -136,14 +136,7 @@ export function AiImageAltTextGeneratorTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">AI Image Alt Text Generator</CardTitle>
-        <CardDescription className="text-lg">
-          Upload an image to generate descriptive alt text for accessibility and SEO.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -213,7 +206,6 @@ export function AiImageAltTextGeneratorTool() {
               AI-generated alt text is a helpful start. Always review for accuracy and context. Max file size: 5MB.
             </AlertDescription>
         </Alert>
-      </CardContent>
-    </Card>
+    </>
   );
 }

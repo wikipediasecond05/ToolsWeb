@@ -85,14 +85,7 @@ export function JWTDecoderTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">JWT Decoder</CardTitle>
-        <CardDescription className="text-lg">
-          Paste a JSON Web Token (JWT) to decode and inspect its header and payload.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -101,7 +94,6 @@ export function JWTDecoderTool() {
         )}
 
         <div>
-          <Label htmlFor="jwtInput-decoder" className="font-semibold mb-4 block">Encoded JWT</Label>
           <Textarea
             id="jwtInput-decoder"
             value={jwtInput}
@@ -172,7 +164,6 @@ export function JWTDecoderTool() {
               For security critical operations, always ensure signature validation is performed on your backend.
             </AlertDescription>
           </Alert>
-      </CardContent>
-    </Card>
+    </>
   );
 }

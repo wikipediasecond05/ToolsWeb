@@ -11,10 +11,11 @@ import { HomepageSearch } from '@/components/search/HomepageSearch';
 import { Icons } from '@/components/icons';
 import type { Metadata } from 'next';
 import { FavoriteToolsSection } from '@/components/homepage/FavoriteToolsSection';
+import { FeaturedTools } from '@/components/homepage/FeaturedTools';
 
 export const metadata: Metadata = {
   title: { absolute: APP_TAGLINE },
-  description: `Welcome to ${APP_NAME} - ${APP_TAGLINE}`,
+  description: `${APP_NAME} is dedicated to providing high-quality, intuitive utilities to enhance productivity for developers and digital professionals.`,
 };
 
 export default function HomePage() {
@@ -27,24 +28,6 @@ export default function HomePage() {
     const { icon, ...serializableTool } = tool;
     return serializableTool;
   });
-
-  const testimonials = [
-    {
-      quote: `${APP_NAME} has become my go-to for quick developer tasks. The JSON formatter is a lifesaver!`,
-      name: "Alex R.",
-      role: "Full Stack Developer"
-    },
-    {
-      quote: "Clean UI, fast tools, and no annoying popups. Exactly what I need. Highly recommended!",
-      name: "Sarah L.",
-      role: "Frontend Engineer"
-    },
-    {
-      quote: "The variety of tools is impressive. From text manipulation to security, it's all here.",
-      name: "Mike P.",
-      role: "DevOps Specialist"
-    }
-  ];
 
   return (
     <HeroShineEffect>
@@ -68,15 +51,17 @@ export default function HomePage() {
           </div>
         </section>
 
+      <FeaturedTools />
+      
       <PageWrapper>
         <FavoriteToolsSection />
 
         <section className="py-12 md:py-16">
           <div className="flex items-center gap-3 mb-10">
-            <Icons.Sparkles className="h-8 w-8 text-primary" />
-            <h2 className="text-3xl font-bold">Popular Tools</h2>
+            <Icons.Sparkles className="h-6 w-6 text-primary" />
+            <h2 className="text-[24px] font-bold">Popular Tools</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             {popularTools.map((tool) => (
               <ToolCard key={tool.id} tool={tool} />
             ))}
@@ -91,7 +76,7 @@ export default function HomePage() {
         {/* <!-- AdSense Placeholder: Between Sections --> */}
 
         {/* All Categories with their Tools Section */}
-        <section className="py-12 md:py-16">
+        <section className="py-2">
           {categories.map((category) => {
             const toolsInCategoryFull = getToolsByCategory(category.id).slice(0, 4); // Show first 4 tools
             
@@ -108,14 +93,14 @@ export default function HomePage() {
               <div key={category.id} className="mb-16">
                 <div className="flex justify-between items-center mb-8">
                   <div className="flex items-center gap-3">
-                    {CategoryIconComponent && <CategoryIconComponent className="h-8 w-8 text-primary" />}
-                    <h2 className="text-3xl font-bold">{category.name}</h2>
+                    {CategoryIconComponent && <CategoryIconComponent className="h-6 w-6 text-primary" />}
+                    <h2 className="text-[24px] font-bold">{category.name}</h2>
                   </div>
                   <Button asChild variant="link" size="sm">
                     <Link href={category.path}>See all &rarr;</Link>
                   </Button>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                   {toolsInCategory.map((tool) => (
                     <ToolCard key={tool.id} tool={tool} />
                   ))}
@@ -125,48 +110,55 @@ export default function HomePage() {
           })}
         </section>
 
-        <section className="py-16 md:py-24">
-          <div className="flex items-center gap-3 mb-10">
-            <Icons.ThumbsUp className="h-8 w-8 text-primary" />
-            <h2 className="text-3xl font-bold">Why Choose {APP_NAME}?</h2>
+        <section className="py-5 mb-12">
+          <div className="flex items-center gap-3 mb-12">
+            <Icons.ThumbsUp className="h-6 w-6 text-primary" />
+            <h2 className="text-[24px] font-bold">Why Choose {APP_NAME}?</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="p-6 border rounded-lg shadow-sm">
+            <div className="p-6 border rounded-lg shadow-sm bg-white/55 dark:bg-background/55">
               <Icons.Zap className="h-12 w-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">Fast & Efficient</h3>
               <p className="text-muted-foreground">Tools designed for speed and reliability, helping you get things done quickly.</p>
             </div>
-            <div className="p-6 border rounded-lg shadow-sm">
+            <div className="p-6 border rounded-lg shadow-sm bg-white/55 dark:bg-background/55">
               <Icons.CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">User-Friendly</h3>
               <p className="text-muted-foreground">Clean, intuitive interfaces that are easy to navigate and use, for all skill levels.</p>
             </div>
-            <div className="p-6 border rounded-lg shadow-sm">
+            <div className="p-6 border rounded-lg shadow-sm bg-white/55 dark:bg-background/55">
               <Icons.ShieldCheck className="h-12 w-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">Privacy Focused</h3>
               <p className="text-muted-foreground">No invasive tracking, no login walls. Your data stays yours.</p>
             </div>
           </div>
         </section>
-        
-        {/* <!-- AdSense Placeholder: Below Content / In FAQs area --> */}
-
-        <section className="py-12 md:py-16 rounded-lg">
-           <div className="flex items-center gap-3 mb-12">
-             <Icons.Users className="h-8 w-8 text-primary" />
-             <h2 className="text-3xl font-bold">What Our Users Say</h2>
-           </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="p-6 bg-card border rounded-lg shadow-sm">
-                  <p className="text-card-foreground italic mb-4">"{testimonial.quote}"</p>
-                  <p className="font-semibold text-primary">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                </div>
-              ))}
-            </div>
-        </section>
       </PageWrapper>
+      <section className='w-full bg-white dark:bg-background md:p-6 p-3 rounded-md border border-gray-100 dark:border-gray-800'>
+          <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6'>
+            <div className="flex items-center gap-3 mb-7">
+              <h2 className="text-2xl text-gray-800 dark:text-gray-300 font-bold">Fullfill all your needs!</h2>
+            </div>
+            
+          <div className="space-y-6 text-[19px]/loose">
+              <p>
+                <span className="text-primary">NymGram</span> brings all essential online tools under one roof. Whether you're editing text, working with images, generating code, or solving everyday digital tasks — NymGram has you covered.
+              </p>
+
+              <p>
+                Forget juggling multiple websites and endless bookmarks. <span className="font-semibold text-primary">NymGram is your one-stop hub</span> for smart, efficient, and user-friendly tools, all designed with simplicity and performance in mind.
+              </p>
+
+              <p>
+                Each tool is crafted to deliver results in the fewest steps possible, with a clean interface that keeps you focused on what matters.
+              </p>
+
+              <p className="text-lg md:text-xl font-semibold">
+                Start using <span className="text-primary">NymGram</span> today — and make scattered tools a thing of the past.
+              </p>
+            </div>
+          </div>
+        </section>
     </HeroShineEffect>
   );
 }

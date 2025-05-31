@@ -7,8 +7,9 @@ import type { RelatedToolData } from '@/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Wand2, Loader2 } from 'lucide-react';
+import { Wand2, Loader2, Shapes } from 'lucide-react';
 import { Icons, type IconName } from '@/components/icons';
+import { cn } from '@/lib/utils';
 
 interface RelatedToolsProps {
   currentTool: RelatedToolData;
@@ -57,15 +58,27 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
   if (isLoading) {
     return (
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Wand2 className="h-5 w-5 text-primary" />
-            Related Tools
+        <CardHeader className='px-6 py-4 border-b border-gray-200 dark:border-gray-800'>
+          <CardTitle className="flex items-center gap-3 text-lg mt-0">
+            <Shapes className="h-5 w-5 text-primary" />
+            <span>Related Tools</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto" />
-          <p className="mt-2 text-sm text-muted-foreground">Finding recommendations...</p>
+
+        <CardContent className='px-0 pb-0'>
+          <div>
+           <div className="animate-pulse bg-muted/30 border-gray-200 dark:border-gray-700 py-4 border-b">
+            <div className="flex items-center gap-2 px-6">
+              <span className="text-left min-h-6 bg-muted/50 rounded w-32 h-4"></span>
+            </div>
+          </div>
+
+          <div className="animate-pulse bg-muted/30 py-4">
+            <div className="flex items-center gap-2 px-6">
+              <span className="text-left min-h-6 bg-muted/50 rounded w-32 h-4"></span>
+            </div>
+          </div>
+          </div>
         </CardContent>
       </Card>
     );
@@ -74,14 +87,17 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
   if (error) {
      return (
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Wand2 className="h-5 w-5" />
-            Related Tools
+        <CardHeader className='px-6 py-4 border-b border-gray-200 dark:border-gray-800'>
+          <CardTitle className="flex items-center gap-3 text-lg mt-0">
+            <Shapes className="h-5 w-5 text-primary" />
+            <span>Related Tools</span>
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <p className="text-destructive text-sm">{error}</p>
+
+        <CardContent className='px-0 pb-0'>
+          <div className='text-muted-foreground px-6 py-4'>
+              {error}
+          </div>
         </CardContent>
       </Card>
     );
@@ -89,43 +105,45 @@ export function RelatedTools({ currentTool, allTools }: RelatedToolsProps) {
 
   if (relatedTools.length === 0) {
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
-                    <Wand2 className="h-5 w-5 text-primary" />
-                    Related Tools
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-sm text-muted-foreground">No related tools found.</p>
-            </CardContent>
-        </Card>
+       <Card>
+        <CardHeader className='px-6 py-4 border-b border-gray-200 dark:border-gray-800'>
+          <CardTitle className="flex items-center gap-3 text-lg mt-0">
+            <Shapes className="h-5 w-5 text-primary" />
+            <span>Related Tools</span>
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent className='px-0 pb-0'>
+          <div className='text-muted-foreground px-6 py-4'>
+            No Related Tools Found
+          </div>
+        </CardContent>
+      </Card>
     );
   }
 
   return (
-    <Card className="shadow-md">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <Wand2 className="h-5 w-5 text-primary" />
-          You Might Also Like
+    <Card>
+      <CardHeader className='px-6 py-4 border-b border-gray-200 dark:border-gray-800'>
+        <CardTitle className="flex items-center gap-3 text-lg mt-0">
+          <Shapes className="h-5 w-5 text-primary" />
+          <span>Related Tools</span>
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <ul className="space-y-2">
-          {relatedTools.map(tool => {
+
+      <CardContent className='px-0 pb-0'>
+        <div>
+          {relatedTools.map((tool, index) => {
             const IconComponent = tool.iconName ? Icons[tool.iconName as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
             return (
-            <li key={tool.id}>
-              <Button variant="ghost" asChild className="w-full justify-start h-auto py-2 px-3 text-sm">
-                <Link href={tool.path} className="flex items-center gap-2">
-                  <IconComponent className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium text-left">{tool.title}</span>
-                </Link>
-              </Button>
-            </li>
+            <div key={tool.id} className={cn('hover:bg-muted/30 border-muted-200 dark:border-gray-800 py-4', index < relatedTools.length - 1  && 'border-b')}>
+              <Link href={tool.path} className="flex items-center gap-2 px-6">
+                <IconComponent className="h-4 w-4 text-muted-foreground" />
+                <span className="text-left">{tool.title}</span>
+              </Link>
+            </div>
           )})}
-        </ul>
+        </div>
       </CardContent>
     </Card>
   );

@@ -61,14 +61,7 @@ export function AiCommitMessageWriterTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">AI Commit Message Writer</CardTitle>
-        <CardDescription className="text-lg">
-          Describe your changes or paste a diff, and let AI suggest a conventional commit message.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -131,12 +124,13 @@ export function AiCommitMessageWriterTool() {
           </div>
         )}
          <Alert variant="default" className="mt-6">
-            <AlertCircle className="h-4 w-4" />
+            <div className="inline">
+              <AlertCircle className="h-4 w-4" />
+            </div>
             <AlertDescription>
               AI-generated content can sometimes be inaccurate or incomplete. Always review suggestions.
             </AlertDescription>
           </Alert>
-      </CardContent>
-    </Card>
+    </>
   );
 }

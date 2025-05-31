@@ -106,12 +106,7 @@ export function ColorPickerTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Color Picker & Converter</CardTitle>
-        <CardDescription className="text-lg">Pick colors and convert between HEX, RGB, and HSL formats.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <div>
             <Label htmlFor="color-picker-input" className="mb-4 block text-muted-foreground">
@@ -165,7 +160,6 @@ export function ColorPickerTool() {
             </div>
           ))}
         </div>
-      </CardContent>
-    </Card>
+    </>
   );
 }

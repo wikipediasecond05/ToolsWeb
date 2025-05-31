@@ -121,14 +121,7 @@ export function TimestampConverterTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Timestamp Converter</CardTitle>
-        <CardDescription className="text-lg">
-          Convert between Unix timestamps and human-readable dates.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-8">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -227,13 +220,12 @@ export function TimestampConverterTool() {
             </div>
           )}
         </div>
-         <Alert variant="default" className="mt-6">
-            <Clock className="h-4 w-4" />
-            <AlertDescription>
-              Dates are displayed in your local timezone. Unix timestamps are based on UTC.
-            </AlertDescription>
-          </Alert>
-      </CardContent>
-    </Card>
+        <Alert variant="default" className="mt-6">
+          <Clock className="h-4 w-4" />
+          <AlertDescription>
+            Dates are displayed in your local timezone. Unix timestamps are based on UTC.
+          </AlertDescription>
+        </Alert>
+    </>
   );
 }

@@ -88,12 +88,8 @@ export function CSSBorderRadiusGeneratorTool() {
   );
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">CSS Border Radius Generator</CardTitle>
-        <CardDescription className="text-lg">Interactively create rounded corners for your elements.</CardDescription>
-      </CardHeader>
-      <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Controls Column */}
         <div className="space-y-6">
           <div className="flex items-center space-x-2">
@@ -144,7 +140,7 @@ export function CSSBorderRadiusGeneratorTool() {
             <Trash2 className="mr-2 h-4 w-4" /> Reset Values
           </Button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

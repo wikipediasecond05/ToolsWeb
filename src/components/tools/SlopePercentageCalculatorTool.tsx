@@ -123,20 +123,12 @@ export function SlopePercentageCalculatorTool() {
   );
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Slope Percentage Calculator</CardTitle>
-        <CardDescription className="text-lg">
-          Calculate slope from Rise/Run or Angle of Inclination.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {/* Left Column: Inputs */}
           <div className="space-y-6">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="font-mono text-lg text-muted-foreground italic">a</span>
                 <Label htmlFor="rise" className="font-semibold mb-4">Rise</Label>
               </div>
               <Input
@@ -150,7 +142,6 @@ export function SlopePercentageCalculatorTool() {
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="font-mono text-lg text-muted-foreground italic">b</span>
                 <Label htmlFor="run" className="font-semibold mb-4">Run</Label>
               </div>
               <Input
@@ -217,7 +208,6 @@ export function SlopePercentageCalculatorTool() {
             )}
           </div>
         </div>
-      </CardContent>
-    </Card>
+    </>
   );
 }

@@ -129,14 +129,8 @@ export function CronjobExpressionGeneratorTool() {
   }
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Cronjob Expression Generator</CardTitle>
-        <CardDescription className="text-lg">
-          Create and understand cron expressions for scheduling tasks.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
+      <div className="space-y-6">
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -207,7 +201,7 @@ export function CronjobExpressionGeneratorTool() {
             </AlertDescription>
         </Alert>
 
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

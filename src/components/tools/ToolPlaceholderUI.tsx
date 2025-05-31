@@ -8,7 +8,7 @@ interface ToolPlaceholderUIProps {
 
 export function ToolPlaceholderUI({ toolTitle }: ToolPlaceholderUIProps) {
   return (
-    <Card className="w-full shadow-lg">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">{toolTitle}</CardTitle>
         <CardDescription className="text-lg">This tool is currently under construction.</CardDescription>

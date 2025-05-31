@@ -60,14 +60,7 @@ export function AiTextSummarizerTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">AI Text Summarizer</CardTitle>
-        <CardDescription className="text-lg">
-          Condense long articles or documents into key points with AI.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -76,9 +69,6 @@ export function AiTextSummarizerTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="textToSummarize" className="font-semibold mb-4 block">
-            Text to Summarize
-          </Label>
           <Textarea
             id="textToSummarize"
             value={textToSummarize}
@@ -135,7 +125,6 @@ export function AiTextSummarizerTool() {
              AI summaries are best used as a starting point. Always verify critical information.
             </AlertDescription>
         </Alert>
-      </CardContent>
-    </Card>
+    </>
   );
 }

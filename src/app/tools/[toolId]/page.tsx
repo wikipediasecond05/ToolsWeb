@@ -47,10 +47,11 @@ import { RelatedTools } from '@/components/tools/RelatedTools';
 import { EmojiRating } from '@/components/tools/EmojiRating';
 import { CommentSection } from '@/components/tools/CommentSection';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
-import Link from 'next/link';
 import { Icons } from '@/components/icons';
 import type { RelatedToolData } from '@/types';
+import Breadcrumb from '@/components/tools/Breadcrumb';
+import ShareDialog from '@/components/ui/shareDialog';
+import { marked } from 'marked';
 
 export default function ToolPage({ params }: { params: { toolId: string } }) {
   const actualParams = React.use(params);
@@ -60,9 +61,6 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
   if (!tool) {
     notFound();
   }
-
-  const category = getCategoryById(tool.category);
-  const ToolIconComponent = tool.iconName ? Icons[tool.iconName as keyof typeof Icons] || Icons.Settings2 : Icons.Settings2;
 
   const renderToolUI = () => {
     if (!tool) return null;
@@ -146,38 +144,65 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
     }
   };
 
-  const currentToolForRelated: RelatedToolData = {
+  const currentToolForRelated = React.useMemo(() => ({
     id: tool.id,
     title: tool.title,
     path: tool.path,
     iconName: tool.iconName,
-  };
-  const allToolsForRelated: RelatedToolData[] = allToolsData.map(t => ({
+  }), [tool]);
+
+  const allToolsForRelated = React.useMemo(() => 
+  allToolsData.map(t => ({
     id: t.id,
     title: t.title,
     path: t.path,
     iconName: t.iconName,
-  }));
+  })), [allToolsData]);
+
+
+  const [isFavorite, setIsFavorite] = React.useState(false);
 
   return (
     <PageWrapper>
-      {/* Header */}
-      <header className="mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <ToolIconComponent className="h-10 w-10 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight">{tool.title}</h1>
-        </div>
-        <p className="text-lg text-muted-foreground">{tool.description}</p>
-        {category && (
-          <Link href={category.path} className="mt-2 inline-block">
-            <Badge variant="secondary">{category.name}</Badge>
-          </Link>
-        )}
-      </header>
-
       <div className="lg:flex lg:gap-8">
         {/* Main Content Column */}
         <div className="lg:w-2/3 space-y-12">
+          {/* Header */}
+          <header className="mb-12">
+            <div className='mb-7 text-sm'>
+              <Breadcrumb toolId={tool.id} />
+            </div>
+
+            <div className="flex items-center gap-3 mb-4">
+              <h1 className="flex-1 text-3xl font-bold tracking-tight">{tool.title}</h1>
+            </div>
+            <p className="text-lg text-muted-foreground">{tool.description}</p>
+
+            <div className='flex justify-start gap-4 mt-6'>
+              <ShareDialog />
+
+              <div className='flex gap-3 select-none px-3 py-1 border dark:border-gray-800 border-gray-200 items-center justify-center hover:bg-gray-100 dark:hover:bg-muted transition cursor-pointer rounded-full' onClick={()=>{
+                const FAVORITES_KEY = 'NymGram_favorite_tools';
+
+                const storedTools: string[] = JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
+
+                if(isFavorite){
+                  const updatedTools = storedTools.filter((toolId: string) => toolId !== tool.id);
+                  localStorage.setItem(FAVORITES_KEY, JSON.stringify(updatedTools));
+                  setIsFavorite(false);
+                }else{
+                  storedTools.push(tool.id);
+                  localStorage.setItem(FAVORITES_KEY, JSON.stringify(storedTools));
+                  setIsFavorite(true);
+                }
+              }}>
+                <Icons.Heart className="h-4 w-4 text-muted-foreground" fill={isFavorite ? 'red' : 'none'} />
+                <span className='text-gray-500 dark:text-gray-400 font-semibold text-sm'>Add to Favorites</span>
+              </div>
+            </div>
+
+          </header>
+          
           {renderToolUI()}
 
           {/* Related Tools & Rating - Mobile & Tablet Only (stacks below tool UI) */}
@@ -207,8 +232,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
                   <ul className="list-none pl-0 space-y-3 text-lg text-muted-foreground leading-relaxed mb-4">
                     {tool.longDescription.useCases.map((useCase, index) => (
                        <li key={index} className="flex items-start">
-                        <Icons.CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
-                        <div>{useCase}</div>
+                        <Icons.CheckCircle className="h-4 w-4 text-primary mr-3 mt-2 flex-shrink-0" />
+                        <div dangerouslySetInnerHTML={{ __html: marked.parse(useCase) }}></div>
                       </li>
                     ))}
                   </ul>
@@ -220,7 +245,7 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
                     <Icons.Settings2 className="h-6 w-6 text-primary" />
                     How It Works
                   </h2>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-4">{tool.longDescription.howItWorks}</p>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: marked.parse(tool.longDescription.howItWorks) }}></p>
                 </div>
               )}
               {tool.longDescription.tips && tool.longDescription.tips.length > 0 && (
@@ -232,8 +257,8 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
                   <ul className="list-none pl-0 space-y-3 text-lg text-muted-foreground leading-relaxed mb-4">
                     {tool.longDescription.tips.map((tip, index) => (
                       <li key={index} className="flex items-start">
-                        <Icons.CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
-                        <div>{tip}</div>
+                        <Icons.CheckCircle className="h-4 w-4 text-primary mr-3 mt-2 flex-shrink-0" />
+                        <div dangerouslySetInnerHTML={{ __html: marked.parse(tip) }}></div>
                       </li>
                     ))}
                   </ul>
@@ -245,16 +270,16 @@ export default function ToolPage({ params }: { params: { toolId: string } }) {
           {/* FAQs */}
           {tool.faqs && tool.faqs.length > 0 && (
             <section className="pt-6">
-              <h2 className="flex items-center gap-2 text-3xl font-bold mb-8 text-foreground border-b pb-3">
-                <Icons.HelpCircle className="h-7 w-7 text-primary" />
+              <h2 className="flex items-center gap-2 text-2xl font-bold mb-8 text-foreground border-b pb-3">
+                <Icons.HelpCircle className="h-6 w-6 text-primary" />
                 Frequently Asked Questions
               </h2>
               <Accordion type="single" collapsible className="w-full">
                 {tool.faqs.map((faq, index) => (
-                  <AccordionItem value={`item-${index}`} key={index}>
+                  <AccordionItem value={`item-${index}`} className='border rounded-md my-4 px-4 py-2' key={index}>
                     <AccordionTrigger className="hover:no-underline text-left text-lg">{faq.question}</AccordionTrigger>
                     <AccordionContent>
-                      <p className="text-base text-muted-foreground leading-relaxed">{faq.answer}</p>
+                      {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
                 ))}

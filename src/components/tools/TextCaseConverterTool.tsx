@@ -135,12 +135,7 @@ export function TextCaseConverterTool() {
   ];
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Text Case Converter</CardTitle>
-        <CardDescription className="text-lg">Easily convert text between various cases like uppercase, lowercase, title case, sentence case, and more.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -204,7 +199,6 @@ export function TextCaseConverterTool() {
             <Trash2 className="mr-2 h-4 w-4" /> Clear
           </Button>
         </div>
-      </CardContent>
-    </Card>
+    </>
   );
 }

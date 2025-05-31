@@ -68,14 +68,7 @@ export function CSSMinifierTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">CSS Minifier</CardTitle>
-        <CardDescription className="text-lg">
-          Paste your CSS code below to compress it for faster loading.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant={error.includes("Failed to copy") || error.includes("An error occurred") || error.includes("Please enter") || error.includes("There is no") ? "destructive" : "default"}>
             <AlertCircle className="h-4 w-4" />
@@ -84,9 +77,6 @@ export function CSSMinifierTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText-css-min" className="font-semibold mb-4 block">
-            Input CSS
-          </Label>
           <Textarea
             id="inputText-css-min"
             value={inputText}
@@ -131,7 +121,6 @@ export function CSSMinifierTool() {
             />
           </div>
         )}
-      </CardContent>
-    </Card>
+    </>
   );
 }

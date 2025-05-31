@@ -59,16 +59,8 @@ export function UUIDGeneratorTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">UUID Generator (Version 4)</CardTitle>
-        <CardDescription className="text-lg">
-          Generate universally unique identifiers (UUIDs) with a single click.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         <div>
-          <Label htmlFor="generatedUUIDOutput" className="font-semibold mb-4 block">Generated UUID</Label>
           <div className="flex items-center gap-2">
             <Input
               id="generatedUUIDOutput"
@@ -89,11 +81,10 @@ export function UUIDGeneratorTool() {
           <RefreshCw className="mr-2 h-4 w-4" /> Generate New UUID
         </Button>
 
-        <div className="flex items-center text-sm text-muted-foreground mt-2">
+        <div className="flex items-center text-sm text-muted-foreground">
             <Fingerprint className="mr-2 h-4 w-4 text-primary" />
             <span>Generates Version 4 UUIDs using `crypto.randomUUID()`.</span>
         </div>
-      </CardContent>
-    </Card>
+    </>
   );
 }

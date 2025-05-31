@@ -55,14 +55,7 @@ export function AiBlogPostIdeaGeneratorTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">AI Blog Post Idea Generator</CardTitle>
-        <CardDescription className="text-lg">
-          Spark your creativity with AI-powered blog post suggestions.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -126,7 +119,6 @@ export function AiBlogPostIdeaGeneratorTool() {
               AI suggestions are a starting point. Refine and add your unique perspective!
             </AlertDescription>
         </Alert>
-      </CardContent>
-    </Card>
+    </>
   );
 }

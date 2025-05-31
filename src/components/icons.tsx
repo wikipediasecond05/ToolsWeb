@@ -100,6 +100,8 @@ import {
   AlertTriangle,
   Ban,
   Copyright,
+  Share,
+  Share2,
   ListChecks, // Added for "Use Cases"
 } from 'lucide-react';
 
@@ -204,6 +206,8 @@ export const Icons = {
   ShieldOff,
   AlertTriangle,
   Ban,
+  Share,
+  Share2,
   Copyright,
   ListChecks, // Added
   NymLogo: (props: React.SVGProps<SVGSVGElement>) => (

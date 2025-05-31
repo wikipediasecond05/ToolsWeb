@@ -74,14 +74,7 @@ export function JSONFormatterTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">JSON Formatter & Validator</CardTitle>
-        <CardDescription className="text-lg">
-          Paste your JSON below to format it and check for validity.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -130,7 +123,6 @@ export function JSONFormatterTool() {
             <Trash2 className="mr-2 h-4 w-4" /> Clear
           </Button>
         </div>
-      </CardContent>
-    </Card>
+    </>
   );
 }

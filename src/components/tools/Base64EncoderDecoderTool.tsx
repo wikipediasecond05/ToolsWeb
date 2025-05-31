@@ -75,14 +75,8 @@ export function Base64EncoderDecoderTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Base64 Encoder/Decoder</CardTitle>
-        <CardDescription className="text-lg">
-          Encode text to Base64 or decode Base64 strings back to text.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
+      <div className="space-y-6">
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -119,7 +113,7 @@ export function Base64EncoderDecoderTool() {
           <Button variant="outline" onClick={handleCopy} disabled={!outputText}><Copy className="mr-2" />Copy Output</Button>
           <Button variant="outline" onClick={handleClear}><Trash2 className="mr-2" />Clear All</Button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

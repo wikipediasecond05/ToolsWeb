@@ -112,12 +112,8 @@ export function SvgWaveGeneratorTool() {
 
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">SVG Wave Generator</CardTitle>
-        <CardDescription>Create custom SVG wave shapes. Currently supports sine waves. (Square/Triangle waves coming soon!)</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
+      <div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Controls Column */}
           <div className="space-y-6">
@@ -193,7 +189,7 @@ export function SvgWaveGeneratorTool() {
           </div>
         </div>
         
-        <Separator />
+        <Separator className='my-6' />
 
         <div>
           <Label className="mb-3 block text-lg font-semibold text-center">Live Preview</Label>
@@ -203,7 +199,7 @@ export function SvgWaveGeneratorTool() {
             </svg>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 }

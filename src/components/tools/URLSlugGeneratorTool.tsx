@@ -98,14 +98,7 @@ export function URLSlugGeneratorTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">URL Slug Generator</CardTitle>
-        <CardDescription className="text-lg">
-          Create SEO-friendly URL slugs from text like article titles or blog post names.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -217,7 +210,6 @@ export function URLSlugGeneratorTool() {
                 Slugs are generated in real-time as you type or change options. Dashes (-) are generally preferred for SEO.
             </AlertDescription>
         </Alert>
-      </CardContent>
-    </Card>
+    </>
   );
 }

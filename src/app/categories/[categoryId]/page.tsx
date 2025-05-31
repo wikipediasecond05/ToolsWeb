@@ -16,12 +16,12 @@ export async function generateMetadata({ params }: CategoryToolsPageProps): Prom
   const category = getCategoryById(params.categoryId);
   if (!category) {
     return {
-      title: `Category Not Found | ${APP_NAME}`, // Keep APP_NAME for "Not Found"
+      title: `Category Not Found | ${APP_NAME}`,
     };
   }
   return {
     title: category.name,
-    description: `Browse all tools in the ${category.name} category on ${APP_NAME}. ${category.description}`,
+    description: category.serp_description,
   };
 }
 
@@ -63,7 +63,7 @@ export default function CategoryToolsPage({ params }: CategoryToolsPageProps) {
       {/* <!-- AdSense Placeholder: Top of Tool List for Category --> */}
 
       {toolsIncategory.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {toolsIncategory.map((tool) => (
             <ToolCard key={tool.id} tool={tool} />
           ))}

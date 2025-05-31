@@ -90,14 +90,7 @@ export function HashGeneratorTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Hash Generator</CardTitle>
-        <CardDescription className="text-lg">
-          Generate cryptographic hashes from your text input.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -106,7 +99,6 @@ export function HashGeneratorTool() {
         )}
 
         <div className="grid gap-2">
-          <Label htmlFor="inputText-hash" className="font-semibold mb-4 block">Input Text</Label>
           <Textarea
             id="inputText-hash"
             value={inputText}
@@ -174,7 +166,6 @@ export function HashGeneratorTool() {
             )}
           </div>
         )}
-      </CardContent>
-    </Card>
+    </>
   );
 }

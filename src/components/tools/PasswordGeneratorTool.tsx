@@ -87,14 +87,7 @@ export function PasswordGeneratorTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Password Generator</CardTitle>
-        <CardDescription className="text-lg">
-          Create strong, secure, and customizable passwords.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         {error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -166,7 +159,6 @@ export function PasswordGeneratorTool() {
             </div>
           </div>
         )}
-      </CardContent>
-    </Card>
+    </>
   );
 }

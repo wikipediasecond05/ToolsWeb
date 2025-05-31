@@ -141,14 +141,7 @@ export function SleepCycleCalculatorTool() {
   };
 
   return (
-    <Card className="w-full shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl">Sleep Cycle Calculator</CardTitle>
-        <CardDescription className="text-lg">
-          Determine optimal wake-up or bedtimes based on natural sleep cycles.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
+    <>
         <Tabs value={calculationMode} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="sleepAt">I plan to sleep at...</TabsTrigger>
@@ -330,7 +323,6 @@ export function SleepCycleCalculatorTool() {
             </p>
           </div>
         </section>
-      </CardContent>
-    </Card>
+    </>
   );
 }
