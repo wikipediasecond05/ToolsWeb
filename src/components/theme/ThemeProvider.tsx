@@ -44,8 +44,15 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = window.document.documentElement;
+    // first disable all transitions
+    root.classList.add("no-transition");
+
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
+
+    setTimeout(() => {
+      root.classList.remove("no-transition");
+    }, 1000); 
     try {
       window.localStorage.setItem(storageKey, theme);
     } catch (e) {

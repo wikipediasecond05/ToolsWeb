@@ -50,7 +50,7 @@ const AlertDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("text-sm/loose text-gray-300", className)}
+    className={cn("text-sm/loose text-gray-700 dark:text-gray-300", className)}
     {...props}
   />
 ))

@@ -130,3 +130,9 @@ code{
   display: inline-block;
   font-weight: 500;
 }
+
+html.no-transition *,
+html.no-transition *::before,
+html.no-transition *::after {
+  transition: none !important;
+}
